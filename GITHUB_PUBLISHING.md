@@ -1,7 +1,11 @@
-# GitHub Pages publication
+# GitHub Pages publishing
 
 Repository: https://github.com/Vitra-Lumenhart/Webspace
 
-Set **Settings → Pages → Build and deployment → Deploy from a branch → main → /(root)**. After the website is deployed, the expected URL is https://vitra-lumenhart.github.io/Webspace/.
+The repository currently has a **placeholder** `index.html` from v3. The actual 6.2.1 Garden source has been reorganized into `Webspace_GitHub_migration.zip` in the ChatGPT project conversation. Upload the **unzipped contents** to the repository root.
 
-The source package contains the full WebGL/Canvas webspace, Gerudo–Gringotts travel graph, fictional bank interfaces, graphics, and test files. No real financial or Proton user credentials are collected by the demo.
+Then set **Settings → Pages → Deploy from a branch → main → /(root)**.
+
+Expected public URL after successful deployment: https://vitra-lumenhart.github.io/Webspace/
+
+Check that `garden-of-chuzhoy.html`, `engine/integrated-runtime.js`, and `assets/temple-embedded.js` are committed before calling the game published. Do not mistake the old placeholder page for the actual Garden.
