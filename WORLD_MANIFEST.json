@@ -1,0 +1,32 @@
+{
+  "name": "Webspace",
+  "version": "6.2.1-github-migration.1",
+  "default_entry": "/garden-of-chuzhoy.html",
+  "default_world": "garden_of_chuzhoy",
+  "engine": "engine/canon.js",
+  "shared_contracts": [
+    "portal",
+    "screen",
+    "travel",
+    "action"
+  ],
+  "worlds": {
+    "garden_of_chuzhoy": {
+      "entry": "garden-of-chuzhoy.html",
+      "canon": true
+    },
+    "fortress": {
+      "entry": "fortress/index.html",
+      "inherits": "garden_of_chuzhoy"
+    },
+    "witchs_hole": {
+      "entry": "witchs_hole/index.html",
+      "inherits": "garden_of_chuzhoy",
+      "independent_renderer": true
+    }
+  },
+  "known_limitations": [
+    "Integrated renderer remains monolithic while the reusable engine is extracted incrementally",
+    "WebGL and phone FPS require device validation"
+  ]
+}
