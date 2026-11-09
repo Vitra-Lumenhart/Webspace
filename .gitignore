@@ -1,0 +1,5 @@
+# Intermediate development outputs, never visitor state
+__pycache__/
+*.pyc
+.DS_Store
+assets/kilns/imports/

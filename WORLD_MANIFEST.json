@@ -1,32 +1,66 @@
 {
-  "name": "Webspace",
-  "version": "6.2.1-github-migration.1",
-  "default_entry": "/garden-of-chuzhoy.html",
-  "default_world": "garden_of_chuzhoy",
-  "engine": "engine/canon.js",
-  "shared_contracts": [
-    "portal",
-    "screen",
-    "travel",
-    "action"
-  ],
-  "worlds": {
-    "garden_of_chuzhoy": {
-      "entry": "garden-of-chuzhoy.html",
-      "canon": true
+  "schema": "webspace/federation/1.0",
+  "release_integer": 4,
+  "source_lineage": "Chuzhoy 6.2.5.1 + legacy v3 Gerudo/Gringotts + Witch v2 + Elisium v4.6",
+  "worlds": [
+    {
+      "id": "chuzhoy",
+      "name": "Garden of Chuzhoy",
+      "entry": "worlds/chuzhoy/index.html",
+      "version": "6.2.5.1 QA standalone",
+      "engine": "Embedded 6.2.5.1 runtime",
+      "arrival_tag": "chuzhoy-north"
     },
-    "fortress": {
-      "entry": "fortress/index.html",
-      "inherits": "garden_of_chuzhoy"
+    {
+      "id": "fortress",
+      "name": "Gerudo Fortress",
+      "entry": "worlds/fortress/index.html",
+      "version": "Gringotts-era v3",
+      "engine": "Chuzhoy legacy WebGL2/Canvas fallback",
+      "arrival_tag": "fortress-gate"
     },
-    "witchs_hole": {
-      "entry": "witchs_hole/index.html",
-      "inherits": "garden_of_chuzhoy",
-      "independent_renderer": true
+    {
+      "id": "gringotts",
+      "name": "Gringotts Gerudo Branch",
+      "entry": "worlds/gringotts/index.html?ws_v=1&ws_entry=gringotts-gerudo",
+      "version": "Gringotts-era v3",
+      "engine": "Chuzhoy legacy WebGL2/Canvas fallback",
+      "arrival_tag": "gringotts-gerudo"
+    },
+    {
+      "id": "witchs-hole",
+      "name": "Witch's Hole",
+      "entry": "worlds/witchs-hole/index.html",
+      "version": "v2 Ravine Cliff",
+      "engine": "Independent Witch WebGL2",
+      "arrival_tag": "witch-arrival"
+    },
+    {
+      "id": "elisium",
+      "name": "Elisium · Living Concordance",
+      "entry": "worlds/elisium/index.html",
+      "version": "4.6 compact playable",
+      "engine": "Independent Elisium WebGL2/Canvas compatible",
+      "arrival_tag": "elisium-first-footfall"
     }
+  ],
+  "portal_contract": {
+    "query": "?ws_v=1&ws_entry=<published-tag>",
+    "transfer": [
+      "public arrival tag"
+    ],
+    "prohibited_transfer": [
+      "credentials",
+      "private correspondence",
+      "balances",
+      "player history",
+      "camera coordinates"
+    ],
+    "cross_world_sessions": "per-world only"
   },
-  "known_limitations": [
-    "Integrated renderer remains monolithic while the reusable engine is extracted incrementally",
-    "WebGL and phone FPS require device validation"
-  ]
+  "asset_bank": {
+    "kilns_proxy_count": 24,
+    "actual_polyhaven_artist_files": 0,
+    "cathedral_revision": "Rev06"
+  }
 }

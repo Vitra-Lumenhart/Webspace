@@ -1,0 +1,541 @@
+{
+  "version": 4,
+  "files": {
+    ".gitignore": {
+      "sha256": "77f9bb22155b1754f80399dae3d2dacd3dd879ebd34d4b2276e1171020ba1ee5",
+      "bytes": 107
+    },
+    ".nojekyll": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "GITHUB_PUBLISHING.md": {
+      "sha256": "0020d2d793384c2b04e6b3ba7120dd5f490918c9639aead9fd58c245b5b655b6",
+      "bytes": 910
+    },
+    "README.md": {
+      "sha256": "e0072353d88e28fc02866b8034928acbda73c96d310e5b02a47220ee4a70a986",
+      "bytes": 4998
+    },
+    "TECH_MANUAL.html": {
+      "sha256": "a68f0e45ac1e120aaecdacdb4d9cb2dd9af184aba823098b9e8746922ba66a57",
+      "bytes": 3882
+    },
+    "VERSION.json": {
+      "sha256": "e9c0716d3f88e9f77aa9821b93aaa4de4f4dcd18f4ea8f6ef44f8af5265e5e8c",
+      "bytes": 283
+    },
+    "WORLD_MANIFEST.json": {
+      "sha256": "2f0fff1f05d65a9e83d164d1c0054e4161edec18c0e6f0d7d3c6d53517dac0c7",
+      "bytes": 1924
+    },
+    "assets/cathedral/DEVELOPMENT_PLAN.md": {
+      "sha256": "b89936b2aec1535c28a87732d3791cd110762743506689fb810a7b2f8caa06b0",
+      "bytes": 8754
+    },
+    "assets/cathedral/HANDOFF_TO_WEBSPACE_DEVELOPMENT.txt": {
+      "sha256": "afcfeeadc0baac9982dd4d575a1a8a202d7d110bc2eb97b10fabaca7d0d0971d",
+      "bytes": 1726
+    },
+    "assets/cathedral/INTEGRATE_IN_WEBSPACE.md": {
+      "sha256": "70d9d2520aec66bfb20c5b6823bb78c4ef6daaca47b636dca9ad703ac9e9cf91",
+      "bytes": 5339
+    },
+    "assets/cathedral/README.md": {
+      "sha256": "f438680cd0cd07ad9bf8ce4351d1e65691960f66e56ceaa5fbb19c38599bc4a3",
+      "bytes": 4217
+    },
+    "assets/cathedral/REV06_TEXTURE_AND_LIGHTING_ENGINEERING.md": {
+      "sha256": "f8514b0431ec23edb8a676db695c79b40f46dc197a423da4b289078495d365df",
+      "bytes": 4639
+    },
+    "assets/cathedral/build_log.txt": {
+      "sha256": "56dd5ae8cde687116f8823ba66329caa62d335f6e938964d296984ac66a33073",
+      "bytes": 977
+    },
+    "assets/cathedral/cad/glass_bay_cad_envelopes.step": {
+      "sha256": "66d7b258146ce73b4bd028de00a162cbc642460d76e451273a92aa2da5cb4174",
+      "bytes": 138506
+    },
+    "assets/cathedral/cad/temple_structural_master.step": {
+      "sha256": "21d0f95aa8c33f68486b42d192568e796fa6765773ce41d4ac40fb9eefbe3034",
+      "bytes": 669099
+    },
+    "assets/cathedral/public/assets/00_foundations.glb": {
+      "sha256": "6d08c856b592a0ace1cca95bc6022c05f08ba47c7ccc73c31863aa4e702c54dd",
+      "bytes": 11044
+    },
+    "assets/cathedral/public/assets/01_courts_water.glb": {
+      "sha256": "94c39a628baf91e2875a6307e38382b8d4aa83cbcab7aced04ac9bef323c4ac7",
+      "bytes": 307196
+    },
+    "assets/cathedral/public/assets/02_communion_crown.glb": {
+      "sha256": "831e96ac7f7cdd06ee46d72c3244f2489b7bd13b1db839d919f468a2433da442",
+      "bytes": 378132
+    },
+    "assets/cathedral/public/assets/03_mont_skyline.glb": {
+      "sha256": "6e52ed8da730601db087186106e64f1ab8abbb4904dc2a7369640759375aa7ea",
+      "bytes": 275572
+    },
+    "assets/cathedral/public/assets/04_ornaments_ruins.glb": {
+      "sha256": "bd6abc4fd0f357ae0d525bc4a2d608a0703938a132605bcb5b08d8fd39c7431a",
+      "bytes": 115860
+    },
+    "assets/cathedral/public/assets/05_stained_glass.glb": {
+      "sha256": "754642f0fa5a4106c01015eafd6c785322fd9bc852e984b933b112a84eee229f",
+      "bytes": 27764
+    },
+    "assets/cathedral/public/assets/temple_full.glb": {
+      "sha256": "630cfdc6da13107b4bd993b1478c950689bf468466bf07fc8f7696cb73013a6d",
+      "bytes": 1102616
+    },
+    "assets/cathedral/public/assets/temple_lite.glb": {
+      "sha256": "de2f801bf34e20915dd94eee176f88faf13df2f625bf0fd716ba692b4ad5a20a",
+      "bytes": 692480
+    },
+    "assets/cathedral/public/assets/textures/glass_caustic_fake.webp": {
+      "sha256": "823256e59432435259633fe588932846036e64cc9aa04fb998844c5bfb0eb984",
+      "bytes": 10618
+    },
+    "assets/cathedral/public/assets/textures/marble_micro_atlas.webp": {
+      "sha256": "cf08687ebde4299368781c1fb90ae0818b9450da4e0cf1704ab0f2662bf914c6",
+      "bytes": 4530
+    },
+    "assets/cathedral/public/assets/textures/sevenfold_broken_glass.png": {
+      "sha256": "31ebcfc221b25abb3abffb912a1554aa17da4b5918561b37eac58f4aea81ad31",
+      "bytes": 22911
+    },
+    "assets/cathedral/public/index.html": {
+      "sha256": "b65664fbfd45d9a8ca94b687bb965b3f9af5b8cddaedabba0a73fa326ff12a3b",
+      "bytes": 5016
+    },
+    "assets/cathedral/public/viewer.js": {
+      "sha256": "962521008d4d8ad9b8e07ff1764639a4f83387d0055cb5dd40858564cb5dac1f",
+      "bytes": 13421
+    },
+    "assets/cathedral/reference/rev04_ceiling_plan.svg": {
+      "sha256": "5ecda1d4a2c667fbf1f1ec436736519ca30100d4fd2ff37f5477a32e8bcc648a",
+      "bytes": 138221
+    },
+    "assets/cathedral/reference/rev04_geometry_manifest.json": {
+      "sha256": "e9599d89c05e1e971c293fa3bbe1ee5546ecf11dc8f79bef5cee2e7ca0679d92",
+      "bytes": 7086
+    },
+    "assets/cathedral/reference/rev04_ground_plan.svg": {
+      "sha256": "25078faef5b8ec67106bfdfc633c09ff5e080866b7e42f9b3fa9e995224b6e92",
+      "bytes": 90658
+    },
+    "assets/cathedral/reference/rev04_registered_plans.dxf": {
+      "sha256": "c4cd2ee6084786e44a34ae224c49fa605b4bd22a8aaf3c7eb8abfe817b0242f8",
+      "bytes": 102920
+    },
+    "assets/cathedral/run_local.py": {
+      "sha256": "9fdd4f0764e394522a872bc2f3a005fe4917f4336cf66071b0eed612930a6607",
+      "bytes": 364
+    },
+    "assets/cathedral/src/build_temple.py": {
+      "sha256": "0fe7d31bc8056c975d27b44504ec0df24eabe733c620154654d63a0368e7455b",
+      "bytes": 22856
+    },
+    "assets/cathedral/src/export_glass_cad.py": {
+      "sha256": "455fe90f5276193ad39db01eea938757269c7e28b6be4455778423dd500f3d1e",
+      "bytes": 899
+    },
+    "assets/cathedral/src/paint_rev06.py": {
+      "sha256": "3bf0dc62d5c6122c66a85d863d1ad48ee96211b6466e6f6be7c4c0a5aefe0aa3",
+      "bytes": 9413
+    },
+    "assets/cathedral/src/render_preview.py": {
+      "sha256": "ef42971bff15fd56172130cd6898c8235048e0e59090014338559c5603ce1399",
+      "bytes": 2932
+    },
+    "assets/cathedral/stained_glass_layout.json": {
+      "sha256": "e4cade61468a379ebc463cc19309cb4cfef6493270de3f0d95c032e01a70226d",
+      "bytes": 1992
+    },
+    "assets/cathedral/temple_manifest_rev05.json": {
+      "sha256": "aa1d6f94e552a0201be6e5f0c003b06debd041777fef9c51406b6d0e1011c8a1",
+      "bytes": 3813
+    },
+    "assets/cathedral/temple_manifest_rev06.json": {
+      "sha256": "eaa80c8bbe4feacd7b59e1dda7ee4426dd6912bcbabbd85673c43abb658c3902",
+      "bytes": 1769
+    },
+    "assets/cathedral/temple_preview.png": {
+      "sha256": "2edc930ebcec89b081167ee9e5b66bdb8bae3f98b426f6cd14170e264b69fad9",
+      "bytes": 814898
+    },
+    "assets/cathedral/tests/verify_assets.py": {
+      "sha256": "e1704434fa9c082b83556c227dfafc6eabd9365b5bf7ef6f8e04c5ca775d2557",
+      "bytes": 784
+    },
+    "assets/cathedral/tests/verify_rev06.py": {
+      "sha256": "65a10b3a22516fb69f51fb25504cbcb8985e517ef9e20b0d224a5475e2627fc0",
+      "bytes": 2053
+    },
+    "assets/kilns/CURATOR_TABLE.md": {
+      "sha256": "c61fb0a39da5e0298412baec992737658d2fb91c72b233383b864937f9c9edc0",
+      "bytes": 6904
+    },
+    "assets/kilns/OBJECTS.json": {
+      "sha256": "7e505a3e95b6ad33d6a97f4d1112ed829f5f8bfc9bd4b4e43f7da17da90999ee",
+      "bytes": 12705
+    },
+    "assets/kilns/acquire_polyhaven.py": {
+      "sha256": "c0510b374fd6013288bb38913a7411e5ee6d59d51cad207c0351e976c463c8a0",
+      "bytes": 2416
+    },
+    "assets/kilns/index.html": {
+      "sha256": "d21eaf44aad81b6573f2e52c73d26dce4621667f462dd43b62caa7cb3d8eaa89",
+      "bytes": 8305
+    },
+    "assets/kilns/proxy/H01.glb": {
+      "sha256": "e04ab48699fc547ef5ba944e73aa3c302ace80ddd560217a3a130fabd686f4e0",
+      "bytes": 6744
+    },
+    "assets/kilns/proxy/H02.glb": {
+      "sha256": "5f7da098e5fdb582b44b33ea9ee52fbdff5c664ae9c338faa931a6ba122cd31c",
+      "bytes": 4912
+    },
+    "assets/kilns/proxy/H03.glb": {
+      "sha256": "af36714486adfdd33ab3e79c5e82489cea7ccb7be7fe32e749799ece2b28de23",
+      "bytes": 6212
+    },
+    "assets/kilns/proxy/H04.glb": {
+      "sha256": "deeb9bfef9962d37bafc5862d1b95f7add0aa4353de105241b3ae5c29812b4f5",
+      "bytes": 3584
+    },
+    "assets/kilns/proxy/H05.glb": {
+      "sha256": "dc4f2b266ee420097439eab7ded3047408514c862097e83bf957686bfef4de42",
+      "bytes": 3440
+    },
+    "assets/kilns/proxy/H06.glb": {
+      "sha256": "71952ba81baf21b49d02ca226d7bfba11b93a23c9e21f5624b0e1f609846c713",
+      "bytes": 2712
+    },
+    "assets/kilns/proxy/H07.glb": {
+      "sha256": "d028b037a2a7f0e8d5d8570e569e0765180067591ef7bf961f882dabd8132ddd",
+      "bytes": 3584
+    },
+    "assets/kilns/proxy/H08.glb": {
+      "sha256": "01fe233cd4d11dd450c77cc84f896aeed5a82f9d3b9298bced3109f09b64cd0d",
+      "bytes": 2740
+    },
+    "assets/kilns/proxy/H09.glb": {
+      "sha256": "7511db115269402de9f8eb234caa4954720e6acaaee5f5da1e970ef8fe9336ce",
+      "bytes": 2744
+    },
+    "assets/kilns/proxy/H10.glb": {
+      "sha256": "e45d10fa212b13eedc18f0b862de18735a71d621db67603792dcd72eb5af676f",
+      "bytes": 2744
+    },
+    "assets/kilns/proxy/H11.glb": {
+      "sha256": "fcf036a0b19fa2c4f3ff5e119f999d17044abd4403e5f8a124c298be4ad75b7f",
+      "bytes": 2712
+    },
+    "assets/kilns/proxy/H12.glb": {
+      "sha256": "146107e51755de37e1f7fe9bd876078b409cdc131cf40cde089c1916673bfce2",
+      "bytes": 2712
+    },
+    "assets/kilns/proxy/H13.glb": {
+      "sha256": "1e2aa553d2f34e836aa9b3325582c1eb3d4c0c66d8c233bae7aa17251ab1a9c7",
+      "bytes": 2740
+    },
+    "assets/kilns/proxy/H14.glb": {
+      "sha256": "d4874d35f571fb896a3c1473be14f2f8fbcda8013bb15cd667648f961fbca0fc",
+      "bytes": 4912
+    },
+    "assets/kilns/proxy/H15.glb": {
+      "sha256": "598d57106f31390c4bfd7aaf94e9e3c53db3c8a6111ea9380051d31a89e115dd",
+      "bytes": 7644
+    },
+    "assets/kilns/proxy/H16.glb": {
+      "sha256": "af804d402444c67febc59fd1aa000351e47137d42da6614149f6b092241c9ddd",
+      "bytes": 6744
+    },
+    "assets/kilns/proxy/H17.glb": {
+      "sha256": "2907cd77d61d7d6e0d09179b66dc0ea888082ef84339b8e6e60edfff6efea64b",
+      "bytes": 7644
+    },
+    "assets/kilns/proxy/H18.glb": {
+      "sha256": "a03fab9c6f6fca0eef8df8f612d4b6b0471c2f3a9d0742c49b910418c22e3881",
+      "bytes": 3440
+    },
+    "assets/kilns/proxy/H19.glb": {
+      "sha256": "9d285130d2a3a7b82c94b14d3dea4eb89ea25d68d574fb40718e901f9e07390e",
+      "bytes": 6240
+    },
+    "assets/kilns/proxy/H20.glb": {
+      "sha256": "14cee7362554a9b32d115d4446fedf1be38d5794c4ec3ccd61ab0a06d4afcb39",
+      "bytes": 6240
+    },
+    "assets/kilns/proxy/H21.glb": {
+      "sha256": "8fc9ab6fa00c507a2ce6a1dfed840f20a28d3dea44a96c9729dd928409732932",
+      "bytes": 6212
+    },
+    "assets/kilns/proxy/H22.glb": {
+      "sha256": "950a23c7c3e1116ecaa8df6fa49baf139d0616604d244901adcc27c7c5d6447b",
+      "bytes": 4916
+    },
+    "assets/kilns/proxy/H23.glb": {
+      "sha256": "a5049a4dd987aea9d2fb8eed941905d23d501d7cd0b662cdbcbee81110eb9e22",
+      "bytes": 4324
+    },
+    "assets/kilns/proxy/H24.glb": {
+      "sha256": "b2c39e3c0632cc9d0a83e40b6270d26a2d33a924e38e3a3a086cf001df1a4262",
+      "bytes": 3584
+    },
+    "docs/RECONCILIATION.md": {
+      "sha256": "fb46142b382b6a11ac038fdf05911593dde9fe1babcbdabc4296d9049d145e98",
+      "bytes": 1229
+    },
+    "garden-of-chuzhoy.html": {
+      "sha256": "38a65f827cca44e84822f9ccf46e626360b1547a139d0fac5c1d6c648e0fc550",
+      "bytes": 208
+    },
+    "history/version_0003.zip": {
+      "sha256": "5b3dde994f6032bf37caaec97b849a862eb085b203bf2f47ed485b414ae48d41",
+      "bytes": 1704636
+    },
+    "index.html": {
+      "sha256": "b310f6b838d12753165c043e00ddd2119a7db6fc7a0240879e8ed4e3eaa34b15",
+      "bytes": 3175
+    },
+    "shared/legacy/.gitignore": {
+      "sha256": "76f62fad1bade9ae0916ecbec983cfffd7b7f64523a298918b39370f33e514b5",
+      "bytes": 298
+    },
+    "shared/legacy/.nojekyll": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "shared/legacy/ART_SYSTEMS.md": {
+      "sha256": "cae2d48fcd7fc6dca8d699c2342e7d8722fa6ea8b5ce5c7504b23f7ac946187f",
+      "bytes": 4536
+    },
+    "shared/legacy/BANK_ARCHITECTURE.md": {
+      "sha256": "197109068137dd752a6929e31587501d9d39963b5c1292476c7fe3508e444359",
+      "bytes": 3645
+    },
+    "shared/legacy/GITHUB_PUBLISHING.md": {
+      "sha256": "f0923cb0904a7d4f74a1f53f242019e8bfc3322bfd1d43bfc6839fe21a020336",
+      "bytes": 4856
+    },
+    "shared/legacy/PORTAL_ARRIVALS.md": {
+      "sha256": "c75cc78967073df514a435c1667dab4cbfc51c1341a9714ca392f38173205ca4",
+      "bytes": 4919
+    },
+    "shared/legacy/PORTAL_PROTOCOL.md": {
+      "sha256": "5feae00ccf1a1fc97c6be3b5b8e35da29010b4dc40b47d51fca64b158873f5f1",
+      "bytes": 6491
+    },
+    "shared/legacy/README.md": {
+      "sha256": "cca2500f3f5e1c4c2d035a721c387f8047f4540519880acb9b35b7a6af9c8c5b",
+      "bytes": 9613
+    },
+    "shared/legacy/SCREEN_PROTOCOL.md": {
+      "sha256": "dfda13cb7dca588abf6a808617d6ede1dcfc2fe99f339a44d8325dccc0e7f2c1",
+      "bytes": 11084
+    },
+    "shared/legacy/VERSION.json": {
+      "sha256": "863c343fdf83bd8d8843a7358a2e4bc3bb8536483f69428f8984d566febcee94",
+      "bytes": 589
+    },
+    "shared/legacy/build_preview.py": {
+      "sha256": "130e684c8b8340df34df78feb7430c8c76fba8591dadf4598950dc6697f831fc",
+      "bytes": 1627
+    },
+    "shared/legacy/correspondents_chair.glb": {
+      "sha256": "866dbc7045259ef34e4aadafd3f141372d5eabd80725743d042bdbd02c84f747",
+      "bytes": 64096
+    },
+    "shared/legacy/correspondents_chair.step": {
+      "sha256": "c85c6b8112cf93a61dc3f47fa0755966a1685b5bfa83d233e4e100a12cff8be6",
+      "bytes": 271701
+    },
+    "shared/legacy/correspondents_chair_asset.js": {
+      "sha256": "872dba98d54c06323c20b93d1946923f4e6eff7b6064d040977da5a346633991",
+      "bytes": 85494
+    },
+    "shared/legacy/courtyard_chandelier.glb": {
+      "sha256": "17c29b6eeb62d7f9433551f69ded575de7a61862a54d5dc4fe458fdaf743e428",
+      "bytes": 865516
+    },
+    "shared/legacy/courtyard_chandelier.step": {
+      "sha256": "480782171f3c647f7d0fbdb298d2446b952860fa048175d46df8ebbac28f880e",
+      "bytes": 3206799
+    },
+    "shared/legacy/courtyard_chandelier_asset.js": {
+      "sha256": "cf72033f1bd6404eee34cd928f6f00b738a9db722d0138c11a61ba26974252bf",
+      "bytes": 1154142
+    },
+    "shared/legacy/garden_fountain.glb": {
+      "sha256": "4d12b31f201616643a2e07b248f6823ef97786e64a23d2f540691ad7dfdd7a42",
+      "bytes": 670332
+    },
+    "shared/legacy/garden_fountain.step": {
+      "sha256": "cb8837e4384f7ad6fc13613e2722e4a73c0e60d4f12db5dfd05e397c676c4951",
+      "bytes": 328441
+    },
+    "shared/legacy/garden_fountain_asset.js": {
+      "sha256": "c469884b4447dafd042ad82a0834f92f600e38ebf6d49eb2e35caa97419800e1",
+      "bytes": 893899
+    },
+    "shared/legacy/index.html": {
+      "sha256": "8e292add1cb111256291f2e317b3060ad873890cf8563e370991aefbe4ba37f8",
+      "bytes": 13032
+    },
+    "shared/legacy/make_correspondents_chair.py": {
+      "sha256": "e0c4c63ed63a9617db2ec391c634a1eccdfe716897a384b56015bc430c6ebb02",
+      "bytes": 3362
+    },
+    "shared/legacy/make_courtyard_chandelier.py": {
+      "sha256": "bb0caa894c3eb0a6470ebe4092a8831fb77d261b6600a0c51e58b643b0c5862b",
+      "bytes": 6095
+    },
+    "shared/legacy/make_garden_fountain.py": {
+      "sha256": "49adda73a0541fa7c318482398e5ca6d959d7c4dcc27f6b22bc7a57ef133259d",
+      "bytes": 5637
+    },
+    "shared/legacy/test_art_direction.js": {
+      "sha256": "2cd3c91e88df9b01834bd06ff39dcd1aa4e4e6de70894f3e1792229b8dea7720",
+      "bytes": 959
+    },
+    "shared/legacy/test_assets.js": {
+      "sha256": "2cf8ddbf49d213a21dd7cec32dd91aaa0395af0633c1a44f71dba7b8178358ff",
+      "bytes": 828
+    },
+    "shared/legacy/test_bank.js": {
+      "sha256": "362f89a9b6cc1a11f47e4dd89a27b720e9ae4b579eda9777c6eec4f911282bc3",
+      "bytes": 2127
+    },
+    "shared/legacy/test_geometry.js": {
+      "sha256": "3e70fe22039ca3e76b36f8a19f697b6de2499325d104cd3186528228c0ce6e06",
+      "bytes": 2279
+    },
+    "shared/legacy/test_portal.js": {
+      "sha256": "3dcefb27dd5996af06c1fe6f8fc8d6b2cfb5501718426c27e9be8d64c7de6d40",
+      "bytes": 3256
+    },
+    "shared/legacy/test_screen.js": {
+      "sha256": "981c2401f601bcd714417ae971d61f809278ec3aad179bc19ad414ead246c994",
+      "bytes": 2075
+    },
+    "shared/legacy/test_screen_projection.js": {
+      "sha256": "8e5023a6971fff2a122399d33bf0df6e306049d96daebd02c92424ccfe0202d2",
+      "bytes": 445
+    },
+    "shared/legacy/test_v61.js": {
+      "sha256": "b4c88336934776cb717350bf51f53784e2e73af0a220112135547f18e0cb35ec",
+      "bytes": 3457
+    },
+    "shared/legacy/webspace-bank-desk.js": {
+      "sha256": "79f95bee9bcd40adf5b7b60352f691c73841a05d1093dc4ebd4e47ff97dfc9d8",
+      "bytes": 9814
+    },
+    "shared/legacy/webspace-channel.js": {
+      "sha256": "e346ffbcccfcc3a5a7a9509fb82a911f64d9be36d5040ab94a04b5487fe786af",
+      "bytes": 3254
+    },
+    "shared/legacy/webspace-fallback.js": {
+      "sha256": "f579c39d4e681e35430ed44c5f54b0478d2f5cb68d8a57600070d42b82d13305",
+      "bytes": 17756
+    },
+    "shared/legacy/webspace-portal.js": {
+      "sha256": "bd55459f04539ddfd4b638f8b68192e68ef4ddf1706529d8cf14785117c3424e",
+      "bytes": 11106
+    },
+    "shared/legacy/webspace-screen.js": {
+      "sha256": "2e0ae67fd00985dc337797c54951de64ff720312f62b225da3a900ce0de6a65c",
+      "bytes": 10124
+    },
+    "shared/legacy/webspace.js": {
+      "sha256": "384967d2d10b7dd594f0af216154c67a6b4ff5c9d3c2e7ae974452da332e9d5e",
+      "bytes": 88841
+    },
+    "shared/legacy/worlds-runtime.js": {
+      "sha256": "dea837d2b7e797fd90cf28920210bccbf18bb79832c109d2173ac9b153688139",
+      "bytes": 3369
+    },
+    "shared/legacy/worlds.json": {
+      "sha256": "51c4d5d94f3477566f7f9e1b173b4ef00f2f77487d4f8388367de031f793e589",
+      "bytes": 10653
+    },
+    "shared/world-nav.js": {
+      "sha256": "91fe0789844f9ff7118aeeb3c03912a6960e0aa43a306e768ae8ab3f985d439d",
+      "bytes": 2517
+    },
+    "tests/test_unified.mjs": {
+      "sha256": "2bd0947824c688c7de0b3475f293518bc1667398cc9b821236856ac3be96274a",
+      "bytes": 1713
+    },
+    "tools/build_initial_federation.py": {
+      "sha256": "c713339c47dde8d19acab586cd48378877a1abc29df408ee71b9bb975daea531",
+      "bytes": 33391
+    },
+    "tools/patch_bank.py": {
+      "sha256": "fc29b0c84e3f00a2c78a5943736b69709d38d55051d6eb3c5d717c7f5cfae896",
+      "bytes": 1039
+    },
+    "tools/patch_compatibility.py": {
+      "sha256": "5aa76bfab98506c1cc80f3d576e48182a1d60bcad893dd9bea319d0d14db9538",
+      "bytes": 1988
+    },
+    "webspace_standalone_preview.html": {
+      "sha256": "9d109d9162a979e01fbb1a3438abb2ab6e666891517d8b43446ee48cefb72a09",
+      "bytes": 1923573
+    },
+    "worlds/chuzhoy/garden_native.html": {
+      "sha256": "c3270a0b66e334ee55003614e65b84d12be05c36bf46c71dda008d0f63fd2903",
+      "bytes": 1444859
+    },
+    "worlds/chuzhoy/index.html": {
+      "sha256": "69602d5b8fb10639c02f5b6e7572d0455d6c2fa498559fdaf03843ee7f247560",
+      "bytes": 657
+    },
+    "worlds/elisium/elisium_native.html": {
+      "sha256": "a4f5d80bd64b4eefb1c5cb08b04e1cc6ee13fbd1d78cade29be3db1632fd83b5",
+      "bytes": 399370
+    },
+    "worlds/elisium/index.html": {
+      "sha256": "c5ce2da59fc65866cd8298e8b148b14a4cc4e33a7520d8d542ca5f8f9ce2a544",
+      "bytes": 483
+    },
+    "worlds/fortress/index.html": {
+      "sha256": "1dfb4d770a76b57dd064d8cae8e79ceb1ce8ae545c8f745e6ee01092ea3221ff",
+      "bytes": 13222
+    },
+    "worlds/gringotts/index.html": {
+      "sha256": "70b86fd6456b5adf28d24639c60752305c09bd95798986101c822ab4554ee535",
+      "bytes": 13251
+    },
+    "worlds/witchs-hole/README.md": {
+      "sha256": "499664bd7f838658ecfa8b7556d1331cf7d85c1599223955bf5b5089d4517d05",
+      "bytes": 6524
+    },
+    "worlds/witchs-hole/index.html": {
+      "sha256": "01432f93fe29818bde1a62250faae85697737a710d6c25f09642f9899cc8b9a1",
+      "bytes": 567
+    },
+    "worlds/witchs-hole/webspace-portal.js": {
+      "sha256": "bd55459f04539ddfd4b638f8b68192e68ef4ddf1706529d8cf14785117c3424e",
+      "bytes": 11106
+    },
+    "worlds/witchs-hole/witch_fallback.html": {
+      "sha256": "61c7f9c13ebde0d0eb809f2dc8fa9f461cacaa76f9ddeff57aa9f42a31cf3d77",
+      "bytes": 5662
+    },
+    "worlds/witchs-hole/witch_native.html": {
+      "sha256": "7d8936c3c85d7cf06fbb333c4003f52c6e48465d68a18a331a9a732c1948d057",
+      "bytes": 9804
+    },
+    "worlds/witchs-hole/witchs-hole.js": {
+      "sha256": "cca991831b746e4d2ebee21af015ff9baeb63638e694198eae87f5d6cbaea58b",
+      "bytes": 62613
+    },
+    "worlds/witchs-hole/worlds.json": {
+      "sha256": "cbfee40d77132810f3a52009148ad67682239718c2747ac22e107be02a89c74c",
+      "bytes": 1994
+    }
+  }
+}

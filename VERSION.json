@@ -1,0 +1,10 @@
+{
+  "version_integer": 4,
+  "build": "webspace-federation-0004",
+  "date": "2026-11-09",
+  "entry": "index.html",
+  "canonical_garden_entry": "garden-of-chuzhoy.html",
+  "parent_preserved": "history/version_0003.zip",
+  "git_repo": "Vitra-Lumenhart/Webspace",
+  "git_pushed": false
+}
