@@ -1,21 +1,40 @@
-# Webspace — Garden of Chuzhoy canonical landing
+# Webspace · five independent worlds under one root
 
-**Migration in progress.** The existing GitHub Pages `index.html` is a small placeholder from the earlier v3 publication, **not the playable game**. The full 6.2.1 game and its modularized GitHub Pages source are available as `Webspace_GitHub_migration.zip` in the ChatGPT project conversation. That ZIP must be extracted and its **contents** committed to this repository root before the live Garden will work.
+> **Revision covenant for human and AI collaborators:** Before changing a release, archive the entire old codebase under the next integer revision. In EVERY revision update `README.md` (player experience) and `TECH_MANUAL.html` (developer architecture and tests); preserve timeless active filenames and provide a full-screen HTML preview.
 
-## New canonical entry
-- `index.html` redirects to `garden-of-chuzhoy.html` in the prepared package.
-- `garden-of-chuzhoy.html` starts in the Garden, not the Fortress.
-- `engine/canon.js` establishes inherited contracts for portals, screens, graph travel, and actions.
-- `fortress/` is an explicit alternate landing; `witchs_hole/` preserves an independent Witch's Hole v2 renderer.
-- `WORLD_MANIFEST.json` documents the world relationships.
+## Version 4 · 9 November 2026
 
-## Publish
-1. Download `Webspace_GitHub_migration.zip` from the project conversation and extract it.
-2. Upload **all extracted files and folders** to the root of this repository on `main`, replacing the placeholder `index.html` and this README.
-3. Set **Settings → Pages → Build and deployment → Deploy from a branch → `main` → `/(root)`**.
-4. Open `https://vitra-lumenhart.github.io/Webspace/` and verify that the Garden loads.
+The root `index.html` launches a playable Garden immediately with a five-world selector. For direct launch use the separate entrypoints below. Each has its own canvas/runtime and may be developed independently. In GPU-restricted previews, Chuzhoy displays its older Canvas-compatible Garden and Witch’s Hole displays a simplified Canvas-based survey (including the root puzzle).
 
-**Status:** The canonical engine scaffold and manifest have been committed. The multi-megabyte game source and art assets are packaged but **not yet uploaded to GitHub**. GitHub Pages is therefore not yet a playable deployment.
+| World | Direct page | Engine/source | What the visitor does |
+| --- | --- | --- | --- |
+| Garden of Chuzhoy | `worlds/chuzhoy/index.html` | Chuzhoy 6.2.5.1 self-contained QA build | Explore the canonical Garden, flora, portal connections and route mechanics |
+| Gerudo Fortress | `worlds/fortress/index.html` | Preserved Gringotts-era v3 renderer | Approach the throne and its rear banking portal |
+| Gringotts Gerudo Branch | `worlds/gringotts/index.html` | Same code lineage but separate launch / initial node | Visit tellers, paper contracts, calendar, fictional ledger and Proton service gallery |
+| Witch's Hole | `worlds/witchs-hole/index.html` | Independent Ravine Cliff v2 engine | Traverse 10 sites, break roots, follow the fog, return to Garden |
+| Elisium | `worlds/elisium/index.html` | Independent v4.6 compact playable HTML | Explore the star, the Kilns, Concordance Lens and its independent sky |
 
-## Growth model
-The Garden is the conservative onboarding canon, not a demand for uniform presentation. Descendant worlds may replace their HUD, physics, visual grammar, and renderer while preserving clear, explicit portal consent, visible action semantics, and separation between sandboxed screens and navigation. The current integrated renderer is a migration bridge; full scene-module inheritance remains a later refactor.
+**Controls:** Use each world's visible travel and look controls. The compact `◈ WORLDS` button near the bottom right opens a cross-world directory. External transitions use only public named arrival tags, not identity, credits, browsing history or passwords. Worlds do not pretend to share an authentication server.
+
+### The Kilns: twenty-four models
+
+`assets/kilns/index.html` lists all H01–H24 with their names, room locations, behavior, optional Poly Haven candidate links and an **actual low-poly GLB proxy** each, generated for this release. These placeholders are not the original Poly Haven artist assets and are not automatically placed into the Elisium v4.6 interior.
+
+No download is needed **before publishing this package** to GitHub. If you want realistic Poly Haven furnishings, you do need to download the selected models (unique models can serve multiple H objects) or allow an authenticated download workflow with a reachable network. Poly Haven originals have not been fetched into this package. An explicit optional `assets/kilns/acquire_polyhaven.py` script records the acquisition method.
+
+### Release limitations
+
+- These are five valid browser entry points and a shared navigation hub, not yet a single reconciled physics/graphics engine. Chuzhoy 6.2.5.1 and the older Gringotts-era renderer have intentionally not had their different botanical/geometry branches silently merged.
+- Gringotts's registration, digital currency, secure storage and Proton service controls are creative demonstration UI, not real banking or private storage. **Never enter real credentials.**
+- Elisium 4.6 was recovered as a complete self-contained compact playable HTML, but its separate 8.3 MB source archive and Kilns v0.6 ZIP were indexed in the Library without authorized downloadable backing bytes. They remain separately tracked as upstream sources, NOT dishonestly represented as present here.
+- Poly Haven catalog entries are source references. This package contains 24 generated original low-poly proxies, not Poly Haven original binary downloads.
+- Cathedral Rev06 is included as independent reusable asset source with STEP, GLB, and stained-glass textures; not installed as a sixth playable world.
+- Static GitHub Pages is not a trusted backend. Persistent multiuser identity/private vaults require separate secure architecture.
+
+### Publish
+
+Publish this **root directory**, not its outer ZIP folder, to `Vitra-Lumenhart/Webspace` on `main`. Settings → Pages → deploy from branch `main` → `/(root)`. Expected URL: `https://vitra-lumenhart.github.io/Webspace/`. A successful GitHub commit and Pages deployment must be separately verified before anyone calls the site live.
+
+## Source provenance
+
+Predecessor `history/version_0003.zip` is the complete earlier Gringotts-era source. The Garden native build came from the newest retrievable 6.2.5.1 QA HTML; Witch from the actual v2 Ravine Cliff ZIP; Elisium from v4.6 compact playable HTML. See `TECH_MANUAL.html`, `WORLD_MANIFEST.json`, `assets/kilns/OBJECTS.json` and the source-history integrity test.
