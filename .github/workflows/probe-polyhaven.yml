@@ -1,4 +1,4 @@
-name: Poly Haven API probe (temporary)
+name: Poly Haven API compatibility smoke
 on:
   push:
     branches: [world/kilns/polyhaven-import-v6]
@@ -8,14 +8,27 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect live Poly Haven 1k model metadata
+      - uses: actions/checkout@v4
+      - name: Check all 24 candidate objects and CORS
         shell: python
         run: |
           import json,urllib.request
-          for slug in ('brass_goblets','ornate_mirror_01','vintage_grandfather_clock_01'):
-            req=urllib.request.Request('https://api.polyhaven.com/files/'+slug,headers={'User-Agent':'Webspace-Kilns-GitHub/1.0'})
+          o=json.load(open('assets/kilns/OBJECTS.json'))['objects']
+          found=set();missing=[]
+          for item in o:
+            slug=item['polyhaven_url'].split('/a/')[-1]
+            if slug in found: continue
+            found.add(slug)
+            url='https://api.polyhaven.com/files/'+slug
+            req=urllib.request.Request(url,headers={'User-Agent':'Webspace-Kilns-GitHub/1.0'})
             try:
-              with urllib.request.urlopen(req,timeout=30) as h: data=json.load(h)
-              print('PROBE',slug,'top keys',list(data))
-              print(json.dumps({'gltf':data.get('gltf'), 'glb':data.get('glb')},default=str)[:6500])
-            except Exception as e: print('PROBE_ERROR',slug,str(e))
+              with urllib.request.urlopen(req,timeout=30) as h: data=json.load(h); cors=h.headers.get('Access-Control-Allow-Origin')
+              opt=data.get('gltf',{}).get('1k',{}).get('gltf')
+              if not opt: missing.append(slug); print('MISSING_1K',slug,list(data)); continue
+              size=opt.get('size',0)+sum(v.get('size',0) for v in opt.get('include',{}).values())
+              req=urllib.request.Request(opt['url'],method='HEAD',headers={'User-Agent':'Webspace-Kilns-GitHub/1.0'})
+              with urllib.request.urlopen(req,timeout=30) as resp: cdn=resp.headers.get('Access-Control-Allow-Origin')
+              print('ASSET',slug,'bytes',size,'includes',len(opt.get('include',{})),'api_cors',cors,'cdn_cors',cdn)
+            except Exception as e: missing.append(slug); print('ASSET_ERROR',slug,type(e).__name__,str(e)[:190])
+          print('TOTAL',len(found),'UNAVAILABLE',missing)
+          if missing: raise SystemExit(1)
