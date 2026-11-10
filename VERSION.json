@@ -1,10 +1,11 @@
 {
-  "version_integer": 5,
-  "build": "webspace-federation-0005",
+  "version_integer": 6,
+  "build": "webspace-federation-0006",
   "date": "2026-11-10",
   "entry": "index.html",
   "canonical_garden_entry": "garden-of-chuzhoy.html",
-  "parent_preserved": "history/version_0004.zip",
   "git_repo": "Vitra-Lumenhart/Webspace",
-  "publication_note": "Repo commit history is authoritative for publication; archive does not claim deployed status"
+  "publication_note": "Archive for 20 Poly Haven original donor models published as an Actions artifact/Release; no binary artist originals stored in Git. Git history is authoritative; published Pages behavior must be tested separately.",
+  "parent_git_sha": "6de1b5a945cf6c687d587643b46b67a38eb66c4a",
+  "release_kind": "Kilns opt-in Poly Haven live artist inspector with verified downloadable batch"
 }
