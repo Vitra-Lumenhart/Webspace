@@ -1,0 +1,29 @@
+name: Webspace revision covenant
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  documentation-history-and-future:
+    name: Paired backward-forward documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full revision history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare this revision against its parent
+        env:
+          COVENANT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: node tools/check_docs_covenant.mjs
+      - name: Verify world manifest and previous regressions
+        run: node tests/test_unified.mjs
