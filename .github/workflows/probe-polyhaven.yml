@@ -1,0 +1,53 @@
+name: Poly Haven API compatibility smoke
+on:
+  push:
+    branches: [world/kilns/polyhaven-import-v6]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check all 24 candidate objects and CORS
+        shell: python
+        run: |
+          import json,urllib.request
+          o=json.load(open('assets/kilns/OBJECTS.json'))['objects']
+          found=set();missing=[]
+          for item in o:
+            slug=item['polyhaven_url'].split('/a/')[-1]
+            if slug in found: continue
+            found.add(slug)
+            url='https://api.polyhaven.com/files/'+slug
+            req=urllib.request.Request(url,headers={'User-Agent':'Webspace-Kilns-GitHub/1.0'})
+            try:
+              with urllib.request.urlopen(req,timeout=30) as h: data=json.load(h); cors=h.headers.get('Access-Control-Allow-Origin')
+              opt=data.get('gltf',{}).get('1k',{}).get('gltf')
+              if not opt: missing.append(slug); print('MISSING_1K',slug,list(data)); continue
+              size=opt.get('size',0)+sum(v.get('size',0) for v in opt.get('include',{}).values())
+              req=urllib.request.Request(opt['url'],method='HEAD',headers={'User-Agent':'Webspace-Kilns-GitHub/1.0'})
+              with urllib.request.urlopen(req,timeout=30) as resp: cdn=resp.headers.get('Access-Control-Allow-Origin')
+              print('ASSET',slug,'bytes',size,'includes',len(opt.get('include',{})),'api_cors',cors,'cdn_cors',cdn)
+            except Exception as e: missing.append(slug); print('ASSET_ERROR',slug,type(e).__name__,str(e)[:190])
+          print('TOTAL',len(found),'UNAVAILABLE',missing)
+          if missing: raise SystemExit(1)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test dependencies
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Smoke-test 3D GLTF loading in the actual Kilns page
+        run: |
+          mkdir -p artifacts
+          python3 -m http.server 8000 --bind 127.0.0.1 > /tmp/webspace-http.log 2>&1 &
+          sleep 2
+          node tools/test_kilns_polyhaven.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kilns-polyhaven-browser-captures
+          path: artifacts/
+          retention-days: 15

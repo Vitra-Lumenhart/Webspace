@@ -1,0 +1,60 @@
+name: Kilns Poly Haven CC0 batch snapshot
+
+on:
+  push:
+    branches: [main, world/kilns/polyhaven-import-v6]
+    paths:
+      - tools/package_polyhaven_batch.py
+      - .github/workflows/kilns-polyhaven-package.yml
+      - assets/kilns/OBJECTS.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  assemble-verified-model-bank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download the 20 unique current Poly Haven models and verify every included MD5
+        run: python3 tools/package_polyhaven_batch.py
+      - name: Publish complete source snapshot as Actions artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kilns-PolyHaven-CC0-1k-24-objects
+          path: dist/Kilns_PolyHaven_1k_20sources_24objects.zip
+          if-no-files-found: error
+          retention-days: 90
+      - name: Preserve immutable v5 and v6 source release tags
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for SPEC in "webspace/v0005:6de1b5a945cf6c687d587643b46b67a38eb66c4a" "webspace/v0006:$GITHUB_SHA"; do
+            TAG="${SPEC%%:*}"
+            SHA="${SPEC#*:}"
+            if gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" >/dev/null 2>&1; then
+              echo "Preserved preexisting tag $TAG"
+            else
+              gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" -f "ref=refs/tags/$TAG" -f "sha=$SHA"
+            fi
+          done
+      - name: Publish durable one-time public release after merger to main
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="kilns-polyhaven-1k-2026-11-10"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Existing CC0 release $TAG retained. To update issue a new date-tagged release."
+          else
+            gh release create "$TAG" dist/Kilns_PolyHaven_1k_20sources_24objects.zip \
+              --target main \
+              --title "Kilns Poly Haven 1K component bank — 24 roles / 20 source models" \
+              --notes "20 original Poly Haven CC0 model sets serving the 24 H01-H24 object specifications. This is a fixed verified snapshot of .gltf, .bin and referenced texture assets; MANIFEST.json records source, attribution (voluntary), hashes, and object mapping. These are historical component donors, not finished 3D Kilns furnishings. For the latest upstream model, use the opt-in live Webspace viewer."
+          fi
