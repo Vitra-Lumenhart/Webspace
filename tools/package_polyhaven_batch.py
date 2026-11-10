@@ -64,10 +64,16 @@ def relative(name):
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--output',default='dist/Kilns_PolyHaven_1k_20sources_24objects.zip')
+    parser.add_argument('--ids',default='',help='Optional comma-separated H-object subset; omit for the complete archive')
     args=parser.parse_args()
     output=ROOT/args.output
     output.parent.mkdir(parents=True,exist_ok=True)
     rows=json.loads((ROOT/'assets/kilns/OBJECTS.json').read_text())['objects']
+    requested={x.strip().upper() for x in args.ids.split(',') if x.strip()}
+    if requested:
+        available={x['id'] for x in rows}
+        if not requested<=available: raise ValueError('Unknown Kilns object IDs: '+str(requested-available))
+        rows=[x for x in rows if x['id'] in requested]
     byslug={}
     for o in rows:
         slug=o['polyhaven_url'].split('/a/')[-1]
