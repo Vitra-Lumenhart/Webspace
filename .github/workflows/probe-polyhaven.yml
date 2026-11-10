@@ -32,3 +32,22 @@ jobs:
             except Exception as e: missing.append(slug); print('ASSET_ERROR',slug,type(e).__name__,str(e)[:190])
           print('TOTAL',len(found),'UNAVAILABLE',missing)
           if missing: raise SystemExit(1)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test dependencies
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Smoke-test 3D GLTF loading in the actual Kilns page
+        run: |
+          mkdir -p artifacts
+          python3 -m http.server 8000 --bind 127.0.0.1 > /tmp/webspace-http.log 2>&1 &
+          sleep 2
+          node tools/test_kilns_polyhaven.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kilns-polyhaven-browser-captures
+          path: artifacts/
+          retention-days: 15
