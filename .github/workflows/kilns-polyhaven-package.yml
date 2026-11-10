@@ -30,6 +30,20 @@ jobs:
           path: dist/Kilns_PolyHaven_1k_20sources_24objects.zip
           if-no-files-found: error
           retention-days: 90
+      - name: Preserve immutable v5 and v6 source release tags
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for SPEC in "webspace/v0005:6de1b5a945cf6c687d587643b46b67a38eb66c4a" "webspace/v0006:$GITHUB_SHA"; do
+            TAG="${SPEC%%:*}"
+            SHA="${SPEC#*:}"
+            if gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" >/dev/null 2>&1; then
+              echo "Preserved preexisting tag $TAG"
+            else
+              gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" -f "ref=refs/tags/$TAG" -f "sha=$SHA"
+            fi
+          done
       - name: Publish durable one-time public release after merger to main
         if: github.ref == 'refs/heads/main'
         env:
