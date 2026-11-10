@@ -27,3 +27,5 @@ jobs:
         run: node tools/check_docs_covenant.mjs
       - name: Verify world manifest and previous regressions
         run: node tests/test_unified.mjs
+      - name: Validate canonical portal defaults and custom declarations
+        run: node tests/test_portal_registry.mjs
