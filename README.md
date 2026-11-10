@@ -50,3 +50,8 @@ Predecessor `history/version_0003.zip` is the complete earlier Gringotts-era sou
 ### Storage and collaboration
 
 GitHub `Vitra-Lumenhart/Webspace` is the public canonical source. Preserve previous release archives and both manuals. Project ChatGPT files are reference material, not an automatically synchronized bidirectional workspace. Save editable code and manifests in Git; place large artist originals/texture libraries in Git LFS or versioned object storage; write mutable visitor journals to a separate opt-in backend with retention/export/delete controls (do not commit personal journals or credentials). GitHub Pages is static and cannot implement multi-user guestbook persistence alone. See `docs/STORAGE_ARCHITECTURE.md` and `docs/CONTRIBUTOR_ACCESS.md`.
+
+
+## Architectural RFC (proposed; no runtime migration yet)
+
+The [Threshold Covenant architecture proposal](docs/ARCHITECTURE_RFC.md), [asset publishing workflow](docs/ASSET_PUBLISHING.md), [beginner modding guide](docs/HACK_A_WORLD.md), and [AI/human contributor contract](AGENTS.md) describe a possible next repository organization. They are documentation under review, **not implemented features**. The existing v5 world URLs, HTML previews, engine lines and release behavior remain unchanged. Any accepted restructuring must preserve the complete prior release, refresh this player README and the HTML developer manual together, and supply a browser preview and test evidence.
