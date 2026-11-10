@@ -1,0 +1,59 @@
+{
+  "schema": "webspace/childworld/1",
+  "id": "elisium/kilns",
+  "parent": "elisium",
+  "parent_entry": "../index.html",
+  "spatial_model": "illustrated indoor graph, not furnished 3D scene",
+  "clock": {
+    "policy": "local event sequence; no automatic parent advance"
+  },
+  "state": {
+    "persistence": "sessionStorage on same origin; export manual",
+    "shared_with_parent": "allowlisted, explicit nonprivate discovery signals only"
+  },
+  "threshold": {
+    "entry": "elisium-kilns-door",
+    "return": "elisium-house",
+    "allowed_event_types": [
+      "webspace:child-event"
+    ],
+    "version": 1
+  },
+  "rooms": [
+    "Vestibule",
+    "Common Room",
+    "Oratory",
+    "Stair Landing",
+    "Library",
+    "Study",
+    "Dining Room",
+    "Kitchen",
+    "Attic"
+  ],
+  "object_ids": [
+    "H01",
+    "H02",
+    "H03",
+    "H04",
+    "H05",
+    "H06",
+    "H07",
+    "H08",
+    "H09",
+    "H10",
+    "H11",
+    "H12",
+    "H13",
+    "H14",
+    "H15",
+    "H16",
+    "H17",
+    "H18",
+    "H19",
+    "H20",
+    "H21",
+    "H22",
+    "H23",
+    "H24"
+  ]
+}

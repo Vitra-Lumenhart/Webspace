@@ -1,10 +1,10 @@
 {
-  "version_integer": 4,
-  "build": "webspace-federation-0004",
-  "date": "2026-11-09",
+  "version_integer": 5,
+  "build": "webspace-federation-0005",
+  "date": "2026-11-10",
   "entry": "index.html",
   "canonical_garden_entry": "garden-of-chuzhoy.html",
-  "parent_preserved": "history/version_0003.zip",
+  "parent_preserved": "history/version_0004.zip",
   "git_repo": "Vitra-Lumenhart/Webspace",
-  "git_pushed": false
+  "publication_note": "Repo commit history is authoritative for publication; archive does not claim deployed status"
 }

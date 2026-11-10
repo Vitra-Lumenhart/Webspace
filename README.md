@@ -1,10 +1,10 @@
-# Webspace · five independent worlds under one root
+# Webspace · six world addresses and one nested indoor world under one root
 
 > **Revision covenant for human and AI collaborators:** Before changing a release, archive the entire old codebase under the next integer revision. In EVERY revision update `README.md` (player experience) and `TECH_MANUAL.html` (developer architecture and tests); preserve timeless active filenames and provide a full-screen HTML preview.
 
-## Version 4 · 9 November 2026
+## Version 5 · 10 November 2026
 
-The root `index.html` launches a playable Garden immediately with a five-world selector. For direct launch use the separate entrypoints below. Each has its own canvas/runtime and may be developed independently. In GPU-restricted previews, Chuzhoy displays its older Canvas-compatible Garden and Witch’s Hole displays a simplified Canvas-based survey (including the root puzzle).
+The root `index.html` launches a playable Garden immediately with a seven-entry selector. The additional `webspace_standalone_preview.html` is a **single-file** seven-entry preview for ChatGPT; it embeds independent engines and uses Canvas compatibility versions in GPU-restricted panels. For direct launch use the separate entrypoints below. Each has its own canvas/runtime and may be developed independently. In GPU-restricted previews, Chuzhoy displays its older Canvas-compatible Garden and Witch’s Hole displays a simplified Canvas-based survey (including the root puzzle).
 
 | World | Direct page | Engine/source | What the visitor does |
 | --- | --- | --- | --- |
@@ -38,3 +38,15 @@ Publish this **root directory**, not its outer ZIP folder, to `Vitra-Lumenhart/W
 ## Source provenance
 
 Predecessor `history/version_0003.zip` is the complete earlier Gringotts-era source. The Garden native build came from the newest retrievable 6.2.5.1 QA HTML; Witch from the actual v2 Ravine Cliff ZIP; Elisium from v4.6 compact playable HTML. See `TECH_MANUAL.html`, `WORLD_MANIFEST.json`, `assets/kilns/OBJECTS.json` and the source-history integrity test.
+
+### Child world: The Kilns
+
+`worlds/elisium/kilns/index.html` is now a navigable **illustrated indoor room graph** (ten room names, 24 selectable object interpretations, local observation journal and explicit return to parent). The exterior Elisium page exposes an Enter the Kilns threshold. It is NOT yet a furnished 3D space or fully connected to its parent sky. Object proxy GLBs are still in `assets/kilns/proxy/`; the optional v0.6 external Kilns source archive could not be exported from the Library and is not represented as included. The child is independent at URL and runtime level; a bounded `postMessage` can announce observations when hosted, and the parent does not yet apply their effects.
+
+### Labyrinth of Purgatorio
+
+`worlds/purgatorio/` reserves a **non-playable** world with an index page and manifest. No detailed mythology, navigation, or mechanics were present in the accessible source materials, so none have been invented.
+
+### Storage and collaboration
+
+GitHub `Vitra-Lumenhart/Webspace` is the public canonical source. Preserve previous release archives and both manuals. Project ChatGPT files are reference material, not an automatically synchronized bidirectional workspace. Save editable code and manifests in Git; place large artist originals/texture libraries in Git LFS or versioned object storage; write mutable visitor journals to a separate opt-in backend with retention/export/delete controls (do not commit personal journals or credentials). GitHub Pages is static and cannot implement multi-user guestbook persistence alone. See `docs/STORAGE_ARCHITECTURE.md` and `docs/CONTRIBUTOR_ACCESS.md`.
