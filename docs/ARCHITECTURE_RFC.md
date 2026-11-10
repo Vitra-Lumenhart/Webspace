@@ -167,3 +167,10 @@ Pages is an appropriate static teaching/play layer; not an authentication, walle
 7. Add Purgatorio only when a genuine design brief is available.
 
 Acceptance: a beginner can open source and modify a flower; a world contributor can ship one PR without breaking another; a player can switch worlds; a saved build can be reproduced; no model appears in runtime without recorded rights and provenance.
+
+
+## Addendum: Revision Covenant, Portal Canon and Screens (2026-11-10)
+
+This RFC now inherits [docs/REVISION_COVENANT.md](REVISION_COVENANT.md) and [docs/CODE_STYLE.md](CODE_STYLE.md): every PR must add paired, append-only, dated backward and forward accounts in README and TECH_MANUAL, not merely keep two filenames present. A new GitHub Actions workflow checks paired IDs, timestamps, required headings and historical non-mutation. The status check becomes mandatory only if branch rulesets are configured to require it. [Portal/Screen/Identity contract](PORTAL_SCREEN_CONTRACT.md) defines P-001 Chuzhoy as the default portal across all worlds, S-001 Screen/Portal separation and I-001 privacy-minimizing (not warrant-proof) Gringotts identity aspirations.
+
+The human story behind every change survives in these logs: what artists and earlier agents attempted but could not finish remains discoverable as durable future-work IDs. A future AI may change methods while preserving the promised outward semantics and source history. This addendum has not altered the accepted v5 game code.
