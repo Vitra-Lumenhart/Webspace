@@ -1,0 +1,21 @@
+name: Poly Haven API probe (temporary)
+on:
+  push:
+    branches: [world/kilns/polyhaven-import-v6]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect live Poly Haven 1k model metadata
+        shell: python
+        run: |
+          import json,urllib.request
+          for slug in ('brass_goblets','ornate_mirror_01','vintage_grandfather_clock_01'):
+            req=urllib.request.Request('https://api.polyhaven.com/files/'+slug,headers={'User-Agent':'Webspace-Kilns-GitHub/1.0'})
+            try:
+              with urllib.request.urlopen(req,timeout=30) as h: data=json.load(h)
+              print('PROBE',slug,'top keys',list(data))
+              print(json.dumps({'gltf':data.get('gltf'), 'glb':data.get('glb')},default=str)[:6500])
+            except Exception as e: print('PROBE_ERROR',slug,str(e))
