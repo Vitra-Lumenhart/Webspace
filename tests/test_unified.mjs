@@ -9,6 +9,6 @@ assert(load('shared/legacy/webspace.js').includes('crossWorldPages'));
 assert(load('worlds/witchs-hole/witchs-hole.js').includes("'../chuzhoy/index.html'"));
 const assets=JSON.parse(load('assets/kilns/OBJECTS.json')).objects;assert.equal(assets.length,24);
 for(let i=1;i<=24;i++){const id='H'+String(i).padStart(2,'0');const item=assets.find(x=>x.id===id);assert(item,id);const fn=path.join(root,'assets/kilns/proxy',id+'.glb');assert(existsSync(fn));const b=readFileSync(fn);assert.equal(b.subarray(0,4).toString(),'glTF');assert(item.polyhaven_url.startsWith('https://polyhaven.com/a/'));assert.equal(item.external_artist_model_included,false)}
-assert(existsSync(path.join(root,'history/version_0003.zip')));assert(existsSync(path.join(root,'history/version_0004.zip')));assert(existsSync(path.join(root,'worlds/elisium/kilns/index.html')));assert(existsSync(path.join(root,'worlds/purgatorio/world.json')));
+assert(existsSync(path.join(root,'history/version_0003.zip')));assert(load('PUBLICATION_STATUS.md').includes('v4 ZIP')); // v4 is preserved in Git history; a v4 ZIP was not committedassert(existsSync(path.join(root,'worlds/elisium/kilns/index.html')));assert(existsSync(path.join(root,'worlds/purgatorio/world.json')));
 for(const fn of ['README.md','TECH_MANUAL.html','GITHUB_PUBLISHING.md']) assert(existsSync(path.join(root,fn)));
-console.log('PASS: six independent entries + nested Kilns, portal route rewrites, version history, 24 real proxy GLBs and documentation.');
+console.log('PASS: six independent entries + nested Kilns, portal route rewrites, version provenance, 24 real proxy GLBs and documentation.');
