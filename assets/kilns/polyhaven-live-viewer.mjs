@@ -39,7 +39,7 @@ function initialize() {
   scene.background = new THREE.Color('#22242b');
   camera = new THREE.PerspectiveCamera(42,1,0.01,200);
   controls = new OrbitControls(camera,canvas);
-  controls.enableDamping = true;
+  controls.enableDamping = false;
   controls.dampingFactor = 0.09;
   controls.autoRotate = false;
   controls.addEventListener('change',renderFrame);
@@ -59,7 +59,6 @@ function initialize() {
 }
 function renderFrame() {
   if (!renderer || !scene) return;
-  controls.update();
   renderer.render(scene,camera);
 }
 function disposeCurrent() {
