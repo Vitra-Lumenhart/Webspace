@@ -15,6 +15,12 @@ Status: proposed contract on an RFC branch. The playable main branch remains aut
 - Create a world-scoped working branch (examples: world/chuzhoy/flora, world/elisium/lens, world/elisium-kilns/objects, world/witchs-hole/terrain).
 - When multiple workers touch the same root or commons file, prefer separate PRs with explicit dependencies rather than simultaneous direct edits.
 
+## Every revision — backward + forward, never just a changelog
+- Follow [docs/REVISION_COVENANT.md](docs/REVISION_COVENANT.md) and the [source style guide](docs/CODE_STYLE.md). Every new revision appends a DATED README ledger item with Backwards, Forwards, Not yet, Invariant impact and Evidence, plus a matching TECH_MANUAL.html technical article with the same ID and date. Do not silently edit historical entries; correct them in new errata.
+- Run `node tools/check_docs_covenant.mjs` against the branch's base, and use the PR template. Do not call a feature done until you have reviewed what remains undone.
+- Ordinary portals inherit exactly the Chuzhoy visual and behavior contract. Screens remain HTML surfaces, NOT travel. A custom portal needs a registered exception, tested semantics and no private-data trickery; see [docs/PORTAL_SCREEN_CONTRACT.md](docs/PORTAL_SCREEN_CONTRACT.md).
+- Future Gringotts pseudonymous reputation must be threat-modeled and lawfully handled; no claim that a system is absolutely warrant-proof or operator-blind without independently verified evidence.
+
 ## Every revision
 - Keep readable HTML, JavaScript, CSS, JSON and source generators as the primary truth. Build preview HTML from source; never hand-edit opaque gzip/base64 distribution artifacts as the canonical implementation.
 - Use stable IDs and URLs. Include source-linked explanations at three depths: glance, inquiry, archive.
