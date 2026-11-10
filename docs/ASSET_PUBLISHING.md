@@ -50,3 +50,11 @@ Google Drive is a convenient private collaboration, staging or backup layer, not
 ## Delivery budget
 
 Track bytes, triangles, draw calls, materials, textures, transmittance and load time. Prefer one model with instances over copies, compressed textures, quantization and selective external loading. Include a lowest-fidelity fallback and a phone/GPU-restricted preview. Asset sizes are budgets, not artistic truth.
+
+## v6: deliberate live-versus-frozen asset modes
+
+The Kilns now has an **on-demand live** official-API glTF source inspector (assets/kilns/polyhaven-live-viewer.mjs). It checks the current upstream /files/{slug} list when a visitor asks to see an item, follows 1k glTF component URLs via a constrained loader, and labels its source. The browser presents original source geometry separately from gameplay. Do not imply the historical model is a completed H01–H24 fantasy object.
+
+The **frozen** mode is the verified archive created by tools/package_polyhaven_batch.py and .github/workflows/kilns-polyhaven-package.yml. All 20 unique source models for 24 object roles are downloaded exactly once per batch with size/MD5 checks. A GitHub Release retains one dated source archive for future reproduction; new source versions must be placed into a NEW release, not silently overwrite a saved composition. Neither mode downloads private visitor data or requires a Poly Haven login.
+
+Source-only models can be hotlinked for an optional inspector; final in-scene gameplay should use reviewed and optimized local/hashed derivatives to prevent an upstream update from unexpectedly changing collision, scale, scene meaning or load time. The in-game live inspector passed a Chromium smoke test for H07 and its local proxy. Full 20-asset visual QA is still future work.
