@@ -1,0 +1,11 @@
+# Review ownership for the shared Webspace covenant.
+# This file requests review when combined with GitHub settings; it does not
+# by itself prevent a merge or bypass the need for branch protection.
+* @Vitra-Lumenhart
+/.github/ @Vitra-Lumenhart
+/AGENTS.md @Vitra-Lumenhart
+/README.md @Vitra-Lumenhart
+/TECH_MANUAL.html @Vitra-Lumenhart
+/docs/REVISION_COVENANT.md @Vitra-Lumenhart
+/docs/PORTAL_SCREEN_CONTRACT.md @Vitra-Lumenhart
+/commons/ @Vitra-Lumenhart
