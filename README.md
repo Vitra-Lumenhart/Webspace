@@ -2,6 +2,16 @@
 
 > **Revision covenant for human and AI collaborators:** Before changing a release, archive the entire old codebase under the next integer revision. In EVERY revision update `README.md` (player experience) and `TECH_MANUAL.html` (developer architecture and tests); preserve timeless active filenames and provide a full-screen HTML preview.
 
+## Version 6 · November 10, 2026 — The objects acquire their own provenance
+
+**New optional Kilns feature:** Select any H01–H24 object within the independently navigable [Kilns child world](worlds/elisium/kilns/index.html). Choose **Load current Poly Haven model** to inspect the real CC0 historical component donor in a live 3D viewer with orbit/zoom and original glTF materials. The browser queries the official Poly Haven API *on each request*, follows the current 1k model's geometry and texture URLs, and displays a Powered by Poly Haven credit. **Use Webspace proxy** offers the original small local GLB without an upstream asset request. Merely looking at art does not write a journal event.
+
+This adds source-art inspection inside the existing **illustrated** room graph; it does not claim that original artist furniture is placed in a physically modeled Victorian house or that fantasy mechanisms are finished. Twenty distinct Poly Haven model sources serve twenty-four object roles. All twenty sources were verified available by GitHub Actions, with model and API cross-origin headers confirmed; Chromium loaded a genuine H07 Brass Goblets artist model and local proxy. A separate GitHub Actions workflow downloaded and hash-verified all original 1k model sets as **one ~42 MB batch archive**, including the source manifest for all twenty-four roles. It is provided as an Actions artifact and, upon release publication, as a single public GitHub Release. **No user uploads or Poly Haven account are necessary** for this original donor set.
+
+The live upstream version can change or disappear and needs internet and WebGL; the one-time batch ZIP is a fixed snapshot. For your own future adaptations, imported STEP/BLEND/GLB artwork still needs explicit source and license provenance. Full scene placement, shader parity with native Garden, and the Kilns → Elisium independent-sky event handler remain forward work. See [live artist-source design](assets/kilns/LIVE_ART_AND_BATCH.md), [asset bank](assets/kilns/index.html), [object manifest](assets/kilns/OBJECTS.json) and [technical manual](TECH_MANUAL.html).
+
+---
+
 ## Version 5 · 10 November 2026
 
 The root `index.html` launches a playable Garden immediately with a seven-entry selector. The additional `webspace_standalone_preview.html` is a **single-file** seven-entry preview for ChatGPT; it embeds independent engines and uses Canvas compatibility versions in GPU-restricted panels. For direct launch use the separate entrypoints below. Each has its own canvas/runtime and may be developed independently. In GPU-restricted previews, Chuzhoy displays its older Canvas-compatible Garden and Witch’s Hole displays a simplified Canvas-based survey (including the root puzzle).
@@ -96,4 +106,19 @@ Our long hope is a federation of beautiful, dangerous, kind, confusing and learn
 | **FW-MOD-001** | Build inspectable mod examples, one-file preview generation, Git PR previews, an optional AI explanatory layer and consistent source links so humans and agents can extend the tree without copying opaque bundles. |
 
 A roadmap entry is **not permission** to change the scope of another world. Each world keeps its own authorial narrative, while reusing shared contracts. Close an item only with an accepted implementation, evidence and a dated successor entry; otherwise it remains a live invitation.
+<!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0006" date="2026-11-10" -->
+### 2026-11-10 · R0006 — Live CC0 artwork enters the Kilns, without swallowing the story
+
+**Backwards:** The v5 illustrated nested Kilns graph already held all H01–H24 inquiries and independent local journal. Revision v6 adds an optional current Poly Haven 1k glTF model viewer in the Kilns reading panel, a local GLB proxy inspection button, complete API dependency resolution, a source-art catalogue link, strict upstream host checks, and a hash-verified download script. Official API and CDN CORS checks verified 20 distinct models serving 24 H-object roles. Chromium verified that both the H07 Poly Haven artist model and Webspace proxy render and that simply inspecting an object does not create a journal event. GitHub Actions also built the 20-model original-source ZIP with MD5 checking, a manifest, and complete textures. Original v5 world navigation and story systems remain intact.
+
+**Forwards:** Physically furnish the Kilns as a spatially authored 3D house while preserving each object's narrative and mathematical experiment; build fantasy adaptations from the 20 real historical donors and original procedural geometry rather than confusing source objects with completed magical furnishings. Extend the source-bank viewer to a curatorial/modding workflow with editable scale/rotation, stable provenance, art comparisons, small LODs and indexed cross-world asset use. Unify native WebGL material semantics and house-to-sky bounded event handling. Explore carefully reviewed optional source updates and frozen releases so artists can reproduce a past composition despite changing upstream URLs.
+
+**Not yet:** The artistic models are not committed as binary files to this Git repository, not installed as permanent in-scene furnishing, and not proven on every GPU/browser. Live mode depends on Poly Haven, the public CDN for Three.js and network/CORS availability. Offline only has the original proxy GLBs and illustrated story; the downloadable artist-source ZIP is a fixed batch snapshot. The rest of the unfinished v5 themes (Garden flora, canonical portals, Witch's Hole fog, cathedral roofline, complete Concordance and Purgatorio) are unchanged and remain tracked in RFC-002.
+
+**Invariant impact:** No changes to the P-001 Chuzhoy portal standard, S-001 Screen boundary, public arrival routing, H01–H24 object IDs, or Elisium independent sky. Remote art cannot instruct the world or publish private player records. Three.js viewer is an optional presentation separate from the source-of-truth game logic. Accepted release history is preserved by Git; versioned tags/source ZIPs remain separate from the immutable per-file histories.
+
+**Evidence:** [Kilns interactive viewer](worlds/elisium/kilns/index.html), [live loader source](assets/kilns/polyhaven-live-viewer.mjs), [20-model archive builder](tools/package_polyhaven_batch.py), [browser test](tools/test_kilns_polyhaven.mjs), [Poly Haven source protocol](assets/kilns/LIVE_ART_AND_BATCH.md), [asset mapping](assets/kilns/OBJECTS.json), [WORLD_MANIFEST.json](WORLD_MANIFEST.json), [VERSION.json](VERSION.json). Release publication requires actual merge and successful workflow execution; a staging artifact is not proof of the GitHub Release.
 <!-- /WEBSPACE-LEDGER -->
