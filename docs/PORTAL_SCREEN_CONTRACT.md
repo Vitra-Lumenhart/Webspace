@@ -64,3 +64,7 @@ Every world may innovate freely internally, but must declare what comes out at i
 - Validate arrival tags from `WORLD_MANIFEST.json`, custom exceptions and alternate activations.
 - Extract and test a shared Screen Kit across the independent engines.
 - Conduct independent Gringotts privacy, threat-model, legal and usability reviews before any live personal-data system.
+
+## Machine-readable policy in this RFC
+
+[contracts/portal_registry.json](../contracts/portal_registry.json) declares P-001 as the default for every currently playable top-level world and Purgatorio as reserved/non-playable. It records the Witch's Well candidate as NOT ACTIVE until its exact world, implementation and tests are verified; a child-world doorway is not automatically a default portal. [tests/test_portal_registry.mjs](../tests/test_portal_registry.mjs) checks this declaration against WORLD_MANIFEST. It does **not** yet establish actual GLSL shader identity or screenshot parity. The latter remains FW-PORT-001.
