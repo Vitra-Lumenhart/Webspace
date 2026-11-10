@@ -108,9 +108,12 @@ function loaderWithIncludes(record) {
   });
   const manager = new THREE.LoadingManager();
   manager.setURLModifier(request => {
-    const decoded = decodeURIComponent(new URL(request,record.url).pathname);
+    const absolute = new URL(request,record.url);
+    if (absolute.href === record.url) return record.url;
+    const decoded = decodeURIComponent(absolute.pathname);
     for (const [path,url] of entries) if (decoded.endsWith('/'+path))return url;
-    return request;
+    // Unlisted URLs in untrusted glTF may not silently reach arbitrary servers.
+    return 'data:application/octet-stream,';
   });
   return new GLTFLoader(manager);
 }
