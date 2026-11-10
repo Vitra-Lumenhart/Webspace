@@ -1,6 +1,6 @@
 {
   "schema": "webspace/federation/1.1",
-  "release_integer": 5,
+  "release_integer": 6,
   "source_lineage": "Chuzhoy 6.2.5.1 + legacy v3 Gerudo/Gringotts + Witch v2 + Elisium v4.6",
   "worlds": [
     {
@@ -70,17 +70,25 @@
   "asset_bank": {
     "kilns_proxy_count": 24,
     "actual_polyhaven_artist_files": 0,
-    "cathedral_revision": "Rev06"
+    "cathedral_revision": "Rev06",
+    "polyhaven_artist_sources_verified": 20,
+    "kilns_object_mappings": 24,
+    "artist_originals_downloaded_to_github_actions": true,
+    "polyhaven_artist_files_checked_into_git": 0,
+    "live_1k_gltf_inspection": "on-demand, latest upstream API response, separate 3D study panel",
+    "offline_glb_proxies_preserved": true
   },
   "children": [
     {
       "id": "elisium/kilns",
       "parent": "elisium",
       "entry": "worlds/elisium/kilns/index.html",
-      "version": "laboratory v0.1",
+      "version": "illustrated laboratory v0.2",
       "model": "illustrated indoor interactive room graph",
       "object_count": 24,
-      "status": "playable illustrated laboratory; no furnished 3D and no parent sky integration"
+      "status": "playable illustrated room graph with optional live Poly Haven 3D source inspector; still no spatial furniture or parent sky integration",
+      "artist_source_viewer": "../../../assets/kilns/polyhaven-live-viewer.mjs"
     }
-  ]
+  ],
+  "release_note": "Opt-in live Poly Haven model viewer in illustrated Kilns world; v5 gameplay otherwise preserved"
 }
