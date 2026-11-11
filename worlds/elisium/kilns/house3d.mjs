@@ -561,10 +561,11 @@ function bindControls(){
    setTimeout(()=>URL.revokeObjectURL(url),1000);
  });
  $('clear-button').addEventListener('click',()=>{journal=[];try{sessionStorage.removeItem(journalKey)}catch{}bridge.clear(sessionStorage);roomMinutes=0;refreshUI();report('This house session has been cleared.');});
- $('overview-button').addEventListener('click',()=>{
+ const overview=$('overview-button');
+ if(overview)overview.addEventListener('click',()=>{
    const hidden=$('room-index').hidden;
    $('room-index').hidden=!hidden;
-   $('overview-button').setAttribute('aria-expanded',String(hidden));
+   overview.setAttribute('aria-expanded',String(hidden));
  });
 }
 function update(t,dt) {
