@@ -1,0 +1,43 @@
+name: Kilns actual navigable 3D house
+on:
+  pull_request:
+    paths:
+      - worlds/elisium/kilns/**
+      - tools/test_kilns_house3d.mjs
+      - .github/workflows/test-kilns-house3d.yml
+permissions:
+  contents: read
+jobs:
+  physical-world-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check syntax of editable Three.js modules and test
+        run: |
+          for module in worlds/elisium/kilns/house-layout.mjs worlds/elisium/kilns/house-fantasy.mjs worlds/elisium/kilns/house-assets.mjs worlds/elisium/kilns/house3d.mjs tools/test_kilns_house3d.mjs; do
+            node --check "$module"
+          done
+          node tests/test_unified.mjs
+          node tests/test_portal_registry.mjs
+      - name: Install browser engine
+        run: |
+          npm install --no-save playwright@1.56.1
+          which google-chrome || which chromium || which chromium-browser || npx playwright install --with-deps chromium
+      - name: Test actual contiguous navigation and Poly Haven geometry
+        run: |
+          mkdir -p artifacts
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/webspace-house.log 2>&1 &
+          sleep 2
+          export WEBSPACE_BROWSER_PATH="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          node tools/test_kilns_house3d.mjs
+      - name: Publish browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kilns-house-v7-physical-world-images
+          path: artifacts/
+          retention-days: 45

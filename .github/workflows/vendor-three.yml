@@ -1,0 +1,43 @@
+name: Vendor pinned Three.js locally for the Kilns
+on:
+  push:
+    branches: [world/elisium-kilns/house3d-v7]
+    paths:
+      - .github/workflows/vendor-three.yml
+permissions:
+  contents: write
+jobs:
+  vendor-pinned-webgl-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Get the exact source-distributed Three.js modules from npm
+        run: npm install --no-save --ignore-scripts three@0.168.0
+      - name: Preserve minimally required self-hosted modules and MIT license
+        run: |
+          mkdir -p assets/vendor/three/build assets/vendor/three/examples/jsm/loaders assets/vendor/three/examples/jsm/controls assets/vendor/three/examples/jsm/utils
+          cp node_modules/three/build/three.module.js assets/vendor/three/build/
+          cp node_modules/three/examples/jsm/loaders/GLTFLoader.js assets/vendor/three/examples/jsm/loaders/
+          cp node_modules/three/examples/jsm/controls/OrbitControls.js assets/vendor/three/examples/jsm/controls/
+          cp node_modules/three/examples/jsm/utils/BufferGeometryUtils.js assets/vendor/three/examples/jsm/utils/
+          cp node_modules/three/LICENSE assets/vendor/three/LICENSE
+          printf '%s\n' '# Three.js local runtime modules' 'Version: 0.168.0 (npm: three@0.168.0), MIT licensed; upstream https://github.com/mrdoob/three.js' 'Files copied unchanged by the Webspace vendor workflow so the Kilns has a same-origin deterministic runtime.' 'The official Poly Haven CC0 original geometry remains separately referenced through its API and fixed release.' > assets/vendor/three/README.md
+          test -s assets/vendor/three/build/three.module.js
+          test -s assets/vendor/three/examples/jsm/utils/BufferGeometryUtils.js
+      - name: Commit reproducible pinned modules into the development source branch
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name 'Vitra-Lumenhart Webspace Bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/vendor/three
+          if git diff --cached --quiet; then echo 'Already vendored'; else
+            git commit -m 'vendor: self-host Three.js r168 engine and required MIT helper modules'
+            git fetch origin world/elisium-kilns/house3d-v7
+            git rebase origin/world/elisium-kilns/house3d-v7
+            git push origin HEAD:world/elisium-kilns/house3d-v7
+          fi
