@@ -7,5 +7,10 @@
   "git_repo": "Vitra-Lumenhart/Webspace",
   "publication_note": "Archive for 20 Poly Haven original donor models published as an Actions artifact/Release; no binary artist originals stored in Git. Git history is authoritative; published Pages behavior must be tested separately.",
   "parent_git_sha": "6de1b5a945cf6c687d587643b46b67a38eb66c4a",
-  "release_kind": "Kilns opt-in Poly Haven live artist inspector with verified downloadable batch"
+  "release_kind": "Kilns opt-in Poly Haven live artist inspector with verified downloadable batch",
+  "garden_version": "6.2.8",
+  "garden_source_sha256": "3fad552d8711e6b46cd199811debb7cc177742104f7cc575d5d66fe1d6446a4d",
+  "garden_previous_version": "6.2.5.1",
+  "garden_merge_parent_sha": "c6ebe2205a0e322b68585d6bd23307d5606ba761",
+  "garden_release_date": "2026-11-11"
 }
