@@ -598,7 +598,7 @@ async function start(){
  ensureRoomSources(currentRoom);
  report('The doors are open. Follow the passage or choose a room.');
  window.__KILNS_TEST__={room:()=>currentRoom,objectCount:()=>items.size,sourceCount:()=>[...items.values()].filter(x=>x.status==='original').length,
-    testVisit:n=>navigateRoom(n),testObserve:n=>{navigateRoom(items.get(n)?.room);recordObject(n)},
+    testVisit:n=>navigateRoom(n),testObserve:n=>{const found=items.get(n);if(!found)return; navigateRoom(found.room);const root=fixtures.get(n);player.x=root.position.x;player.z=root.position.z+1.27;player.y=BY_NAME[found.room].y+PLAYER_HEIGHT;recordObject(n)},
     physicalRoomCount:()=>ROOM_ORDER.length,graph:n=>reachableRooms(n),place:id=>fixtures.get(id)?.position.toArray(),sourceStatus:id=>items.get(id)?.status,
     geometryCount:()=>{let c=0;scene.traverse(o=>{if(o.isMesh)c++});return c}, getPlayer:()=>({...player})};
  requestAnimationFrame(loop);
