@@ -122,3 +122,16 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Kilns interactive viewer](worlds/elisium/kilns/index.html), [live loader source](assets/kilns/polyhaven-live-viewer.mjs), [20-model archive builder](tools/package_polyhaven_batch.py), [browser test](tools/test_kilns_polyhaven.mjs), [Poly Haven source protocol](assets/kilns/LIVE_ART_AND_BATCH.md), [asset mapping](assets/kilns/OBJECTS.json), [WORLD_MANIFEST.json](WORLD_MANIFEST.json), [VERSION.json](VERSION.json). Release publication requires actual merge and successful workflow execution; a staging artifact is not proof of the GitHub Release.
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0007" date="2026-11-11" -->
+### 2026-11-11 · R0007 — The Kilns returns its discoveries to Elisium (feature-branch candidate)
+**Backwards:** Inherit Webspace v6's nested illustrated Kilns, 24 H-object IDs, original proxy models and opt-in Poly Haven study without replacing them. Give the house its own bounded fictional event duration. On return, Elisium displays a one-time projection of H-object observations and elapsed house minutes as House echoes; no theological verdict is assigned.
+
+**Forwards:** Build a parent-owned, authenticated-by-design event receiver for non-sensitive events, and reconcile the native exterior travel clock with the interior clock under a new reviewed schema. Make the window and orrery help visitors actually recognize star patterns while the sky retains its independence. Eventually furnish a navigable 3D interior.
+
+**Not yet:** This is a draft PR, not a merged release. The native Elisium sky is not accelerated or re-phased, the parent learns no private journal text, and no login, shared visitor storage, secure origin separation, WebGL2 visual parity or server backend is delivered. A same-origin sessionStorage handoff is not a security guarantee.
+
+**Invariant impact:** Parent-world hierarchy stays Webspace → Elisium → Kilns. The existing P-001 Chuzhoy portal, S-001 screen, H01–H24 identifiers, optional Poly Haven art inspection, and independent sky remain unchanged. The new child-only contract does not change ordinary root-world named-arrival URLs.
+
+**Evidence:** worlds/elisium/threshold.js, worlds/elisium/index.html, worlds/elisium/kilns/index.html, worlds/elisium/kilns/world.json, worlds/elisium/kilns/tests/test_threshold.mjs and .github/workflows/docs-covenant.yml. CI, review and main deployment remain prerequisites.
+<!-- /WEBSPACE-LEDGER -->
