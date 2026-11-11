@@ -5,7 +5,7 @@
   "parent_entry": "../index.html",
   "spatial_model": "illustrated indoor graph, not furnished 3D scene",
   "clock": {
-    "policy": "local event sequence; no automatic parent advance"
+    "policy": "House owns local fictional time: +3 per changed room, +6 per examination. Parent sky is not advanced by this contract."
   },
   "state": {
     "persistence": "sessionStorage on same origin; export manual",
@@ -17,7 +17,22 @@
     "allowed_event_types": [
       "webspace:child-event"
     ],
-    "version": 1
+    "version": 1,
+    "handoff": {
+      "schema": "webspace.elisium.kilns/threshold/1",
+      "transport": "same-tab sessionStorage (not a security boundary)",
+      "fields": [
+        "from",
+        "to",
+        "entry",
+        "elapsed_minutes",
+        "observations[{id,minute}]"
+      ],
+      "allowlist": "H01-H24",
+      "max_elapsed_minutes": 2880,
+      "consumption": "once, by worlds/elisium/index.html",
+      "parent_effect": "House echoes; sky simulation unchanged"
+    }
   },
   "rooms": [
     "Vestibule",
