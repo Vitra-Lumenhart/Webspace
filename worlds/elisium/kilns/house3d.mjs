@@ -17,6 +17,9 @@ const roomTitle=$('room-title'),hint=$('hint'),proximity=$('proximity');
 const roomButtons=$('room-list'),story=$('story'),sourceState=$('sources');
 const count=$('count'),clock=$('clock'),notice=$('notice'),activeObject=$('active-object');
 const journalKey='webspace.kilns.v7.session';
+const bridge=window.ElisiumThreshold;
+if(!bridge)throw Error('Elisium threshold bridge was not loaded');
+bridge.start(sessionStorage);
 const MAX_EVENTS=240, PLAYER_HEIGHT=1.69;
 const items=new Map(),fixtures=new Map(),fantasyPieces=new Map();
 const colliders=[],interactables=[],assetRooms=new Set(),labels=[];
@@ -358,6 +361,7 @@ function roomChange(next,teleported=false){
  const before=currentRoom;
  currentRoom=next;
  roomMinutes=Math.min(2880,roomMinutes+3);
+ bridge.advance(sessionStorage,3);
  report((teleported?'Surveyed':'Entered')+' '+next+' from '+before+'. House clock +3 minutes.');
  refreshUI();
  ensureRoomSources(next);
@@ -440,6 +444,7 @@ function recordObject(id) {
  const pulse=fantasyPieces.get(id);
  const nth=pulse?.activate()||1;
  roomMinutes=Math.min(2880,roomMinutes+6);
+ bridge.observe(sessionStorage,o.id);
  const rec={id:o.id,name:o.name,room:o.room,event:'kilns.object.observed',minute:roomMinutes,sequence:journal.length+1};
  journal.push(rec);journal=journal.slice(-MAX_EVENTS);
  try{sessionStorage.setItem(journalKey,JSON.stringify(journal))}catch{}
@@ -455,8 +460,9 @@ function recordObject(id) {
  showObject(id,false);refreshUI();
 }
 function readLocal(){
+ roomMinutes=bridge.read(sessionStorage)?.elapsed_minutes??0;
  try{
-  const saved=JSON.parse(sessionStorage.getItem(journalKey)||'[]');
+  const saved=JSON.parse(sessionStorage.getItem(journalKey)||sessionStorage.getItem('webspace.kilns.v5.session')||'[]');
   if(Array.isArray(saved))journal=saved.filter(x=>x&&isObjectId(x.id)&&Number.isInteger(x.sequence)).slice(-MAX_EVENTS);
  }catch{journal=[]}
 }
@@ -554,7 +560,7 @@ function bindControls(){
    const a=document.createElement('a');a.href=url;a.download='kilns-3d-local-journal.json';a.click();
    setTimeout(()=>URL.revokeObjectURL(url),1000);
  });
- $('clear-button').addEventListener('click',()=>{journal=[];try{sessionStorage.removeItem(journalKey)}catch{}refreshUI();report('This house session has been cleared.');});
+ $('clear-button').addEventListener('click',()=>{journal=[];try{sessionStorage.removeItem(journalKey)}catch{}bridge.clear(sessionStorage);roomMinutes=0;refreshUI();report('This house session has been cleared.');});
  $('overview-button').addEventListener('click',()=>{
    const hidden=$('room-index').hidden;
    $('room-index').hidden=!hidden;
