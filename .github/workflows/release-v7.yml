@@ -1,0 +1,40 @@
+name: Webspace v7 immutable source release
+on:
+  push:
+    branches: [main]
+    paths:
+      - VERSION.json
+      - worlds/elisium/kilns/**
+      - .github/workflows/release-v7.yml
+permissions:
+  contents: write
+jobs:
+  archive-source-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify release number and archive complete source tree
+        run: |
+          python3 - <<'PY'
+          import json
+          v=json.load(open('VERSION.json'))
+          assert v['version_integer']==7, 'The release workflow is only for root version 7'
+          PY
+          git archive --format=zip --output=Webspace_v7_source.zip HEAD
+          unzip -t Webspace_v7_source.zip | tail -1
+      - name: Create immutable v7 source release if absent
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="webspace/v0007"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo 'Existing Webspace v7 release preserved'
+          else
+            gh release create "$TAG" Webspace_v7_source.zip \
+              --target "$GITHUB_SHA" \
+              --title 'Webspace v7 — The Kilns: A House You May Enter' \
+              --notes 'Playable physically connected Victorian Kilns with all H01-H24 interactive artifacts; current Poly Haven CC0 historical furnishings installed into the rooms, original fantasy mechanisms, preserved illustrated fallback, Chuzhoy 6.2.8, Elisium threshold boundaries, and complete R0009 backward-forward documentation. Source ZIP includes pinned MIT Three.js runtime. V6 20-source artist bank remains a separate fixed CC0 download.'
+          fi
