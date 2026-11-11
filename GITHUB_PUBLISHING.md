@@ -1,7 +1,11 @@
 # GitHub target — Vitra-Lumenhart/Webspace
 
 Repository: https://github.com/Vitra-Lumenhart/Webspace
-Pages: https://vitra-lumenhart.github.io/Webspace/
+Public playable atlas (verified): https://vitra-lumenhart.github.io/Elisium/webspace/index.html
+Canonical editable codebase: https://github.com/Vitra-Lumenhart/Webspace/tree/main
+Direct Webspace Pages site: https://vitra-lumenhart.github.io/Webspace/ (not enabled; do NOT advertise as an active public game)
+
+The historic separate Elisium repository currently provides the publishing mirror, not the authoritative Webspace source. Its static mirror is synchronized intentionally from reviewed Webspace main, with the copied source commit recorded in the mirror ORIGIN.json. The source repository remains the only place to edit worlds. GitHub's Projects tab shows planning boards and Releases shows archived ZIPs; use the Code tab for editable files. Do not delete the older Elisium repository while this public site depends on its active Pages service.
 
 This is a public static game source; it must not contain credentials, real proton tokens or real bank ledger data.
 
