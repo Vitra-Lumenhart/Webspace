@@ -29,4 +29,4 @@ The developer may serve the source ZIP locally via `python3 -m http.server 8000`
 4. GitHub Pages enabled by an account with sufficient permissions.
 5. GitHub Pages deployment and HTTP success. **Steps 4–5 cannot be declared successful from a source commit or test pass.**
 
-The Webspace v7 README and TECH_MANUAL R0010 documents track this distinction. Future workers should not misinterpret a source-repository link as an already active playable Pages URL.
+The Webspace v7 README and TECH_MANUAL R0011 documents track this distinction. Future workers should not misinterpret a source-repository link as an already active playable Pages URL.
