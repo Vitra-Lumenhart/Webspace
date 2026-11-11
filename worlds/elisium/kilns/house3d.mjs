@@ -24,7 +24,7 @@ let renderer,scene,camera,raycaster,modelRoot,clockLight;
 let data=[],journal=[],currentRoom=START_ROOM,roomMinutes=0,selected=null;
 let player={x:0,z:10,y:PLAYER_HEIGHT,yaw:0,pitch:0,level:0};
 let animations=[],keys=new Set(),pointer={down:false,moved:0,x:0,y:0};
-let lastTime=performance.now(),renderTime=0,autoplayStarted=false,stairFlight=false;
+let lastTime=performance.now(),renderTime=0,autoplayStarted=false,stairFlight=false,lastUiRefresh=0;
 const ACTIVE_COLOR='#f8c88a';
 const WOOD=new THREE.MeshStandardMaterial({color:'#654b3f',roughness:.79}),
   MAHOGANY=new THREE.MeshStandardMaterial({color:'#402c2b',roughness:.62}),
@@ -576,7 +576,7 @@ function update(t,dt) {
  const sec=t*.001;
  for(const fn of animations)fn(sec);
  for(const f of fantasyPieces.values())f.animate(sec);
- if(!stairFlight)refreshUI();
+ if(!stairFlight && t-lastUiRefresh>240){lastUiRefresh=t;refreshUI();}
  renderer.render(scene,camera);
 }
 function loop(now){
@@ -599,7 +599,7 @@ async function start(){
  report('The doors are open. Follow the passage or choose a room.');
  window.__KILNS_TEST__={room:()=>currentRoom,objectCount:()=>items.size,sourceCount:()=>[...items.values()].filter(x=>x.status==='original').length,
     testVisit:n=>navigateRoom(n),testObserve:n=>{navigateRoom(items.get(n)?.room);recordObject(n)},
-    physicalRoomCount:()=>ROOM_ORDER.length,graph:n=>reachableRooms(n),place:id=>fixtures.get(id)?.position.toArray(),
+    physicalRoomCount:()=>ROOM_ORDER.length,graph:n=>reachableRooms(n),place:id=>fixtures.get(id)?.position.toArray(),sourceStatus:id=>items.get(id)?.status,
     geometryCount:()=>{let c=0;scene.traverse(o=>{if(o.isMesh)c++});return c}, getPlayer:()=>({...player})};
  requestAnimationFrame(loop);
 }
