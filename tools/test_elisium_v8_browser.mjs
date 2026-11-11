@@ -52,7 +52,7 @@ try{
  await page.waitForFunction(()=>document.querySelector('#elisiumGame').contentWindow.ELISIUM.getState().current==='quietCircle',null,{timeout:15000});
  await page.waitForFunction(()=>!document.querySelector('#secularDialogue').hidden,null,{timeout:3000});
  await page.locator('button[data-secular="question"]').click();
- assert((await page.locator('#secularNote').innerText()).includes('question'));
+ assert((await page.locator('#secularNote').innerText()).includes('reject being deceived'), 'Questioning should preserve the right to doubt without a moral score');
  await page.locator('#secularClose').click();
  await page.screenshot({path:'artifacts/elisium-v8-quiet-circle.png'});
  assert(!errors.length,'Unexpected JavaScript page errors: '+errors.join('; '));
