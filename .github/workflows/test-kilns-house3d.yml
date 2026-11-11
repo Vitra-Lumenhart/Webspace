@@ -1,7 +1,5 @@
 name: Kilns actual navigable 3D house
 on:
-  push:
-    branches: [world/elisium-kilns/house3d-v7]
   pull_request:
     paths:
       - worlds/elisium/kilns/**
@@ -28,12 +26,13 @@ jobs:
       - name: Install browser engine
         run: |
           npm install --no-save playwright@1.56.1
-          npx playwright install --with-deps chromium
+          which google-chrome || which chromium || which chromium-browser || npx playwright install --with-deps chromium
       - name: Test actual contiguous navigation and Poly Haven geometry
         run: |
           mkdir -p artifacts
           python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/webspace-house.log 2>&1 &
           sleep 2
+          export WEBSPACE_BROWSER_PATH="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
           node tools/test_kilns_house3d.mjs
       - name: Publish browser screenshots
         if: always()
