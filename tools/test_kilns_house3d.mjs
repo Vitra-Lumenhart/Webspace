@@ -79,7 +79,7 @@ try{
  // interaction. Its journal must stay local, not become a browser query.
  await page.evaluate(()=>__KILNS_TEST__.testObserve('H07'));
  assert.equal(await page.locator('#count').innerText(),'1 / 24');
- assert((await page.locator('#notice').innerText()).includes('H07'));
+ assert((await page.locator('#marginalia').innerText()).includes('H07'), 'H07 should be recorded in the house journal irrespective of asynchronous source-load notices');
  await page.screenshot({path:'artifacts/kilns-v7-h07-interaction.png'});
 
  await page.getByRole('button',{name:/Stair Landing/}).first().click();
