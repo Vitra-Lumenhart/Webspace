@@ -1,15 +1,25 @@
 {
   "schema": "webspace/federation/1.1",
   "release_integer": 6,
-  "source_lineage": "Chuzhoy 6.2.5.1 + legacy v3 Gerudo/Gringotts + Witch v2 + Elisium v4.6",
+  "source_lineage": "Chuzhoy 6.2.8 (rollback 6.2.5.1) + legacy v3 Gerudo/Gringotts + Witch v2 + Elisium v4.6",
   "worlds": [
     {
       "id": "chuzhoy",
       "name": "Garden of Chuzhoy",
       "entry": "worlds/chuzhoy/index.html",
-      "version": "6.2.5.1 QA standalone",
-      "engine": "Embedded 6.2.5.1 runtime",
-      "arrival_tag": "chuzhoy-north"
+      "version": "6.2.8 Wilderness (canonical GitHub native)",
+      "engine": "Standalone WebGL2 Garden 6.2.8 compressed runtime; source extraction tool",
+      "arrival_tag": "chuzhoy-north",
+      "features": [
+        "southern arches",
+        "wilderness depth veils",
+        "independent wildlife sprites",
+        "ewes pasture",
+        "Creeping Charlie growth",
+        "architectural gold/pink toggles",
+        "compass wing recenter",
+        "one-way obsidian-to-rose route"
+      ]
     },
     {
       "id": "fortress",
@@ -97,5 +107,5 @@
       }
     }
   ],
-  "release_note": "Opt-in live Poly Haven model viewer in illustrated Kilns world; v5 gameplay otherwise preserved"
+  "release_note": "Opt-in live Poly Haven model viewer in illustrated Kilns world; v5 gameplay otherwise preserved; Garden native upgraded to 6.2.8 Wilderness with standalone rollback; other worlds unchanged"
 }
