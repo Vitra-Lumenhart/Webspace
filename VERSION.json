@@ -1,11 +1,11 @@
 {
-  "version_integer": 6,
-  "build": "webspace-federation-0006",
-  "date": "2026-11-10",
+  "version_integer": 7,
+  "build": "webspace-federation-0007",
+  "date": "2026-11-11",
   "entry": "index.html",
   "canonical_garden_entry": "garden-of-chuzhoy.html",
   "git_repo": "Vitra-Lumenhart/Webspace",
-  "publication_note": "Archive for 20 Poly Haven original donor models published as an Actions artifact/Release; no binary artist originals stored in Git. Git history is authoritative; published Pages behavior must be tested separately.",
-  "parent_git_sha": "6de1b5a945cf6c687d587643b46b67a38eb66c4a",
-  "release_kind": "Kilns opt-in Poly Haven live artist inspector with verified downloadable batch"
+  "publication_note": "3D Kilns is the default child-world entry, with v6 illustrated.html preserved. Full-source release is GitHub main + tag; public Pages deployment must be verified separately.",
+  "parent_git_sha": "c6ebe2205a0e322b68585d6bd23307d5606ba761",
+  "release_kind": "Kilns 3D physically traversable Victorian house with 24 interactive artifacts and Poly Haven historical source furnishings"
 }
