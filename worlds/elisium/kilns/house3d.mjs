@@ -585,7 +585,7 @@ function loop(now){
 }
 async function start(){
  readLocal();
- report('Building the house's geometry…');
+ report('Building the house geometry…');
  const response=await fetch('../../../assets/kilns/OBJECTS.json');
  if(!response.ok)throw Error('Cannot find the H01–H24 source list');
  const parsed=await response.json();
