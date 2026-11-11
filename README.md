@@ -146,8 +146,18 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 **Evidence:** worlds/elisium/threshold.js, worlds/elisium/index.html, worlds/elisium/kilns/index.html, worlds/elisium/kilns/world.json, worlds/elisium/kilns/tests/test_threshold.mjs and .github/workflows/docs-covenant.yml. CI, review and main deployment remain prerequisites.
 <!-- /WEBSPACE-LEDGER -->
 
-<!-- WEBSPACE-LEDGER id="R0007" date="2026-11-11" -->
-### 2026-11-11 · R0007 — The illustrated house becomes a place to walk
+
+<!-- WEBSPACE-LEDGER id="R0008" date="2026-11-11" -->
+### R0008 · Garden of Chuzhoy 6.2.8 Wilderness merge
+**Backwards:** Preserves the original Garden 6.2.5.1 HTML as `history/chuzhoy/6.2.5.1/garden_native.html`; the complete v7 repository remains recoverable in Git history at `c6ebe2205a0e322b68585d6bd23307d5606ba761`.
+**Forwards:** The canonical Garden at `worlds/chuzhoy/garden_native.html` now uses the exact 6.2.8 standalone wilderness build: southern garden arch ring, layered outer-forest vegetation, deer/ewe/jaguar and two blue-jay ambient sprites, pasture, hidden-well approach, growing marble Creeping Charlie, pink sevenfold and gold structural proposal switches, and camera-facing compass wings. The Garden landing URL and the other world entry points are unchanged.
+**Not yet:** Real-device frame-rate and complete WebGL visual acceptance; the artist's cathedral v9 and original Purgatorio wildlife meshes were not present in the 6.2.8 release and have not been fabricated for this merge. Ambient wildlife remains lightweight sprite geometry. The included v8 reconstruction remains a proposal layer.
+**Invariant impact:** Portal and action consent rules are preserved by the upstream 6.2.8 game; only the Garden entry's HTML changes. Fortress, Gringotts, Witch's Hole, Elisium, The Kilns, Purgatorio and their files are deliberately not replaced. Distinct native world engines are still allowed to diverge.
+**Evidence:** Exact imported 6.2.8 HTML is 1,636,170 UTF-8 bytes, SHA-256 `3fad552d8711e6b46cd199811debb7cc177742104f7cc575d5d66fe1d6446a4d`; see `worlds/chuzhoy/QA_6_2_8.md`. Source recovery script: `tools/extract_chuzhoy_runtime.py`.
+<!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0009" date="2026-11-11" -->
+### 2026-11-11 · R0009 — The illustrated house becomes a place to walk
 
 **Backwards:** Webspace v6 offered a genuine optional Poly Haven 3D study viewer but no walkable interior; H01–H24 were in a separate illustrated navigation graph. v7 preserves that entire illustrated playable source as `worlds/elisium/kilns/illustrated.html`. New editable scene files implement a nine-cell ground-floor Victorian plan with real door openings and wall collision, an upstairs attic reached from a sculpted spiral stair, keyboard/mouse/touch motion, procedural timber/marble/wallpaper/glass/lighting geometry, physical artifact stands, and dedicated bespoke animated fantasy extensions for every H object. The 20 original Poly Haven 1k model sources are now automatically mounted as physically situated objects in their story rooms on entry, with generated GLB proxies retained for failed remote access. The house session remains local.
 

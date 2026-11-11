@@ -31,7 +31,7 @@ The house does not ask for an identity, bank account, password or permission to 
 | `world.json` | World topology, contract and object IDs |
 | `tools/test_kilns_house3d.mjs` | Browser spatial, real-source, attic and interaction acceptance tests (repo root) |
 
-**Next:** review all 24 artist model scales/placements on real hardware, evolve bespoke animations into deeper puzzles, optimize LOD and offline distribution, improve the physical attic stair movement, extend the authorable semantic object contracts, and integrate the allowed public house echoes into Elisium without commanding its sky. See root README R0007 and matching technical manual. The child world is not a banking or login authority.
+**Next:** review all 24 artist model scales/placements on real hardware, evolve bespoke animations into deeper puzzles, optimize LOD and offline distribution, improve the physical attic stair movement, extend the authorable semantic object contracts, and integrate the allowed public house echoes into Elisium without commanding its sky. See root README R0009 and matching technical manual. The child world is not a banking or login authority.
 
 ## Validation statement
 
