@@ -1,40 +1,55 @@
-name: Webspace v7 immutable source release
+name: Webspace immutable versioned source releases
+# This file retains its historical v7 path, but is version-aware from v8 onward.
 on:
   push:
     branches: [main]
     paths:
       - VERSION.json
-      - worlds/elisium/kilns/**
+      - worlds/elisium/**
       - .github/workflows/release-v7.yml
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
   archive-source-contract:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 9
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Verify release number and archive complete source tree
+      - name: Derive checked release version from VERSION.json
+        id: version
         run: |
           python3 - <<'PY'
-          import json
-          v=json.load(open('VERSION.json'))
-          assert v['version_integer']==7, 'The release workflow is only for root version 7'
+          import json,os
+          data=json.load(open('VERSION.json',encoding='utf8'))
+          n=data.get('version_integer')
+          assert type(n) is int and 7 <= n <= 9999, 'Expected a valid published integer release (v7+)'
+          assert data.get('entry') == 'index.html', 'Missing canonical entry'
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf8') as f:
+              f.write(f'number={n}\n')
+              f.write(f'tag=webspace/v{n:04d}\n')
+              f.write(f'filename=Webspace_v{n}_source.zip\n')
+          print('Version',n,'validated; historical release tags are immutable')
           PY
-          git archive --format=zip --output=Webspace_v7_source.zip HEAD
-          unzip -t Webspace_v7_source.zip | tail -1
-      - name: Create immutable v7 source release if absent
+      - name: Archive complete canonical source
+        run: |
+          set -euo pipefail
+          git archive --format=zip --output="${{ steps.version.outputs.filename }}" HEAD
+          unzip -t "${{ steps.version.outputs.filename }}" | tail -1
+      - name: Publish immutable source release if absent
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+          ZIP: ${{ steps.version.outputs.filename }}
+          N: ${{ steps.version.outputs.number }}
         run: |
-          TAG="webspace/v0007"
+          set -euo pipefail
           if gh release view "$TAG" >/dev/null 2>&1; then
-            echo 'Existing Webspace v7 release preserved'
+            echo "Existing $TAG is immutable and was not rewritten."
           else
-            gh release create "$TAG" Webspace_v7_source.zip \
-              --target "$GITHUB_SHA" \
-              --title 'Webspace v7 — The Kilns: A House You May Enter' \
-              --notes 'Playable physically connected Victorian Kilns with all H01-H24 interactive artifacts; current Poly Haven CC0 historical furnishings installed into the rooms, original fantasy mechanisms, preserved illustrated fallback, Chuzhoy 6.2.8, Elisium threshold boundaries, and complete R0009 backward-forward documentation. Source ZIP includes pinned MIT Three.js runtime. V6 20-source artist bank remains a separate fixed CC0 download.'
+            gh release create "$TAG" "$ZIP" --target "$GITHUB_SHA" \
+              --title "Webspace v$N — Immutable Source Snapshot" \
+              --notes "Complete Webspace source and history as of commit $GITHUB_SHA. This source release is distinct from the separately verified public Pages mirror; all narrative, asset and deployment caveats remain in README.md and TECH_MANUAL.html."
           fi
