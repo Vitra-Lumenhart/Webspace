@@ -1,0 +1,56 @@
+name: Webspace GitHub Pages (public game)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - worlds/**
+      - assets/**
+      - shared/**
+      - TECH_MANUAL.html
+      - README.md
+      - WORLD_MANIFEST.json
+      - VERSION.json
+      - .github/workflows/deploy-pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: webspace-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure GitHub Pages using GitHub Actions
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Build static Webspace publication
+        run: |
+          mkdir -p _site
+          cp -a index.html worlds assets shared TECH_MANUAL.html README.md WORLD_MANIFEST.json VERSION.json _site/
+          if [ -f webspace_standalone_preview.html ]; then cp webspace_standalone_preview.html _site/; fi
+          echo 'The Kilns entry: /Webspace/worlds/elisium/kilns/index.html'
+      - name: Upload public static artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        name: Deploy Webspace to public GitHub Pages
+        uses: actions/deploy-pages@v4
+      - name: Verify published Kilns entrypoint
+        run: |
+          URL="${{ steps.deployment.outputs.page_url }}worlds/elisium/kilns/index.html"
+          echo "Public Kilns: $URL"
+          curl -fIL --retry 3 --retry-delay 3 "$URL"
