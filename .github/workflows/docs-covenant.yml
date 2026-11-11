@@ -29,3 +29,7 @@ jobs:
         run: node tests/test_unified.mjs
       - name: Validate canonical portal defaults and custom declarations
         run: node tests/test_portal_registry.mjs
+      - name: Validate Kilns object graph
+        run: node worlds/elisium/kilns/tests/test_kilns.mjs
+      - name: Validate Elisium-Kilns threshold
+        run: node worlds/elisium/kilns/tests/test_threshold.mjs
