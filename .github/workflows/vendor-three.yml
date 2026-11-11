@@ -37,5 +37,7 @@ jobs:
           git add assets/vendor/three
           if git diff --cached --quiet; then echo 'Already vendored'; else
             git commit -m 'vendor: self-host Three.js r168 engine and required MIT helper modules'
+            git fetch origin world/elisium-kilns/house3d-v7
+            git rebase origin/world/elisium-kilns/house3d-v7
             git push origin HEAD:world/elisium-kilns/house3d-v7
           fi
