@@ -219,3 +219,13 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Live all-world atlas](https://vitra-lumenhart.github.io/Elisium/webspace/index.html), [editable canonical source](https://github.com/Vitra-Lumenhart/Webspace/tree/main), [Elisium hosting repo](https://github.com/Vitra-Lumenhart/Elisium), [deployment sync workflow](https://github.com/Vitra-Lumenhart/Elisium/blob/main/.github/workflows/sync-webspace-mirror.yml), [public URL HTTP verification](https://github.com/Vitra-Lumenhart/Elisium/actions/workflows/verify-webspace-pages.yml), [publishing instructions](GITHUB_PUBLISHING.md).
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0013" date="2026-11-11" -->
+### R0013 · Chuzhoy 6.3 cathedral source reconciliation (planning only)
+**Backwards:** The exact playable Chuzhoy 6.2.8 Garden remains byte-for-byte unchanged. Its successful native arch circuit, gold v8 structure, provisional pink heptagon, fauna, south path, Creeping Charlie and three-knock well are the immutable baseline. The Rev05/06 master, Rev07 socket/commission kit, reconstructed Rev08 microkit and R0010 source grammar have been inventoried and distinguished rather than overwritten.
+**Forwards:** [Chuzhoy 6.3 asset reconciliation](docs/CHUZHOY_6_3_ASSET_RECONCILIATION.md) registers a one-bay near-temple import route, adapter boundary, strong sevenfold skyline design, source provenance, site matrix, phone-budget strategy and testable future objectives. The Garden's exterior arch rhythm survives; R0010 dressed stone and glass components should repair its joints without imposing the legacy 288 × 192 m plan.
+**Not yet:** No 6.3 scene was built or made playable; the Cathedral R0010 grammar is still unmounted; a full v9/v9.2 GLB/STEP artist archive is not present in the accessible repository; real-WebGL pixels and phone FPS still need visual QA.
+**Invariant impact:** All six worlds, Garden 6.2.8 bytes, portal/screen contracts, named arrival tags, local navigation and privacy remain unchanged. This is a planning and inheritance entry, not an API migration.
+**Evidence:** Reviewed the current Webspace and Elisium mirror trees, Rev07 tar.gz handoff, Rev08 ZIP/manifest/plans, 6.2.8 embedded source, and R0010 cathedral catalogue; the Rev08 verification script reports 21 part families and a 3,941-triangle Chuzhoy sample. Planning document: docs/CHUZHOY_6_3_ASSET_RECONCILIATION.md.
+<!-- /WEBSPACE-LEDGER -->
