@@ -32,10 +32,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Configure GitHub Pages using GitHub Actions
+      # First-time site activation is a repository administrator's GitHub
+      # Settings > Pages > Source: GitHub Actions selection. GITHUB_TOKEN
+      # intentionally cannot create a Pages site via enablement:true.
+      # Once active, this workflow needs no manual file uploads.
+      - name: Read already-enabled GitHub Pages configuration
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - name: Build static Webspace publication
         run: |
           mkdir -p _site
