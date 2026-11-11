@@ -10,7 +10,7 @@ import fs from 'node:fs';
 
 fs.mkdirSync('artifacts',{recursive:true});
 const browser=await chromium.launch({
- headless:true,args:['--no-sandbox','--enable-unsafe-swiftshader','--use-angle=swiftshader']
+ headless:true,...(process.env.WEBSPACE_BROWSER_PATH?{executablePath:process.env.WEBSPACE_BROWSER_PATH}:{}),args:['--no-sandbox','--enable-unsafe-swiftshader','--use-angle=swiftshader']
 });
 const page=await browser.newPage({viewport:{width:1560,height:970},deviceScaleFactor:1});
 const errors=[];
