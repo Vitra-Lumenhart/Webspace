@@ -1,7 +1,7 @@
 {
   "schema": "webspace/federation/1.1",
-  "release_integer": 7,
-  "source_lineage": "Chuzhoy 6.2.8 (rollback 6.2.5.1) + legacy v3 Gerudo/Gringotts + Witch v2 + Elisium v4.6",
+  "release_integer": 8,
+  "source_lineage": "Chuzhoy 6.2.8 (rollback 6.2.5.1) + legacy v3 Gerudo/Gringotts + Witch v2 + Elisium v4.6 + Elisium v8 sky / Kilns SGM branch candidate",
   "worlds": [
     {
       "id": "chuzhoy",
@@ -49,9 +49,17 @@
       "id": "elisium",
       "name": "Elisium · Living Concordance",
       "entry": "worlds/elisium/index.html",
-      "version": "4.6 compact playable",
+      "version": "4.6 game preserved + v8 sky atlas candidate",
       "engine": "Independent Elisium WebGL2/Canvas compatible",
-      "arrival_tag": "elisium-first-footfall"
+      "arrival_tag": "elisium-first-footfall",
+      "sky_atlas_candidate": {
+        "months": 12,
+        "zodiac_signs": 12,
+        "reference_status": "illustrative 12 sectors, not historical month/zodiac equivalence",
+        "secular_node": "quietCircle, one edge to tip0",
+        "parent_kilns": "nested retain-parent iframe",
+        "literary_readers": 64
+      }
     },
     {
       "id": "purgatorio",
@@ -109,8 +117,14 @@
       "scene_entry": "worlds/elisium/kilns/house3d.mjs",
       "artifact_source": "worlds/elisium/kilns/house-fantasy.mjs",
       "mounted_current_polyhaven": true,
-      "parent_sky_integrated": false
+      "parent_sky_integrated": false,
+      "parent_integration_candidate": {
+        "branch": "world/elisium/sovereign-sky-v8",
+        "mode": "same-page nested iframe",
+        "status": "review required",
+        "story": "twelve sky observations and paired H discoveries, native state retained; no inherited clock mutation"
+      }
     }
   ],
-  "release_note": "Kilns child entry upgraded from illustrated room graph to 10-space, physically connected 3D Victorian house; original v6 illustration preserved"
+  "release_note": "Elisium v8 feature branch candidate: sky calendar/zodiac comparisons, Dey/Ahura Mazda, Tir/Sirius, Leo/Aslan literary loop, SGM lab and no-penalty secular exit; preserve native 4.6 state while visiting Kilns."
 }
