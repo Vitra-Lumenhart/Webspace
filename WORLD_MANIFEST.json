@@ -87,7 +87,14 @@
       "model": "illustrated indoor interactive room graph",
       "object_count": 24,
       "status": "playable illustrated room graph with optional live Poly Haven 3D source inspector; still no spatial furniture or parent sky integration",
-      "artist_source_viewer": "../../../assets/kilns/polyhaven-live-viewer.mjs"
+      "artist_source_viewer": "../../../assets/kilns/polyhaven-live-viewer.mjs",
+      "threshold_candidate": {
+        "schema": "webspace.elisium.kilns/threshold/1",
+        "release_status": "feature branch, unmerged",
+        "transport": "one-time same-tab sessionStorage",
+        "fields": "H01-H24 IDs and bounded fictional minutes only",
+        "parent_ui": "House echoes; independent sky unchanged"
+      }
     }
   ],
   "release_note": "Opt-in live Poly Haven model viewer in illustrated Kilns world; v5 gameplay otherwise preserved"
