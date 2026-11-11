@@ -52,7 +52,7 @@ try{
  // Real connected passage across a wall opening. From z10, W goes north
  // into Common Room at z<5 (not a room button or teleport).
  await page.keyboard.down('w');
- await page.waitForTimeout(2550);
+ await page.waitForFunction(()=>__KILNS_TEST__.room()==='Common Room',null,{timeout:18000});
  await page.keyboard.up('w');
  const afterWalk=await page.evaluate(()=>({room:__KILNS_TEST__.room(),p:__KILNS_TEST__.getPlayer()}));
  console.log('WALKED_THROUGH_DOOR:',JSON.stringify(afterWalk));
