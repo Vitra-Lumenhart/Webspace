@@ -1,0 +1,42 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import vm from 'node:vm';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const d=JSON.parse(fs.readFileSync(path.join(root,'worlds/elisium/atlas-data.json'),'utf8'));
+const html=fs.readFileSync(path.join(root,'worlds/elisium/index.html'),'utf8');
+const js=fs.readFileSync(path.join(root,'worlds/elisium/sky-atlas.js'),'utf8');
+const zipNote=fs.readFileSync(path.join(root,'worlds/elisium/kilns/SGM_OBJECT_LAB_v8.md'),'utf8');
+const world=JSON.parse(fs.readFileSync(path.join(root,'worlds/elisium/kilns/world.json'),'utf8'));
+assert.equal(d.months.length,12);
+assert.equal(d.points.length,7);
+assert.equal(d.objects.length,24);
+assert.equal(d.pairs.length,12);
+assert.equal(new Set(d.months.map(x=>x.name)).size,12);
+assert.equal(new Set(d.months.map(x=>x.zodiac)).size,12);
+assert.equal(d.months[4].zodiac,'Leo');
+assert.equal(d.months[4].vantage,'tip4');
+assert(d.points.find(p=>p.id==='tip6').question.includes('Asha'));
+for(const o of d.objects){assert.match(o.id,/^H(?:0[1-9]|1\d|2[0-4])$/);assert(o.chapter>=1&&o.chapter<=90);assert(o.experiment.length>25);}
+const all=new Set();
+for(const pair of d.pairs){all.add(pair.a);all.add(pair.b);assert(['book','witness','letters','shelter'].includes(pair.lens));}
+assert.equal(all.size,24,'Every object belongs to one pairing');
+for(const m of d.months){assert(d.points.some(p=>p.id===m.vantage));assert(m.objects.length===2);}
+assert(html.includes('id="elisiumGame"')&&html.includes('src="elisium_native.html"'));
+assert(html.includes('id="houseFrame"')&&!html.includes('location.href="kilns/index.html"'));
+assert(html.includes('id="secularDialogue"')&&html.includes('sky-atlas.js'));
+assert(js.includes("nodes[id]={name:'The Dwarfs’ Quiet Circle'"));
+assert(js.includes("if(!nodes.tip0.links.includes(id))nodes.tip0.links.push(id)"));
+assert(js.includes("const original=sky.render")||js.includes("const sky=g.sky,original=sky.render"));
+assert(js.includes("bridge.observe")===false,'Parent must not forge Kilns observations');
+assert(js.includes("H.mark(item.id,'studied'"));
+assert(js.includes("g.houseLens.arm(p.lens"));
+assert(js.includes("S.houseObjects.includes(p.a)&&S.houseObjects.includes(p.b)"));
+assert(world.threshold.handoff.schema==='webspace.elisium.kilns/threshold/1');
+assert(zipNote.includes('§90')||zipNote.includes('90-chapter'));
+for(let n=1;n<=24;n++)assert(zipNote.includes('H'+String(n).padStart(2,'0')));
+new vm.Script(js,{filename:'sky-atlas.js'});
+const manifest=JSON.parse(fs.readFileSync(path.join(root,'WORLD_MANIFEST.json'),'utf8'));
+assert(manifest.children.some(w=>w.id==='elisium/kilns'));
+console.log('PASS Elisium v8 static: seven points, twelve calendar/zodiac exhibits, 24 SGM instruments, twelve inherited pairs, native sky, child continuity and quiet-circle graph');

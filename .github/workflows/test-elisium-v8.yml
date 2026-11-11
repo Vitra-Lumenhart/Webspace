@@ -1,0 +1,45 @@
+name: Elisium v8 sevenfold sky + Kilns continuity
+on:
+  pull_request:
+    paths:
+      - worlds/elisium/**
+      - tests/test_elisium_atlas_v8.mjs
+      - tools/test_elisium_v8_browser.mjs
+      - .github/workflows/test-elisium-v8.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  elisium-atlas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate atlas and existing threshold contracts
+        run: |
+          node --check worlds/elisium/sky-atlas.js
+          node --check tools/test_elisium_v8_browser.mjs
+          node tests/test_elisium_atlas_v8.mjs
+          node worlds/elisium/kilns/tests/test_threshold.mjs
+          node worlds/elisium/kilns/tests/test_kilns.mjs
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          which google-chrome || which chromium || which chromium-browser || npx playwright install --with-deps chromium
+      - name: Test real parent + child journey
+        run: |
+          mkdir -p artifacts
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/elisium-v8.log 2>&1 &
+          sleep 2
+          export WEBSPACE_BROWSER_PATH="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          node tools/test_elisium_v8_browser.mjs
+      - name: Preserve screenshots and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: elisium-v8-parent-child-acceptance
+          path: artifacts/
+          retention-days: 45
