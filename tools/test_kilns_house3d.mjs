@@ -21,7 +21,19 @@ page.on('requestfailed',request=> {
 });
 try{
  await page.goto('http://127.0.0.1:8000/worlds/elisium/kilns/index.html',{waitUntil:'domcontentloaded',timeout:60000});
- await page.waitForFunction(()=>window.__KILNS_TEST__?.objectCount()===24,{timeout:40000});
+ try {
+  await page.waitForFunction(()=>window.__KILNS_TEST__?.objectCount()===24,null,{timeout:45000});
+} catch (error) {
+  const boot = await page.evaluate(()=>({
+    fatal: document.querySelector('#fatal')?.textContent,
+    notice: document.querySelector('#notice')?.textContent,
+    module: document.querySelector('script[src="house3d.mjs"]')?.outerHTML,
+    title: document.title
+  }));
+  console.log('BOOT_FAILURE',JSON.stringify({boot,errors:errors.slice(0,30)}));
+  await page.screenshot({path:'artifacts/kilns-3d-boot-failure.png'});
+  throw error;
+}
  const initial=await page.evaluate(()=>({
    room:__KILNS_TEST__.room(),
    rooms:__KILNS_TEST__.physicalRoomCount(),
@@ -50,7 +62,7 @@ try{
  // Original published historical source becomes real scene furniture, not
  // just an isolated model viewer. H07 is the curated dining-room goblets.
  await page.getByRole('button',{name:/Dining Room/}).first().click();
- await page.waitForFunction(()=>__KILNS_TEST__.sourceStatus('H07')==='original'||__KILNS_TEST__.sourceStatus('H07')==='proxy',{timeout:105000});
+ await page.waitForFunction(()=>__KILNS_TEST__.sourceStatus('H07')==='original'||__KILNS_TEST__.sourceStatus('H07')==='proxy',null,{timeout:105000});
  const art=await page.evaluate(()=>({
   room:__KILNS_TEST__.room(),
   state:__KILNS_TEST__.sourceStatus('H07'),
@@ -73,11 +85,11 @@ try{
  await page.getByRole('button',{name:/Stair Landing/}).first().click();
  assert.equal(await page.evaluate(()=>__KILNS_TEST__.room()),'Stair Landing');
  await page.locator('#stair-button').click();
- await page.waitForFunction(()=>__KILNS_TEST__.room()==='Attic',{timeout:10000});
+ await page.waitForFunction(()=>__KILNS_TEST__.room()==='Attic',null,{timeout:10000});
  assert.equal(await page.evaluate(()=>__KILNS_TEST__.getPlayer().level),1);
  await page.screenshot({path:'artifacts/kilns-v7-attic.png'});
  await page.locator('#stair-button').click();
- await page.waitForFunction(()=>__KILNS_TEST__.room()==='Stair Landing',{timeout:10000});
+ await page.waitForFunction(()=>__KILNS_TEST__.room()==='Stair Landing',null,{timeout:10000});
  assert.equal(await page.evaluate(()=>__KILNS_TEST__.getPlayer().level),0);
 
  // Test every H-object authored action, location and journal boundedness.
