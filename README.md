@@ -242,3 +242,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [v8 wrapper](worlds/elisium/index.html), [atlas engine](worlds/elisium/sky-atlas.js), [twelve-month + sevenfold data](worlds/elisium/atlas-data.json), [24 SGM object improvement handoff](worlds/elisium/kilns/SGM_OBJECT_LAB_v8.md), [Node tests](tests/test_elisium_atlas_v8.mjs), [Chromium acceptance](tools/test_elisium_v8_browser.mjs), [dedicated PR checks](.github/workflows/test-elisium-v8.yml), and [paired technical entry](TECH_MANUAL.html). Research references are documented with the object handoff; Webspace main and published Pages are unchanged until review.
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0015" date="2026-11-11" -->
+### 2026-11-11 · R0015 — Version-aware archives and an accepted Elisium parent world
+
+**Backwards:** Elisium v8's reviewed, merged R0014 restored native 4.6 persistence while visiting its 3D Kilns child, added the illustrative Iranian month/zodiac sky atlas, historical Tir/Tishtrya–Sirius and Dey/Ahura Mazda connections, Leo–Aslan analogy, a quiet secular exit, and 24 SGM object proposals. The real Chromium parent/child playtest and the Kilns, cathedral and revision-covenant regression suites passed. Because the older source-release workflow unconditionally asserted root version 7, its first post-v8 run failed even though the accepted gameplay tests passed. The existing v7 GitHub release was not altered.
+
+**Forwards:** Preserve each immutable tag `webspace/vNNNN` as its own full-source ZIP. The historical `.github/workflows/release-v7.yml` filename now contains a version-aware release job which derives the name from `VERSION.json`; v8 may have a new immutable archive without replacing the earlier v7 release. Later releases should migrate the historical workflow filename and validate publication links to a verified live host. Continue the separate, deliberate Elisium Pages mirror synchronization rather than assuming every source commit is a live deployment.
+
+**Not yet:** No claim that the Webspace-owned GitHub Pages site was enabled; GitHub Pages configuration remains a separate privilege boundary. The existing Elisium Pages mirror is a distinct repository with a deliberate sync workflow. The 12 sky glyphs are schematic, most 24-object mathematical experiments remain proposals, external Matrix/OpenClaw are not connected, and no full native save across browser closures or independent clock reconciliation is implemented.
+
+**Invariant impact:** Existing root version 7 tag, 24 Kilns IDs, Chuzhoy portal contract, other world assets and the Chuzhoy R0013 historical entry are preserved. This entry corrects **active version metadata** from 'branch candidate' to accepted canonical v8; it does not rewrite historical entries. No user identity, secret, private journal or prohibited remote command passes from the Kilns to Elisium.
+
+**Evidence:** [R0014 Elisium runtime](worlds/elisium/index.html), [v8 browser test](tools/test_elisium_v8_browser.mjs), [version-aware release workflow](.github/workflows/release-v7.yml), [root version](VERSION.json), [manifest](WORLD_MANIFEST.json), and paired R0015 technical manual. Release and Pages workflow results must be checked independently.
+<!-- /WEBSPACE-LEDGER -->
