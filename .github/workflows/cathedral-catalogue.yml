@@ -1,0 +1,17 @@
+name: Cathedral catalogue source regression
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  geometry-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compile catalogues without a world or GPU
+        run: node tests/test_cathedral_catalogue.mjs
