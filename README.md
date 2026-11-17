@@ -256,3 +256,14 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [R0014 Elisium runtime](worlds/elisium/index.html), [v8 browser test](tools/test_elisium_v8_browser.mjs), [version-aware release workflow](.github/workflows/release-v7.yml), [root version](VERSION.json), [manifest](WORLD_MANIFEST.json), and paired R0015 technical manual. Release and Pages workflow results must be checked independently.
 <!-- /WEBSPACE-LEDGER -->
+
+
+### R0016 · November 17, 2026 — The Society of Witnesses (design-only additive record)
+
+**Backwards:** All previous Webspace, Elisium, Kilns, sky, portal and source history above remains unchanged. This new proposal introduces no executable NPC dialog, no SQLite server, and no changes to today's interactive worlds.
+
+**Forwards:** Elisium's proposed **Concordance Dynamics** would let 64 individually authored literary interlocutors remember evidence, disagree, cooperate, refuse, converse with one another, and travel using existing graph-time rules. The separate **Elisium Mailroom** would maintain local event and conversation records through a browser SQLite/Wasm worker, using Matrix-inspired rooms/messages without claiming real Synapse federation. The initial test case is H23 Two Chairs with H05/H12/H18 and then the Stranger's Second Cup. This is authored/non-LLM narrative logic, preserving NPC individuality and the player's right to leave without theological judgment.
+
+**Not yet:** No live NPC social simulation, SQLite/Wasm storage, fully audited 64-person source migration, synchronized world clock, or new visual effects exist by virtue of this document. S1/“First Singularity” names a proposed emergent relationship pattern, not a proved consciousness event or literal mathematical singularity.
+
+**Invariant impact:** All former README text, TECH_MANUAL history, the 24 Kilns objects and their 12 concordances, seven perspectives, source separation, portal/screen contracts, player-local privacy and independent sky remain intact. Read the fully detailed [Elisium Concordance Dynamics and Mailroom RFC CD-001](docs/ELISIUM_CONCORDANCE_DYNAMICS_CD001.md) and the appended R0016 developer section of [TECH_MANUAL.html](TECH_MANUAL.html#r0016-elisium-concordance-dynamics). Do not merge this documentation branch without human review of the additive diff.
