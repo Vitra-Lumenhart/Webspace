@@ -256,3 +256,33 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [R0014 Elisium runtime](worlds/elisium/index.html), [v8 browser test](tools/test_elisium_v8_browser.mjs), [version-aware release workflow](.github/workflows/release-v7.yml), [root version](VERSION.json), [manifest](WORLD_MANIFEST.json), and paired R0015 technical manual. Release and Pages workflow results must be checked independently.
 <!-- /WEBSPACE-LEDGER -->
+
+
+### R0016 · November 17, 2026 — The Society of Witnesses (design-only additive record)
+
+**Backwards:** All previous Webspace, Elisium, Kilns, sky, portal and source history above remains unchanged. This new proposal introduces no executable NPC dialog, no SQLite server, and no changes to today's interactive worlds.
+
+**Forwards:** Elisium's proposed **Concordance Dynamics** would let 64 individually authored literary interlocutors remember evidence, disagree, cooperate, refuse, converse with one another, and travel using existing graph-time rules. The separate **Elisium Mailroom** would maintain local event and conversation records through a browser SQLite/Wasm worker, using Matrix-inspired rooms/messages without claiming real Synapse federation. The initial test case is H23 Two Chairs with H05/H12/H18 and then the Stranger's Second Cup. This is authored/non-LLM narrative logic, preserving NPC individuality and the player's right to leave without theological judgment.
+
+**Not yet:** No live NPC social simulation, SQLite/Wasm storage, fully audited 64-person source migration, synchronized world clock, or new visual effects exist by virtue of this document. S1/“First Singularity” names a proposed emergent relationship pattern, not a proved consciousness event or literal mathematical singularity.
+
+**Invariant impact:** All former README text, TECH_MANUAL history, the 24 Kilns objects and their 12 concordances, seven perspectives, source separation, portal/screen contracts, player-local privacy and independent sky remain intact. Read the fully detailed [Elisium Concordance Dynamics and Mailroom RFC CD-001](docs/ELISIUM_CONCORDANCE_DYNAMICS_CD001.md) and the appended R0016 developer section of [TECH_MANUAL.html](TECH_MANUAL.html#r0016-elisium-concordance-dynamics). Do not merge this documentation branch without human review of the additive diff.
+
+
+### R0017 · November 20, 2026 — The Kilns as an engine of learned social capabilities (design-only)
+
+**Backwards:** No existing Kilns object, H01–H24 ID, 12 pair, literary biography, door, sky, source file, historical proposal or narrative has been removed or rewritten. This appendix continues the proposal begun in CD-001 and the R0016 chronicle.
+
+**Forwards:** The Kilns may teach three families of player verbs—Inspiration, Insight and Intrepidity—while objects influence NPC interests, schedules, messages, evidence, public discourse and practical world conditions. Rather than authoring a dense 64×24×7 reaction table, sparse compositional matrices and 2–3 deeply significant object ties per NPC create social emergence, supplemented by weaker resonances and universally applicable investigative methods. H20's rain sampling becomes a polling laboratory; H23's two chairs test live debate and negotiated concessions; H19's two frequencies teach conversational tempo; H21's reflective instrument discloses forecasting uncertainty. The player is free to abstain, disagree or leave, and no object grades religious truth.
+
+**Not yet:** All proposals in [CD-002, full 24-object review and sparse-affordance architecture](docs/ELISIUM_KILNS_SPARSE_AFFORDANCES_CD002.md) are design only. LLM-generated speech is now explicitly considered for proposed expressive text, with verified event state held by the engine and Mailroom, not by arbitrary model output. The current game has no newly added Acropolis stone, NPC social society, local predictive NPC poll or new Kilns physics from this document.
+
+
+<!-- WEBSPACE-LEDGER id="R0018" date="2026-11-20" -->
+### 2026-11-20 · R0018 — Elisium v9 Society of Witnesses implementation plan (proposal only)
+**Backwards:** The accepted runtime remains Webspace integer v8 with Elisium 4.6 native graph/sky, v8 sky atlas wrapper, nested Kilns 3D house and threshold observation contract. Historical R0016/CD-001 and R0017/CD-002 texts and all previously developed characters and H01–H24 roles are retained on the docs draft branch. No Acropolis stone or new map geometry is contemplated.
+**Forwards:** First playable social prototype: 6 audited reader-proxies, 3 existing nodes, 2 concurrent one-discussion-per-node conversations, one player intervention per substantive issue, distinct independent NPC relocation choices, Mailroom event provenance and H05/H20/H23/H21 deep capability methods. Optional H11 invitation. Existing world/sky sovereign; player may decline discussion. See [full v9 plan CD-003](docs/ELISIUM_V9_SOCIETY_OF_WITNESSES_PLAN_CD003.md).
+**Not yet:** No new social source or runtime has been implemented, no live LLM or SQLite deployed, no version/tag updated, no source roster fully audited, no graphics/Pages tests passed for v9. v8 remains the accepted world.
+**Invariant impact:** No change to existing portal, star, Aslan–Tash distinction, fictional vs historical religion framing, independent sky, H-object identities, the 12 pairs, private journal scope, or prior manual chapters.
+**Evidence:** Accepted \`VERSION.json\` integer 8, \`WORLD_MANIFEST.json\`, \`worlds/elisium/index.html\`, \`sky-atlas.js\`, \`threshold.js\`, \`worlds/elisium/kilns/house3d.mjs\`, and CD-001/CD-002; CD-003 remains a proposal.
+<!-- /WEBSPACE-LEDGER -->
