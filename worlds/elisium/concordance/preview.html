@@ -1,0 +1,178 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Elisium v9 candidate — The Invisible Machines of Conversation</title><style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;color:#e9dfcf;background:radial-gradient(circle at 35% -10%,#294055,#0c1725 70%);font:15px/1.52 system-ui}
+header{padding:32px 5vw 14px;max-width:1280px;margin:auto;border-bottom:1px solid #53616d}h1,h2{font-family:Georgia,serif;color:#f1d39c}h1{font-size:clamp(29px,4vw,49px);line-height:1.08;margin:0 0 6px}h2{font-size:21px;margin:3px 0 12px}small,.muted{color:#a9bcc5}.eyebrow{font-size:11px;letter-spacing:.14em;color:#d7b67e;text-transform:uppercase}.intro{max-width:890px;color:#bec8d1;margin:0 0 15px}
+main{max-width:1280px;margin:auto;padding:21px 5vw 40px;display:grid;grid-template-columns:minmax(230px,0.9fr) minmax(360px,1.7fr);gap:20px}.panel{border:1px solid #536476;background:#122333dd;border-radius:13px;padding:17px}.panel h2{margin-top:0}.node{width:100%;display:block;text-align:left;min-height:72px;margin:9px 0;background:#172d3a;border:1px solid #425866;color:#e4d7c4;border-radius:9px;padding:12px;cursor:pointer}.node:hover,.node.active{border-color:#dcc08a;background:#293c46}.node strong{font-size:17px;font-family:Georgia,serif}.node .muted{display:block;font-size:12px}
+button,select{font:13px system-ui;background:#233c50;border:1px solid #aa946b;color:#f1e2ce;border-radius:7px;padding:9px 11px;cursor:pointer}button:disabled{opacity:.35;cursor:not-allowed}button:hover:not(:disabled){background:#526076}.buttons{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{display:inline-block;font-size:12px;background:#2a3640;border:1px solid #617284;border-radius:99px;padding:4px 10px;margin:3px}.notice{border-left:3px solid #d7ae73;background:#243847;padding:12px;margin:12px 0}.line{border-bottom:1px solid #374754;padding:8px 1px}.line:last-child{border-bottom:0}.eventlist{max-height:295px;overflow:auto}.small{font-size:12px}.detail{margin-bottom:10px}details{margin-top:15px;color:#aab7bf}details pre{white-space:pre-wrap;font-size:11px;overflow:auto;max-height:220px}code{font:12px monospace;color:#e8cf9a}footer{padding:15px 5vw 35px;max-width:1280px;margin:auto;color:#a9bbc4;font-size:12px}@media(max-width:720px){main{grid-template-columns:1fr}header{padding:24px 16px 12px}main{padding:17px 16px}h1{font-size:30px}}
+</style></head><body>
+<header><div class="eyebrow">ELISIUM · SOCIETY OF WITNESSES · V9 CANDIDATE</div><h1>The Invisible Machines<br>of Conversation</h1><p class="intro">A working social laboratory: six independently modeled literary proxies, two simultaneous discussions, concealed NPC transition networks, evidence from four Kilns objects, and voluntary journeys. <strong>No Acropolis stone</strong>—the Acropolis Protocol is purely intranodal.</p></header>
+<main><section class="panel"><h2>Concurrent forums</h2><p class="muted small">Choose a node to observe. This stand-alone lab allows simulated travel; the in-world version uses Elisium's actual route graph.</p><div id="stations"></div><div class="notice"><span class="eyebrow">Your location</span><div id="where">Christianity</div><span class="eyebrow">Social clock</span><div id="clock"></div></div><div class="buttons"><button id="travelBtn">Move to selected node (lab)</button><button id="beat">Advance all discussions</button></div><h2>The Kilns · learning tools</h2><p class="muted small">These practice buttons simulate a house observation. In the integrated world, the abilities come only from examining actual Kilns objects.</p><div id="learners" class="buttons"></div><p class="small">Learned methods: <strong id="methods"></strong></p><div class="buttons"><button id="download">Export Mailroom event ledger</button><button id="reset">Reload laboratory</button></div></section>
+<section class="panel"><div class="eyebrow" id="nodeName">Christianity</div><h2 id="question"></h2><p class="muted" id="sub"></p><div id="people" class="detail"></div><h2>One interjection per issue</h2><div class="buttons" id="actions"></div><div class="buttons"><select id="topic" aria-label="New discussion topic"><option value="myth">What survives when a story changes hands?</option><option value="refusal">When does silence become an answer?</option><option value="revision">Can a correction repair public harm?</option><option value="mercy">Can mercy require a difficult truth?</option><option value="testimony">Who may speak for an absent witness?</option></select><button id="newIssue">Propose a new question</button></div><h2>Public speech and observable activity</h2><div id="events" class="eventlist"></div><details><summary>Developer diagnostic · reveal hidden internal networks</summary><p class="muted small">The player would not normally see these variables. Here they demonstrate that NPCs do not share one persuasion meter.</p><pre id="debug"></pre></details></section></main>
+<footer>This is a standalone **mechanics preview**, not the complete 3D level or a production 64-NPC release. The original seven-pointed Elisium map, sovereign sky, Kilns model, world routes, H01–H24 assets, and older commentary remain untouched in their canonical source. The social engine's dialogue here uses authored fictional examples; the intended future LLM discourse layer is not connected.</footer>
+<script type="module">/* Elisium v9 candidate: hidden character transition networks. No theology or sky control. */
+const BUILD='hidden-machines-candidate-2026-11-24';
+const NODES=Object.freeze(['tip0','tip1','tip2','tip3','tip4','tip5','tip6']);
+const questions=Object.freeze({
+ testimony:{label:'Who may speak for an absent witness?',claim:'Testimony depends upon its route to the listener.'},
+ mercy:{label:'Can mercy require a difficult truth?',claim:'Kindness and disclosure can demand different acts.'},
+ myth:{label:'What survives when a story changes hands?',claim:'A changing story need not forget its source.'},
+ refusal:{label:'When does silence become a deliberate answer?',claim:'One can withdraw without conceding.'},
+ revision:{label:'Can a correction repair public harm?',claim:'A changed word does not erase its history.'}
+});
+const TOPICS=questions;
+/* Literary-proxy names and object specialisms occur in recovered DESIGN.md proposals.
+   These are original Elisium fictional sketches; NOT historical persons' opinions.
+   This is NOT an audited migration of the 64 native commentator records. */
+const PROTOTYPE_NPCS=Object.freeze([
+ {id:'proto-lewis',name:'Lewis · fictional interlocutor',node:'tip5',special:['H15','H03','H23'],rest:'discernment',voice:'precise',threshold:2,disposition:{testimony:2,mercy:2,myth:3,refusal:1,revision:2}},
+ {id:'proto-leguin',name:'Le Guin · fictional interlocutor',node:'tip5',special:['H01','H02','H16'],rest:'freedom',voice:'inquisitive',threshold:1,disposition:{testimony:3,mercy:2,myth:3,refusal:3,revision:2}},
+ {id:'proto-dante',name:'Dante · fictional interlocutor',node:'tip5',special:['H10','H19','H21'],rest:'journey',voice:'reflective',threshold:3,disposition:{testimony:2,mercy:2,myth:2,refusal:2,revision:1}},
+ {id:'proto-rumi',name:'Rumi · fictional interlocutor',node:'tip2',special:['H07','H03','H23'],rest:'longing',voice:'poetic',threshold:2,disposition:{testimony:1,mercy:3,myth:2,refusal:2,revision:1}},
+ {id:'proto-chaucer',name:'Chaucer · fictional interlocutor',node:'tip2',special:['H23','H04','H11'],rest:'many-voices',voice:'wry',threshold:2,disposition:{testimony:3,mercy:1,myth:2,refusal:2,revision:3}},
+ {id:'proto-tolkien',name:'Tolkien · fictional interlocutor',node:'tip4',special:['H13','H08','H24'],rest:'subcreation',voice:'measured',threshold:2,disposition:{testimony:2,mercy:1,myth:3,refusal:2,revision:2}}
+]);
+const ACTS=['hypothesis','rebuttal','concession','analogy','question','quiet','invitation'];
+const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
+const clone=x=>JSON.parse(JSON.stringify(x));
+function hashSeed(seed){let v=(Number(seed)>>>0)||20112026;return v;}
+function randStep(x){return (Math.imul(1664525,x)+1013904223)>>>0;}
+function defaultRoute(from,to){const roads={tip5:['tip4','tip2'],tip2:['tip5','tip4'],tip4:['tip2','tip5']};if(from===to)return {path:[from],cost:0};return roads[from]?.includes(to)?{path:[from,to],cost:8}:null;}
+class SocialSimulation {
+ constructor({seed=20112026,route=defaultRoute,save=null}={}){
+  this.route=route;this.seed=hashSeed(seed);this.time=0;this.serial=0;this.playerNode='tip5';this.events=[];this.houseObjects=[];this.methods=[];this.clockReceipts=[];
+  this.actors=PROTOTYPE_NPCS.map((p,i)=>({...clone(p),state:{conviction:2,trust:1,obligation:i%3,readiness:1,attention:1},unlocked:[],seen:[],turns:0,at:p.node,travel:null,relationship:{},restingView:p.rest}));
+  this.forums={tip5:this.newForum('tip5','testimony'),tip2:this.newForum('tip2','mercy')};
+  if(save)this.importState(save);
+  else this.emit('simulation_started',{description:'Two independent node discussions; six provisional literary proxies; hidden machines active.'},['public']);
+ }
+ newForum(node,topic){return {node,topic,issue:1,owner:null,turns:0,playerSpoken:false,state:'active',history:[]};}
+ emit(kind,data={},seenBy=['public']){const e={id:'ev'+String(++this.serial).padStart(5,'0'),minute:this.time,kind,data:clone(data),visibility:seenBy[0]||'public'};this.events.push(e);if(this.events.length>350)this.events.shift();return e;}
+ r(){this.seed=randStep(this.seed);return this.seed/4294967296;}
+ get actorLocations(){return Object.fromEntries(this.actors.map(a=>[a.id,a.at]));}
+ forum(node){return this.forums[node]||null;}
+ at(node){return this.actors.filter(a=>a.at===node&&!a.travel);}
+ currentForum(){return this.forum(this.playerNode);}
+ setPlayerNode(node){if(!NODES.includes(node))return false;this.playerNode=node;this.emit('player_location',{node},['public']);return true;}
+ syncPlayerNode(node){if(NODES.includes(node)&&this.playerNode!==node){this.playerNode=node;this.emit('player_location',{node},['public']);}}
+ observeHouse(ids,minutes=0,receipt='house-'+String(this.serial+1)){
+  if(this.clockReceipts.includes(receipt))return false;
+  if(!Array.isArray(ids)||ids.some(id=>!/^H(0[1-9]|1[0-9]|2[0-4])$/.test(id)))return false;
+  if(!Number.isInteger(minutes)||minutes<0||minutes>2880)return false;
+  this.clockReceipts.push(receipt);this.time+=minutes;
+  for(const id of ids){if(!this.houseObjects.includes(id))this.houseObjects.push(id)}
+  const unlocks={H05:'audit_testimony',H20:'sample_uncertainty',H23:'open_second_chair',H21:'question_prediction'};
+  for(const id of ids){let u=unlocks[id];if(u&&!this.methods.includes(u)){this.methods.push(u);this.emit('learned_method',{object:id,method:u},['player'])}}
+  this.emit('kilns_return',{ids:[...new Set(ids)],elapsed_minutes:minutes,receipt},['player']);return true;
+ }
+ topic(node,topic,origin='player'){
+  if(!NODES.includes(node)||!Object.prototype.hasOwnProperty.call(questions,topic))return false;
+  const forum=this.forums[node];
+  if(forum){if(forum.topic===topic)return false;forum.topic=topic;forum.issue++;forum.playerSpoken=false;forum.owner=null;forum.turns=0;forum.history=[];this.emit('new_issue',{node,topic,origin});return true;}
+  this.forums[node]=this.newForum(node,topic);this.emit('forum_created',{node,topic,origin});return true;
+ }
+ interject(kind){
+  const f=this.currentForum();if(!f||f.playerSpoken)return false;
+  const requirements={evidence:'audit_testimony',poll:'sample_uncertainty',two_chairs:'open_second_chair',prediction:'question_prediction'};
+  if(requirements[kind]&&!this.methods.includes(requirements[kind]))return false;
+  if(!['question','hypothesis','evidence','poll','two_chairs','prediction','invite'].includes(kind))return false;
+  f.playerSpoken=true;
+  const event=this.emit('player_interjection',{node:f.node,issue:f.issue,topic:f.topic,kind},['public']);
+  f.history.push(event.id);
+  for(const a of this.at(f.node)){
+   if(!a.seen.includes(event.id))a.seen.push(event.id);
+   this.applyHiddenTransition(a,event,f);
+  }
+  return true;
+ }
+ applyHiddenTransition(actor,event,forum){
+  const kind=event.kind==='player_interjection'?event.data.kind:event.data.act;
+  const old=clone(actor.state),recent=actor.seen.length;
+  const hasEvidence=this.methods.includes('audit_testimony') && kind==='evidence';
+  // Deliberately different transition guards; a small nonlinear puzzle, not a uniform weight update.
+  if(actor.id==='proto-leguin'){
+   if(kind==='evidence' && recent>=1 && this.houseObjects.includes('H05'))actor.state.trust=clamp(actor.state.trust+1,0,4);
+   if(actor.state.trust>=2 && this.time>=9 && actor.seen.some(id=>this.events.some(e=>e.id===id&&e.kind==='npc_turn'&&e.minute<event.minute)) && hasEvidence && forum.node==='tip5'&&!actor.unlocked.includes('right_to_withhold')){
+    actor.unlocked.push('right_to_withhold');this.emit('hidden_subnetwork_opened',{actor:actor.id,subnetwork:'right_to_withhold',cause:event.id,requirements:['H05','tip5','evidence','earned trust','one prior observed conversational turn','9 or more elapsed social minutes']},['developer']);
+   }
+  } else if(actor.id==='proto-lewis'){
+   if(kind==='rebuttal')actor.state.conviction=clamp(actor.state.conviction+1,0,4);
+   if(kind==='evidence')actor.state.attention=clamp(actor.state.attention+1,0,4);
+   // Explicit resting attraction: conscientious debate does not imply conversion.
+   actor.state.conviction=Math.max(2,actor.state.conviction);
+  } else if(actor.id==='proto-dante'){
+   if(kind==='evidence')actor.state.readiness=clamp(actor.state.readiness+1,0,4);
+   if(this.time>=8 && actor.state.readiness>=2 && !actor.unlocked.includes('witness_road')){actor.unlocked.push('witness_road');this.emit('hidden_subnetwork_opened',{actor:actor.id,subnetwork:'witness_road',cause:event.id},['developer'])}
+  } else if(actor.id==='proto-rumi'){
+   if(kind==='analogy')actor.state.attention=clamp(actor.state.attention+1,0,4);
+   if(actor.turns>=2 && actor.state.attention>=2&&!actor.unlocked.includes('two_notes')){actor.unlocked.push('two_notes');this.emit('hidden_subnetwork_opened',{actor:actor.id,subnetwork:'two_notes',cause:event.id},['developer'])}
+  } else if(actor.id==='proto-chaucer'){
+   if(kind==='question')actor.state.trust=clamp(actor.state.trust+1,0,4);
+  } else if(actor.id==='proto-tolkien'){
+   if(kind==='analogy'&&this.houseObjects.includes('H08'))actor.state.attention=clamp(actor.state.attention+1,0,4);
+  }
+  if(JSON.stringify(old)!==JSON.stringify(actor.state))this.emit('internal_transition',{actor:actor.id,cause:event.id,before:old,after:clone(actor.state)},['developer']);
+ }
+ voice(actor,act,topic){
+  const stem={hypothesis:'I wonder whether',rebuttal:'A difficulty remains:',concession:'That is worth granting, but',analogy:'Suppose a story instead:',question:'What would change if',quiet:'I would rather listen before concluding:',invitation:'Perhaps we should examine this elsewhere:'}[act];
+  return `${actor.name.split(' · ')[0]}: ${stem} ${questions[topic].claim}`;
+ }
+ canRoute(from,to){
+  if(from===to)return {path:[from],cost:0};try{const r=this.route(from,to);if(!r||!Array.isArray(r.path)||r.path[0]!==from||r.path[r.path.length-1]!==to||r.path.length<2)return null;const cost=Number(r.cost??r.minutes??r.time);if(!Number.isFinite(cost)||cost<=0)return null;return {path:r.path,cost};}catch{return null}
+ }
+ proposeTravel(actor,dest,reason){if(actor.travel||actor.at===dest)return false;const route=this.canRoute(actor.at,dest);if(!route)return false;
+  actor.travel={from:actor.at,to:dest,path:route.path,arrival:this.time+route.cost,reason};const e=this.emit('journey_departure',{actor:actor.id,from:actor.at,to:dest,path:route.path,arrival:actor.travel.arrival,reason});actor.seen.push(e.id);return true;
+ }
+ nextBeat(){
+  this.time+=3;
+  for(const a of this.actors){if(a.travel&&a.travel.arrival<=this.time){a.at=a.travel.to;this.emit('journey_arrival',{actor:a.id,node:a.at,path:a.travel.path});a.travel=null}}
+  for(const [node,f] of Object.entries(this.forums)){
+   if(f.state!=='active')continue;const eligible=this.at(node);
+   if(eligible.length===0)continue;
+   const a=eligible.sort((x,y)=>x.turns-y.turns||x.name.localeCompare(y.name))[f.turns%eligible.length];
+   const n=f.turns;const act=ACTS[(n+Math.floor(this.r()*ACTS.length))%ACTS.length];
+   const event=this.emit('npc_turn',{node,issue:f.issue,topic:f.topic,speaker:a.id,act,line:this.voice(a,act,f.topic),audience:eligible.filter(x=>x.id!==a.id).map(x=>x.id)});
+   a.turns++;f.turns++;f.owner=a.id;f.history.push(event.id);
+   for(const observer of eligible){if(!observer.seen.includes(event.id))observer.seen.push(event.id);this.applyHiddenTransition(observer,event,f)}
+   // Repeated talk can change relationships without forcing doctrinal convergence.
+   if(eligible.length>1){const other=eligible.find(x=>x.id!==a.id);a.relationship[other.id]=(a.relationship[other.id]||0)+(act==='concession'?1:act==='rebuttal'?-1:0);}
+  }
+  // Endogenous travel, not the player's summons. Selective response to witnessed discovery.
+  const leguin=this.actors.find(a=>a.id==='proto-leguin');
+  if(leguin?.unlocked.includes('right_to_withhold')&&!leguin.travel&&leguin.at==='tip5'&&this.time>=9)this.proposeTravel(leguin,'tip4','independent inquiry after evidence');
+  const dante=this.actors.find(a=>a.id==='proto-dante');
+  if(dante?.unlocked.includes('witness_road')&&!dante.travel&&dante.at==='tip5'&&this.time>=12){
+   if(dante.state.obligation<2)this.proposeTravel(dante,'tip4','comparison of witnesses');
+   else this.emit('invitation_declined',{actor:dante.id,reason:'prior obligation'});
+  }
+  // Free topic proposal when an isolated observer arrives at an unoccupied node.
+  for(const node of NODES){if(!this.forums[node]&&this.at(node).length>=2&&this.r()<.08)this.topic(node,'myth','npc_inspiration')}
+  return this.status();
+ }
+ status(){return {minute:this.time,playerNode:this.playerNode,forums:clone(this.forums),npcs:this.actors.map(a=>({id:a.id,name:a.name,node:a.at,travel:a.travel,turns:a.turns})),methods:this.methods.slice(),houseObjects:this.houseObjects.slice(),events:this.events.slice(-18)};}
+ debug(){return this.actors.map(a=>({id:a.id,state:clone(a.state),unlocked:a.unlocked.slice(),restingView:a.restingView,seen:a.seen.length,relationship:clone(a.relationship)}));}
+ exportState(){return JSON.stringify({version:1,seed:this.seed,time:this.time,serial:this.serial,playerNode:this.playerNode,actors:this.actors,forums:this.forums,events:this.events,houseObjects:this.houseObjects,methods:this.methods,clockReceipts:this.clockReceipts});}
+ importState(text){try{const s=typeof text==='string'?JSON.parse(text):text;if(s.version!==1||!Array.isArray(s.actors)||s.actors.length!==6||!Array.isArray(s.events)||s.events.length>350||!s.forums||!Number.isInteger(s.time)||s.time<0)return false; if(s.actors.some((a,i)=>a.id!==PROTOTYPE_NPCS[i].id||!NODES.includes(a.at)||!Array.isArray(a.unlocked)||!Array.isArray(a.seen)))return false;
+  this.seed=s.seed>>>0;this.time=s.time;this.serial=s.serial;this.playerNode=s.playerNode;this.actors=clone(s.actors);this.forums=clone(s.forums);this.events=clone(s.events);this.houseObjects=clone(s.houseObjects||[]);this.methods=clone(s.methods||[]);this.clockReceipts=clone(s.clockReceipts||[]);return true;
+ }catch{return false}}
+}
+
+
+const nodeNames={tip5:'Christianity',tip2:'Islam',tip4:'Aslan · fictional'};const sim=new SocialSimulation({seed:20112026});const $=id=>document.getElementById(id);let selection='tip5';
+const training={H05:'Book of Many Witnesses',H20:'Rain-Catching Instrument',H23:'Debate in Two Chairs',H21:'Vitra in the Glass'};
+function button(t,fn){let b=document.createElement('button');b.textContent=t;b.onclick=fn;return b}
+function nodeText(n){const f=sim.forum(n),actors=sim.at(n);return `${actors.length} present · ${f?TOPICS[f.topic].label:'no public discussion'}`}
+function update(){
+ const cards=$('stations');cards.replaceChildren();for(const id of ['tip5','tip2','tip4']){let b=document.createElement('button');b.className='node'+(selection===id?' active':'');b.innerHTML='<strong>'+nodeNames[id]+'</strong><span class="muted">'+nodeText(id)+'</span>';b.onclick=()=>{selection=id;update()};cards.append(b)}
+ const f=sim.forum(selection);$('nodeName').textContent=nodeNames[selection]+' · '+(sim.playerNode===selection?'You are here':'Public summary · travel to interject');$('question').textContent=f?TOPICS[f.topic].label:'No discussion underway';$('sub').textContent=f?`Issue ${f.issue} · ${f.turns} NPC turns · one public discussion`:'This node is quiet. A visitor may propose a new issue.';
+ const persons=$('people');persons.replaceChildren();for(const p of sim.at(selection)){let x=document.createElement('span');x.className='chip';x.textContent=p.name.split(' · ')[0];persons.append(x)}if(!sim.at(selection).length)persons.textContent='Nobody is currently gathered here.';
+ const actions=$('actions');actions.replaceChildren();for(const [k,n,req] of [['question','Ask a question',null],['hypothesis','Suggest a hypothesis',null],['evidence','Challenge testimony','audit_testimony'],['poll','Question a poll','sample_uncertainty'],['two_chairs','Request a second chair','open_second_chair'],['prediction','Question Vitra’s prediction','question_prediction']]){let b=button(n,()=>{sim.interject(k);update()});b.disabled=!f||sim.playerNode!==selection||f.playerSpoken||(req&&!sim.methods.includes(req));actions.append(b)}
+ const timeline=$('events');timeline.replaceChildren();for(const e of sim.events.filter(e=>e.visibility==='public'&&(!e.data?.node||e.data.node===selection)).slice(-16).reverse()){
+ let d=document.createElement('div');d.className='line';let c=document.createElement('strong');c.textContent=`${e.minute}m · ${e.kind.replaceAll('_',' ')}`;d.append(c);let t=document.createElement('div');t.className='muted small';t.textContent=e.data.line||e.data.topic||e.data.reason||e.data.description||e.data.actor||'';d.append(t);timeline.append(d)}
+ $('clock').textContent=sim.time+' fictional minutes';$('methods').textContent=sim.methods.join(' · ')||'None learned yet';$('where').textContent=nodeNames[sim.playerNode];$('debug').textContent=JSON.stringify(sim.debug(),null,2);
+ $('travelBtn').disabled=sim.playerNode===selection;
+}
+$('beat').onclick=()=>{sim.nextBeat();update()};$('travelBtn').onclick=()=>{if(!sim.setPlayerNode(selection))return;update()};
+$('newIssue').onclick=()=>{if(selection!==sim.playerNode)return;sim.topic(selection,$('topic').value);update()};
+$('learners').replaceChildren(...Object.entries(training).map(([id,name])=>button(id+' · '+name,()=>{sim.observeHouse([id],6,'demo-'+(++learnCount));update()})));let learnCount=0;
+$('reset').onclick=()=>location.reload();$('download').onclick=()=>{const blob=new Blob([sim.exportState()],{type:'application/json'}),href=URL.createObjectURL(blob),a=document.createElement('a');a.href=href;a.download='elisium-v9-social-ledger.json';a.click();setTimeout(()=>URL.revokeObjectURL(href),1000)};
+window.SOCIAL_PREVIEW={sim,next:()=>{sim.nextBeat();update()},study:(id)=>{sim.observeHouse([id],6,'test-'+Date.now());update()},visit:(id)=>{sim.setPlayerNode(id);selection=id;update()},update};update();
+</script></body></html>
