@@ -34,8 +34,8 @@ for idx,yaw,pitch in [(0,0,0),(1,0,.13),(2,.15,.20),(3,0,0)]:
  eye=np.array(poses[idx]);d=np.array([np.sin(yaw)*np.cos(pitch),np.sin(pitch),-np.cos(yaw)*np.cos(pitch)]);lamp=eye+np.array([.12,-.22,.06]);light=persp(116,1,.12,36)@view(lamp,d)
  bindfb(0x8D40,fbo);viewport(0,0,1024,1024);clear(0x100);use(depth);matrix(depth,'uLightVP',light);matrix(depth,'uM',np.eye(4));enable(0x8037);offset(1.4,2)
  for va,count in meshes[:2]:bindva(va);draw(4,0,count)
- disable(0x8037);bindfb(0x8D40,0);viewport(0,0,1000,650);cc(.001,.001,.001,1);clear(0x4100);use(main);matrix(main,'uLightVP',light);matrix(main,'uVP',persp(70,1000/650,.055,72)@view(eye,d));matrix(main,'uM',np.eye(4));vector(main,'uEye',eye);vector(main,'uDir',d);vector(main,'uLampPos',lamp);vector(main,'uMark',[4,1,-17.1]);
- for k,v in [('uLamp',1),('uTime',0),('uSeed',613),('uSixth',0),('uInspect',0)]:scalar(main,k,v)
+ disable(0x8037);bindfb(0x8D40,0);viewport(0,0,1000,650);cc(.001,.001,.001,1);clear(0x4100);use(main);matrix(main,'uLightVP',light);matrix(main,'uVP',persp(70,1000/650,.055,72)@view(eye,d));matrix(main,'uM',np.eye(4));vector(main,'uEye',eye);vector(main,'uDir',d);vector(main,'uLampPos',lamp);vector(main,'uMark',json.loads(Path('/tmp/below_geo.json').read_text())['mark']);
+ for k,v in [('uLamp',1),('uTime',0),('uSeed',613),('uSixth',0),('uInspect',0),('uTilt',.15),('uBeds',1),('uFracture',1),('uCalcite',1)]:scalar(main,k,v)
  for i,k in enumerate(['uStone','uNormal','uGravel','uShadow']):unii(loc(main,k.encode()),i)
  for i,(va,count) in enumerate(meshes):scalar(main,'uMode',2 if i==2 else 1);bindva(va);draw(4,0,count)
- a=np.zeros((650,1000,4),np.uint8);read(0,0,1000,650,0x1908,0x1401,ptr(a));Image.fromarray(a[::-1,:,:3]).save(out/('Belowroads_R0002_native_'+str(idx)+'.jpg'),quality=92);print('render',idx,'error',hex(err()))
+ a=np.zeros((650,1000,4),np.uint8);read(0,0,1000,650,0x1908,0x1401,ptr(a));Image.fromarray(a[::-1,:,:3]).save(out/('Belowroads_R0003_native_'+str(idx)+'.jpg'),quality=92);print('render',idx,'error',hex(err()))
