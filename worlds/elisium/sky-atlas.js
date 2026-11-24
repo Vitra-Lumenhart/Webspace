@@ -153,6 +153,14 @@ function returnHouse(){
   if(ev&&g.sky.tuneSignal(ev)){$('houseReturnText').textContent='Sky relation armed: '+p.title+'. Travel to its valid vantage, look skyward, and witness. The house cannot command the star.';}
  };holder.append(b);}
  updateQuest();
+ // Versioned, public-only derived event for candidate social engine.
+ // The earlier v1 handoff, quiet circle, native sky and private child journal stay unchanged.
+ window.dispatchEvent(new CustomEvent('elisium:house-return',{detail:{
+   ids:r.observations.map(o=>o.id),
+   elapsed_minutes:r.elapsed_minutes,
+   visit:S.houseVisits,
+   receipt:'kilns-return-'+S.houseVisits
+ }}));
 }
 function openHouse(){
  if(!houseFrame)return;
