@@ -256,3 +256,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [R0014 Elisium runtime](worlds/elisium/index.html), [v8 browser test](tools/test_elisium_v8_browser.mjs), [version-aware release workflow](.github/workflows/release-v7.yml), [root version](VERSION.json), [manifest](WORLD_MANIFEST.json), and paired R0015 technical manual. Release and Pages workflow results must be checked independently.
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0016" date="2026-11-24" -->
+### 2026-11-24 · R0016 — Belowroads: The Unwritten Sign, chamber prototype DW-R0001
+
+**Backwards:** Added an isolated first-person single-chamber native WebGL2 prototype, seeded continuous rock mesh and triplanar GLSL shading, handheld light and attenuated entrance daylight, inspectable original compass/hammer, positional audio, a viewpoint-dependent sixth mark and bounded local thaum controls.
+
+**Forwards:** Prove the rendering and controller before extending the training park; later integrate layered hex/SDF topology, Rapier/BVH, five encounters, registered Witch's Hole route and persistent Belowroads services.
+
+**Not yet:** General volumetric/hex generation and physics-engine collision, complete art polish, real browser/mobile playtest, portal installation, remote Vitra or economic system. Native GLES compile/link and central parametric envelope tests passed; environment Chromium did not provide WebGL2. Pages configuration and deployment not verified.
+
+**Invariant impact:** This is a new directory only, not a modification of other world runtimes, protected Abandoned Well, Ravine Cliff, or portal authority. No Canvas2D replacement, identity, wager or real account credit. Prior source is preserved by Git history. Existing canonical v8 release metadata is not relabeled as a new release.
+
+**Evidence:** [Self-contained chamber](worlds/belowroads/index.html), [readable template](worlds/belowroads/index.template.html), [technical manual](worlds/belowroads/TECH_MANUAL.html), [local checks](worlds/belowroads/tests/validate.mjs), [shader validation](worlds/belowroads/tests/validate_glsl.py).
+<!-- /WEBSPACE-LEDGER -->
