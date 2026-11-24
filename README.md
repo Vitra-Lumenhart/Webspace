@@ -326,3 +326,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Game](worlds/belowroads/index.html), [manual](worlds/belowroads/TECH_MANUAL.html), [comparison harness](worlds/belowroads/tests/compare_lighting.py), [culling check](worlds/belowroads/tests/validate_culling.mjs).
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0021" date="2026-11-24" -->
+### 2026-11-24 · R0021 — Belowroads DW-R0006: The Penumbra Pass
+
+**Backwards:** R0005 browser preview showed exaggerated relief and hard dark edges. Preserve rock field and positions, interpolate density-lattice gradients, soften material seams and relief, add metric receiver-plane shadow comparisons and bounded blocker-dependent penumbra plus local lamp-dependent reflected-light proxy. Existing shadow modes retained.
+
+**Forwards:** Player GPU testing, visibility-aware local lighting and scalable geometry.
+
+**Not yet:** True area lights, indirect light transport, browser profiling or next stations. New shadow filter has more samples; no performance gain claimed. Native software shader comparisons use the same new normals for both shaders. Six seed routes, topology, GLSL and culling checks passed.
+
+**Invariant impact:** Prior R0005 preserved at 12ea37adcc4857c7fbba5784a9a97336ed415224. No cave shape, gameplay, other worlds, account or economic changes. Same mesh and shadow-map memory.
+
+**Evidence:** [Game](worlds/belowroads/index.html), [manual](worlds/belowroads/TECH_MANUAL.html), [comparison harness](worlds/belowroads/tests/compare_r0006.py), [measurements](worlds/belowroads/evidence/r0006_results.json).
+<!-- /WEBSPACE-LEDGER -->
