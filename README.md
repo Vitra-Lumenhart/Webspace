@@ -312,3 +312,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Game](worlds/belowroads/index.html), [template](worlds/belowroads/index.template.html), [manual](worlds/belowroads/TECH_MANUAL.html), [route tests](worlds/belowroads/tests/validate.mjs), [native renderer](worlds/belowroads/tests/render_native.py).
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0020" date="2026-11-24" -->
+### 2026-11-24 · R0020 — Belowroads DW-R0005: The Lantern Pass
+
+**Backwards:** R0004 confirmed in user browser. Controlled native comparisons reproduced stipple without shadows; material relief/filtering and field normals corrected. Separate deposit visibility and gray geometry identified vertical shell artifact; remove abrupt profile cutoff and correct erosion neighborhood. High precision PCF, cached lamp shadow transforms, conservative spatial index-range culling, diagnostic switches and selectable render scale.
+
+**Forwards:** Scale to a larger cave through portal visibility, streamed chunks, local light fields and level of detail rather than full-scene submission.
+
+**Not yet:** User hardware and browser timings, complete renderer profiling, actual portal occlusion, LOD, indirect light and further stations. Native comparisons use CPU llvmpipe and expanded triangles, not browser indexed geometry. Mesh increases to 323832 triangles. Six seed routes, topology, GLSL, and AABB corner checks passed.
+
+**Invariant impact:** Prior R0004 preserved at baa606c15b2e3189d8235c814e68700c59484a3c; one safe chamber, original ASCII and gameplay, no other worlds or private state changed.
+
+**Evidence:** [Game](worlds/belowroads/index.html), [manual](worlds/belowroads/TECH_MANUAL.html), [comparison harness](worlds/belowroads/tests/compare_lighting.py), [culling check](worlds/belowroads/tests/validate_culling.mjs).
+<!-- /WEBSPACE-LEDGER -->
