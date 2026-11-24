@@ -14,3 +14,13 @@ jobs:
       - run: node tests/test_elisium_social_v9.mjs
       - run: node tests/test_elisium_atlas_v8.mjs
       - run: node --check worlds/elisium/concordance/lens-study.mjs
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
+      - run: node tools/test_elisium_lens_r0020_browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: elisium-r0020-lens-preview-and-qa
+          path: |
+            worlds/elisium/concordance/lens-preview.html
+            qa/lens-r0020/
