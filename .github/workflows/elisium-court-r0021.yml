@@ -1,0 +1,25 @@
+name: Elisium R0021 Concordance Court
+on:
+  pull_request:
+    paths: ['worlds/elisium/**', 'tests/test_elisium_court_r0021.mjs', 'tools/test_elisium_court_r0021_browser.mjs', '.github/workflows/elisium-court-r0021.yml']
+jobs:
+  court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tests/test_elisium_court_r0021.mjs
+      - run: npm install --no-save playwright && npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8000 > /tmp/court-http.log 2>&1 &
+          node tools/test_elisium_court_r0021_browser.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: elisium-court-r0021-preview
+          path: |
+            worlds/elisium/concordance/court.html
+            court-artifacts/

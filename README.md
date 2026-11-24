@@ -313,3 +313,13 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 [CD-005](docs/ELISIUM_CONCORDANCE_LENS_CD005.md) · [Standalone study](worlds/elisium/concordance/lens-preview.html)
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0021" date="2026-11-24" -->
+### 2026-11-24 · R0021 — Concordance Court dedicated page (first integration slice, candidate)
+**Backwards:** Preserve native 4.6, existing exterior Court nodes and mesh, seven perspectives, sky, Kilns, R0019/R0020 candidates and historical ledger.
+**Forwards:** New [Concordance Court page](worlds/elisium/concordance/court.html) with three witnesses, seven reading stands, illustrated eight-column court and bell, decisions, consequences and record export. Use the garden Court button to walk legally to the existing Court and open the live session; directly opening the page rehearses in isolation. Uses a small Bayt Al Qamar Living Pigment texture derivative.
+**Not yet:** Full CD-006/007 implementation, autonomous readers, Parliament, durable Mailroom, full revision acceptance and public deployment. Accepted integer remains 8.
+**Invariant impact:** No new graph node or edge; the native Court owns route factors and existing sky effects, event remains fixed. No TTS or external network.
+**Evidence:** court.html, court-bridge.js, exact-source parity test and browser workflow; CI pending at authoring. [CC01 design and provenance](docs/ELISIUM_COURT_R0021.md).
+<!-- /WEBSPACE-LEDGER -->
