@@ -1,0 +1,15 @@
+# CD-005 — Concordance Lens: topic-relative tuning and mathematical ecology
+2026-11-24 · R0020 · v9 candidate increment, not accepted v9 or deployment.
+## Canon and user decision
+Pitch assignments are always relative to the inquiry. Tash may occupy Lydian, though not the default of every context; no intrinsic religious mode, moral score or actor assignment. Existing 7 points, 12 named H-pairs, 24 objects, book/letters/witness/shelter channels and native arm/tune/witness behavior remain unchanged. The lab proposes affinities only.
+## Implemented
+- H03: 12/19 EDO, topic defaults for the five existing social topics, independently editable sevenfold rotation (every perspective can occupy each mode), transposition, original generated triads/scales, dual 7-point Fano/Heawood incidence, interval multiplicities. Fifths order F C G D A E B defines Lydian, Ionian, Mixolydian, Dorian, Aeolian, Phrygian, Locrian relative roles. Seven consecutive fifths retain the Erdős-deep multiplicities 1..6 in both temperaments.
+- H17: modular 19 multiplication by 2 and 3, individual period 18, product 9, ratio 3. No sky or social clock writes.
+- Nineteen coordinates: 7 topic-relative stations plus 12 atlas pairs; 19-EDO fifth chain fills all residues. In 12-EDO the 19-coordinate transposition is rounded separately; not an embedded Fano subsystem. Three cyclic STS seeds (0,1,8), (0,2,5), (0,4,10) and reflection. Any pair has exactly one third within each system; complementary systems disjoint. Selection is lab-only, never proof of study or witness.
+- H19: seven occupied positions in a nineteen-pulse timeline and 2:3 generated tempos. Browser Web Audio opt-in and stop.
+- H23/H05/H20/H21: seeded binary relation graph, Ramsey triangles, finite connected components, cautions about sampling and provenance. No synthetic relationships are committed to NPCs, beliefs, or Mailroom; no large-graph threshold claim.
+- Parent wrapper adds optional modal study, passes only public current local topic if available; standalone HTML contains all source/data, no external resources. No NPC/route/sky/house writes. Closing discards lab state and stops audio.
+## Testing
+Pure functions exercised in the authoring isolate: 1987 counted cases (pair checks, topic/rotation/tonic profiles, phase, seeded graph). Node test added; CI runs lens, existing social and atlas static tests. Browser/audio/GPU/mobile/native integration and full existing v8 regression suite still release gates; do not infer a CI pass from workflow existence.
+## Forward
+Attach methods to verified H-observations via existing threshold allowlist only after real browser validation; add typed hypothesis events and authored NPC eligibility, observed-edge graph with provenance, and explicit S1 pattern objects. Do not create an Acropolis site, change travel weights or force agreement. R0019 blockers (64 roster audit, clocks, durable Mailroom, S1) remain. No automatic merge, release integer bump or Pages deployment.

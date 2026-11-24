@@ -296,3 +296,20 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 **Invariant impact:** No new Acropolis node or place; no direct edits to the compressed native sky/game source; no compulsory consent or religious morality score; no unauthorized journal export; all earlier source text remains. The additive Kilns return event shares only approved H-IDs and bounded time.
 **Evidence:** \`worlds/elisium/concordance/social-core.mjs\`, \`concordance-v9.mjs\`, \`concordance-v9.css\`, \`preview.html\`, \`tests/test_elisium_social_v9.mjs\`, original \`sky-atlas.js\` with bounded event, CD-004.
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0020" date="2026-11-24" -->
+### 2026-11-24 · R0020 — Concordance Lens topic-relative tuning and mathematical ecology (v9 candidate)
+
+Backwards: Preserve native 4.6, independent sky, all prior ledgers, seven perspectives, 24 objects, 12 pairs, existing Lens channels, Acropolis and R0019 candidate.
+
+Forwards: H03 topic-relative modal roles, 12/19 EDO and dual Fano/Heawood, H17 modular cycles, nineteen-point dual STS completion, H19 generated rhythms, H23 seeded Ramsey/connected-component laboratory, local public topic read-only bridge and standalone preview. Tash can occupy Lydian; no permanent pitches or doctrinal ranking. No mutating social, sky, route or journal state.
+
+Checked: 1987 counted pure-function cases in authoring isolate; Node test and CI workflow added. Browser/audio/native integration and complete existing regression suite not yet verified.
+
+Deferred: validated actual H-method receipts and social hypothesis integration, canonical roster, clocks, durable Mailroom, S1/S2, full acceptance and deployment. Accepted release integer remains 8.
+
+Contract impact: additive optional laboratory; not a new Lens channel or physical place. See CD-005 and standalone preview.
+
+[CD-005](docs/ELISIUM_CONCORDANCE_LENS_CD005.md) · [Standalone study](worlds/elisium/concordance/lens-preview.html)
+<!-- /WEBSPACE-LEDGER -->

@@ -1,0 +1,16 @@
+name: Elisium R0020 Concordance Lens
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  lens:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tests/test_elisium_lens_r0020.mjs
+      - run: node tests/test_elisium_social_v9.mjs
+      - run: node tests/test_elisium_atlas_v8.mjs
+      - run: node --check worlds/elisium/concordance/lens-study.mjs
