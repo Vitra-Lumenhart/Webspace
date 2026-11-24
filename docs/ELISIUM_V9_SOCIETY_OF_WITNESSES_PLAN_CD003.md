@@ -115,3 +115,8 @@ Full 64 NPC concurrent simulations with comprehensive verified provenance and de
 - **Emergence quality:** use behavior and diversity tests, not simply number of turns; ensure silence, refusal, new inquiry, and constructive disengagement are valid outcomes.
 
 **No code, source asset, canonical main version, public deployment or gameplay was changed by this planning record.**
+
+
+## CD-003 additive implementation addendum · 24 November 2026 — Labyrinth hidden machines
+The 20 November plan above is preserved unchanged. Following the same-project Labyrinth discussion (“The Invisible Machines of Conversation”; Bellsmith's hidden multidimensional puzzle, durable subnetworks, time/geography/commitment conjunctions, stable resting viewpoints, one start/many coherent endings), the v9 architecture has been **extended**: nonlinear NPC-private state-machine logic becomes foundational; the Acropolis Protocol couples distinct individual machines locally; the Kilns teaches techniques that expose or alter available transition options without granting control over personalities; the Mailroom records causal history and visibility.
+An executable **six-proxy candidate** has now been built in \`worlds/elisium/concordance/\`, integrated additively into the original Elisium wrapper, and documented in [CD-004](ELISIUM_HIDDEN_MACHINES_CD004.md). A network-free standalone mechanics [preview](../worlds/elisium/concordance/preview.html) and local Node test exist. This is not a finished 64-NPC release; original character provenance, physical on-screen NPC presence, exact canonical route times, world-clock reconciliation, SQLite mailroom, full emergent S1, optional validated LLM speech and complete release QA remain gates before acceptance.
