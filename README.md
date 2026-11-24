@@ -284,3 +284,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [R0002 game](worlds/belowroads/index.html), [editable template](worlds/belowroads/index.template.html), [manual](worlds/belowroads/TECH_MANUAL.html), [route tests](worlds/belowroads/tests/validate.mjs), [native renderer](worlds/belowroads/tests/render_native.py).
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0018" date="2026-11-24" -->
+### 2026-11-24 · R0018 — Belowroads DW-R0003: The Bedded Cavern
+
+**Backwards:** Replaces the swept shell with a volumetric implicit rock field, integrated residual column, side recesses, eastern bypass, shelf and roof dome. Shared stratification drives shape and material. Indexed marching tetrahedra and field-based body clearance; existing entry, survey props and Station 1 retained.
+
+**Forwards:** Reusable procedural cave assets; later layered hex topology, adaptive/chunk meshing, robust collisions and the remaining stations.
+
+**Not yet:** Full metric SDF, general hex navigation, Rapier/BVH, photogrammetry, POM, mobile and browser playtest, live Vitra, further stations. Shadow artifacts remain. Six seed route/reveal checks and default mesh topology audit passed; four native GLES renders without GL errors.
+
+**Invariant impact:** Prior R0002 preserved at d8499e7d953b134f59aa41b2ec2ff518975084ec. No other worlds, portals, protected geometry, financial authority or private state changed. One safe WebGL2 chamber, no Canvas2D fallback.
+
+**Evidence:** [Game](worlds/belowroads/index.html), [source template](worlds/belowroads/index.template.html), [technical manual](worlds/belowroads/TECH_MANUAL.html), [tests](worlds/belowroads/tests/validate.mjs).
+<!-- /WEBSPACE-LEDGER -->
