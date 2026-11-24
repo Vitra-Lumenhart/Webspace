@@ -68,6 +68,14 @@
         "topic_relative": true,
         "sky_mutation": false,
         "source": "docs/ELISIUM_CONCORDANCE_LENS_CD005.md"
+      },
+      "candidate_r0021": {
+        "status": "first CC01 integration slice; unmerged candidate, accepted integer 8",
+        "entry": "worlds/elisium/concordance/court.html",
+        "native_session": true,
+        "station": "concordance_court",
+        "new_nodes": 0,
+        "source": "docs/ELISIUM_COURT_R0021.md"
       }
     },
     {
