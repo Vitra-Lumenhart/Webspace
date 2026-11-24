@@ -286,3 +286,13 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 **Invariant impact:** No change to existing portal, star, Aslan–Tash distinction, fictional vs historical religion framing, independent sky, H-object identities, the 12 pairs, private journal scope, or prior manual chapters.
 **Evidence:** Accepted \`VERSION.json\` integer 8, \`WORLD_MANIFEST.json\`, \`worlds/elisium/index.html\`, \`sky-atlas.js\`, \`threshold.js\`, \`worlds/elisium/kilns/house3d.mjs\`, and CD-001/CD-002; CD-003 remains a proposal.
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0019" date="2026-11-24" -->
+### 2026-11-24 · R0019 — Prototype: The Invisible Machines of Conversation (v9 candidate only)
+**Backwards:** Webspace main remains accepted integer v8. All earlier Elisium and Kilns geometry, source art, seven perspectives, H01–H24, 12 pairs, independent sky, original native 4.6 dialogue, 64-reader references and project histories remain intact. The Labyrinth's hidden character puzzles are implemented as a separate prototype rather than transplanting its Ossuary or adding an Acropolis stone.
+**Forwards:** New optional [Social Field](worlds/elisium/index.html) on this branch and network-free [standalone mechanics preview](worlds/elisium/concordance/preview.html): six explicitly provisional literary interlocutors with distinct hidden transition networks, resting viewpoints and persistent subnetwork discoveries; two concurrent public node conversations; one player interjection per active issue; voluntary graph-legal journeys; player techniques from H05/H20/H23/H21; exportable local Mailroom event log. See [CD-004 implementation and limits](docs/ELISIUM_HIDDEN_MACHINES_CD004.md).
+**Not yet:** This is a source-and-lab candidate, not an accepted v9 launch. 64-person native roster not audited, no physical NPC rigs, no complete narrative LLM provider, no robust S1 relationship object or S2, no SQLite Mailroom or network Synapse, no reconciled exact native route/house clock, no full native served browser QA. Node unit and mocked-wrapper Playwright checks passed locally; existing full v8 suite was not rerun.
+**Invariant impact:** No new Acropolis node or place; no direct edits to the compressed native sky/game source; no compulsory consent or religious morality score; no unauthorized journal export; all earlier source text remains. The additive Kilns return event shares only approved H-IDs and bounded time.
+**Evidence:** \`worlds/elisium/concordance/social-core.mjs\`, \`concordance-v9.mjs\`, \`concordance-v9.css\`, \`preview.html\`, \`tests/test_elisium_social_v9.mjs\`, original \`sky-atlas.js\` with bounded event, CD-004.
+<!-- /WEBSPACE-LEDGER -->

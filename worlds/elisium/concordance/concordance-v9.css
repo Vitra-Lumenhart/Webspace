@@ -1,0 +1,29 @@
+/* v9 candidate: restrained overlay, no new world geometry. */
+#socialPanel[hidden]{display:none!important}
+#socialPanel{position:fixed;inset:0;z-index:58;background:#050c15e9;display:flex;align-items:center;justify-content:center;padding:14px;font:14px/1.48 system-ui;color:#eadcc8;box-sizing:border-box}
+#socialPanel *{box-sizing:border-box}
+.social-card{width:min(1100px,100%);height:min(93dvh,840px);overflow:auto;background:linear-gradient(125deg,#182a39,#0c1423);border:1px solid #ba9c67;border-radius:13px;padding:18px 22px;box-shadow:0 15px 55px #000c}
+.social-card h2{margin:0 0 6px;color:#e8ca92;font:25px Georgia,serif}
+.social-card h3{font:19px Georgia,serif;color:#efce9c;margin:8px 0}
+.social-muted{font:12px/1.5 system-ui;color:#afbfc9}
+.social-header{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.social-layout{display:grid;grid-template-columns:minmax(225px,.8fr) minmax(330px,1.7fr);gap:15px;margin-top:16px}
+.social-card button,.social-card select{border:1px solid #9c8a6d;background:#283a4c;color:#efdfc6;padding:7px 10px;border-radius:7px;cursor:pointer;font:13px system-ui}
+.social-card button[disabled]{opacity:.4;cursor:not-allowed}
+.social-card button:hover:not([disabled]){background:#435469}
+.social-card button:focus-visible,.social-card select:focus-visible{outline:2px solid #f5d99f;outline-offset:2px}
+.social-buttons{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.social-stations{display:grid;gap:7px}
+.social-stations button{display:flex;justify-content:space-between;text-align:left;gap:8px}
+.social-stations button[aria-pressed=true]{background:#796039;border-color:#d4ba81}
+.social-inspect,.social-timeline{border:1px solid #435267;background:#0e202e;border-radius:9px;padding:11px 13px}
+.social-timeline{max-height:260px;overflow:auto;white-space:normal;font:12px/1.55 system-ui}
+.social-line{padding:6px 0;border-bottom:1px solid #344355}
+.social-line:last-child{border-bottom:0}
+.social-line strong{color:#eed39f}
+.social-pill{display:inline-block;border:1px solid #536877;border-radius:10px;padding:1px 7px;margin:3px;color:#d3c8b8;font:11px system-ui}
+.social-error{color:#f1bcb1}
+#socialStatus{min-height:34px;white-space:pre-wrap}
+.social-actors{margin:8px 0 10px}
+.social-node{color:#9ccef0}
+@media(max-width:740px){#socialPanel{padding:0}.social-card{max-height:100dvh;height:100dvh;border-radius:0;padding:12px}.social-layout{grid-template-columns:1fr}.social-timeline{max-height:210px}}
