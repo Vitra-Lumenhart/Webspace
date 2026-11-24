@@ -1,0 +1,10 @@
+PASS standalone JS syntax, WebGL2 and indexed geometry
+PASS 613 reachable 1780 terminus 30 east side 71 reveal true
+PASS 1 reachable 1930 terminus 30 east side 78 reveal true
+PASS 42 reachable 1786 terminus 30 east side 69 reveal true
+PASS 2026 reachable 1769 terminus 30 east side 91 reveal true
+PASS 3141 reachable 1804 terminus 30 east side 111 reveal true
+PASS 9999 reachable 1963 terminus 30 east side 76 reveal true
+MESH 161864 vertices 323832 triangles 0 boundary edges 0 nonmanifold edges 0 degenerate 2319 ms incl audit
+PASS conservative frustum AABB corner checks 680
+Native GLES: VS FS DVS DFS compile; both link; all nine rendered cases no GL errors. Default positions identical to R0005 modulo winding.

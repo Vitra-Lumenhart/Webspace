@@ -1,0 +1,74 @@
+[
+  {
+    "variant": "A_R0005_shader",
+    "pose": 1,
+    "depth_ms": 39.3,
+    "color_ms": 177.6,
+    "mean_rgb": 48.72,
+    "dark_fraction": 0.0282
+  },
+  {
+    "variant": "A_R0005_shader",
+    "pose": 2,
+    "depth_ms": 37.4,
+    "color_ms": 160.4,
+    "mean_rgb": 53.73,
+    "dark_fraction": 0.0204
+  },
+  {
+    "variant": "B_R0006_old_filter",
+    "pose": 1,
+    "depth_ms": 40.1,
+    "color_ms": 178.9,
+    "mean_rgb": 50.85,
+    "dark_fraction": 0.0207
+  },
+  {
+    "variant": "C_R0006_metric",
+    "pose": 1,
+    "depth_ms": 39.4,
+    "color_ms": 185.6,
+    "mean_rgb": 49.45,
+    "dark_fraction": 0.0152
+  },
+  {
+    "variant": "C_R0006_metric",
+    "pose": 2,
+    "depth_ms": 37.3,
+    "color_ms": 168.1,
+    "mean_rgb": 54.29,
+    "dark_fraction": 0.009
+  },
+  {
+    "variant": "D_R0006_no_bounce",
+    "pose": 1,
+    "depth_ms": 38.9,
+    "color_ms": 180.5,
+    "mean_rgb": 49.02,
+    "dark_fraction": 0.0202
+  },
+  {
+    "variant": "E_R0006_no_shadow",
+    "pose": 1,
+    "depth_ms": 0.6,
+    "color_ms": 167.0,
+    "mean_rgb": 51.68,
+    "dark_fraction": 0.0109
+  },
+  {
+    "variant": "F_R0006_no_relief",
+    "pose": 1,
+    "depth_ms": 39.8,
+    "color_ms": 168.4,
+    "mean_rgb": 49.45,
+    "dark_fraction": 0.0152
+  },
+  {
+    "variant": "G_R0006_lamp_off",
+    "pose": 1,
+    "depth_ms": 39.1,
+    "color_ms": 188.7,
+    "mean_rgb": 0.51,
+    "dark_fraction": 0.9996
+  }
+]
