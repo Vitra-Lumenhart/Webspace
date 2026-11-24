@@ -270,3 +270,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Self-contained chamber](worlds/belowroads/index.html), [readable template](worlds/belowroads/index.template.html), [technical manual](worlds/belowroads/TECH_MANUAL.html), [local checks](worlds/belowroads/tests/validate.mjs), [shader validation](worlds/belowroads/tests/validate_glsl.py).
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0017" date="2026-11-24" -->
+### 2026-11-24 · R0017 — Belowroads DW-R0002: The Limestone Descent
+
+**Backwards:** R0001 ran in the user's browser. R0002 preserves Station 1 and expands its seeded native 3D shell to 32 m, a tall dissolution chamber, asymmetrical relief, calcite formations, puddles and gravel. Adds lamp depth-map shadows, richer materials, ASCII survey intro, body-height-derived movement bounds and approximate obstacle collision.
+
+**Forwards:** Establish visual and movement quality before the next stations; later replace parametric envelope with full hex/SDF topology and robust mesh physics.
+
+**Not yet:** Browser/mobile R0002 playtest, full mesh collision, real water reflection, external photogrammetry, full volumetric generation, portal installation and persistent services. Native GLES rendered four views without GL errors; six seeded approximate grid routes reach the terminus and a valid mark-reveal viewpoint. Some shadow aliasing remains. No Pages deployment inferred.
+
+**Invariant impact:** Prior R0001 remains in Git commit 0f0db4f3e543c6f5e0cf7d4e215ef8864af60119. Other worlds, protected routes, economic authority and private state are unchanged. One safe chamber, no Canvas2D fallback, no wagers.
+
+**Evidence:** [R0002 game](worlds/belowroads/index.html), [editable template](worlds/belowroads/index.template.html), [manual](worlds/belowroads/TECH_MANUAL.html), [route tests](worlds/belowroads/tests/validate.mjs), [native renderer](worlds/belowroads/tests/render_native.py).
+<!-- /WEBSPACE-LEDGER -->
