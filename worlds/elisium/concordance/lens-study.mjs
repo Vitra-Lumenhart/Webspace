@@ -1,0 +1,7 @@
+/* Read-only bridge: local public topic copied at explicit opening; never arms or mutates world. */
+const open=document.createElement('button');open.type='button';open.id='lensStudyOpen';open.textContent='◈ CONCORDANCE LENS · Study';
+const overlay=document.createElement('dialog');overlay.id='lensStudy';overlay.setAttribute('aria-label','Concordance Lens study');overlay.style.cssText='width:min(980px,96vw);height:92vh;max-width:96vw;max-height:92vh;padding:0;background:#101b27;color:#f0dcae;border:1px solid #ba9c65;border-radius:10px;z-index:1000';
+const close=document.createElement('button');close.type='button';close.textContent='Close · return to Elisium';close.style.cssText='display:block;margin:8px;padding:8px;background:#203342;color:#f0dcae;border:1px solid #ba9c65;border-radius:5px';
+const frame=document.createElement('iframe');frame.title='Concordance Lens laboratory';frame.style.cssText='width:100%;height:calc(100% - 60px);border:0';overlay.append(close,frame);document.body.append(overlay);document.getElementById('atlasButtons').append(open);
+open.onclick=()=>{let topic='';try{const s=window.ELISIUM_CONCORDANCE?.status();const node=document.getElementById('elisiumGame')?.contentWindow?.ELISIUM?.getState()?.current;topic=s?.forums?.[node]?.topic||''}catch{}const path=new URL('concordance/lens-preview.html',location.href);if(topic)path.searchParams.set('topic',topic);frame.src=path.href;overlay.showModal()};
+close.onclick=()=>overlay.close();overlay.addEventListener('close',()=>{frame.src='about:blank';open.focus()});

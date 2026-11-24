@@ -60,6 +60,14 @@
         "parent_kilns": "nested retain-parent iframe",
         "literary_readers": 64,
         "release_status": "accepted Webspace main (R0014); 12 sign positions remain illustrative, not ephemeris"
+      },
+      "candidate_r0020": {
+        "status": "v9 candidate only; accepted release_integer remains 8",
+        "revision": "R0020",
+        "preview": "worlds/elisium/concordance/lens-preview.html",
+        "topic_relative": true,
+        "sky_mutation": false,
+        "source": "docs/ELISIUM_CONCORDANCE_LENS_CD005.md"
       }
     },
     {
