@@ -298,3 +298,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Game](worlds/belowroads/index.html), [source template](worlds/belowroads/index.template.html), [technical manual](worlds/belowroads/TECH_MANUAL.html), [tests](worlds/belowroads/tests/validate.mjs).
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0019" date="2026-11-24" -->
+### 2026-11-24 · R0019 — Belowroads DW-R0004: The Sculpted Cavern
+
+**Backwards:** R0003's chamber and story retained. Adds warped bedding, jittered erosion cells, irregular block relief, solid-space cellular grains, variable mineral spires and folded calcite draperies. Packed vertex attributes reduce stride from 36 to 24 bytes. Mark query cached until regeneration.
+
+**Forwards:** Reusable procedural formation assets with bounded memory; material-dependent fracture and integrated deposit collision remain future work.
+
+**Not yet:** Physically calibrated mineral fabric, grain-scale fracture, standalone generated GLBs, swept collision, mobile/browser performance, shadow refinement, further stations. Six seed route checks and default shell topology audit passed; four native GLES packed-attribute views rendered without GL errors.
+
+**Invariant impact:** R0003 preserved at 05cb3ff6484c4f702aeeaadab90d2af3e497f1a2. No other worlds, portals, financial authority or private state changed. Single safe station, ASCII entry, no Canvas2D fallback.
+
+**Evidence:** [Game](worlds/belowroads/index.html), [template](worlds/belowroads/index.template.html), [manual](worlds/belowroads/TECH_MANUAL.html), [route tests](worlds/belowroads/tests/validate.mjs), [native renderer](worlds/belowroads/tests/render_native.py).
+<!-- /WEBSPACE-LEDGER -->
