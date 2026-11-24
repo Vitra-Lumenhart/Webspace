@@ -7,6 +7,7 @@ function verify(L){
  for(let i=0;i<18;i++){const a=L.phase(i),b=L.phase(i+18);ok(JSON.stringify(a)===JSON.stringify(b),'period 18');ok(a.product===L.phase(i+9).product,'period 9');ok(a.relative===L.phase(i+3).relative,'period 3');ok(a.aligned===(i%3===0),'align');checked++}
  ok(new Set(Array.from({length:18},(_,i)=>L.phase(i).a)).size===18,'order 2');ok(new Set(Array.from({length:18},(_,i)=>L.phase(i).b)).size===18,'order 3');
  for(let seed=0;seed<100;seed++)for(const p of [0,.1,.5,.9,1]){const g=L.network(seed,p);ok(g.triangles.length>0,'Ramsey');ok(g.components.flat().length===7,'partition');checked++}
+ const first=L.profile('testimony'),second=L.profile('mercy');ok(first.pairs.every((p,i)=>p.pitch19!==second.pairs[i].pitch19),'every household pair is inquiry-relative');checked++;
  return checked;
 }
 console.log('R0020 assertions exercised:',verify(Lens));

@@ -12,7 +12,7 @@ function makeLens(canon){
   const fifth=edo===19?11:7, start=edo-fifth;
   const pitch=slot=>mod(start+fifth*slot+tonic,edo);
   const points=canon.points.map((p,i)=>{const slot=mod(i+rotation,7);return {...p,slot,mode:modes[slot],pitch:pitch(slot)}});
-  const pairs=canon.pairs.map((p,i)=>({...p,slot:i+7,pitch19:mod(8+11*(i+7)+Math.round(tonic*19/edo),19)}));
+  const pairs=canon.pairs.map((p,i)=>{const slot=7+mod(i+topics[topic].rotation,12);return {...p,slot,pitch19:mod(8+11*slot+Math.round(tonic*19/edo),19)}});
   // The 19 coordinate assignment uses the 19-EDO origin; 12-tone display never aliases pair pitches.
   const residues=[...points.map(p=>({...p,kind:'point',residue:mod(8+11*p.slot+Math.round(tonic*19/edo),19)})),...pairs.map(p=>({...p,kind:'pair',residue:p.pitch19}))];
   return {topic,rotation,tonic,edo,points,pairs,residues};

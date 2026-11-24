@@ -303,9 +303,9 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Backwards:** Preserve native 4.6, independent sky, all prior ledgers, seven perspectives, 24 objects, 12 pairs, existing Lens channels, Acropolis and R0019 candidate.
 
-**Forwards:** H03 topic-relative modal roles, 12/19 EDO and dual Fano/Heawood, H17 modular cycles, nineteen-point dual STS completion, H19 generated rhythms, H23 seeded Ramsey/connected-component laboratory, local public topic read-only bridge and standalone preview. Tash can occupy Lydian; no permanent pitches or doctrinal ranking. No mutating social, sky, route or journal state.
+**Forwards:** H03 topic-relative modal roles, 12/19 EDO and dual Fano/Heawood, H17 modular cycles, nineteen-point dual STS completion with topic-relative assignments for both perspectives and H-pairs, H19 generated rhythms, H23 seeded Ramsey/connected-component laboratory, local public topic read-only bridge and standalone preview. Tash can occupy Lydian; no permanent pitches or doctrinal ranking. No mutating social, sky, route or journal state.
 
-**Evidence:** 1987 counted pure-function cases in authoring isolate; Node test and CI workflow added. Browser/audio/native integration and complete existing regression suite not yet verified.
+**Evidence:** 1987 counted pure-function cases in authoring isolate; Node test and CI workflow added. Initial Node CI and v8 sky/Kilns browser regression passed; corrected ledger validator passed. Added browser acceptance and H-pair inquiry-relativity check; final head CI pending.
 
 **Not yet:** validated actual H-method receipts and social hypothesis integration, canonical roster, clocks, durable Mailroom, S1/S2, full acceptance and deployment. Accepted release integer remains 8.
 
