@@ -340,3 +340,18 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Game](worlds/belowroads/index.html), [manual](worlds/belowroads/TECH_MANUAL.html), [comparison harness](worlds/belowroads/tests/compare_r0006.py), [measurements](worlds/belowroads/evidence/r0006_results.json).
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0022" date="2026-11-25" -->
+### 2026-11-25 · R0022 — Gringotts GRG-R0001: The Ledger and the Seal
+
+**Backwards:** Preserved legacy Gringotts and consolidated the gamebox, identity covenant and optional world economy designs into an independent synthetic accounting laboratory.
+
+**Forwards:** Durable signed grants, scoped authentication, privacy and vault research, optional world adapters, 3D integration.
+
+**Not yet:** No production security, real money, credentials, persistence, signatures, concurrent database or browser testing.
+
+**Invariant impact:** Whitehat reference only, all worlds optional, separate toy theft practice yard cannot affect bank. Full prior tree retained at 2bd54b4f93ad09802a37e07c65d266699385468f.
+
+**Evidence:** [Laboratory](worlds/gringotts/ledger-and-seal.html), [manual](worlds/gringotts/TECH_MANUAL.html), [tests](tests/gringotts-r0001.mjs); 39 model assertions executed before commit.
+<!-- /WEBSPACE-LEDGER -->
