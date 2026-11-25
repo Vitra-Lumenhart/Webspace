@@ -1,5 +1,6 @@
 {
-  "checks": 39,
+  "revision": "GRG-R0002",
+  "checks": 44,
   "tests": [
     "duplicate grant",
     "duplicate grant leaves journal unchanged",
@@ -39,7 +40,13 @@
     "synthetic theft occurs",
     "purse not duplicated",
     "restitution restores owner",
-    "yard cannot affect bank"
+    "yard cannot affect bank",
+    "zero-balance estate closes while escrow outstanding",
+    "late refund does not resurrect closed estate",
+    "late refund preserves conservation",
+    "late release does not resurrect closed recipient",
+    "late release preserves conservation"
   ],
-  "environment": "JavaScript isolate; same function source; no browser or database concurrency"
+  "environment": "JavaScript isolate; patched readback model; no browser or concurrency",
+  "finding": "R0001 late refund credited a closed estate; corrected in R0002"
 }

@@ -13,3 +13,7 @@ Invariant impact: existing bank and other worlds retained; separate fictional pu
 Evidence: 39 deterministic assertions executed on the same model source before commit. Run `node tests/gringotts-r0001.mjs` from repo root. See technical manual and test results.
 
 Charter: https://docs.google.com/document/d/1STJdq0WdTNlmhV2o8vwz92xG2ulCHc38oTydfG7ises/edit
+
+## GRG-R0002 — The closed estate (25 November 2026)
+
+Destructive readback testing of R0001 reproduced a late escrow refund crediting a closed estate. R0002 sends late refunds/releases owed to a closed estate to its succession account instead. Zero-balance estates may close even with outstanding escrow. 44 assertions now pass on the patched source, including both late refund and late release. The toy succession account is not a real inheritance system; beneficiary selection, estate authorization and appeal remain open. R0001 preserved at 00cb48fe4c1faa7866e722f7e4b16701b53f87ac. No deliberate weakness in the whitehat model. The independent toy yard remains a local fictional crime mechanic.

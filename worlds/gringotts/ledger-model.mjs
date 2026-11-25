@@ -18,8 +18,8 @@ function createBank(){
    award(id,p,n){checkAlive(w,p);return commit(id,w+":budget",estate(w,p),amount(n),"award",w)},
    transfer(id,p,q,n){checkAlive(w,p);checkAlive(w,q);return commit(id,estate(w,p),estate(w,q),amount(n),"transfer",w)},
    escrow(id,p,q,n){checkAlive(w,p);checkAlive(w,q);const value=amount(n);const r=commit(id,estate(w,p),w+":escrow:"+id,value,"escrow",w);escrows.set(w+":"+id,{p,q,value,status:"held"});return r},
-   settle(id,ref,decision){const e=escrows.get(w+":"+ref);if(!e||e.status!=="held"||!["release","refund"].includes(decision))throw Error("escrow unavailable");const pay=decision==="release"?e.q:e.p;const r=commit(id,w+":escrow:"+ref,estate(w,pay),e.value,decision,w);e.status=decision;return r},
-   closeEstate(id,p){const k=estate(w,p);checkAlive(w,p);const n=bal(k);if(n===0n)throw Error("no committed property");const r=commit(id,k,w+":succession:"+p,n,"succession",w);dead.add(k);return r},
+   settle(id,ref,decision){const e=escrows.get(w+":"+ref);if(!e||e.status!=="held"||!["release","refund"].includes(decision))throw Error("escrow unavailable");const pay=decision==="release"?e.q:e.p;const target=dead.has(estate(w,pay))?w+":succession:"+pay:estate(w,pay);const r=commit(id,w+":escrow:"+ref,target,e.value,decision,w);e.status=decision;return r},
+   closeEstate(id,p){const k=estate(w,p);checkAlive(w,p);const n=bal(k);let r;if(n===0n){if(!valid(id)||used.has(id))throw Error("duplicate or invalid transaction");used.add(id);events.push(Object.freeze({id,kind:"succession",world:w,amount:"0"}));r=Object.freeze({id,kind:"succession",amount:"0"})}else{r=commit(id,k,w+":succession:"+p,n,"succession",w)}dead.add(k);return r},
    view(p){return Object.freeze({world:w,alias:p,budget:bal(w+":budget").toString(),balance:bal(estate(w,p)).toString(),closed:dead.has(estate(w,p))})}
  })}
  return Object.freeze({bank,worlds:Object.freeze(Object.fromEntries(worlds.map(w=>[w,client(w)]))),witness:Object.freeze({read:()=>events.map(e=>({...e}))})})
@@ -62,6 +62,7 @@ function runTests(){
  let ev=b.witness.read();ev[0].amount="999999";assert("witness copy cannot mutate journal",b.witness.read()[0].amount==="100");
  assert("conservation",b.bank.audit().total==="1000000");
  const y=practiceYard();deny("no purse before opportunity",()=>y.take());y.leave();y.take();assert("synthetic theft occurs",y.view().owner==="rogue");deny("purse not duplicated",()=>y.take());y.restitution();assert("restitution restores owner",y.view().owner==="miner");assert("yard cannot affect bank",b.bank.audit().total==="1000000");
+ const e=createBank(),v=e.worlds.darkweb;e.bank.authorize("edge","darkweb","100",10,0);v.redeem("edge",1);v.award("seed","miner","50");v.escrow("held","miner","rogue","50");v.closeEstate("zero-close","miner");assert("zero-balance estate closes while escrow outstanding",v.view("miner").closed);v.settle("late-refund","held","refund");assert("late refund does not resurrect closed estate",v.view("miner").balance==="0"&&v.view("miner").closed);assert("late refund preserves conservation",e.bank.audit().total==="1000000");v.award("seed2","rogue","50");v.escrow("held2","rogue","recipient","20");v.closeEstate("recipient-close","recipient");v.settle("late-release","held2","release");assert("late release does not resurrect closed recipient",v.view("recipient").balance==="0"&&v.view("recipient").closed);assert("late release preserves conservation",e.bank.audit().total==="1000000");
  return passed;
 }
 export {createBank,practiceYard,runTests};

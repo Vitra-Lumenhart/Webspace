@@ -355,3 +355,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Laboratory](worlds/gringotts/ledger-and-seal.html), [manual](worlds/gringotts/TECH_MANUAL.html), [tests](tests/gringotts-r0001.mjs); 39 model assertions executed before commit.
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0023" date="2026-11-25" -->
+### 2026-11-25 · R0023 — Gringotts GRG-R0002: The Closed Estate
+
+**Backwards:** Readback destructive test found late escrow refunds could credit a closed estate in R0001. Route late settlements to succession, including zero-balance estate closure.
+
+**Forwards:** Design explicit beneficiary, dispute, escrow and recovery policies and durable concurrent ledger.
+
+**Not yet:** Real authentication, cryptographic grants, concurrency, browser or production tests. No actual inheritance or funds.
+
+**Invariant impact:** No changes outside Gringotts and paired records; prior R0022 preserved at 00cb48fe4c1faa7866e722f7e4b16701b53f87ac. Toy yard remains isolated.
+
+**Evidence:** [Model tests](tests/gringotts-r0001.mjs), [results](worlds/gringotts/evidence/r0001-tests.json); 44 assertions passed on patched source.
+<!-- /WEBSPACE-LEDGER -->
