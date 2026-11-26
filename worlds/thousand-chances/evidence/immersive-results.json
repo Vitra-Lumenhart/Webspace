@@ -1,0 +1,6 @@
+{
+  "checks": 1066,
+  "actors": 60,
+  "offers": 9,
+  "scope": "model + actual UI handlers with fake DOM; not browser or audio verification"
+}

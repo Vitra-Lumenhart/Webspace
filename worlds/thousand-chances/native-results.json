@@ -1,0 +1,30 @@
+{
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "vertices": 128886,
+  "wheelVertices": 7308,
+  "buildings": 72,
+  "walkers": 60,
+  "peopleVertices": 24300,
+  "views": [
+    {
+      "id": "balcony",
+      "glError": 0
+    },
+    {
+      "id": "bazaar",
+      "glError": 0
+    },
+    {
+      "id": "entry",
+      "glError": 0
+    },
+    {
+      "id": "lantern",
+      "glError": 0
+    },
+    {
+      "id": "cross",
+      "glError": 0
+    }
+  ]
+}

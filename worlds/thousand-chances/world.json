@@ -1,10 +1,18 @@
 {
   "id": "thousand-chances",
   "name": "The Thousand Chances",
-  "version": "TC-R0001",
+  "version": "TC-R0002",
   "entry": "index.html",
   "arrival_tag": "thousand-last-lantern",
-  "status": "standalone WebGL2 blockout; native GLES checked, browser unverified",
+  "status": "source revision; native GLES and mocked UI tested; browser/audio unverified",
   "gringotts": "external comparison, no ledger dependency",
-  "source_lineage": "original authored open cavern, seeded fa\u00e7ades, Xenos-derived model; no source port"
+  "source_lineage": "original authored open cavern, seeded fa\u00e7ades, Xenos-derived model; no source port",
+  "features": [
+    "independent camera",
+    "optional atlas and sound",
+    "60 moving figures",
+    "nine authored advertisements",
+    "irregular cave mouths",
+    "archived voluntary practice"
+  ]
 }

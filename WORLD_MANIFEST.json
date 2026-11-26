@@ -75,17 +75,22 @@
       "id": "thousand-chances",
       "name": "The Thousand Chances · Belowroads undermarket",
       "entry": "worlds/thousand-chances/index.html?ws_v=1&ws_entry=thousand-last-lantern",
-      "version": "TC-R0001",
+      "version": "TC-R0002",
       "engine": "Independent self-contained WebGL2 urban cavern",
       "arrival_tag": "thousand-last-lantern",
-      "status": "source committed; native GLES verified; browser and deployment unverified",
+      "status": "source revision; native GLES and mocked UI tested; browser/audio unverified",
       "features": [
         "19 local route anchors",
         "27 edges",
         "72 seeded facades",
         "12-ring Wheel of Chances",
         "short entry and return tubes",
-        "Xenos-derived fictional half-step evasion"
+        "Xenos-derived fictional half-step evasion",
+        "player-owned camera",
+        "optional atlas and sound",
+        "60 moving figures",
+        "nine market offers",
+        "irregular cave mouths"
       ],
       "external_comparison": "gringotts",
       "portal_integration": "reserved, not actual Belowroads connection"
@@ -148,9 +153,9 @@
   ],
   "release_note": "Webspace v8 canonical source accepted: Elisium 4.6 retained with 12 schematic sky signs, Ahura Mazda/Tir references, 7 points, 64 readers, Kilns nested H-object pairs, and quiet-circle exit. Hosting separately verified.",
   "thousand_release": {
-    "revision": "R0024",
+    "revision": "R0025",
     "date": "2026-11-26",
-    "source_lineage": "TC-R0001 independent world; existing manifest release_integer retained",
+    "source_lineage": "TC-R0002 independent world; prior R0024 preserved",
     "design": "https://docs.google.com/document/d/1YoG8yeEjW-h9yPsGsOaX-ZQ810ru-zaGdekKwnrvdK4/edit"
   }
 }

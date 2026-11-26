@@ -384,3 +384,20 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [World](worlds/thousand-chances/index.html), [world manual](worlds/thousand-chances/TECH_MANUAL.html), [tests](worlds/thousand-chances/evidence/test-results.json), [native rendering](worlds/thousand-chances/evidence/native-results.json): 54,010 assertions, 5,130 reachable encounter states across starts, six seeds, three Mesa GLES views with zero GL errors. [Design/Accretion contract](https://docs.google.com/document/d/1YoG8yeEjW-h9yPsGsOaX-ZQ810ru-zaGdekKwnrvdK4/edit).
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0025" date="2026-11-26" -->
+### 2026-11-26 · R0025 — Thousand Chances TC-R0002: The Art of Being Distracted
+
+**Backwards:** User confirmed R0001 preview and liked the spawn, elevated residences and string lights; criticized large HUD, cylindrical mouth and involuntary camera orientation. Preserve R0024 at e4f4f1448b9fb68447e5a4db1f73e445aecdcaa8, existing graph and all other worlds.
+
+**Changed:** independent look during movement/arrival, pause/resume, optional atlas and sound, irregular rock mouths, 60 moving low-poly figures, nine spatially ranked market offers, local synthesized ambience/chimes and optional local speech, lower cloth flags. No automatic pickpockets; previous isolated practice archived in atlas.
+
+**Forwards:** stronger actor animation, real crowd yielding, signs/occlusion, acoustics, richer assets, persistent cast, real accretion. Written experience design as input.
+
+**Not yet:** revised browser/audio verification (WebGL2 unavailable here), collision, actual cave integration, geometric crowd coordination or production art. Projected signs are not occlusion-tested.
+
+**Invariant impact:** camera is player-owned, voluntary offers/audio, no bank state or automatic crime, existing graph and other worlds unchanged.
+
+**Evidence:** [world](worlds/thousand-chances/index.html), [immersive tests](worlds/thousand-chances/evidence/immersive-results.json) 1,066 checks including actual UI handlers with mock DOM; prior 54,010 checks; five native render views zero GL errors. [Source archive](https://drive.google.com/file/d/1T9zh2JwOdsAqpA9j2hI7ImDieJJuWiB6/view).
+<!-- /WEBSPACE-LEDGER -->

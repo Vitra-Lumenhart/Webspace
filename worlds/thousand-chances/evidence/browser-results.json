@@ -1,1 +1,6 @@
-{"status":"blocked","fileNavigation":"ERR_BLOCKED_BY_ADMINISTRATOR","setContent":"canvas.getContext('webgl2') returned null; error message rendered","browserGameplayVerified":false,"nativeGLESSeparate":true}
+{
+  "status": "unverified",
+  "browserGameplayVerified": false,
+  "state": null,
+  "error": "The scene could not initialize: WebGL2 required; no 2D fallback."
+}
