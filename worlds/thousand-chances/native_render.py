@@ -34,10 +34,15 @@ for loc,nn,off in [(0,3,0),(1,2,12)]:enableattr(loc);attr(loc,nn,0x1406,0,20,P(o
 tex=U();B('glGenTextures',None,I,c.POINTER(U))(1,c.byref(tex));B('glBindTexture',None,U,U)(0x0DE1,tex);im=Image.open(p/'screen-atlas.jpg').convert('RGBA');raw=im.tobytes();B('glTexImage2D',None,U,I,I,I,I,I,U,U,P)(0x0DE1,0,0x1908,*im.size,0,0x1908,0x1401,c.c_char_p(raw));param=B('glTexParameteri',None,U,U,I)
 for k,v in [(0x2801,0x2601),(0x2800,0x2601),(0x2802,0x812F),(0x2803,0x812F)]:param(0x0DE1,k,v)
 use(screenprog);B('glUniform1i',None,I,I)(getloc(screenprog,b'atlas'),0);use(prog)
-result={'texturedScreens':len(m['screens']),'renderer' :getstr(0x1F01).decode(),'vertices':m['vertices'],'wheelVertices':m['wheelVertices'],'buildings':m['buildings'],'walkers':m['walkers'],'peopleVertices':m['peopleVertices'],'views':[]}
+# Actual textured garments use the same depth-tested UV shader.
+tv=U();tb=U();genva(1,c.byref(tv));bindva(tv);genbuf(1,c.byref(tb));bindbuf(0x8892,tb);raw=(p/'tee-mesh.bin').read_bytes();bufdata(0x8892,len(raw),c.c_char_p(raw),0x88E4)
+for loc,nn,off in [(0,3,0),(1,2,12)]:enableattr(loc);attr(loc,nn,0x1406,0,20,P(off))
+teeTex=U();B('glGenTextures',None,I,c.POINTER(U))(1,c.byref(teeTex));B('glBindTexture',None,U,U)(0x0DE1,teeTex);im=Image.open(p/'tee-atlas.jpg').convert('RGBA');raw=im.tobytes();B('glTexImage2D',None,U,I,I,I,I,I,U,U,P)(0x0DE1,0,0x1908,*im.size,0,0x1908,0x1401,c.c_char_p(raw))
+for k,v in [(0x2801,0x2601),(0x2800,0x2601),(0x2802,0x812F),(0x2803,0x812F)]:param(0x0DE1,k,v)
+result={'teeVertices':m['teeVertices'],'texturedScreens':len(m['screens']),'renderer' :getstr(0x1F01).decode(),'vertices':m['vertices'],'wheelVertices':m['wheelVertices'],'buildings':m['buildings'],'walkers':m['walkers'],'peopleVertices':m['peopleVertices'],'views':[]}
 for v in m['views']:
  use(prog);clear(0x4000|0x100);uniformmat(getloc(prog,b'vp'),1,0,(F*16)(*v['vp']));uniform3(getloc(prog,b'eye'),1,(F*3)(*v['eye']))
  for vao,count in meshes:bindva(vao);draw(4,0,count)
- use(screenprog);uniformmat(getloc(screenprog,b'vp'),1,0,(F*16)(*v['vp']));bindva(sv);draw(4,0,len(verts)//5);use(prog)
+ use(screenprog);uniformmat(getloc(screenprog,b'vp'),1,0,(F*16)(*v['vp']));B('glBindTexture',None,U,U)(0x0DE1,tex);bindva(sv);draw(4,0,len(verts)//5);B('glBindTexture',None,U,U)(0x0DE1,teeTex);bindva(tv);draw(4,0,m['teeVertices']);use(prog)
  raw=c.create_string_buffer(w*h*4);read(0,0,w,h,0x1908,0x1401,raw);err=geterr();im=Image.frombytes('RGBA',(w,h),raw.raw).transpose(Image.Transpose.FLIP_TOP_BOTTOM);im.save(p/(v['id']+'.png'));result['views'].append({'id':v['id'],'glError':err});assert err==0
 (p/'evidence'/'native-results.json').write_text(json.dumps(result,indent=2));print(result)

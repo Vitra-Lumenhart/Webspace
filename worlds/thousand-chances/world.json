@@ -1,10 +1,10 @@
 {
   "id": "thousand-chances",
   "name": "The Thousand Chances",
-  "version": "TC-R0007",
+  "version": "TC-R0008",
   "entry": "index.html",
   "arrival_tag": "thousand-last-lantern",
-  "status": "92 links static audited, 77 destinations reachable; native and CPU Chromium smoke tested; interiors deferred",
+  "status": "R0007 static geography unchanged; 18 imported shirts, 15 wearers; native and CPU browser tested",
   "gringotts": "external comparison, no ledger dependency",
   "source_lineage": "original authored open cavern, seeded fa\u00e7ades, Xenos-derived model; no source port",
   "features": [
@@ -34,6 +34,7 @@
     "six real shell mouths",
     "two Vein loops and four Lost crosslinks",
     "18 upper residences and 90 addresses",
-    "15 concept-art T-shirts"
+    "18 actual Market Merch neutral GLB cuts; 15 wearers",
+    "shared UV garment atlas"
   ]
 }

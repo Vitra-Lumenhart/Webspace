@@ -1,11 +1,12 @@
 {
+  "teeVertices": 70560,
   "texturedScreens": 4,
   "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
   "vertices": 364581,
   "wheelVertices": 7308,
   "buildings": 72,
   "walkers": 60,
-  "peopleVertices": 41853,
+  "peopleVertices": 35697,
   "views": [
     {
       "id": "balcony",
@@ -93,6 +94,22 @@
     },
     {
       "id": "lostVein1",
+      "glError": 0
+    },
+    {
+      "id": "tee-walker23",
+      "glError": 0
+    },
+    {
+      "id": "tee-shopper2",
+      "glError": 0
+    },
+    {
+      "id": "tee-shopper19",
+      "glError": 0
+    },
+    {
+      "id": "tee-shopper23",
       "glError": 0
     }
   ]

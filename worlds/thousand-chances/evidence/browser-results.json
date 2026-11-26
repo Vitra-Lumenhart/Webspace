@@ -15,12 +15,14 @@
     ],
     "offers": 1,
     "walkers": 60,
+    "teeAtlasLoaded": true,
+    "teeVertices": 70560,
     "soundEnabled": false,
     "enc": null,
     "vertices": 364581,
     "buildings": 72,
     "renderer": "CPU Canvas2D",
-    "frames": 13,
+    "frames": 11,
     "visiblePaths": [
       "lantern"
     ],
@@ -39,18 +41,22 @@
     ],
     "offers": 0,
     "walkers": 60,
+    "teeAtlasLoaded": true,
+    "teeVertices": 70560,
     "soundEnabled": false,
     "enc": null,
     "vertices": 364581,
     "buildings": 72,
     "renderer": "CPU Canvas2D",
-    "frames": 134,
+    "frames": 120,
     "visiblePaths": [
       "balcony"
     ],
     "glError": 0
   },
   "cameraPreserved": true,
+  "teeAtlasLoaded": true,
+  "teeVertices": 70560,
   "errors": [],
   "limits": "WebGL2 unavailable in this environment; CPU mode tested, audio not tested; hosted preview not verified"
 }
