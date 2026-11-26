@@ -17,3 +17,6 @@ References: [East Wing axial view](https://www.ireland.com/things-to-do/attracti
 
 ## Review only
 The material workbench uses real Poly Haven CC0 source scans, not generated repetitive patterns. A map is requested at 2K, then 1K or 4K if unavailable. Source grade and projection are editable in kilmainham-materials.js. The color maps can be exported from art-review.html; the linen swatch is a material experiment and is not yet applied to character clothing. No Vitra Drive upload or production catalogue integration before approval. Live visual testing remains outstanding.
+
+## R011 Choir of Consequences
+Local voices react to arrivals and recorded testimony. Original architecture, routes and choices remain. Seven persistent powers and human witness responses use an explicit causal ledger. Preferred forms are lore proposals, not visible new models yet. See LORE_R011.md and test-choir.mjs. Canon Triangle remains unknown. No live URL or GPU QA verified.

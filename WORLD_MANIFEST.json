@@ -132,10 +132,10 @@
     {
       "id": "kaykit-kilmainham",
       "name": "KayKit Kilmainham",
-      "entry": "worlds/kaykit-kilmainham/index.html",
-      "version": "R004 The East Wing",
-      "status": "playable implementation; browser and deployment verification pending",
-      "engine": "Three.js r168 / GLTFLoader / OrbitControls (WebGL2)"
+      "entry": "worlds/katkit-kilmainham/index.html",
+      "version": "R011 Choir of Consequences",
+      "status": "candidate narrative integration; hosted/browser verification pending",
+      "engine": "R010 Three.js r160.1 + world-local Choir event ledger"
     }
   ]
 }

@@ -3,6 +3,8 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { material, projectUV, reskinMesh, applyMaterialMaps, addCharacters } from './kilmainham-materials.js';
 import { weatherScene } from './weathering.js';
+import { Choir } from './choir.mjs';
+const choir = new Choir(await fetch(new URL('./choir-canon.json',import.meta.url)).then(r=>{if(!r.ok)throw Error('Choir canon unavailable');return r.json()}));
 
 // Architectural revision R010, photo-based geometry and alternating structural bands:
 // - only two interior testimony nodes remain (hall and chapel)
@@ -231,6 +233,8 @@ const compass='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="1
 
 function progress(){return REQUIRED.filter(k=>state.answers[k]).length;}
 function refresh(){
+  const voices=choir.publicAt(state.node);const pane=document.querySelector('#voices');pane.replaceChildren();for(const voice of voices){const p=document.createElement('p');p.textContent=voice.name+': '+voice.line;pane.append(p);}
+
   const id=state.node;
   $('#location').textContent=NODES[id].name;
   $('#clock').textContent=`${progress()} / ${REQUIRED.length} interior testimonies · ${state.steps} steps travelled`;
@@ -242,7 +246,7 @@ function refresh(){
   const b=document.createElement('button'); b.className='marker local'+(state.answers[id]?' done':''); b.textContent=state.answers[id]?'Review testimony':CASES[id].title; b.onclick=()=>interact(id); marks.append(b); const p=objpos(id); p.y=1.7; markers.push({el:b,world:p});
 }
 function travel(id){const edge=neighbors(state.node).find(n=>n.id===id);if(!edge||state.trip||dialog.open)return;const points=pathFor(state.node,id).map(([x,z])=>new THREE.Vector3(x,EYE,z));const length=routeLength(pathFor(state.node,id));state.trip={id,points,length,steps:edge.steps,duration:edge.steps/DEBUG_STEPS_PER_SECOND,start:performance.now()};pitch=0;$('#status').textContent=`Travelling to ${NODES[id].name}…`;markers.forEach(m=>m.el.hidden=true);}
-function tick(now){if(!state.trip)return;const t=state.trip,frac=Math.min(1,(now-t.start)/(t.duration*1000));let remaining=t.length*frac;for(let i=1;i<t.points.length;i++){let a=t.points[i-1],b=t.points[i],d=a.distanceTo(b);if(remaining<=d||i===t.points.length-1){camera.position.lerpVectors(a,b,Math.min(1,remaining/d));yaw=Math.atan2(a.x-b.x,a.z-b.z);break;}remaining-=d;}camera.position.y+=Math.sin(frac*Math.PI*2*t.steps)*.026*Math.sin(Math.PI*frac);$('#clock').textContent=`${progress()} / ${REQUIRED.length} interior testimonies · ${state.steps+Math.floor(frac*t.steps)} steps travelled`;if(frac===1){state.steps+=t.steps;state.node=t.id;state.trip=null;refresh();}}
+function tick(now){if(!state.trip)return;const t=state.trip,frac=Math.min(1,(now-t.start)/(t.duration*1000));let remaining=t.length*frac;for(let i=1;i<t.points.length;i++){let a=t.points[i-1],b=t.points[i],d=a.distanceTo(b);if(remaining<=d||i===t.points.length-1){camera.position.lerpVectors(a,b,Math.min(1,remaining/d));yaw=Math.atan2(a.x-b.x,a.z-b.z);break;}remaining-=d;}camera.position.y+=Math.sin(frac*Math.PI*2*t.steps)*.026*Math.sin(Math.PI*frac);$('#clock').textContent=`${progress()} / ${REQUIRED.length} interior testimonies · ${state.steps+Math.floor(frac*t.steps)} steps travelled`;if(frac===1){state.steps+=t.steps;state.node=t.id;state.trip=null;choir.travelPowers(EDGES);choir.advance(t.steps,state.node);refresh();}}
 function dilemma(id,key){
   if(id==='hearing'){
     const a=state.answers;
@@ -256,7 +260,7 @@ function dilemma(id,key){
 function interact(id){
   if(state.trip||state.node!==id)return; const c=CASES[id]; $('#eyebrow').textContent=c.person; $('#question').textContent=c.title; $('#story').textContent=c.story; $('#choices').replaceChildren(); $('#endnote').textContent=''; $('#outcome').hidden=true;
   if(state.answers[id]){const ch=c.choices.find(q=>q[1]===state.answers[id]); $('#outcome').textContent=`Your choice: ${ch[0]}\n\n${state.results[id]}`; $('#outcome').hidden=false;}
-  else{for(const [label,key] of c.choices){const b=document.createElement('button'); b.textContent=label; b.onclick=()=>{if(state.answers[id])return; state.answers[id]=key; state.results[id]=dilemma(id,key); $('#choices').replaceChildren(); $('#outcome').textContent=state.results[id]; $('#outcome').hidden=false; $('#endnote').textContent=id==='hearing'?'End of this session. Reload to explore another branch.':'Testimony recorded. You may review it when you return.'; refresh();}; $('#choices').append(b);}}
+  else{for(const [label,key] of c.choices){const b=document.createElement('button'); b.textContent=label; b.onclick=()=>{if(state.answers[id])return; state.answers[id]=key; choir.commit(id,key); state.results[id]=dilemma(id,key); $('#choices').replaceChildren(); $('#outcome').textContent=state.results[id]; $('#outcome').hidden=false; $('#endnote').textContent=id==='hearing'?'End of this session. Reload to explore another branch.':'Testimony recorded. You may review it when you return.'; refresh();}; $('#choices').append(b);}}
   dialog.showModal();
 }
 $('#close').onclick=()=>dialog.close();
@@ -271,7 +275,8 @@ function animate(now){const dt=previousTime?Math.min(.05,(now-previousTime)/1000
 function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R010 · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
 try{
  await load();build();flushAssets();batchArchitecture();weatherScene(scene,weatherKinds);
- refresh();reportArt();renderer.setAnimationLoop(animate);
+ choir.advance(1,'gate','arrival of the witness');refresh();reportArt();renderer.setAnimationLoop(animate);
+ window.KilmainhamChoir={get state(){return {node:state.node,steps:state.steps,events:choir.events.length}},get frames(){return renderer.info.render.frame},get local(){return choir.publicAt(state.node)}};
  // Texture and character availability must never gate the playable scene.
  applyMaterialMaps(materialGroups,renderer,(n,total,failed)=>{review.maps=n;review.failed=failed;reportArt()}).catch(console.warn);
  addCharacters(scene,loader,mixers,(n,failed)=>{review.characters=n;review.characterFailed=failed;reportArt()}).catch(console.warn);
