@@ -1,10 +1,14 @@
-# Kilmainham Asylum — R008 review baseline
+# Kilmainham Asylum — R009 (second attempt)
 
-The accepted Three.js architectural revision: three occupied door tiers, two doorless interstories, a curved apse, perforated bridges, axial stairs, barrel cages and oval rooflight. Four ground travel nodes, step counts, compass travel and gold-diamond interactions. 
+R008 remains the approved architecture and is preserved on its own branch. R009 replaces the rejected procedural texture experiment. The three cell tiers and two structural interstories, axial stair system, four travel nodes, narrative choices and step-count pacing remain.
 
-Serve this directory over HTTP; open index.html. Three.js is loaded from the pinned CDN. The model registry is a separate local JSON resource, not a standalone HTML payload.
+## What to inspect
+- Open index.html through an HTTP server, then follow Material review / export for actual graded material maps and individual PNG export.
+- Every cell uses the same flat door bay, including the faceted apse. Only the blank interstory and crown masonry retain radius-matched wedges.
+- Masonry chips use the same material as the wall. Door timber, iron hardware, boards, flags, and masonry get independent projected UVs rather than stretched palette-atlas coordinates.
+- Stair side handrails run continuously; overhead barrel cage begins at step 12. Gallery hoop module count drops from three to two in a typical 2.87 m bay; bridge cages are no longer doubled.
+- Three optional original CC0 KayKit character models are recolored as Penitent, Warder, Scrivener. No new character rig, wardrobe geometry or complete cloth UV remake is claimed.
+- Five optional material maps load after the playable scene starts. The HUD reports availability and fallbacks; missing external resources cannot stop navigation.
 
-## Revision status
-R009 art review rejected: black screen from texture initialization order, external texture paths in standalone preview, and unconvincing material art. R008 is the baseline for the next texture revision. Keep R001 and R008 branches intact. The next review must show actual game materials on meshes, including masonry, doors, timber soffits and roof, plus an ironwork correction and actual character reskins. Do not publish to Vitra Drive before art approval.
-
-The Webspace source repository is canonical. This branch has not been mirrored to the public GitHub Pages deployment.
+## Review only
+The new material workbench uses real Poly Haven CC0 source scans, not generated repetitive patterns. A map is requested at 2K, then 1K or 4K if unavailable. Source grade and projection are editable in kilmainham-materials.js. The color maps can be exported from art-review.html; the linen swatch is a material experiment and is not yet applied to character clothing. No Vitra Drive upload or production catalogue integration before approval. Live visual testing remains outstanding.
