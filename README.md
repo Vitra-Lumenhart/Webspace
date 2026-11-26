@@ -469,3 +469,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Asset register](worlds/katkit-kilmainham/characters/PROVENANCE.json), [embodiments](worlds/katkit-kilmainham/choir-embodiments.js), [engine](worlds/katkit-kilmainham/choir.mjs), [tests](worlds/katkit-kilmainham/test-choir.mjs). Direct deterministic replay and parent receipt checks passed.
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0031" date="2026-11-26" -->
+### 2026-11-26 · R0031 — Kilmainham director's commentary
+
+**Backwards:** R010 architecture and R011 Choir retained; ten design comments archived verbatim.
+
+**Forwards:** Five playable districts and five historical ages; autonomous human witnesses, symbolic idiom, cinematic staging and verified live level.
+
+**Not yet:** All proposed expansion, simulation and browser work remains forward direction; no delivery date asserted.
+
+**Invariant impact:** Documentation only; no game or shared runtime edits. R011 prior head e8f4a90b99a282fcc26bd7089ee103928f47aeeb preserved.
+
+**Evidence:** [Director's commentary](worlds/katkit-kilmainham/DIRECTORS_COMMENTARY.md), [PR #24 discussion](https://github.com/Vitra-Lumenhart/Webspace/pull/24). Ten posted comments read back.
+<!-- /WEBSPACE-LEDGER -->

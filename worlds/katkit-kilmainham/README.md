@@ -23,3 +23,6 @@ Local voices react to arrivals and recorded testimony. Original architecture, ro
 
 ## R011 embodiment and obligation increment
 Nine original CC0 KayKit GLBs are vendored with embedded textures; no source animation clips are present. Five human identities use Rogue, Rogue_Hooded and Knight; the powers use Lorekeeper, Black Knight, Tiefling, Cleric, Paladin and Avian Swordsman according to their ledger form. Rig clones keep distinct skeletons. A fulfilled or withdrawn human commitment is a new event, not a retroactive rewrite. Only powers present to receive the event gain the momentum effect. The last four witnessed human replies also inform subsequent choices. Presentation uses smoothed movement between authored node-relative positions; no full NPC pathfinding or animation clips. Browser rendering still unverified.
+
+## Director's commentary — forward direction
+Ten design notes covering the five districts and historical ages, dramatic references, the Choir and the next playable release are preserved in [DIRECTORS_COMMENTARY.md](DIRECTORS_COMMENTARY.md) and [PR #24](https://github.com/Vitra-Lumenhart/Webspace/pull/24). These are plans, not shipped features.
