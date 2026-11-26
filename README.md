@@ -407,3 +407,14 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 ### R0026 — evidence path correction, 2026-11-26
 No gameplay change. Copy the actual five-view R0002 native report into `evidence/native-results.json`, and make the native renderer write there on subsequent runs. Previous R0025 preserved; remove redundant root report. No new dependencies or invariant changes. Native evidence now agrees with R0002 geometry (128,886 static, 7,308 wheel, 24,300 actor vertices; five zero-error views).
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0027" date="2026-11-26" -->
+### R0027 — TC-R0003: The city of many cultures
+**Backwards:** R0026 preserved; user approved cultural atlas TC-D01 and exploding peaches. Retain player camera, graph, housing tiers, carnival lights, optional practice, Gringotts external.
+**Changed:** 60 seeded actors in eight cultures, local routes and silhouettes, four original Market Screens posters as depth-tested textured quads, Neon Orchard peach hologram, 13 offers, quiet attenuation, unsigned civic opinion. [Cultural atlas](worlds/thousand-chances/CULTURAL_ATLAS.md).
+**Forwards:** processions, independent events, persistent cast and inventory, full screen adapter, occlusion checks, richer art, actual demographic and economic simulation.
+**Not yet:** browser/audio acceptance, physical collision, full interactive campaign pack, actual Accretion history or live affiliations. Original poster concept copy requires editorial review.
+**Invariant impact:** no auto crime, votes, transactions, identity inference or bank dependency; camera stays player-owned. Prior main 46f096414d934d67369da07f1384dace6330a506 preserved.
+**Evidence:** 54,010 graph + 1,066 UI/mock + 7,329 culture checks; six native GLES views with four textured screens, zero errors. [Source archive](https://drive.google.com/file/d/1s00dZqWT0sJwJMOHvFlf8gsB6iTWQ6EU/view).
+<!-- /WEBSPACE-LEDGER -->

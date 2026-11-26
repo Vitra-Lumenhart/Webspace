@@ -1,10 +1,10 @@
 {
   "id": "thousand-chances",
   "name": "The Thousand Chances",
-  "version": "TC-R0002",
+  "version": "TC-R0003",
   "entry": "index.html",
   "arrival_tag": "thousand-last-lantern",
-  "status": "source revision; native GLES and mocked UI tested; browser/audio unverified",
+  "status": "native GLES six views including textured screens; deterministic and mock UI tested; browser/audio unverified",
   "gringotts": "external comparison, no ledger dependency",
   "source_lineage": "original authored open cavern, seeded fa\u00e7ades, Xenos-derived model; no source port",
   "features": [
@@ -13,6 +13,11 @@
     "60 moving figures",
     "nine authored advertisements",
     "irregular cave mouths",
-    "archived voluntary practice"
+    "archived voluntary practice",
+    "eight primary cultural casting weights",
+    "four original Market Screens posters on WebGL geometry",
+    "peach hologram loop and reduced motion",
+    "quiet-market attenuation",
+    "unsigned civic note"
   ]
 }

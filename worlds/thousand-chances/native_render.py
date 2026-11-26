@@ -17,9 +17,26 @@ for i in range(3):
  raw=(p/f'mesh{i}.bin').read_bytes();vao=U();buf=U();genva(1,c.byref(vao));bindva(vao);genbuf(1,c.byref(buf));bindbuf(0x8892,buf);bufdata(0x8892,len(raw),c.c_char_p(raw),0x88E4)
  for loc,nn,off in [(0,3,0),(1,3,12),(2,4,24)]:enableattr(loc);attr(loc,nn,0x1406,0,40,P(off))
  meshes.append((vao,len(raw)//40))
-result={'renderer':getstr(0x1F01).decode(),'vertices':m['vertices'],'wheelVertices':m['wheelVertices'],'buildings':m['buildings'],'walkers':m['walkers'],'peopleVertices':m['peopleVertices'],'views':[]}
+# Verify actual screen shader and texture atlas in native GLES, independently of browser.
+import re
+sr=(p/'render.js').read_text();shader_text=re.findall(r'sh\(gl\.(VERTEX_SHADER|FRAGMENT_SHADER),`(#version 300 es.*?\n.*?)`\)',sr,re.S);assert len(shader_text)==2
+screenprog=B('glCreateProgram',U)()
+for kind,src_text in shader_text:
+ sh=shader(0x8B31 if kind=='VERTEX_SHADER' else 0x8B30);src=c.c_char_p(src_text.encode());source(sh,1,c.byref(src),None);compile_(sh);ok=I();getsh(sh,0x8B81,c.byref(ok));assert ok.value;attach(screenprog,sh)
+link(screenprog);ok=I();getpr(screenprog,0x8B82,c.byref(ok));assert ok.value
+verts=[]
+for sc in m['screens']:
+ u=(sc['slot']%2)*.5;v=(sc['slot']//2)*.5;x,y,z,wid,hei=sc['x'],sc['y'],sc['z']+.027,sc['w']/2,sc['h'];q=[[x-wid,y,z,u,v+.5],[x+wid,y,z,u+.5,v+.5],[x+wid,y+hei,z,u+.5,v],[x-wid,y+hei,z,u,v]]
+ for i in [0,1,2,0,2,3]:verts.extend(q[i])
+sv=U();sb=U();genva(1,c.byref(sv));bindva(sv);genbuf(1,c.byref(sb));bindbuf(0x8892,sb);va=(F*len(verts))(*verts);bufdata(0x8892,c.sizeof(va),va,0x88E4)
+for loc,nn,off in [(0,3,0),(1,2,12)]:enableattr(loc);attr(loc,nn,0x1406,0,20,P(off))
+tex=U();B('glGenTextures',None,I,c.POINTER(U))(1,c.byref(tex));B('glBindTexture',None,U,U)(0x0DE1,tex);im=Image.open(p/'screen-atlas.jpg').convert('RGBA');raw=im.tobytes();B('glTexImage2D',None,U,I,I,I,I,I,U,U,P)(0x0DE1,0,0x1908,*im.size,0,0x1908,0x1401,c.c_char_p(raw));param=B('glTexParameteri',None,U,U,I)
+for k,v in [(0x2801,0x2601),(0x2800,0x2601),(0x2802,0x812F),(0x2803,0x812F)]:param(0x0DE1,k,v)
+use(screenprog);B('glUniform1i',None,I,I)(getloc(screenprog,b'atlas'),0);use(prog)
+result={'texturedScreens':len(m['screens']),'renderer' :getstr(0x1F01).decode(),'vertices':m['vertices'],'wheelVertices':m['wheelVertices'],'buildings':m['buildings'],'walkers':m['walkers'],'peopleVertices':m['peopleVertices'],'views':[]}
 for v in m['views']:
- clear(0x4000|0x100);uniformmat(getloc(prog,b'vp'),1,0,(F*16)(*v['vp']));uniform3(getloc(prog,b'eye'),1,(F*3)(*v['eye']))
+ use(prog);clear(0x4000|0x100);uniformmat(getloc(prog,b'vp'),1,0,(F*16)(*v['vp']));uniform3(getloc(prog,b'eye'),1,(F*3)(*v['eye']))
  for vao,count in meshes:bindva(vao);draw(4,0,count)
+ use(screenprog);uniformmat(getloc(screenprog,b'vp'),1,0,(F*16)(*v['vp']));bindva(sv);draw(4,0,len(verts)//5);use(prog)
  raw=c.create_string_buffer(w*h*4);read(0,0,w,h,0x1908,0x1401,raw);err=geterr();im=Image.frombytes('RGBA',(w,h),raw.raw).transpose(Image.Transpose.FLIP_TOP_BOTTOM);im.save(p/(v['id']+'.png'));result['views'].append({'id':v['id'],'glError':err});assert err==0
 (p/'evidence'/'native-results.json').write_text(json.dumps(result,indent=2));print(result)

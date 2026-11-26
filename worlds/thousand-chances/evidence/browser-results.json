@@ -1,6 +1,6 @@
 {
   "status": "unverified",
   "browserGameplayVerified": false,
-  "state": null,
-  "error": "The scene could not initialize: WebGL2 required; no 2D fallback."
+  "error": "Chromium localhost navigation ERR_BLOCKED_BY_ADMINISTRATOR; native texture shader compiled and rendered separately",
+  "audioVerified": false
 }

@@ -1,0 +1,7 @@
+{
+  "checks": 7329,
+  "actors": 60,
+  "cultures": 8,
+  "screens": 4,
+  "scope": "deterministic model; not browser or physical collision"
+}
