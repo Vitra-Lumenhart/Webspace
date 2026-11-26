@@ -1,6 +1,50 @@
 {
-  "status": "unverified",
-  "browserGameplayVerified": false,
-  "error": "Chromium localhost navigation ERR_BLOCKED_BY_ADMINISTRATOR; native texture shader compiled and rendered separately",
-  "audioVerified": false
+  "status": "pass",
+  "mode": "CPU Canvas2D",
+  "browser": "Chromium 144 via set_content",
+  "start": {
+    "current": "entry",
+    "travel": false,
+    "paused": false,
+    "yaw": 0,
+    "pitch": 0,
+    "eye": [
+      0,
+      31.7,
+      78
+    ],
+    "offers": 1,
+    "walkers": 60,
+    "soundEnabled": false,
+    "enc": null,
+    "vertices": 202116,
+    "buildings": 72,
+    "renderer": "CPU Canvas2D",
+    "frames": 3,
+    "glError": 0
+  },
+  "arrival": {
+    "current": "lantern",
+    "travel": false,
+    "paused": false,
+    "yaw": 0.25,
+    "pitch": -0.1,
+    "eye": [
+      -8,
+      31.7,
+      63
+    ],
+    "offers": 0,
+    "walkers": 60,
+    "soundEnabled": false,
+    "enc": null,
+    "vertices": 202116,
+    "buildings": 72,
+    "renderer": "CPU Canvas2D",
+    "frames": 28,
+    "glError": 0
+  },
+  "cameraPreserved": true,
+  "errors": [],
+  "limits": "WebGL2 unavailable in this environment; CPU mode tested, audio not tested; hosted preview not verified"
 }

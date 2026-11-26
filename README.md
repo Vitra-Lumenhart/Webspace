@@ -429,3 +429,10 @@ No gameplay change. Copy the actual five-view R0002 native report into `evidence
 **Invariant impact:** original building records identical for six seeds; old routes retained, camera player-owned, Gringotts external; no transactions, new identity logic or automatic crime. Prior main 690891283d9f04e97148ac142283dd0de4926865 preserved.
 **Evidence:** 79,343 graph/practice, 1,102 UI mock, 7,329 culture, 1,804 residence/cave/packing checks; ten native GLES views zero errors. [Source archive](https://drive.google.com/file/d/1-yoDXIWHzlJC_oDQWWay1LjyHa01yA5r/view).
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0029" date="2026-11-26" -->
+### R0029 — TC-R0005 startup compatibility hotfix
+TC-R0005 startup hotfix: user reported nothing loads. Reproduced failure with unavailable WebGL2; add depth-tested CPU Canvas2D compatibility rendering of same geometry, reduced raster and approximate lighting, preserve GPU path and 72 buildings, 25 nodes, 39 edges, actors and props. Compact embedded JPEG retains original source atlas. Chromium actual set_content smoke test passed: spawn, rendered frames, movement and camera preservation, no page errors. User's exact preview failure, hosted preview, GPU browser path and audio remain unverified. Prior R0028 preserved.
+[Browser test evidence](worlds/thousand-chances/evidence/browser-results.json). Forward: test hosted preview and GPU path; no gameplay or structural changes.
+<!-- /WEBSPACE-LEDGER -->
