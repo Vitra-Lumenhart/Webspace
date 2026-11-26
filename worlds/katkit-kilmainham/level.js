@@ -97,10 +97,10 @@ const shadeMat=material('iron');
 const library={masonry:stone,oak:doorMat,iron,boarding:wood,flags:floorMat,recess};
 const materialGroups={masonry:[stone,surround],oak:[doorMat],iron:[iron,trim,steelBlue,rustSteel,shadeMat],boarding:[wood,roofWood,bridgeWood],flags:[floorMat]};
 const uvKinds=new Map(Object.entries(materialGroups).flatMap(([key,materials])=>materials.map(m=>[m,key])));
+const roofGlass=new THREE.MeshStandardMaterial({color:0xc1c9c6,transparent:true,opacity:.21,roughness:.48,side:THREE.DoubleSide,depthWrite:false});
 const weatherKinds=new Map(uvKinds);for(const [m,k] of [[paperMat,'paper'],[gold,'brass'],[lampGlow,'lamp'],[glass,'glass'],[roofGlass,'glass'],[recess,'recess']])weatherKinds.set(m,k);
 const mixers=[];let previousTime=0;
 const review={maps:0,failed:[],characters:0,characterFailed:0};
-const roofGlass=new THREE.MeshStandardMaterial({color:0xc1c9c6,transparent:true,opacity:.21,roughness:.48,side:THREE.DoubleSide,depthWrite:false});
 const cache={};
 function poly(points){const s=new THREE.Shape(); points.forEach(([x,y],i)=>i?s.lineTo(x,y):s.moveTo(x,y));s.closePath();return s;}
 function archShape(w,h,head){const s=new THREE.Shape();s.moveTo(-w/2,0);s.lineTo(w/2,0);s.lineTo(w/2,h-head);s.absellipse(0,h-head,w/2,head,0,Math.PI,false);s.lineTo(-w/2,0);s.closePath();return s;}
