@@ -1,7 +1,0 @@
-import fs from 'node:fs';
-import {fileURLToPath} from 'node:url';
-import path from 'node:path';
-const dir=path.dirname(fileURLToPath(import.meta.url));const read=p=>fs.readFileSync(path.resolve(dir,p),'utf8');const write=(p,s)=>fs.writeFileSync(path.join(dir,p),s);
-const v='../../assets/vendor/three/';const data=read('asset-data.json').trim().replaceAll('<','\\u003c');const shell=read('shell.html').replace('<!--ASSETS-->','<script id="asset-data" type="application/json">'+data+'</script>');write('index.html',shell);
-const uri=s=>'data:text/javascript;base64,'+Buffer.from(s).toString('base64');const imports={'three':uri(read(v+'build/three.module.js')),'three/addons/loaders/GLTFLoader.js':uri(read(v+'examples/jsm/loaders/GLTFLoader.js').replace('../utils/BufferGeometryUtils.js','three/addons/utils/BufferGeometryUtils.js')),'three/addons/controls/OrbitControls.js':uri(read(v+'examples/jsm/controls/OrbitControls.js')),'three/addons/utils/BufferGeometryUtils.js':uri(read(v+'examples/jsm/utils/BufferGeometryUtils.js'))};
-write('standalone.html',shell.replace(/<script type="importmap">[\s\S]*?<\/script>/,()=>'<script type="importmap">'+JSON.stringify({imports})+'</script>').replace('<script type="module" src="viewer.mjs"></script>',()=>'<script type="module">'+read('viewer.mjs')+'</script>').replace('</head>','<!-- Three.js MIT license:\n'+read(v+'LICENSE').replaceAll('--','—')+'\n--></head>'));

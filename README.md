@@ -413,3 +413,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Viewer](worlds/kaykit-kilmainham/index.html), [offline distribution](worlds/kaykit-kilmainham/standalone.html), [manual](worlds/kaykit-kilmainham/TECH_MANUAL.html). Eight glTF manifests, buffer lengths/ranges, PNG signatures and JS syntax checked.
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0027" date="2026-11-25" -->
+### 2026-11-25 · R0027 — KayKit Kilmainham R004: The East Wing
+
+**Backwards:** Replace asset laboratory entry with playable three-tier court, movement, stair transitions, three seals and return objective. Preserve R003 in Git.
+
+**Forwards:** Actual browser and hosted URL verification, full mesh collision, cells and world narrative.
+
+**Not yet:** Full physical collision, measured reconstruction, flora, sky, portals; publication and browser test results pending.
+
+**Invariant impact:** Independent world only; shared vendor unchanged; R003 rollback 1919c743f3bbcba780cd1a8e82476582ac22229e.
+
+**Evidence:** [Level](worlds/kaykit-kilmainham/index.html), [layout](worlds/kaykit-kilmainham/layout.mjs), [browser test](worlds/kaykit-kilmainham/test-browser.mjs).
+<!-- /WEBSPACE-LEDGER -->

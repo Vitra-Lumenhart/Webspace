@@ -133,8 +133,8 @@
       "id": "kaykit-kilmainham",
       "name": "KayKit Kilmainham",
       "entry": "worlds/kaykit-kilmainham/index.html",
-      "version": "R003 native glTF laboratory",
-      "status": "candidate; browser/GPU verification pending",
+      "version": "R004 The East Wing",
+      "status": "playable implementation; browser and deployment verification pending",
       "engine": "Three.js r168 / GLTFLoader / OrbitControls (WebGL2)"
     }
   ]
