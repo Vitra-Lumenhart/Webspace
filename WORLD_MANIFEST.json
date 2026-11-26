@@ -135,7 +135,7 @@
       "entry": "worlds/kaykit-kilmainham/index.html",
       "version": "R002 asset laboratory",
       "status": "candidate; GPU verification pending",
-      "engine": "Canvas geometry and Luna sky"
+      "engine": "Native WebGL2 textured OBJ asset laboratory; no GPU verification yet"
     }
   ]
 }
