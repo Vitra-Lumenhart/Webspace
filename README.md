@@ -383,3 +383,18 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [World](worlds/katkit-kilmainham/index.html), [README](worlds/katkit-kilmainham/README.md), [manual](worlds/katkit-kilmainham/TECH_MANUAL.html); 36 static graph and option assertions.
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0025" date="2026-11-25" -->
+### 2026-11-25 · R0025 — KayKit Kilmainham R002 asset laboratory
+
+**Backwards:** Correct title and canonical candidate directory; R001 narrative preserved at original URL and as chronicle. WebGL2 textured asset viewer with five original KayKit meshes and two atlases.
+
+**Forwards:** Verify actual GPU rendering and architectural dimensions, then integrate shared Webspace navigation, sky and flora.
+
+**Not yet:** Headless Chromium refused WebGL2 initialization; rendered pixels, covenant, portal, cross-world regression and deployment unverified. Fixed viewpoints, no walking. Procedural structural geometry is provisional, not a measured Gaol survey.
+
+**Invariant impact:** No accepted worlds or portal contracts changed. R001 retained at 9824cf8082fb2a6c391f10a2cf3f16f0137e44fb; candidate only.
+
+**Evidence:** [Viewer](worlds/kaykit-kilmainham/index.html), [source](worlds/kaykit-kilmainham/viewer.js), [manual](worlds/kaykit-kilmainham/TECH_MANUAL.html). Node syntax and five OBJ UV checks, two PNG decode checks passed.
+<!-- /WEBSPACE-LEDGER -->
