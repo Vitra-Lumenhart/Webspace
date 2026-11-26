@@ -17,10 +17,13 @@
     "walkers": 60,
     "soundEnabled": false,
     "enc": null,
-    "vertices": 202116,
+    "vertices": 233544,
     "buildings": 72,
     "renderer": "CPU Canvas2D",
-    "frames": 3,
+    "frames": 11,
+    "visiblePaths": [
+      "lantern"
+    ],
     "glError": 0
   },
   "arrival": {
@@ -38,10 +41,13 @@
     "walkers": 60,
     "soundEnabled": false,
     "enc": null,
-    "vertices": 202116,
+    "vertices": 233544,
     "buildings": 72,
     "renderer": "CPU Canvas2D",
-    "frames": 28,
+    "frames": 150,
+    "visiblePaths": [
+      "balcony"
+    ],
     "glError": 0
   },
   "cameraPreserved": true,

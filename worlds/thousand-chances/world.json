@@ -1,10 +1,10 @@
 {
   "id": "thousand-chances",
   "name": "The Thousand Chances",
-  "version": "TC-R0005",
+  "version": "TC-R0006",
   "entry": "index.html",
   "arrival_tag": "thousand-last-lantern",
-  "status": "actual Chromium software fallback smoke test passed; WebGL2 browser and audio unverified",
+  "status": "33 open links sampled static clearance and support; Chromium CPU smoke passed; dynamic collision and hosted preview unverified",
   "gringotts": "external comparison, no ledger dependency",
   "source_lineage": "original authored open cavern, seeded fa\u00e7ades, Xenos-derived model; no source port",
   "features": [
@@ -25,6 +25,10 @@
     "Belowroads-derived Cave Lite",
     "packed static vertices",
     "three KayKit CC0 prop types",
-    "CPU depth-buffer compatibility renderer"
+    "CPU depth-buffer compatibility renderer",
+    "continuous road ribbons and structured ground coverage",
+    "vision-first route markers",
+    "five headwear and four pendant variations",
+    "localized Odd Music motif"
   ]
 }

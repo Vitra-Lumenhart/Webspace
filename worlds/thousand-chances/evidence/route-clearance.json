@@ -1,0 +1,385 @@
+{
+  "seed": 365,
+  "sample_spacing_max_m": 0.25,
+  "body_radius_m": 0.3,
+  "body_sample_heights_m": [
+    0.6,
+    0.95,
+    1.3,
+    1.7
+  ],
+  "surface_tolerance_m": [
+    -0.16,
+    0.12
+  ],
+  "open_edges": 33,
+  "samples": 3638,
+  "body_hits": 0,
+  "unsupported": 0,
+  "edges": [
+    {
+      "edge": [
+        "entry",
+        "lantern"
+      ],
+      "samples": 69,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "lantern",
+        "balcony"
+      ],
+      "samples": 80,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "balcony",
+        "ramp1"
+      ],
+      "samples": 200,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "ramp1",
+        "ramp2"
+      ],
+      "samples": 150,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "ramp2",
+        "bazaar"
+      ],
+      "samples": 148,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "bazaar",
+        "cross"
+      ],
+      "samples": 93,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "bazaar",
+        "broken"
+      ],
+      "samples": 164,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "cross",
+        "names"
+      ],
+      "samples": 104,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "cross",
+        "broken"
+      ],
+      "samples": 135,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "cross",
+        "fortunes"
+      ],
+      "samples": 112,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "cross",
+        "commons"
+      ],
+      "samples": 137,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "names",
+        "fortunes"
+      ],
+      "samples": 138,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "broken",
+        "arts"
+      ],
+      "samples": 95,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "arts",
+        "commons"
+      ],
+      "samples": 101,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "arts",
+        "court"
+      ],
+      "samples": 92,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "fortunes",
+        "commons"
+      ],
+      "samples": 111,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "commons",
+        "court"
+      ],
+      "samples": 105,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "commons",
+        "quiet"
+      ],
+      "samples": 140,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "court",
+        "exit"
+      ],
+      "samples": 95,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "quiet",
+        "quays"
+      ],
+      "samples": 215,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "homes",
+        "homeBridge"
+      ],
+      "samples": 138,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "homeBridge",
+        "balcony"
+      ],
+      "samples": 102,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "lantern",
+        "silkGate"
+      ],
+      "samples": 73,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkGate",
+        "balcony"
+      ],
+      "samples": 84,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "balcony",
+        "silkShelf"
+      ],
+      "samples": 72,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "homeBridge",
+        "ribbonWalk"
+      ],
+      "samples": 51,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "ribbonWalk",
+        "homes"
+      ],
+      "samples": 106,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "homes",
+        "blueLanding"
+      ],
+      "samples": 92,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "blueLanding",
+        "homeRamp"
+      ],
+      "samples": 80,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "commons",
+        "returnCourt"
+      ],
+      "samples": 115,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "court",
+        "returnCourt"
+      ],
+      "samples": 106,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "returnCourt",
+        "returnShelf"
+      ],
+      "samples": 50,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "returnShelf",
+        "exit"
+      ],
+      "samples": 85,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    }
+  ],
+  "scope": "static mesh, sampled route centers, no moving actors or continuous capsule sweep"
+}

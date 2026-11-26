@@ -15,8 +15,8 @@ const NODES=[
  ['commons','Commons of Empty Pockets',0,0,-32,0,-1,'An oven and an exchange of favors; no money required.'],
  ['court','Court of Many Promises',-12,0,-55,0,1,'Independent arbitration; possession is not title.'],
  ['quiet','Quiet Market',26,0,-42,-1,0,'Blue lamps and private conversation.'],
- ['quays','Blackwater Quays',55,-5,-60,-1,0,'Cargo, water and a disputed maker’s mark.'],
- ['homeRamp','Residential ramp',42,8,-13,-1,0,'Homes and workshops share heat.'],
+ ['quays','Blackwater Quays',50,-5,-72,-1,0,'Cargo, water and a disputed maker’s mark.'],
+ ['homeRamp','Residential ramp',36,8,-13,-1,0,'Homes and workshops share heat.'],
  ['homes','Houses Above the Market',43,18,21,-1,-1,'Lit windows, laundry and a garden.'],
  ['homeBridge','Upper residential bridge',20,24,40,-1,-1,'A bridge joins the upper terraces.'],
  ['exit','The Return Tube',0,0,-75,0,1,'An independent, clearly marked return.'],
@@ -29,7 +29,9 @@ const NODES=[
 ].map(([id,name,x,y,z,dx,dz,desc])=>({id,name,x,y,z,dx,dz,desc}));
 const EDGES=[['entry','lantern'],['lantern','balcony'],['balcony','ramp1'],['ramp1','ramp2'],['ramp2','bazaar'],['bazaar','cross'],['bazaar','broken'],['cross','names'],['cross','broken'],['cross','fortunes'],['cross','commons'],['names','fortunes'],['names','homeRamp'],['broken','arts'],['arts','commons'],['arts','court'],['fortunes','commons'],['fortunes','quiet'],['commons','court'],['commons','quiet'],['court','exit'],['quiet','quays'],['quays','exit'],['quiet','homeRamp'],['homeRamp','homes'],['homes','homeBridge'],['homeBridge','balcony'],['lantern','silkGate'],['silkGate','balcony'],['balcony','silkShelf'],['silkShelf','ramp1'],['homeBridge','ribbonWalk'],['ribbonWalk','homes'],['homes','blueLanding'],['blueLanding','homeRamp'],['commons','returnCourt'],['court','returnCourt'],['returnCourt','returnShelf'],['returnShelf','exit']];
 const byId=Object.fromEntries(NODES.map(n=>[n.id,n]));
-function neighbors(id){return EDGES.filter(e=>e.includes(id)).map(e=>e[0]===id?e[1]:e[0]);}
+const CLOSED_ROADS=new Set(['names:homeRamp','fortunes:quiet','quays:exit','quiet:homeRamp','homeRamp:homes','silkShelf:ramp1']);
+function roadOpen(a,b){return !CLOSED_ROADS.has(a+':'+b)&&!CLOSED_ROADS.has(b+':'+a);}
+function neighbors(id){return EDGES.filter(e=>e.includes(id)&&roadOpen(...e)).map(e=>e[0]===id?e[1]:e[0]);}
 function route(a,b,forbidden=[]){const ban=new Set(forbidden);if(ban.has(b)||!byId[a]||!byId[b])return null;const q=[[a]],seen=new Set([a]);while(q.length){const p=q.shift(),n=p.at(-1);if(n===b)return p;for(const k of neighbors(n))if(!seen.has(k)&&!ban.has(k)){seen.add(k);q.push([...p,k]);}}return null;}
 function edgeLength(a,b){const p=byId[a],q=byId[b];return Math.hypot(p.x-q.x,p.y-q.y,p.z-q.z);}
 function rng(seed){let s=seed>>>0;return()=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s/4294967296;};}
@@ -67,4 +69,45 @@ const ROADSIDE=[
  {id:'forkTea',anchor:'returnShelf',x:16,y:0,z:-66,sign:'LANTERN FORK',detail:'Tea, cups and an empty performer’s rug.',kind:'mug'}];
 function pathDistance3(p,a,b){let d=[b.x-a.x,b.y-a.y,b.z-a.z],q=[p.x-a.x,p.y-a.y,p.z-a.z],u=Math.max(0,Math.min(1,q.reduce((v,x,i)=>v+x*d[i],0)/(d.reduce((v,x)=>v+x*x,0)||1)));return Math.hypot(...q.map((x,i)=>x-d[i]*u));}
 
-if(typeof module!=='undefined')module.exports={NODES,EDGES,byId,neighbors,route,edgeLength,rng,generate,DISTRICT,EXITS,beginEncounter,blocked,choices,step,alternative,frameRadius,QUARTERS,residentialStyle,ROADSIDE,pathDistance3};
+
+// R0006: immutable anchors; authored switchback profiles, shared with walking and rendering.
+const ROUTE_BENDS={
+ 'balcony:ramp1':[[-6,30,38],[-12,27,28],[-24,24,26],[-28,21,32]],
+ 'ramp1:ramp2':[[-29,21,39],[-39,17,34],[-39,13,24]],
+ 'ramp2:bazaar':[[-34,10,16],[-29,6,7],[-22,2,7]],
+ 'bazaar:broken':[[-12,0,10],[-17,0,-5]],
+ 'arts:court':[[-18,0,-44],[-12,0,-48]],
+ 'fortunes:quiet':[[16,0,-27],[20,0,-36]],
+ 'fortunes:commons':[[11,0,-24],[0,0,-25]],
+ 'commons:quiet':[[0,0,-40],[12,0,-40]],
+ 'commons:returnCourt':[[0,0,-42],[8,0,-49]],
+ 'names:homeRamp':[[27,0,9],[29,3,-5],[31,6,-13]],
+ 'homeRamp:homes':[[36,8,-7],[38,12,5],[39,16,14]],
+ 'quiet:homeRamp':[[23,0,-35],[20,2,-27],[26,5,-18],[30,8,-15]],
+ 'quiet:quays':[[30,0,-49],[34,0,-59],[35,0,-69],[37,0,-72],[40,-1.5,-76],[45,-3.5,-77],[48,-5,-75]],
+ 'quays:exit':[[48,-5,-76],[43,-3,-80],[33,0,-80],[10,0,-77]],
+ 'returnShelf:exit':[[8,0,-63],[3,0,-67],[0,0,-70]],
+ 'homes:blueLanding':[[37,18,15],[34,15,9]],
+ 'blueLanding:homeRamp':[[35,13,-1],[34,10,-9],[35,8,-11]],
+ 'homes:homeBridge':[[37,18,25],[25,21,30],[20,24,35]],
+ 'ribbonWalk:homes':[[38,24,36],[44,21,30],[43,18,26]],
+ 'homeBridge:balcony':[[14,26,38],[6,30,39]],
+ 'balcony:silkShelf':[[-6,30,46],[-11,28,45]],
+ 'silkShelf:ramp1':[[-15,26,38],[-17,23,36],[-19,21,36]]
+};
+const xyz=n=>[n.x,n.y,n.z];
+function edgePath(a,b){const direct=ROUTE_BENDS[a+':'+b],reverse=ROUTE_BENDS[b+':'+a];const raw=[xyz(byId[a]),...(direct||(reverse?[...reverse].reverse():[])),xyz(byId[b])]; // flatten the approaches to shared landings; grade starts beyond the junction
+ const out=[raw[0]];for(let i=1;i<raw.length;i++){let p=raw[i-1],q=raw[i],L=Math.hypot(q[0]-p[0],q[2]-p[2]);if(Math.abs(p[1]-q[1])>.001&&L>4){const f=Math.min(.32,3.2/L);if(i===1)out.push([p[0]+(q[0]-p[0])*f,p[1],p[2]+(q[2]-p[2])*f]);if(i===raw.length-1)out.push([q[0]+(p[0]-q[0])*f,q[1],q[2]+(p[2]-q[2])*f]);}out.push(q);}return out;}
+function pathLength(path){return path.slice(1).reduce((s,p,i)=>s+Math.hypot(...p.map((v,k)=>v-path[i][k])),0);}
+function pathPoint(path,t){let left=Math.max(0,Math.min(1,t))*pathLength(path);for(let i=1;i<path.length;i++){const a=path[i-1],b=path[i],len=Math.hypot(...b.map((v,k)=>v-a[k]));if(left<=len||i===path.length-1){const u=Math.min(1,left/(len||1));return a.map((v,k)=>v+(b[k]-v)*u);}left-=len;}return path.at(-1).slice();}
+function walkingPoint(a,b,t){return pathPoint(edgePath(a,b),t).map((v,i)=>v+(i===1?1.7:0));}
+function routeMarker(a,b){const path=edgePath(a,b),len=pathLength(path);return pathPoint(path,Math.min(.70,6.5/len));}
+function routeFacing(a,b,yaw){const p=xyz(byId[a]),q=routeMarker(a,b),dx=q[0]-p[0],dz=q[2]-p[2],l=Math.hypot(dx,dz)||1;return (dx*Math.sin(yaw)-dz*Math.cos(yaw))/l;}
+function routeCandidates(a,yaw,back=false){return neighbors(a).map(id=>({id,score:routeFacing(a,id,yaw)*(back?-1:1)})).filter(x=>x.score>.18).sort((a,b)=>b.score-a.score).map(x=>x.id);}
+function isRaised(a,b){return byId[a].y!==0||byId[b].y!==0||[a,b].some(x=>['exit','returnCourt','returnShelf'].includes(x));}
+function deckWidth(a,b){return [a,b].some(x=>['ramp1','ramp2','homeRamp','homeBridge','balcony','lantern','entry'].includes(x))?6:5.5;}
+const DECK_SEGMENTS=EDGES.flatMap(([a,b])=>isRaised(a,b)&&roadOpen(a,b)?edgePath(a,b).slice(1).map((q,i)=>({a,b,p:edgePath(a,b)[i],q,w:deckWidth(a,b)})):[]);
+function segmentDistance(p,a,b){return pathDistance3({x:p[0],y:p[1],z:p[2]},{x:a[0],y:a[1],z:a[2]},{x:b[0],y:b[1],z:b[2]});}
+function railSections(seg){const {p,q,w}=seg,dx=q[0]-p[0],dz=q[2]-p[2],L=Math.hypot(dx,dz),side=[-dz/L,0,dx/L],count=Math.ceil(L/2),out=[];for(const sign of [-1,1])for(let i=0;i<count;i++){const at=t=>p.map((v,k)=>v+(q[k]-v)*t+side[k]*sign*(w/2-.14));const a=at(i/count),b=at((i+1)/count);const samples=[a,a.map((v,k)=>(v+b[k])/2),b];if(samples.some(x=>DECK_SEGMENTS.some(s=>s!==seg&&segmentDistance(x,s.p,s.q)<s.w/2+.40)))continue;out.push([a,b]);}return out;}
+
+if(typeof module!=='undefined')module.exports={NODES,EDGES,byId,neighbors,route,edgeLength,rng,generate,DISTRICT,EXITS,beginEncounter,blocked,choices,step,alternative,frameRadius,QUARTERS,residentialStyle,ROADSIDE,pathDistance3,edgePath,pathLength,pathPoint,walkingPoint,routeMarker,routeFacing,routeCandidates,isRaised,deckWidth,DECK_SEGMENTS,railSections,roadOpen,CLOSED_ROADS};

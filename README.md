@@ -436,3 +436,10 @@ No gameplay change. Copy the actual five-view R0002 native report into `evidence
 TC-R0005 startup hotfix: user reported nothing loads. Reproduced failure with unavailable WebGL2; add depth-tested CPU Canvas2D compatibility rendering of same geometry, reduced raster and approximate lighting, preserve GPU path and 72 buildings, 25 nodes, 39 edges, actors and props. Compact embedded JPEG retains original source atlas. Chromium actual set_content smoke test passed: spawn, rendered frames, movement and camera preservation, no page errors. User's exact preview failure, hosted preview, GPU browser path and audio remain unverified. Prior R0028 preserved.
 [Browser test evidence](worlds/thousand-chances/evidence/browser-results.json). Forward: test hosted preview and GPU path; no gameplay or structural changes.
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0030" date="2026-11-26" -->
+### R0030 — TC-R0006: The Streets Beneath Our Feet
+TC-R0006: vision-first route markers and optional atlas, shared road geometry and movement, structured paver/apron/earth coverage, supported rails with junction gaps, 33 open links and all 25 nodes accessible, six historical links closed for repairs. Five headwear styles and four necklace styles independent of cultural affiliation or conduct; local Odd Music motif replaces generic advertising chirps. 3,638 static center samples, zero sampled body intersections and zero unsupported samples, seed 365. Ten native views zero errors; Chromium CPU startup and entry-to-Lantern smoke passed. No dynamic collision, full browser descent, hosted preview, GPU browser, or audio verification. Prior R0029 retained; no changes to building records, bank or crime mechanics.
+[Static route audit](worlds/thousand-chances/evidence/route-clearance.json). [Archive](https://drive.google.com/file/d/1CtKPUbfrrcFCBfG21OcnS_7g3BOviaLT/view).
+<!-- /WEBSPACE-LEDGER -->

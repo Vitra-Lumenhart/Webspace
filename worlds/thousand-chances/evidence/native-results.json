@@ -1,11 +1,11 @@
 {
   "texturedScreens": 4,
   "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
-  "vertices": 202116,
+  "vertices": 233544,
   "wheelVertices": 7308,
   "buildings": 72,
   "walkers": 60,
-  "peopleVertices": 29259,
+  "peopleVertices": 34653,
   "views": [
     {
       "id": "balcony",
@@ -47,7 +47,5 @@
       "id": "returnCourt",
       "glError": 0
     }
-  ],
-  "staticStride": 24,
-  "staticBytes": 4850784
+  ]
 }
