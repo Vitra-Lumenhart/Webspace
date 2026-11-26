@@ -70,6 +70,25 @@
       "engine": "static narrative reservation",
       "arrival_tag": "purgatorio-threshold",
       "status": "placeholder"
+    },
+    {
+      "id": "thousand-chances",
+      "name": "The Thousand Chances · Belowroads undermarket",
+      "entry": "worlds/thousand-chances/index.html?ws_v=1&ws_entry=thousand-last-lantern",
+      "version": "TC-R0001",
+      "engine": "Independent self-contained WebGL2 urban cavern",
+      "arrival_tag": "thousand-last-lantern",
+      "status": "source committed; native GLES verified; browser and deployment unverified",
+      "features": [
+        "19 local route anchors",
+        "27 edges",
+        "72 seeded facades",
+        "12-ring Wheel of Chances",
+        "short entry and return tubes",
+        "Xenos-derived fictional half-step evasion"
+      ],
+      "external_comparison": "gringotts",
+      "portal_integration": "reserved, not actual Belowroads connection"
     }
   ],
   "portal_contract": {
@@ -127,5 +146,11 @@
       }
     }
   ],
-  "release_note": "Webspace v8 canonical source accepted: Elisium 4.6 retained with 12 schematic sky signs, Ahura Mazda/Tir references, 7 points, 64 readers, Kilns nested H-object pairs, and quiet-circle exit. Hosting separately verified."
+  "release_note": "Webspace v8 canonical source accepted: Elisium 4.6 retained with 12 schematic sky signs, Ahura Mazda/Tir references, 7 points, 64 readers, Kilns nested H-object pairs, and quiet-circle exit. Hosting separately verified.",
+  "thousand_release": {
+    "revision": "R0024",
+    "date": "2026-11-26",
+    "source_lineage": "TC-R0001 independent world; existing manifest release_integer retained",
+    "design": "https://docs.google.com/document/d/1YoG8yeEjW-h9yPsGsOaX-ZQ810ru-zaGdekKwnrvdK4/edit"
+  }
 }

@@ -1,0 +1,10 @@
+{
+  "id": "thousand-chances",
+  "name": "The Thousand Chances",
+  "version": "TC-R0001",
+  "entry": "index.html",
+  "arrival_tag": "thousand-last-lantern",
+  "status": "standalone WebGL2 blockout; native GLES checked, browser unverified",
+  "gringotts": "external comparison, no ledger dependency",
+  "source_lineage": "original authored open cavern, seeded fa\u00e7ades, Xenos-derived model; no source port"
+}

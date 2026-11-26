@@ -369,3 +369,18 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Model tests](tests/gringotts-r0001.mjs), [results](worlds/gringotts/evidence/r0001-tests.json); 44 assertions passed on patched source.
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0024" date="2026-11-26" -->
+### 2026-11-26 · R0024 — The Thousand Chances TC-R0001: The Balcony of Arrivals
+
+**Backwards:** Approved independent Darkweb undermarket, Twelve Sets, Wheel of Chances and Accretion concept. Separate broad urban cavern with short entry/return sleeves; no change to Belowroads cave puzzle. Original seeded façades, stalls, silhouette population, waterfall and twelve-ring hero prop. Xenos-derived half-edge encounter with legal withdrawal, not a direct source port.
+
+**Forwards:** Refine cinematic art, support/clearance atlas, actual historical accretion, interiors, animated crowds, persistent cast and actual Belowroads portal integration. Gringotts external comparison/optional future service only.
+
+**Not yet:** Browser policy blocks WebGL2; native rendering is not browser verification. No physical collision, actual dynamic geometric contraction, true hydraulic simulation, multiplayer or financial integration. No complete AAA art. 
+
+**Invariant impact:** Prior R0023 retained at 5137a507cbb39bd29a78eb1e751c6e11ed99aec4; only root catalogue and new world. No bank data or other world mutation. All 19 nodes reach the return anchor; fictional encounter has explicit safe leave. 
+
+**Evidence:** [World](worlds/thousand-chances/index.html), [world manual](worlds/thousand-chances/TECH_MANUAL.html), [tests](worlds/thousand-chances/evidence/test-results.json), [native rendering](worlds/thousand-chances/evidence/native-results.json): 54,010 assertions, 5,130 reachable encounter states across starts, six seeds, three Mesa GLES views with zero GL errors. [Design/Accretion contract](https://docs.google.com/document/d/1YoG8yeEjW-h9yPsGsOaX-ZQ810ru-zaGdekKwnrvdK4/edit).
+<!-- /WEBSPACE-LEDGER -->
