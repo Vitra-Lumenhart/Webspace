@@ -1,0 +1,19 @@
+{
+  "status": "pass",
+  "renderer": "CPU Canvas2D",
+  "actual_click_route": [
+    "lantern",
+    "balcony",
+    "homeBridge",
+    "ribbonWalk",
+    "homes",
+    "ribbonWalk"
+  ],
+  "offscreen_routes": 2,
+  "explicit_look": true,
+  "midwalk_reversal": true,
+  "backtrack": true,
+  "camera_preserved": true,
+  "errors": [],
+  "scope": "Chromium set_content, actual user controls and live walking; not hosted or full graph playthrough"
+}

@@ -117,7 +117,7 @@ const ROUTE_BENDS={
  'homes:blueLanding':[[37,18,15],[34,15,9]],
  'blueLanding:homeRamp':[[35,13,-1],[34,10,-9],[35,8,-11]],
  'homes:homeBridge':[[37,18,25],[25,21,30],[20,24,35]],
- 'ribbonWalk:homes':[[38,24,36],[44,21,30],[43,18,26]],
+ 'ribbonWalk:homes':[[38,24,36],[44,20.5,30],[43,19,26]],
  'homeBridge:balcony':[[14,26,38],[6,30,39]],
  'balcony:silkShelf':[[-6,30,46],[-11,28,45]],
  'silkShelf:ramp1':[[-15,26,38],[-17,23,36],[-19,21,36]]

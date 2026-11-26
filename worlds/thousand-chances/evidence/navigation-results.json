@@ -1,0 +1,17 @@
+{
+  "revision": "TC-R0009",
+  "static_samples": 18137,
+  "body_hits": 0,
+  "unsupported": 0,
+  "max_ribbon_grade_before": 0.7276068751,
+  "max_ribbon_grade_after": 0.4124789557,
+  "unchanged_sha256": {
+    "market.js": "7c8b40fd98a49eb72902b0b88845c46df4c8a9329829b5b7587e5f9ce9ed4938",
+    "shirt-art.js": "08694b616a9f6c15980ee673f618dfb6ecc821d3bdd70d7613f8edf112c5af43",
+    "tee-mesh.bin": "0b6e5b8594ac8ef22442df429fe217c9b6ce28cb6a5d197a51450be0a008f9de",
+    "mesh1.bin": "d56fcb1e8cab2f217f742adec9ed81ae9423b27c490916d998a3eb2084c8e5b7",
+    "mesh2.bin": "c4b46762799360de618f54227df2f11a900bee2ab7b2dae59f3ad1e6341a6ae8",
+    "residential-addresses.json": "0858ff5c865dd924bfb9cd186a5524dad5ac385f9f4e1de9321ba5bfa103e95c"
+  },
+  "scope": "sampled centerline and immutable non-road assets; not full visual clearance"
+}

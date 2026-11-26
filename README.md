@@ -457,3 +457,10 @@ TC-R0007: ancient unioned pavement and overlook, asymmetric dome with six real o
 TC-R0008 corrects R0007 provisional wardrobe: actual supplied TC_Market_Tees_R0002, 18 neutral GLB cuts, 15 distinct worn designs among same 60 actors, 252px per design UV atlas, original sleeves/hem shapes and cultural mixing. No static geometry changes (identical SHA256), no new people, routes, interiors or mechanics. 16,564 asset/allocation checks, 26 native GLES views incl. four closeups zero GL errors, CPU Chromium atlas-loaded startup/entry walk and camera passed. No morph/rig/cloth collision, GPU browser/audio/hosted preview verification. Original R0031 preserved.
 [Wardrobe integration](worlds/thousand-chances/WARDROBE.md) · [Evidence](worlds/thousand-chances/evidence/tee-results.json) · [Archive](https://drive.google.com/file/d/14EWzW0HWpZ2fdn5bPd9JUB7dqxgXlfP9/view).
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0033" date="2026-11-26" -->
+### R0033 — TC-R0009: The Art of Finding One's Way
+TC-R0009 responds to player screenshots: named local exits, optional Paths drawer with elevation/distance, explicit Look, reversible walking and Backtrack, residential ceramic inlays, redistributed Ribbon Walk–Houses grade from 73% to 41%. 77 anchors, 92 open links, 90 addresses, 60 actors and 15 actual tees unchanged. 18,137 static route samples zero hits/unsupported centers. Actual Chromium CPU click traversal to Ribbon Walk and Houses and back, explicit Look and reversal passed. Full width deck/rail reconstruction, occlusion, GPU browser/audio/hosted preview unverified. R0032 preserved.
+[Navigation](worlds/thousand-chances/NAVIGATION.md) · [Evidence](worlds/thousand-chances/evidence/navigation-browser.json) · [Archive](https://drive.google.com/file/d/16k8lxq0A-mZNL0PiBgvDX2F2yR7pRlt-/view).
+<!-- /WEBSPACE-LEDGER -->

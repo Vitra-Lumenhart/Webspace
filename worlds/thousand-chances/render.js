@@ -80,6 +80,11 @@ function garmentMesh(t){let out=[];for(const a of walkers){if(a.shirt<0)continue
 cavern();for(const b of buildings)building(b);for(const [a,b] of EDGES)if(roadOpen(a,b)&&veinEdge(a,b))veinShell(a,b);for(const n of NODES)if(n.id.includes("Vein"))veinChamber(n);for(const v of VILLAS)villaArchitecture(v);veinAmenities();for(const [a,b] of EDGES)if(isRaised(a,b)&&roadOpen(a,b))roadRibbon(a,b);for(const seg of DECK_SEGMENTS)platformSegment(seg);
 // Same path points as movement, joined by broad stone landing pads rather than intersecting rails.
 flatPaving();for(let i=0;i<7;i++){let a=i*Math.PI/6;const x=2.55*Math.cos(a),z=35-2.55*Math.sin(a);box(x,30,z,.065,.93,.065,dark);if(i<6){let b=(i+1)*Math.PI/6;beam([x,30.93,z],[2.55*Math.cos(b),30.93,35-2.55*Math.sin(b)],.07,.055,wood);}}
+// R0009: restrained, two-way ceramic inlays on the elevated residential network.
+// They sample the exact walking path, and remain below the body clearance envelope.
+function residentialWayfinding(){const edges=[['homeBridge','ribbonWalk'],['ribbonWalk','homes'],['homes','homeBridge'],['homeBridge','balcony'],['homes','blueLanding'],['homes','hearthE1']];
+for(const [a,b] of edges){if(!roadOpen(a,b))continue;const p=edgePath(a,b),L=pathLength(p);for(let d=3.5;d<L-3;d+=4){let q=pathPoint(p,d/L),lo=pathPoint(p,(d-.28)/L),hi=pathPoint(p,(d+.28)/L),side=norm([-(hi[2]-lo[2]),0,hi[0]-lo[0]]);if(Math.hypot(...sub(q,lo))<.05)continue;const lift=v=>add(v,[0,.026,0]),C=color('#476a68',.12),D=color('#b2a17f',.08);for(const sign of [-1,1]){const off=scale(side,sign*.32);quad(lift(add(lo,off)),lift(add(hi,off)),lift(add(hi,scale(side,sign*.47))),lift(add(lo,scale(side,sign*.47))),C);}quad(lift(add(lo,scale(side,-.075))),lift(add(hi,scale(side,-.075))),lift(add(hi,scale(side,.075))),lift(add(lo,scale(side,.075))),D);}}}
+residentialWayfinding();
 // Intermediate bends are joined by thin road surfaces, not flat disks that obstruct descent.
 
 // Retain the main balcony and residential plazas; remove orphaned decorative posts.
