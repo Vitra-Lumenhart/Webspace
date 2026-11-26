@@ -133,9 +133,9 @@
       "id": "kaykit-kilmainham",
       "name": "KayKit Kilmainham",
       "entry": "worlds/kaykit-kilmainham/index.html",
-      "version": "R002 asset laboratory",
-      "status": "candidate; GPU verification pending",
-      "engine": "Native WebGL2 textured OBJ asset laboratory; no GPU verification yet"
+      "version": "R003 native glTF laboratory",
+      "status": "candidate; browser/GPU verification pending",
+      "engine": "Three.js r168 / GLTFLoader / OrbitControls (WebGL2)"
     }
   ]
 }

@@ -398,3 +398,18 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Viewer](worlds/kaykit-kilmainham/index.html), [source](worlds/kaykit-kilmainham/viewer.js), [manual](worlds/kaykit-kilmainham/TECH_MANUAL.html). Node syntax and five OBJ UV checks, two PNG decode checks passed.
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0026" date="2026-11-25" -->
+### 2026-11-25 · R0026 — KayKit Kilmainham R003: native glTF laboratory
+
+**Backwards:** Replace custom OBJ renderer with existing Kilns Three.js r168 and original KayKit glTF/buffers/texture atlas. Eight asset inspections and three-tier court study.
+
+**Forwards:** GPU inspection, fix stairs/gallery joins at native dimensions, verify module snapping; integrate independent world navigation later.
+
+**Not yet:** Browser/GPU/pixel verification, runtime interaction, covenant and regression tests; rail/roof placeholders, staircase not connected. No portal or deploy.
+
+**Invariant impact:** Candidate only; all other worlds untouched; R002 rollback 4ef955ea1ac634550677da49b426310fd11819dc. Reuse existing MIT vendor and CC0 KayKit assets.
+
+**Evidence:** [Viewer](worlds/kaykit-kilmainham/index.html), [offline distribution](worlds/kaykit-kilmainham/standalone.html), [manual](worlds/kaykit-kilmainham/TECH_MANUAL.html). Eight glTF manifests, buffer lengths/ranges, PNG signatures and JS syntax checked.
+<!-- /WEBSPACE-LEDGER -->
