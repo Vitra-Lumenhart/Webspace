@@ -1,11 +1,11 @@
 {
   "texturedScreens": 4,
   "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
-  "vertices": 233544,
+  "vertices": 364581,
   "wheelVertices": 7308,
   "buildings": 72,
   "walkers": 60,
-  "peopleVertices": 34653,
+  "peopleVertices": 41853,
   "views": [
     {
       "id": "balcony",
@@ -45,6 +45,54 @@
     },
     {
       "id": "returnCourt",
+      "glError": 0
+    },
+    {
+      "id": "overlook",
+      "glError": 0
+    },
+    {
+      "id": "westMouth",
+      "glError": 0
+    },
+    {
+      "id": "eastMouth",
+      "glError": 0
+    },
+    {
+      "id": "crownNorth",
+      "glError": 0
+    },
+    {
+      "id": "crownWest",
+      "glError": 0
+    },
+    {
+      "id": "villa01",
+      "glError": 0
+    },
+    {
+      "id": "villa06",
+      "glError": 0
+    },
+    {
+      "id": "villa12",
+      "glError": 0
+    },
+    {
+      "id": "silkVein0",
+      "glError": 0
+    },
+    {
+      "id": "silkVein3",
+      "glError": 0
+    },
+    {
+      "id": "houseVein2",
+      "glError": 0
+    },
+    {
+      "id": "lostVein1",
       "glError": 0
     }
   ]

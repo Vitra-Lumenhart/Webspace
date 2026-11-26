@@ -1,8 +1,8 @@
 {
-  "checks": 51993,
-  "states": 4927,
-  "nodes": 25,
-  "edges": 39,
+  "checks": 58236,
+  "states": 5498,
+  "nodes": 77,
+  "edges": 100,
   "seededBuildings": 72,
   "scope": "deterministic local graph/encounter model; not physical collision or multiplayer"
 }

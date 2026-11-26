@@ -443,3 +443,10 @@ TC-R0005 startup hotfix: user reported nothing loads. Reproduced failure with un
 TC-R0006: vision-first route markers and optional atlas, shared road geometry and movement, structured paver/apron/earth coverage, supported rails with junction gaps, 33 open links and all 25 nodes accessible, six historical links closed for repairs. Five headwear styles and four necklace styles independent of cultural affiliation or conduct; local Odd Music motif replaces generic advertising chirps. 3,638 static center samples, zero sampled body intersections and zero unsupported samples, seed 365. Ten native views zero errors; Chromium CPU startup and entry-to-Lantern smoke passed. No dynamic collision, full browser descent, hosted preview, GPU browser, or audio verification. Prior R0029 retained; no changes to building records, bank or crime mechanics.
 [Static route audit](worlds/thousand-chances/evidence/route-clearance.json). [Archive](https://drive.google.com/file/d/1CtKPUbfrrcFCBfG21OcnS_7g3BOviaLT/view).
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0031" date="2026-11-26" -->
+### R0031 — TC-R0007: The Veins and the Hanging City
+TC-R0007: ancient unioned pavement and overlook, asymmetric dome with six real openings, two peripheral Vein loops and four Lost crosslinks, six inherited hearth galleries, 18 new closed-door villas, 90 addresses, junction furniture, 15 of 60 actors with sampled Vitra Drive shirt art. Original 72 buildings, 25 nodes, camera, bazaar and actors preserved. 77 nodes, 100 edges, 92 open; all destinations reachable. 18,136 static samples zero body hits and unsupported centers, 22 native GLES views, CPU Chromium startup/initial walk passed. No interiors, new scenes, new people, dynamic collision or actual historical simulation. Original house individual door spurs, streaming, GPU browser, full traversal and audio unverified. Prior R0030 preserved.
+[Vertical Atlas](worlds/thousand-chances/VERTICAL_ATLAS.md) · [Route audit](worlds/thousand-chances/evidence/route-clearance.json) · [Archive](https://drive.google.com/file/d/1mvTpkcu5zwNNqxFDi6WQvjmPhn6Leqir/view).
+<!-- /WEBSPACE-LEDGER -->

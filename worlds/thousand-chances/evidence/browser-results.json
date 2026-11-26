@@ -17,10 +17,10 @@
     "walkers": 60,
     "soundEnabled": false,
     "enc": null,
-    "vertices": 233544,
+    "vertices": 364581,
     "buildings": 72,
     "renderer": "CPU Canvas2D",
-    "frames": 11,
+    "frames": 13,
     "visiblePaths": [
       "lantern"
     ],
@@ -41,10 +41,10 @@
     "walkers": 60,
     "soundEnabled": false,
     "enc": null,
-    "vertices": 233544,
+    "vertices": 364581,
     "buildings": 72,
     "renderer": "CPU Canvas2D",
-    "frames": 150,
+    "frames": 134,
     "visiblePaths": [
       "balcony"
     ],

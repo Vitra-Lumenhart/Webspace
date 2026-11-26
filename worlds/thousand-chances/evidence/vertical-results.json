@@ -1,0 +1,13 @@
+{
+  "checks": 288,
+  "addresses": 90,
+  "originalBuildingRecords": 72,
+  "newVillas": 18,
+  "openEdges": 92,
+  "closedEdges": 8,
+  "tunnelLoops": 2,
+  "lostCrosslinks": 4,
+  "wallOpenings": 6,
+  "shirts": 15,
+  "scope": "deterministic topology, costume allocations and static audit readback. No continuous physics or interior worlds."
+}

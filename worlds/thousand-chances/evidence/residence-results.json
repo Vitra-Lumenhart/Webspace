@@ -1,11 +1,11 @@
 {
-  "checks": 1804,
+  "checks": 3628,
   "counts": {
-    "domeVertices": 3264,
+    "domeVertices": 14112,
     "tubeVertices": 1536,
     "oldDomeVertices": 5760,
     "oldTubeVertices": 1440
   },
-  "staticBytes": 5605056,
+  "staticBytes": 8749944,
   "scope": "six-seed immutable building record hashes; graph routes; prop center clearance; cave boundary; packed mesh. Not collision."
 }

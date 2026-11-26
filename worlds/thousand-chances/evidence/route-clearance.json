@@ -12,8 +12,8 @@
     -0.16,
     0.12
   ],
-  "open_edges": 33,
-  "samples": 3638,
+  "open_edges": 92,
+  "samples": 18136,
   "body_hits": 0,
   "unsupported": 0,
   "edges": [
@@ -375,6 +375,655 @@
         "exit"
       ],
       "samples": 85,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkVein0",
+        "silkVein1"
+      ],
+      "samples": 445,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "houseVein0",
+        "houseVein1"
+      ],
+      "samples": 445,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkVein1",
+        "silkVein2"
+      ],
+      "samples": 450,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "houseVein1",
+        "houseVein2"
+      ],
+      "samples": 453,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkVein2",
+        "silkVein3"
+      ],
+      "samples": 450,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "houseVein2",
+        "houseVein3"
+      ],
+      "samples": 445,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkVein3",
+        "silkVein4"
+      ],
+      "samples": 451,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "houseVein3",
+        "houseVein4"
+      ],
+      "samples": 454,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkVein4",
+        "silkVein5"
+      ],
+      "samples": 450,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "houseVein4",
+        "houseVein5"
+      ],
+      "samples": 445,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkVein5",
+        "silkVein6"
+      ],
+      "samples": 450,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "houseVein5",
+        "houseVein6"
+      ],
+      "samples": 453,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkVein6",
+        "silkVein7"
+      ],
+      "samples": 451,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "houseVein6",
+        "houseVein7"
+      ],
+      "samples": 454,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkVein7",
+        "silkVein0"
+      ],
+      "samples": 445,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "houseVein7",
+        "houseVein0"
+      ],
+      "samples": 445,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkVein1",
+        "lostVein1"
+      ],
+      "samples": 282,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "lostVein1",
+        "houseVein1"
+      ],
+      "samples": 509,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkVein3",
+        "lostVein3"
+      ],
+      "samples": 333,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "lostVein3",
+        "houseVein3"
+      ],
+      "samples": 499,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkVein5",
+        "lostVein5"
+      ],
+      "samples": 333,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "lostVein5",
+        "houseVein5"
+      ],
+      "samples": 509,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkVein7",
+        "lostVein7"
+      ],
+      "samples": 282,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "lostVein7",
+        "houseVein7"
+      ],
+      "samples": 509,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "northMouth",
+        "silkVein0"
+      ],
+      "samples": 261,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "entry",
+        "northMouth"
+      ],
+      "samples": 9,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "southMouth",
+        "silkVein4"
+      ],
+      "samples": 273,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "exit",
+        "southMouth"
+      ],
+      "samples": 9,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "westMouth",
+        "houseVein6"
+      ],
+      "samples": 273,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "eastMouth",
+        "houseVein2"
+      ],
+      "samples": 273,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "crownNorth",
+        "houseVein1"
+      ],
+      "samples": 341,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "crownWest",
+        "houseVein7"
+      ],
+      "samples": 341,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "mixedHigh",
+        "eastMouth"
+      ],
+      "samples": 187,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "westMouth",
+        "villa01"
+      ],
+      "samples": 37,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa01",
+        "villa02"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa02",
+        "villa03"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa03",
+        "villa04"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "crownWest",
+        "villa05"
+      ],
+      "samples": 37,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa05",
+        "villa06"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa06",
+        "villa07"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa07",
+        "villa08"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "eastMouth",
+        "villa09"
+      ],
+      "samples": 37,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa09",
+        "villa10"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa10",
+        "villa11"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "crownNorth",
+        "villa12"
+      ],
+      "samples": 37,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa12",
+        "villa13"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa13",
+        "villa14"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "mixedHigh",
+        "villa15"
+      ],
+      "samples": 37,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa15",
+        "villa16"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa16",
+        "villa17"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "villa17",
+        "villa18"
+      ],
+      "samples": 44,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "bazaar",
+        "hearthW0"
+      ],
+      "samples": 182,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "silkShelf",
+        "hearthW1"
+      ],
+      "samples": 181,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "westMouth",
+        "hearthW2"
+      ],
+      "samples": 298,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "names",
+        "hearthE0"
+      ],
+      "samples": 165,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "homes",
+        "hearthE1"
+      ],
+      "samples": 153,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "mixedHigh",
+        "hearthE2"
+      ],
+      "samples": 138,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "hearthE1",
+        "hearthE2"
+      ],
+      "samples": 174,
+      "body_hits": 0,
+      "unsupported": 0,
+      "first_hits": [],
+      "first_unsupported": []
+    },
+    {
+      "edge": [
+        "balcony",
+        "overlook"
+      ],
+      "samples": 41,
       "body_hits": 0,
       "unsupported": 0,
       "first_hits": [],

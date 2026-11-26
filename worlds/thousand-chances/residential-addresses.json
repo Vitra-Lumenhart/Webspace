@@ -1,0 +1,992 @@
+[
+  {
+    "id": "b0",
+    "door": [
+      -43.85001474252902,
+      0,
+      -62.84367642062716
+    ],
+    "district": "Painted cloth houses",
+    "approach": "hearthW0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b1",
+    "door": [
+      -44.997967253620736,
+      0,
+      -51.780238582286984
+    ],
+    "district": "Menders’ ledges",
+    "approach": "hearthW0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b2",
+    "door": [
+      -43.70452615974471,
+      0,
+      -41.04106780816801
+    ],
+    "district": "Menders’ ledges",
+    "approach": "hearthW0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b3",
+    "door": [
+      -45.86669961357955,
+      0,
+      -30.85164557490498
+    ],
+    "district": "Painted cloth houses",
+    "approach": "hearthW0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b4",
+    "door": [
+      -42.71013714519329,
+      0,
+      -19.391441389685497
+    ],
+    "district": "Painted cloth houses",
+    "approach": "hearthW0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b5",
+    "door": [
+      -47.85816546035465,
+      0,
+      -6.010999522637576
+    ],
+    "district": "Velvet galleries",
+    "approach": "hearthW0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b6",
+    "door": [
+      -44.00300126273185,
+      0,
+      4.048588882898912
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthW0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b7",
+    "door": [
+      -43.02180820279289,
+      0,
+      15.848555533215404
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthW0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b8",
+    "door": [
+      -48.351111232368275,
+      0,
+      24.429448652314022
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthW0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b9",
+    "door": [
+      -42.942692773598246,
+      0,
+      36.00066341413185
+    ],
+    "district": "Hearth rows",
+    "approach": "hearthW0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b10",
+    "door": [
+      -47.36934009084478,
+      0,
+      48.91901079448871
+    ],
+    "district": "Menders’ ledges",
+    "approach": "hearthW0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b11",
+    "door": [
+      -45.72707367590163,
+      0,
+      59.821140554733574
+    ],
+    "district": "Hearth rows",
+    "approach": "hearthW0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b12",
+    "door": [
+      -58.49659020134248,
+      19,
+      -62.46949511184357
+    ],
+    "district": "Menders’ ledges",
+    "approach": "hearthW1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b13",
+    "door": [
+      -57.217386552779935,
+      19,
+      -52.51054122438654
+    ],
+    "district": "Menders’ ledges",
+    "approach": "hearthW1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b14",
+    "door": [
+      -56.22766485840082,
+      19,
+      -40.79195917979814
+    ],
+    "district": "Menders’ ledges",
+    "approach": "hearthW1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b15",
+    "door": [
+      -55.42463935394306,
+      19,
+      -30.722995210438967
+    ],
+    "district": "Oven terraces",
+    "approach": "hearthW1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b16",
+    "door": [
+      -54.472848327895626,
+      19,
+      -17.196586481062695
+    ],
+    "district": "Painted cloth houses",
+    "approach": "hearthW1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b17",
+    "door": [
+      -59.09537839255761,
+      19,
+      -7.4222439103759825
+    ],
+    "district": "Painted cloth houses",
+    "approach": "hearthW1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b18",
+    "door": [
+      -57.794645005669445,
+      19,
+      2.7760979949962348
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthW1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b19",
+    "door": [
+      -54.08382255392615,
+      19,
+      15.382911304943264
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthW1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b20",
+    "door": [
+      -57.73743697215803,
+      19,
+      24.138773557031527
+    ],
+    "district": "Menders’ ledges",
+    "approach": "hearthW1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b21",
+    "door": [
+      -57.996145636490546,
+      19,
+      36.59534904779866
+    ],
+    "district": "Hearth rows",
+    "approach": "hearthW1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b22",
+    "door": [
+      -56.36572156410664,
+      19,
+      48.5408332569059
+    ],
+    "district": "Hearth rows",
+    "approach": "hearthW1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b23",
+    "door": [
+      -57.381992274378426,
+      19,
+      59.86006271280348
+    ],
+    "district": "Hearth rows",
+    "approach": "hearthW1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b24",
+    "door": [
+      -73.05383667821997,
+      38,
+      -63.88036069343798
+    ],
+    "district": "Menders’ ledges",
+    "approach": "hearthW2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b25",
+    "door": [
+      -70.28688710946125,
+      38,
+      -52.609570373315364
+    ],
+    "district": "Oven terraces",
+    "approach": "hearthW2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b26",
+    "door": [
+      -70.36842136533932,
+      38,
+      -39.95872260374017
+    ],
+    "district": "Menders’ ledges",
+    "approach": "hearthW2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b27",
+    "door": [
+      -70.21698984964286,
+      38,
+      -30.965178615413606
+    ],
+    "district": "Painted cloth houses",
+    "approach": "hearthW2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b28",
+    "door": [
+      -68.14804286749103,
+      38,
+      -18.81325746863149
+    ],
+    "district": "Painted cloth houses",
+    "approach": "hearthW2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b29",
+    "door": [
+      -71.22341056884733,
+      38,
+      -6.508851853664964
+    ],
+    "district": "Painted cloth houses",
+    "approach": "hearthW2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b30",
+    "door": [
+      -71.45619859389961,
+      38,
+      4.403356192400679
+    ],
+    "district": "Painted cloth houses",
+    "approach": "hearthW2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b31",
+    "door": [
+      -68.85578007292469,
+      38,
+      15.575953103601933
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthW2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b32",
+    "door": [
+      -70.05802262580954,
+      38,
+      24.82226931047626
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthW2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b33",
+    "door": [
+      -72.38271937444341,
+      38,
+      36.72713426640257
+    ],
+    "district": "Hearth rows",
+    "approach": "hearthW2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b34",
+    "door": [
+      -67.79124118370936,
+      38,
+      47.12864773790352
+    ],
+    "district": "Hearth rows",
+    "approach": "hearthW2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b35",
+    "door": [
+      -67.39902028808837,
+      38,
+      59.90276915486902
+    ],
+    "district": "Velvet galleries",
+    "approach": "hearthW2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b36",
+    "door": [
+      46.761980084301904,
+      -2,
+      -62.950933418935165
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthE0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b37",
+    "door": [
+      47.454485877132974,
+      -2,
+      -52.329646080266684
+    ],
+    "district": "Blue alcoves",
+    "approach": "hearthE0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b38",
+    "door": [
+      49.03967955831438,
+      -2,
+      -39.1217430497054
+    ],
+    "district": "Blue alcoves",
+    "approach": "hearthE0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b39",
+    "door": [
+      47.11623495020438,
+      -2,
+      -30.00145814754069
+    ],
+    "district": "Velvet galleries",
+    "approach": "hearthE0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b40",
+    "door": [
+      44.04636789399199,
+      -2,
+      -19.70784663106315
+    ],
+    "district": "Velvet galleries",
+    "approach": "hearthE0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b41",
+    "door": [
+      42.63359902631026,
+      -2,
+      -7.995322816539556
+    ],
+    "district": "Blue alcoves",
+    "approach": "hearthE0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b42",
+    "door": [
+      44.97763521486893,
+      -2,
+      2.1736822712700814
+    ],
+    "district": "Oven terraces",
+    "approach": "hearthE0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b43",
+    "door": [
+      42.58128315484617,
+      -2,
+      13.113568504340947
+    ],
+    "district": "Oven terraces",
+    "approach": "hearthE0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b44",
+    "door": [
+      44.4495822941605,
+      -2,
+      26.399411706486717
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthE0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b45",
+    "door": [
+      47.7309736960521,
+      -2,
+      35.683532087597996
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthE0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b46",
+    "door": [
+      43.98154665187001,
+      -2,
+      48.68654955341481
+    ],
+    "district": "Menders’ ledges",
+    "approach": "hearthE0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b47",
+    "door": [
+      42.912806636136956,
+      -2,
+      58.5922588147223
+    ],
+    "district": "Hearth rows",
+    "approach": "hearthE0",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b48",
+    "door": [
+      54.99227927445434,
+      17,
+      -61.63166776183061
+    ],
+    "district": "Blue alcoves",
+    "approach": "hearthE1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b49",
+    "door": [
+      54.49480923003983,
+      17,
+      -51.51498063886538
+    ],
+    "district": "Blue alcoves",
+    "approach": "hearthE1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b50",
+    "door": [
+      57.05121014064178,
+      17,
+      -40.460911865578964
+    ],
+    "district": "Blue alcoves",
+    "approach": "hearthE1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b51",
+    "door": [
+      59.79934573354665,
+      17,
+      -28.19137927610427
+    ],
+    "district": "Blue alcoves",
+    "approach": "hearthE1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b52",
+    "door": [
+      56.28024933074601,
+      17,
+      -17.924310486530885
+    ],
+    "district": "Velvet galleries",
+    "approach": "hearthE1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b53",
+    "door": [
+      59.00948470523115,
+      17,
+      -7.676136884372681
+    ],
+    "district": "Oven terraces",
+    "approach": "hearthE1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b54",
+    "door": [
+      57.38897284056991,
+      17,
+      3.787224098807201
+    ],
+    "district": "Oven terraces",
+    "approach": "hearthE1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b55",
+    "door": [
+      59.36381082743872,
+      17,
+      15.944519685581326
+    ],
+    "district": "The little signal house",
+    "approach": "hearthE1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b56",
+    "door": [
+      58.94078831474297,
+      17,
+      26.0570219673682
+    ],
+    "district": "Menders’ ledges",
+    "approach": "hearthE1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b57",
+    "door": [
+      58.414278414282016,
+      17,
+      35.42957246629521
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthE1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b58",
+    "door": [
+      58.933515758085996,
+      17,
+      48.00816572713666
+    ],
+    "district": "Hearth rows",
+    "approach": "hearthE1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b59",
+    "door": [
+      57.29699674336705,
+      17,
+      58.09508638177067
+    ],
+    "district": "Hearth rows",
+    "approach": "hearthE1",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b60",
+    "door": [
+      69.72850187734701,
+      36,
+      -63.86720841168426
+    ],
+    "district": "Blue alcoves",
+    "approach": "hearthE2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b61",
+    "door": [
+      70.05909906671849,
+      36,
+      -52.749810909386724
+    ],
+    "district": "Menders’ ledges",
+    "approach": "hearthE2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b62",
+    "door": [
+      68.12166404940189,
+      36,
+      -40.33564386726357
+    ],
+    "district": "Blue alcoves",
+    "approach": "hearthE2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b63",
+    "door": [
+      68.06482762512286,
+      36,
+      -29.064352124929428
+    ],
+    "district": "Velvet galleries",
+    "approach": "hearthE2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b64",
+    "door": [
+      69.01148100576364,
+      36,
+      -18.571901726303622
+    ],
+    "district": "Velvet galleries",
+    "approach": "hearthE2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b65",
+    "door": [
+      68.58941620885861,
+      36,
+      -7.309004275593907
+    ],
+    "district": "Oven terraces",
+    "approach": "hearthE2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b66",
+    "door": [
+      66.52666216699407,
+      36,
+      2.665668085915968
+    ],
+    "district": "Hearth rows",
+    "approach": "hearthE2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b67",
+    "door": [
+      70.8690197765315,
+      36,
+      15.934557198546827
+    ],
+    "district": "Oven terraces",
+    "approach": "hearthE2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b68",
+    "door": [
+      71.22378615436145,
+      36,
+      24.082823872799054
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthE2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b69",
+    "door": [
+      66.3275773624843,
+      36,
+      36.04756059544161
+    ],
+    "district": "Ribbon terraces",
+    "approach": "hearthE2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b70",
+    "door": [
+      69.39635134983808,
+      36,
+      47.30171602568589
+    ],
+    "district": "Hearth rows",
+    "approach": "hearthE2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "b71",
+    "door": [
+      67.91584997199942,
+      36,
+      57.846296383067966
+    ],
+    "district": "Velvet galleries",
+    "approach": "hearthE2",
+    "status": "gallery-only; individual door spur deferred"
+  },
+  {
+    "id": "villa01",
+    "door": [
+      -79.3,
+      60,
+      8.80000000000001
+    ],
+    "district": "Western Grotto",
+    "approach": "villa01",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa02",
+    "door": [
+      -79.3,
+      62.5,
+      17.600000000000012
+    ],
+    "district": "Western Grotto",
+    "approach": "villa02",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa03",
+    "door": [
+      -79.3,
+      60,
+      26.400000000000013
+    ],
+    "district": "Western Grotto",
+    "approach": "villa03",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa04",
+    "door": [
+      -79.3,
+      62.5,
+      35.20000000000001
+    ],
+    "district": "Western Grotto",
+    "approach": "villa04",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa05",
+    "door": [
+      -50.275292142363526,
+      76,
+      37.83021279348029
+    ],
+    "district": "Velvet Cliffs",
+    "approach": "villa05",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa06",
+    "door": [
+      -56.497831816805146,
+      78.5,
+      31.607673119038672
+    ],
+    "district": "Velvet Cliffs",
+    "approach": "villa06",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa07",
+    "door": [
+      -62.72037149124675,
+      76,
+      25.38513344459706
+    ],
+    "district": "Velvet Cliffs",
+    "approach": "villa07",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa08",
+    "door": [
+      -68.94291116568837,
+      78.5,
+      19.16259377015544
+    ],
+    "district": "Velvet Cliffs",
+    "approach": "villa08",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa09",
+    "door": [
+      79.3,
+      60,
+      8.8
+    ],
+    "district": "Eastern Fault",
+    "approach": "villa09",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa10",
+    "door": [
+      79.3,
+      62.5,
+      17.6
+    ],
+    "district": "Eastern Fault",
+    "approach": "villa10",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa11",
+    "door": [
+      79.3,
+      60,
+      26.400000000000002
+    ],
+    "district": "Eastern Fault",
+    "approach": "villa11",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa12",
+    "door": [
+      50.27529214236353,
+      76,
+      37.830212793480285
+    ],
+    "district": "The Crown",
+    "approach": "villa12",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa13",
+    "door": [
+      56.49783181680515,
+      78.5,
+      31.607673119038665
+    ],
+    "district": "The Crown",
+    "approach": "villa13",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa14",
+    "door": [
+      62.720371491246766,
+      76,
+      25.38513344459705
+    ],
+    "district": "The Crown",
+    "approach": "villa14",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa15",
+    "door": [
+      60.3,
+      44,
+      38.8
+    ],
+    "district": "Mixed galleries",
+    "approach": "villa15",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa16",
+    "door": [
+      60.3,
+      46.5,
+      47.6
+    ],
+    "district": "Mixed galleries",
+    "approach": "villa16",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa17",
+    "door": [
+      60.3,
+      44,
+      56.400000000000006
+    ],
+    "district": "Mixed galleries",
+    "approach": "villa17",
+    "status": "public landing; door closed"
+  },
+  {
+    "id": "villa18",
+    "door": [
+      60.3,
+      46.5,
+      65.2
+    ],
+    "district": "Mixed galleries",
+    "approach": "villa18",
+    "status": "public landing; door closed"
+  }
+]
