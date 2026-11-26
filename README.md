@@ -427,3 +427,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Level](worlds/kaykit-kilmainham/index.html), [layout](worlds/kaykit-kilmainham/layout.mjs), [browser test](worlds/kaykit-kilmainham/test-browser.mjs).
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0028" date="2026-11-25" -->
+### 2026-11-25 · R0028 — Kilmainham R004 navigation and CI erratum
+
+**Backwards:** Run 45737478695 failed before browser startup; replaced ambiguous overlapping floor selection with explicit stair state. Run 45737977286 passed all 15 route waypoints but Playwright 1.56.1 rejected ubuntu26.04-x64. Pin CI to supported Ubuntu 24.04 and prefer installed Chrome.
+
+**Forwards:** Confirm actual WebGL2 frames and keyboard input, then publish a live level.
+
+**Not yet:** New CI result and public deployment unverified; no full mesh collision.
+
+**Invariant impact:** World-specific layout and CI only, shared vendor unchanged. Prior commit 6a16d1f87ab68ada225f0edd7d62690f91db830c retained.
+
+**Evidence:** [Route passed, browser install failed](https://github.com/Vitra-Lumenhart/Webspace/actions/runs/45737977286), [workflow](.github/workflows/test-kilmainham.yml), [layout test](worlds/kaykit-kilmainham/test-layout.mjs).
+<!-- /WEBSPACE-LEDGER -->

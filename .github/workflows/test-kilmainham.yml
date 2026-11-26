@@ -11,7 +11,7 @@ permissions:
   contents: read
 jobs:
   playable:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +22,7 @@ jobs:
           node --check worlds/kaykit-kilmainham/game.mjs
           node worlds/kaykit-kilmainham/test-layout.mjs
           npm install --no-save playwright@1.56.1
-          npx playwright install --with-deps chromium
+          if command -v google-chrome >/dev/null; then echo "WEBSPACE_BROWSER_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"; else npx playwright install --with-deps chromium; fi
       - run: |
           python3 -m http.server 8000 --bind 127.0.0.1 &
           node worlds/kaykit-kilmainham/test-browser.mjs
