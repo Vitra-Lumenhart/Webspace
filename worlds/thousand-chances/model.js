@@ -19,9 +19,15 @@ const NODES=[
  ['homeRamp','Residential ramp',42,8,-13,-1,0,'Homes and workshops share heat.'],
  ['homes','Houses Above the Market',43,18,21,-1,-1,'Lit windows, laundry and a garden.'],
  ['homeBridge','Upper residential bridge',20,24,40,-1,-1,'A bridge joins the upper terraces.'],
- ['exit','The Return Tube',0,0,-75,0,1,'An independent, clearly marked return.']
+ ['exit','The Return Tube',0,0,-75,0,1,'An independent, clearly marked return.'],
+ ['silkGate','Silk Gate peddlers',10,30,63,-1,-1,'A side branch at the old caravan threshold; tea, flatbread and repairs.'],
+ ['silkShelf','The Silk Shelf',-15,26,43,-1,-1,'A sloping alternative to the main descent, above the carnival lights.'],
+ ['ribbonWalk','Ribbon Walk',32,24,37,1,-1,'Mixed households, laundry and small neighborhood shops.'],
+ ['blueLanding','Blue Landing',35,13,4,-1,-1,'A quiet intermediate shelf with books and cups.'],
+ ['returnCourt','The Farewell Court',14,0,-53,0,-1,'Last-minute provisions and a little performance platform.'],
+ ['returnShelf','The Lantern Fork',12,0,-65,-1,-1,'A choice of the old court route or a small peddler’s lane.']
 ].map(([id,name,x,y,z,dx,dz,desc])=>({id,name,x,y,z,dx,dz,desc}));
-const EDGES=[['entry','lantern'],['lantern','balcony'],['balcony','ramp1'],['ramp1','ramp2'],['ramp2','bazaar'],['bazaar','cross'],['bazaar','broken'],['cross','names'],['cross','broken'],['cross','fortunes'],['cross','commons'],['names','fortunes'],['names','homeRamp'],['broken','arts'],['arts','commons'],['arts','court'],['fortunes','commons'],['fortunes','quiet'],['commons','court'],['commons','quiet'],['court','exit'],['quiet','quays'],['quays','exit'],['quiet','homeRamp'],['homeRamp','homes'],['homes','homeBridge'],['homeBridge','balcony']];
+const EDGES=[['entry','lantern'],['lantern','balcony'],['balcony','ramp1'],['ramp1','ramp2'],['ramp2','bazaar'],['bazaar','cross'],['bazaar','broken'],['cross','names'],['cross','broken'],['cross','fortunes'],['cross','commons'],['names','fortunes'],['names','homeRamp'],['broken','arts'],['arts','commons'],['arts','court'],['fortunes','commons'],['fortunes','quiet'],['commons','court'],['commons','quiet'],['court','exit'],['quiet','quays'],['quays','exit'],['quiet','homeRamp'],['homeRamp','homes'],['homes','homeBridge'],['homeBridge','balcony'],['lantern','silkGate'],['silkGate','balcony'],['balcony','silkShelf'],['silkShelf','ramp1'],['homeBridge','ribbonWalk'],['ribbonWalk','homes'],['homes','blueLanding'],['blueLanding','homeRamp'],['commons','returnCourt'],['court','returnCourt'],['returnCourt','returnShelf'],['returnShelf','exit']];
 const byId=Object.fromEntries(NODES.map(n=>[n.id,n]));
 function neighbors(id){return EDGES.filter(e=>e.includes(id)).map(e=>e[0]===id?e[1]:e[0]);}
 function route(a,b,forbidden=[]){const ban=new Set(forbidden);if(ban.has(b)||!byId[a]||!byId[b])return null;const q=[[a]],seen=new Set([a]);while(q.length){const p=q.shift(),n=p.at(-1);if(n===b)return p;for(const k of neighbors(n))if(!seen.has(k)&&!ban.has(k)){seen.add(k);q.push([...p,k]);}}return null;}
@@ -39,4 +45,26 @@ function rivalTick(s){if(s.outcome!=='active')return;if(s.rivalHalf){if(s.rivalH
 function step(s,action){if(!choices(s).includes(action))return null;const t=JSON.parse(JSON.stringify(s));t.round++;if(action==='leave'){t.half=null;t.outcome='left';t.trace.push('Explicit legal withdrawal.');return t;}if(action==='guard'){t.guard=true;t.trace.push('You secure the fictional purse and wait.');}else if(action==='retreat'){t.half=null;t.trace.push('You return to your anchor.');}else if(action==='continue'){t.player=t.half.to;t.half=null;t.guard=false;t.trace.push('Full anchor transfer: '+t.player);if(EXITS.includes(t.player))t.outcome='evaded';}else{t.half={from:t.player,to:action.slice(5)};t.guard=false;t.trace.push('Half step toward '+t.half.to);}
  rivalTick(t);if(t.outcome==='active'){const close=frameRadius(t)===1;t.pressure=t.guard||!close?0:(t.pressure||0)+1;if(t.pressure>=4){t.half=null;t.outcome='tagged';t.trace.push('The rival reaches practice-tag range. Your fictional purse stays yours.');}}if(t.round>=12&&t.outcome==='active'){t.half=null;t.outcome='left';t.trace.push('Practice frame ends; no loss.');}return t;}
 function alternative(s,target){const opts=neighbors(s.player).filter(n=>n!==blocked(s));return opts.sort((a,b)=>(route(a,target)?.length||999)-(route(b,target)?.length||999)||edgeLength(s.player,a)-edgeLength(s.player,b))[0]||null;}
-if(typeof module!=='undefined')module.exports={NODES,EDGES,byId,neighbors,route,edgeLength,rng,generate,DISTRICT,EXITS,beginEncounter,blocked,choices,step,alternative,frameRadius};
+
+// Residential styling only; never mutate the generated buildings or their dimensions.
+const QUARTERS=[
+ {id:'carnival',name:'Ribbon terraces',colors:['#8d654c','#936a7c','#79734d','#6b8264'],trim:'#d1ab55',light:'#f1ba6b'},
+ {id:'ordinary',name:'Hearth rows',colors:['#a28b70','#8b7c68','#7d8b83','#a69581'],trim:'#c4ab86',light:'#e8c997'},
+ {id:'reclaimer',name:'Menders’ ledges',colors:['#805f4b','#68776b','#9b8158','#77645d'],trim:'#bd9461',light:'#e4b477'},
+ {id:'storyteller',name:'Painted cloth houses',colors:['#536c83','#8b5751','#a38b5d','#657f7c'],trim:'#cbaa6a',light:'#e7cc85'},
+ {id:'masquerade',name:'Velvet galleries',colors:['#74637b','#976779','#947f83','#5c566a'],trim:'#d1a3a7',light:'#edbdcb'},
+ {id:'commoner',name:'Oven terraces',colors:['#738164','#9b8a70','#9b6653','#788982'],trim:'#c4ac82',light:'#e8c48a'},
+ {id:'quiet',name:'Blue alcoves',colors:['#4e6570','#738587','#77756a','#9a9986'],trim:'#8eaeb0',light:'#afd0cb'},
+ {id:'cyberpunk',name:'The little signal house',colors:['#414c55','#50485c'],trim:'#62b6b6',light:'#79d8d7'}];
+function residentialStyle(b){let j=Number(b.id.slice(1))%12;let i=b.side<0?(j<3?2:j<6?3:j<9?0:1):(j<3?6:j<5?4:j<8?5:j<10?0:1);if(b.tier===1&&j===7&&b.side>0)i=7;else if((j+b.tier*2)%5===0)i=(i+1+b.tier)%7;let q=QUARTERS[i];return {id:q.id,name:q.name,mixed:(j+b.tier*2)%5===0,wall:q.colors[(b.palette+b.tier)%q.colors.length],trim:q.trim,light:q.light};}
+const ROADSIDE=[
+ {id:'silkTea',anchor:'silkGate',x:14,y:30,z:65,sign:'SILK GATE TEA',detail:'Mugs and warm provisions for the road.',kind:'mug'},
+ {id:'silkBooks',anchor:'silkGate',x:16,y:30,z:58,sign:'THE TRAVELING BOOK',detail:'A little stack of tales from distant worlds.',kind:'books'},
+ {id:'shelfBread',anchor:'silkShelf',x:-20,y:26,z:44,sign:'SHELF FLATBREAD',detail:'Hot flatbread on a plate, a rest before the descent.',kind:'pizza'},
+ {id:'ribbonShop',anchor:'ribbonWalk',x:36,y:24,z:38,sign:'RIBBON BODEGA',detail:'Everyday goods and a mug for the neighbor.',kind:'mug'},
+ {id:'blueBooks',anchor:'blueLanding',x:30,y:13,z:4,sign:'BLUE LANDING BOOKS',detail:'A quiet shelf of used books. No shouted advertisements.',kind:'books'},
+ {id:'farewellBread',anchor:'returnCourt',x:18,y:0,z:-53,sign:'FAREWELL OVEN',detail:'A last flatbread before the road.',kind:'pizza'},
+ {id:'forkTea',anchor:'returnShelf',x:16,y:0,z:-66,sign:'LANTERN FORK',detail:'Tea, cups and an empty performer’s rug.',kind:'mug'}];
+function pathDistance3(p,a,b){let d=[b.x-a.x,b.y-a.y,b.z-a.z],q=[p.x-a.x,p.y-a.y,p.z-a.z],u=Math.max(0,Math.min(1,q.reduce((v,x,i)=>v+x*d[i],0)/(d.reduce((v,x)=>v+x*x,0)||1)));return Math.hypot(...q.map((x,i)=>x-d[i]*u));}
+
+if(typeof module!=='undefined')module.exports={NODES,EDGES,byId,neighbors,route,edgeLength,rng,generate,DISTRICT,EXITS,beginEncounter,blocked,choices,step,alternative,frameRadius,QUARTERS,residentialStyle,ROADSIDE,pathDistance3};

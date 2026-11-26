@@ -418,3 +418,14 @@ No gameplay change. Copy the actual five-view R0002 native report into `evidence
 **Invariant impact:** no auto crime, votes, transactions, identity inference or bank dependency; camera stays player-owned. Prior main 46f096414d934d67369da07f1384dace6330a506 preserved.
 **Evidence:** 54,010 graph + 1,066 UI/mock + 7,329 culture checks; six native GLES views with four textured screens, zero errors. [Source archive](https://drive.google.com/file/d/1s00dZqWT0sJwJMOHvFlf8gsB6iTWQ6EU/view).
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0028" date="2026-11-26" -->
+### R0028 — TC-R0004: The Silk Roads and the Inhabited Terraces
+**Backwards:** R0027 preserved; all 72 original building records, 19 anchors, 27 edges, camera contract, existing actors, Carnival lights and screens retained. No new people.
+**Changed:** eight decorative residential influences, 16 mixed frontages, six new anchors and 12 edges, seven roadside offers, two empty performance rugs. Belowroads-derived Cave Lite uses boundary sampling and procedural bedding, no voxel volume; 7,200 → 4,800 shell vertices. Static attributes packed from 40 to 24 bytes, actual buffer 5,362,080 → 4,850,784 bytes. Three CC0 prop types from actual Vitra Drive Complete KayKit Collection v8; no imported walls, structures or technology. [Residential atlas](worlds/thousand-chances/RESIDENTIAL_ATLAS.md).
+**Forwards:** refine roadside architecture, pedestrian clearance and cultural material vocabulary; eventual performer simulation and real portal integration.
+**Not yet:** browser/audio acceptance, CPU/total memory benchmark, general collision, detailed interiors, new characters, true historical simulation. KayKit original OBJ/texture sources stored in editable Drive ZIP, not in GitHub; embedded converted geometry and conversion script committed.
+**Invariant impact:** original building records identical for six seeds; old routes retained, camera player-owned, Gringotts external; no transactions, new identity logic or automatic crime. Prior main 690891283d9f04e97148ac142283dd0de4926865 preserved.
+**Evidence:** 79,343 graph/practice, 1,102 UI mock, 7,329 culture, 1,804 residence/cave/packing checks; ten native GLES views zero errors. [Source archive](https://drive.google.com/file/d/1-yoDXIWHzlJC_oDQWWay1LjyHa01yA5r/view).
+<!-- /WEBSPACE-LEDGER -->

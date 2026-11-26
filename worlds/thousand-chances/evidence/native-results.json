@@ -1,7 +1,7 @@
 {
   "texturedScreens": 4,
   "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
-  "vertices": 134052,
+  "vertices": 202116,
   "wheelVertices": 7308,
   "buildings": 72,
   "walkers": 60,
@@ -30,6 +30,24 @@
     {
       "id": "orchard",
       "glError": 0
+    },
+    {
+      "id": "silkGate",
+      "glError": 0
+    },
+    {
+      "id": "ribbonWalk",
+      "glError": 0
+    },
+    {
+      "id": "blueLanding",
+      "glError": 0
+    },
+    {
+      "id": "returnCourt",
+      "glError": 0
     }
-  ]
+  ],
+  "staticStride": 24,
+  "staticBytes": 4850784
 }

@@ -1,0 +1,32 @@
+{
+  "creator": "Kay Lousberg, www.kaylousberg.com",
+  "license": "CC0 1.0",
+  "license_drive": "https://drive.google.com/file/d/18lJqHaa5ih0a26nCbHHgQ1fbKEx8WlKz/view",
+  "conversion": "original OBJ faces triangulated, UV centroid sampled from original atlas, quantized positions, face colors; no walls, people or tech",
+  "assets": [
+    {
+      "key": "mug",
+      "source": "mug_A.obj",
+      "texture": "furniturebits_texture.png",
+      "drive": "1j8cy_goL-7UL0ArxgiiXYAfIY6MHGfy8",
+      "triangles": 240,
+      "bytes": 5040
+    },
+    {
+      "key": "books",
+      "source": "book_set.obj",
+      "texture": "furniturebits_texture.png",
+      "drive": "1OWGHxALs4XPpRs1q6yXt3k1hbXaxC9rV",
+      "triangles": 196,
+      "bytes": 4116
+    },
+    {
+      "key": "pizza",
+      "source": "food_pizza_cheese_plated.obj",
+      "texture": "restaurantbits_extra.png",
+      "drive": "1g6FnMDQIEoZIAy59rt8Rk7z3DB955QZd",
+      "triangles": 3256,
+      "bytes": 68376
+    }
+  ]
+}

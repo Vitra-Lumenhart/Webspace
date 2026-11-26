@@ -15,8 +15,9 @@ link(prog);ok=I();getpr(prog,0x8B82,c.byref(ok));assert ok.value;use(prog)
 genva=B('glGenVertexArrays',None,I,c.POINTER(U));bindva=B('glBindVertexArray',None,U);genbuf=B('glGenBuffers',None,I,c.POINTER(U));bindbuf=B('glBindBuffer',None,U,U);bufdata=B('glBufferData',None,U,c.c_ssize_t,P,U);enableattr=B('glEnableVertexAttribArray',None,U);attr=B('glVertexAttribPointer',None,U,I,U,U,I,P);draw=B('glDrawArrays',None,U,I,I);clear=B('glClear',None,U);clearcolor=B('glClearColor',None,F,F,F,F);viewport=B('glViewport',None,I,I,I,I);read=B('glReadPixels',None,I,I,I,I,U,U,P);geterr=B('glGetError',U);enable=B('glEnable',None,U);getstr=B('glGetString',c.c_char_p,U);enable(0xB71);clearcolor(.045,.052,.065,1);viewport(0,0,w,h);meshes=[]
 for i in range(3):
  raw=(p/f'mesh{i}.bin').read_bytes();vao=U();buf=U();genva(1,c.byref(vao));bindva(vao);genbuf(1,c.byref(buf));bindbuf(0x8892,buf);bufdata(0x8892,len(raw),c.c_char_p(raw),0x88E4)
- for loc,nn,off in [(0,3,0),(1,3,12),(2,4,24)]:enableattr(loc);attr(loc,nn,0x1406,0,40,P(off))
- meshes.append((vao,len(raw)//40))
+ stride=m.get("staticStride",40) if i==0 else 40
+ for loc,nn,typ,normalized,off in ([(0,3,0x1406,0,0),(1,3,0x1402,1,12),(2,4,0x1401,1,18)] if stride==24 else [(0,3,0x1406,0,0),(1,3,0x1406,0,12),(2,4,0x1406,0,24)]):enableattr(loc);attr(loc,nn,typ,normalized,stride,P(off))
+ meshes.append((vao,len(raw)//stride))
 # Verify actual screen shader and texture atlas in native GLES, independently of browser.
 import re
 sr=(p/'render.js').read_text();shader_text=re.findall(r'sh\(gl\.(VERTEX_SHADER|FRAGMENT_SHADER),`(#version 300 es.*?\n.*?)`\)',sr,re.S);assert len(shader_text)==2
