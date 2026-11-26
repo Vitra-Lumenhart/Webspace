@@ -483,3 +483,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Director's commentary](worlds/katkit-kilmainham/DIRECTORS_COMMENTARY.md), [PR #24 discussion](https://github.com/Vitra-Lumenhart/Webspace/pull/24). Ten posted comments read back.
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0032" date="2026-11-26" -->
+### 2026-11-26 · R0032 — Kilmainham classical cinema school
+
+**Backwards:** Preserve the ten earlier director notes; add twelve posted and verified classical cinema studies and twenty original scene directives.
+
+**Forwards:** Silent staging, sacred drama, prison cinema, Japanese and international humanism, courtroom drama, ensemble scenes, historical palette and psychological suspense.
+
+**Not yet:** All proposed scenes, visual design and district expansions remain creative objectives, not shipped features.
+
+**Invariant impact:** Documentation only; no gameplay or shared runtime changes. Prior head 452fd088b80865261cd7e86b81858a31e0c8897a preserved.
+
+**Evidence:** [Classical Cinema School](worlds/katkit-kilmainham/CLASSICAL_CINEMA_SCHOOL.md), [PR #24 discussion](https://github.com/Vitra-Lumenhart/Webspace/pull/24); twelve comments read back.
+<!-- /WEBSPACE-LEDGER -->

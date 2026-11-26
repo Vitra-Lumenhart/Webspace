@@ -26,3 +26,6 @@ Nine original CC0 KayKit GLBs are vendored with embedded textures; no source ani
 
 ## Director's commentary — forward direction
 Ten design notes covering the five districts and historical ages, dramatic references, the Choir and the next playable release are preserved in [DIRECTORS_COMMENTARY.md](DIRECTORS_COMMENTARY.md) and [PR #24](https://github.com/Vitra-Lumenhart/Webspace/pull/24). These are plans, not shipped features.
+
+## Classical Cinema School
+[Read the twelve additional director notes and twenty-scene rehearsal](CLASSICAL_CINEMA_SCHOOL.md). Original forward creative objectives, not shipped features.
