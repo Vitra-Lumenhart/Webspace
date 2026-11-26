@@ -369,3 +369,75 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Model tests](tests/gringotts-r0001.mjs), [results](worlds/gringotts/evidence/r0001-tests.json); 44 assertions passed on patched source.
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0024" date="2026-11-25" -->
+### 2026-11-25 · R0024 — KatKit Kilmainham R001 candidate
+
+**Backwards:** Eight-node independent asylum, original dilemmas, actual KayKit geometry, Luna sky, legacy rose and Witch fern functions.
+
+**Forwards:** Texture atlas, current Garden source, Witch sprites, movement and portal acceptance.
+
+**Not yet:** Browser, GPU, visual, covenant and regression checks; no public deployment or accepted release.
+
+**Invariant impact:** Existing worlds untouched; base 5137a507cbb39bd29a78eb1e751c6e11ed99aec4 retained; no private data transfer or portal change.
+
+**Evidence:** [World](worlds/katkit-kilmainham/index.html), [README](worlds/katkit-kilmainham/README.md), [manual](worlds/katkit-kilmainham/TECH_MANUAL.html); 36 static graph and option assertions.
+<!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0025" date="2026-11-25" -->
+### 2026-11-25 · R0025 — KayKit Kilmainham R002 asset laboratory
+
+**Backwards:** Correct title and canonical candidate directory; R001 narrative preserved at original URL and as chronicle. WebGL2 textured asset viewer with five original KayKit meshes and two atlases.
+
+**Forwards:** Verify actual GPU rendering and architectural dimensions, then integrate shared Webspace navigation, sky and flora.
+
+**Not yet:** Headless Chromium refused WebGL2 initialization; rendered pixels, covenant, portal, cross-world regression and deployment unverified. Fixed viewpoints, no walking. Procedural structural geometry is provisional, not a measured Gaol survey.
+
+**Invariant impact:** No accepted worlds or portal contracts changed. R001 retained at 9824cf8082fb2a6c391f10a2cf3f16f0137e44fb; candidate only.
+
+**Evidence:** [Viewer](worlds/kaykit-kilmainham/index.html), [source](worlds/kaykit-kilmainham/viewer.js), [manual](worlds/kaykit-kilmainham/TECH_MANUAL.html). Node syntax and five OBJ UV checks, two PNG decode checks passed.
+<!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0026" date="2026-11-25" -->
+### 2026-11-25 · R0026 — KayKit Kilmainham R003: native glTF laboratory
+
+**Backwards:** Replace custom OBJ renderer with existing Kilns Three.js r168 and original KayKit glTF/buffers/texture atlas. Eight asset inspections and three-tier court study.
+
+**Forwards:** GPU inspection, fix stairs/gallery joins at native dimensions, verify module snapping; integrate independent world navigation later.
+
+**Not yet:** Browser/GPU/pixel verification, runtime interaction, covenant and regression tests; rail/roof placeholders, staircase not connected. No portal or deploy.
+
+**Invariant impact:** Candidate only; all other worlds untouched; R002 rollback 4ef955ea1ac634550677da49b426310fd11819dc. Reuse existing MIT vendor and CC0 KayKit assets.
+
+**Evidence:** [Viewer](worlds/kaykit-kilmainham/index.html), [offline distribution](worlds/kaykit-kilmainham/standalone.html), [manual](worlds/kaykit-kilmainham/TECH_MANUAL.html). Eight glTF manifests, buffer lengths/ranges, PNG signatures and JS syntax checked.
+<!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0027" date="2026-11-25" -->
+### 2026-11-25 · R0027 — KayKit Kilmainham R004: The East Wing
+
+**Backwards:** Replace asset laboratory entry with playable three-tier court, movement, stair transitions, three seals and return objective. Preserve R003 in Git.
+
+**Forwards:** Actual browser and hosted URL verification, full mesh collision, cells and world narrative.
+
+**Not yet:** Full physical collision, measured reconstruction, flora, sky, portals; publication and browser test results pending.
+
+**Invariant impact:** Independent world only; shared vendor unchanged; R003 rollback 1919c743f3bbcba780cd1a8e82476582ac22229e.
+
+**Evidence:** [Level](worlds/kaykit-kilmainham/index.html), [layout](worlds/kaykit-kilmainham/layout.mjs), [browser test](worlds/kaykit-kilmainham/test-browser.mjs).
+<!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0028" date="2026-11-25" -->
+### 2026-11-25 · R0028 — Kilmainham R004 navigation and CI erratum
+
+**Backwards:** Run 45737478695 failed before browser startup; replaced ambiguous overlapping floor selection with explicit stair state. Run 45737977286 passed all 15 route waypoints but Playwright 1.56.1 rejected ubuntu26.04-x64. Pin CI to supported Ubuntu 24.04 and prefer installed Chrome.
+
+**Forwards:** Confirm actual WebGL2 frames and keyboard input, then publish a live level.
+
+**Not yet:** New CI result and public deployment unverified; no full mesh collision.
+
+**Invariant impact:** World-specific layout and CI only, shared vendor unchanged. Prior commit 6a16d1f87ab68ada225f0edd7d62690f91db830c retained.
+
+**Evidence:** [Route passed, browser install failed](https://github.com/Vitra-Lumenhart/Webspace/actions/runs/45737977286), [workflow](.github/workflows/test-kilmainham.yml), [layout test](worlds/kaykit-kilmainham/test-layout.mjs).
+<!-- /WEBSPACE-LEDGER -->

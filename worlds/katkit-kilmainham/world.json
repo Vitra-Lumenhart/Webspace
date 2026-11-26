@@ -1,0 +1,209 @@
+[
+  [
+    "arrival",
+    "Petition Gate",
+    1,
+    [
+      "hall",
+      "garden",
+      "roof"
+    ],
+    "Year 417 of the Silver Regency. The abbey became a refuge, then a court, then a prison for people whose testimony contradicted the Crown’s magical census. You arrive with a blank writ.",
+    "Wide low horizon; monumental stone."
+  ],
+  [
+    "hall",
+    "East Hall of Names",
+    0,
+    [
+      "arrival",
+      "pair",
+      "archive",
+      "chapel"
+    ],
+    "Registrar Nessa keeps the names of people officially declared impossible. Two tiers of cells face the court.",
+    "Axial symmetry; amber against slate."
+  ],
+  [
+    "pair",
+    "The Two Witnesses",
+    0,
+    [
+      "hall",
+      "garden"
+    ],
+    "Mara and Ivo saw a royal seal change its words. Both face the same private offer. Ivo keeps the pact when community trust is nonnegative before your decision.",
+    "Parallel framing, divided by a pier.",
+    "Keep the shared testimony or take the bargain?",
+    [
+      [
+        "Keep the pact",
+        "Both keep: 1 year each. You keep alone: 6 years for you, 0 for Ivo.",
+        0,
+        2,
+        1
+      ],
+      [
+        "Take the bargain",
+        "Both defect: 3 years each. You defect alone: 0 for you, 6 for Ivo.",
+        2,
+        -2,
+        -1
+      ]
+    ]
+  ],
+  [
+    "archive",
+    "Palimpsest Archive",
+    0,
+    [
+      "hall",
+      "mirror"
+    ],
+    "Siofra’s uncensored register establishes that vanished neighborhoods existed. Publishing it would expose witnesses still hiding.",
+    "Close-up of a page; empty shelves.",
+    "What should become of the ledger?",
+    [
+      [
+        "Redact names; release evidence",
+        "The city receives a disputed but safer record.",
+        0,
+        1,
+        2
+      ],
+      [
+        "Publish everything",
+        "The full record survives; witnesses lose anonymity.",
+        1,
+        -2,
+        3
+      ],
+      [
+        "Seal it",
+        "Witnesses remain safe; the record is incomplete.",
+        0,
+        2,
+        -1
+      ]
+    ]
+  ],
+  [
+    "garden",
+    "Garden of Unsent Letters",
+    1,
+    [
+      "arrival",
+      "pair",
+      "chapel"
+    ],
+    "Roses surround a well where letters are visible only to their authors. Eamon asks you to carry one without reading it.",
+    "Fern silhouettes, open sky, quiet long take.",
+    "How will you handle the letter?",
+    [
+      [
+        "Carry unopened",
+        "Eamon receives the first reply in eleven years.",
+        0,
+        2,
+        0
+      ],
+      [
+        "Ask permission",
+        "He agrees to share only the address.",
+        0,
+        1,
+        1
+      ],
+      [
+        "Decline",
+        "The letter stays safely in the garden.",
+        1,
+        0,
+        0
+      ]
+    ]
+  ],
+  [
+    "chapel",
+    "Chapel of the Unsworn",
+    0,
+    [
+      "hall",
+      "garden",
+      "mirror"
+    ],
+    "Sister Aveline admits her former loyalty helped legitimize the court. A wand reveals words of an oath, not the thoughts of its speaker.",
+    "Candle hue; negative space.",
+    "Which testimony belongs in the record?",
+    [
+      [
+        "Preserve both versions",
+        "The contradiction survives.",
+        0,
+        1,
+        2
+      ],
+      [
+        "Keep only the recantation",
+        "The current testimony is clearer, its context lost.",
+        1,
+        0,
+        -1
+      ],
+      [
+        "Allow withdrawal",
+        "Her privacy survives; historians lose a witness.",
+        0,
+        2,
+        -2
+      ]
+    ]
+  ],
+  [
+    "mirror",
+    "Chamber of the Second Verdict",
+    0,
+    [
+      "archive",
+      "chapel",
+      "roof"
+    ],
+    "An enchanted mirror produces contradictory versions of your signature. It is evidence of fallible magic, not a judge of minds.",
+    "Delayed reveal; restrained reflection.",
+    "Which image will you submit?",
+    [
+      [
+        "Submit both with uncertainty",
+        "No honest court can claim a single result.",
+        0,
+        1,
+        2
+      ],
+      [
+        "Submit favorable image",
+        "Your case advances; the record is misleading.",
+        2,
+        -1,
+        -1
+      ],
+      [
+        "Reject mirror as evidence",
+        "The hearing continues without a shortcut.",
+        0,
+        1,
+        1
+      ]
+    ]
+  ],
+  [
+    "roof",
+    "Roof of the Common Pardon",
+    1,
+    [
+      "mirror",
+      "arrival"
+    ],
+    "The city gathers below. The council must decide what to do with the asylum. No single number determines justice.",
+    "Wide horizon returns; dawn reveals the walls."
+  ]
+]

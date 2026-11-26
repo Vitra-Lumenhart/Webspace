@@ -127,5 +127,15 @@
       }
     }
   ],
-  "release_note": "Webspace v8 canonical source accepted: Elisium 4.6 retained with 12 schematic sky signs, Ahura Mazda/Tir references, 7 points, 64 readers, Kilns nested H-object pairs, and quiet-circle exit. Hosting separately verified."
+  "release_note": "Webspace v8 canonical source accepted: Elisium 4.6 retained with 12 schematic sky signs, Ahura Mazda/Tir references, 7 points, 64 readers, Kilns nested H-object pairs, and quiet-circle exit. Hosting separately verified.",
+  "candidates": [
+    {
+      "id": "kaykit-kilmainham",
+      "name": "KayKit Kilmainham",
+      "entry": "worlds/kaykit-kilmainham/index.html",
+      "version": "R004 The East Wing",
+      "status": "playable implementation; browser and deployment verification pending",
+      "engine": "Three.js r168 / GLTFLoader / OrbitControls (WebGL2)"
+    }
+  ]
 }
