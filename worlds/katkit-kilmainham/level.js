@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { material, projectUV, reskinMesh, applyMaterialMaps, addCharacters } from './kilmainham-materials.js';
 
-// Architectural revision R008, photo-based geometry and alternating structural bands:
+// Architectural revision R009, photo-based geometry and alternating structural bands:
 // - only two interior testimony nodes remain (hall and chapel)
 // - three door tiers separated by two full-height doorless structural bands
 // - bridge trusses, overhead roof cage, buttresses, roof arches, oval oculus, cage lights
@@ -51,12 +52,8 @@ scene.add(new THREE.HemisphereLight(0xe5eeff,0xb4a28a,2.0));
 const sun=new THREE.DirectionalLight(0xfff2d9,2.6);sun.position.set(-4,ROOF_APEX_Y+9,3);sun.target.position.set(0,2,-2);sun.castShadow=true;
 Object.assign(sun.shadow.camera,{left:-26,right:26,top:42,bottom:-42,near:.5,far:130});sun.shadow.mapSize.set(2048,2048);sun.shadow.bias=-.00055;scene.add(sun,sun.target);
 
-const stone=new THREE.MeshStandardMaterial({color:0xc8bd9f,roughness:.95});
-const floorMat=new THREE.MeshStandardMaterial({color:0x8c8272,roughness:1});
-const iron=new THREE.MeshStandardMaterial({color:0x52636d,metalness:.32,roughness:.65});
-const trim=new THREE.MeshStandardMaterial({color:0x849299,metalness:.32,roughness:.66});
-const steelBlue=new THREE.MeshStandardMaterial({color:0x657d8c,metalness:.38,roughness:.6});
-const rustSteel=new THREE.MeshStandardMaterial({color:0x806b50,metalness:.15,roughness:.8});
+const stone=material('masonry'), floorMat=material('flags');
+const iron=material('iron'),trim=material('iron'),steelBlue=material('iron'),rustSteel=material('iron');
 const gold=new THREE.MeshStandardMaterial({color:0xd6b96e,emissive:0x8d6324,emissiveIntensity:.55,metalness:.6});
 const glass=new THREE.MeshStandardMaterial({color:0xa6bfd0,transparent:true,opacity:.24,roughness:.34,metalness:.1,side:THREE.DoubleSide,depthWrite:false});
 const lampGlow=new THREE.MeshStandardMaterial({color:0xf1d8a4,emissive:0xc89a4a,emissiveIntensity:1.4});
@@ -72,7 +69,7 @@ function lamp(x,y,z,color,intensity=7,range=16,decay=1.7){const l=new THREE.Poin
 const loader=new GLTFLoader(), models={};
 let embedded={};
 const ASSETS=['floor_tile_large','table_medium','chest'];
-const CUSTOM=['Cell_Bay_Tall_A','Interstory_Blank_A','Crown_Arch_A','Crown_Blank_A','Apse_Cell_Bay_Tall_A','Apse_Interstory_Blank_A','Apse_Crown_Arch_A','Apse_Crown_Blank_A','Gallery_Cage_Barrel_A'];
+const CUSTOM=['Cell_Bay_Tall_A','Interstory_Blank_A','Crown_Arch_A','Crown_Blank_A','Apse_Interstory_Blank_A','Apse_Crown_Arch_A','Apse_Crown_Blank_A','Gallery_Cage_Barrel_A'];
 const instances=new Map();
 async function load(){
   const response=await fetch(new URL('./assets/r008-models.json',import.meta.url));
@@ -81,17 +78,24 @@ async function load(){
   await Promise.all([...ASSETS,...CUSTOM].map(async key=>{
     const g=CUSTOM.includes(key)?(embedded[key]?.glb?await loader.parseAsync(Uint8Array.from(atob(embedded[key].glb),c=>c.charCodeAt(0)).buffer,''):await loader.loadAsync(`./assets/${key}.glb`)):(embedded[key]?await loader.parseAsync(JSON.stringify(embedded[key]),''):await loader.loadAsync(`./assets/${key}.gltf`));
     models[key]=g.scene;
-    g.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});
+    g.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;reskinMesh(o,key,library);}});
   }));
 }
 function place(key,x,y,z,s=1,yaw=0,ground=true){const o=models[key].clone(true);o.scale.setScalar(s);o.rotation.y=yaw;o.position.set(x,y,z);o.updateMatrixWorld(true);if(ground)o.position.y+=y-new THREE.Box3().setFromObject(o).min.y;scene.add(o);return o;}
 
 // R005 architectural asset families. All dimensions are scene metres, not surveyed dimensions.
-const wood=new THREE.MeshStandardMaterial({color:0xa67d50,roughness:.88,side:THREE.DoubleSide});
-const doorMat=new THREE.MeshStandardMaterial({color:0x273b3b,roughness:.8});
-const recess=new THREE.MeshStandardMaterial({color:0x423e36,roughness:1,side:THREE.DoubleSide});
-const surround=new THREE.MeshStandardMaterial({color:0xded4b8,roughness:.9});
-const shadeMat=new THREE.MeshStandardMaterial({color:0x718a94,metalness:.25,roughness:.8});
+const wood=material('boarding',{side:THREE.DoubleSide});
+const roofWood=material('boarding',{side:THREE.DoubleSide});
+const bridgeWood=material('boarding',{side:THREE.DoubleSide});
+const doorMat=material('oak');
+const recess=new THREE.MeshStandardMaterial({color:0x292923,roughness:1,side:THREE.DoubleSide});
+const surround=material('masonry');
+const shadeMat=material('iron');
+const library={masonry:stone,oak:doorMat,iron,boarding:wood,flags:floorMat,recess};
+const materialGroups={masonry:[stone,surround],oak:[doorMat],iron:[iron,trim,steelBlue,rustSteel,shadeMat],boarding:[wood,roofWood,bridgeWood],flags:[floorMat]};
+const uvKinds=new Map(Object.entries(materialGroups).flatMap(([key,materials])=>materials.map(m=>[m,key])));
+const mixers=[];let previousTime=0;
+const review={maps:0,failed:[],characters:0,characterFailed:0};
 const roofGlass=new THREE.MeshStandardMaterial({color:0xd7eaf5,transparent:true,opacity:.13,roughness:.2,side:THREE.DoubleSide,depthWrite:false});
 const cache={};
 function poly(points){const s=new THREE.Shape(); points.forEach(([x,y],i)=>i?s.lineTo(x,y):s.moveTo(x,y));s.closePath();return s;}
@@ -106,8 +110,13 @@ function queueAsset(key,x,y,z,rot=0,sx=1,sy=1,sz=1){
 function flushAssets(){for(const [key,matrices] of instances){const root=models[key];root.updateMatrixWorld(true);root.traverse(o=>{if(!o.isMesh)return;const batch=new THREE.InstancedMesh(o.geometry,o.material,matrices.length);matrices.forEach((m,i)=>batch.setMatrixAt(i,m.clone().multiply(o.matrixWorld)));batch.instanceMatrix.needsUpdate=true;batch.castShadow=true;batch.receiveShadow=true;batch.computeBoundingSphere();scene.add(batch);});}}
 function fullWall(x,z,rotation,width,apse=false,crownOpen=true){
  const pre=apse?'Apse_':'',scale=apse?1:width/(43/15);
+ // All doors use one FLAT cell module. At the apse, chord facets follow the curve;
+ // the surrounding blank bands and crown retain their curved wedge geometry.
+ const chordScale=apse?(2*HALL_HALF_WIDTH*Math.sin(Math.PI/20)+.012)/(43/15):scale;
+ const inward=apse?HALL_HALF_WIDTH*(1-Math.cos(Math.PI/20)):0;
+ const flatX=x+Math.sin(rotation)*inward,flatZ=z+Math.cos(rotation)*inward;
  for(let f=0;f<CELL_TIERS;f++){
-  queueAsset(pre+'Cell_Bay_Tall_A',x,f*LEVEL_PITCH,z,rotation,scale);
+  queueAsset('Cell_Bay_Tall_A',flatX,f*LEVEL_PITCH,flatZ,rotation,chordScale);
   if(f<CELL_TIERS-1)queueAsset(pre+'Interstory_Blank_A',x,f*LEVEL_PITCH+BAND,z,rotation,scale);
  }
  queueAsset(pre+(crownOpen?'Crown_Arch_A':'Crown_Blank_A'),x,CLERESTORY_Y,z,rotation,scale);
@@ -128,10 +137,16 @@ function galleryCage(A,B,deckY,width=1.37){
  const mid=[(A[0]+B[0])/2,(A[1]+B[1])/2];let a=A,b=B;
  let rot=Math.atan2(b[0]-a[0],b[1]-a[1]);const outward=[mid[0],Math.min(0,mid[1]-APSE_Z)];
  if(Math.cos(rot)*outward[0]-Math.sin(rot)*outward[1]<0){a=B;b=A;rot=Math.atan2(b[0]-a[0],b[1]-a[1]);}
- const len=Math.hypot(b[0]-a[0],b[1]-a[1]),n=Math.max(1,Math.round(len/1.0));
+ const len=Math.hypot(b[0]-a[0],b[1]-a[1]),n=Math.max(1,Math.round(len/1.22));
  for(let i=0;i<n;i++){const f=i/n;queueAsset('Gallery_Cage_Barrel_A',a[0]+(b[0]-a[0])*f,deckY,a[1]+(b[1]-a[1])*f,rot,width/1.37,1,len/n);}
 }
-function bridge(y,z,hasUpperFlight){const half=Math.min(INNER,wallHalf(z)-GALLERY_WIDTH+.08),span=2*half+.15;box(0,y-.10,z,span,.20,1.65,wood);for(const side of [-1,1]){mesh(bridgeWebGeometry(span),steelBlue,0,y-.18,z+side*.78);box(0,y-.19,z+side*.78,span,.075,.20,steelBlue); const gap=side===1||hasUpperFlight;const ranges=gap?[[-half,-.83],[.83,half]]:[[-half,half]];for(const [a,b] of ranges){cageTunnel3D([a,y,z],[b,y,z],1.34,1.02,.70,.82,5);}}}
+function bridge(y,z,hasUpperFlight){
+ const half=Math.min(INNER,wallHalf(z)-GALLERY_WIDTH+.08),span=2*half+.15;
+ box(0,y-.10,z,span,.20,1.65,bridgeWood);
+ for(const side of [-1,1]){mesh(bridgeWebGeometry(span),steelBlue,0,y-.18,z+side*.78);box(0,y-.19,z+side*.78,span,.075,.20,steelBlue);}
+ // One cage per span, not one identical cage per girder. Preserve open stair arrival.
+ for(const [a,b] of [[-half,-.83],[.83,half]])cageTunnel3D([a,y,z],[b,y,z],1.34,1.02,.70,1.05,5);
+}
 // F: curved wall-mounted gallery bracket (the actual small cantilever, distinct from bridge web).
 function buttress(x,z,angle,y){const d=[Math.sin(angle),Math.cos(angle)];const P=(u,v)=>[x+d[0]*u,y+v,z+d[1]*u];beam(P(0,-1.02),P(0,-.10),.095,iron);beam(P(0,-.10),P(GALLERY_WIDTH,-.10),.075,iron);const pts=[];for(let i=0;i<=9;i++){let f=i/9;pts.push(P(GALLERY_WIDTH*(1-Math.cos(f*Math.PI/2)), -1.02+.92*Math.sin(f*Math.PI/2)));}for(let i=1;i<pts.length;i++)beam(pts[i-1],pts[i],.065,iron);}
 // G: photograph-derived shallow metal shade on a discreet side bracket, no chandelier.
@@ -149,8 +164,15 @@ const STAIR_RUN=9.1, STAIR_RISERS=35, STAIR_WIDTH=1.35;
 function stairRiserGeometry(){if(cache.riser)return cache.riser;const dy=LEVEL_PITCH/STAIR_RISERS;const sh=poly([[-STAIR_WIDTH/2,0],[STAIR_WIDTH/2,0],[STAIR_WIDTH/2,dy],[-STAIR_WIDTH/2,dy]]);for(let k=0;k<9;k++){const hole=new THREE.Path();hole.absellipse(-.60+k*.15,dy*.50,.057,.062,0,Math.PI*2,false);sh.holes.push(hole);}return cache.riser=extrusion(sh,.025);}
 function stairFlight(y,z){const dy=LEVEL_PITCH/STAIR_RISERS,dz=STAIR_RUN/STAIR_RISERS;
  for(let i=0;i<STAIR_RISERS;i++){const yy=y+i*dy,zz=z-i*dz;mesh(stairRiserGeometry(),steelBlue,0,yy,zz);box(0,yy+dy-.025,zz-dz/2,STAIR_WIDTH,.05,dz+.016,wood);}
- for(const side of [-1,1]){beam([side*.70,y+.02,z],[side*.70,y+LEVEL_PITCH+.02,z-STAIR_RUN],.14,steelBlue);for(let h=.28;h<2.05;h+=.19)beam([side*.72,y+h,z],[side*.72,y+LEVEL_PITCH+h,z-STAIR_RUN],.022,trim);}
- cageTunnel3D([0,y,z],[0,y+LEVEL_PITCH,z-STAIR_RUN],1.26,1.02,.64,.76,5);
+ for(const side of [-1,1]){
+  beam([side*.70,y+.02,z],[side*.70,y+LEVEL_PITCH+.02,z-STAIR_RUN],.14,steelBlue);
+  // Continuous handrail and supported lower side bars; curved overhead cage begins farther up.
+  for(let h=.28;h<1.10;h+=.19)beam([side*.72,y+h,z],[side*.72,y+LEVEL_PITCH+h,z-STAIR_RUN],.022,trim);
+  beam([side*.72,y+1.10,z],[side*.72,y+LEVEL_PITCH+1.10,z-STAIR_RUN],.055,iron);
+  for(let i=0;i<=STAIR_RISERS;i+=3){const f=Math.min(i/STAIR_RISERS,1),zz=z-f*STAIR_RUN,yy=y+f*LEVEL_PITCH;beam([side*.72,yy,zz],[side*.72,yy+1.10,zz],.038,iron);}
+ }
+ const cageStart=12/STAIR_RISERS;
+ cageTunnel3D([0,y+LEVEL_PITCH*cageStart,z-STAIR_RUN*cageStart],[0,y+LEVEL_PITCH,z-STAIR_RUN],1.26,1.35,.64,.76,5);
 }
 
 function figure(x,z,c){const m=new THREE.MeshStandardMaterial({color:c,roughness:.9});mesh(new THREE.CylinderGeometry(.27,.38,.95,7),m,x,.78,z);mesh(new THREE.SphereGeometry(.22,8,6),m,x,1.49,z);}
@@ -177,7 +199,7 @@ function build(){
  // Central two-flight stair and transverse bridges: each flight ends at the next gallery landing.
  stairFlight(0,0);bridge(LEVEL_PITCH,-9.925,true);stairFlight(LEVEL_PITCH,-10.75);bridge(2*LEVEL_PITCH,-20.675,false);
  // Curved timber soffits and genuine oval aperture. Glazing spans the opening, with metal mullions.
- for(const side of [-1,1])surface((z,f)=>side*(openingHalf(z)+(wallHalf(z)-openingHalf(z))*f),Z_MIN+.005,Z_MAX,88,12,wood);
+ for(const side of [-1,1])surface((z,f)=>side*(openingHalf(z)+(wallHalf(z)-openingHalf(z))*f),Z_MIN+.005,Z_MAX,88,12,roofWood);
  surface((z,f)=>openingHalf(z)*(2*f-1),-26.5,23.5,80,10,roofGlass,false);
  for(let z=-26;z<=23;z+=1.15){const w=openingHalf(z);if(w<.08)continue;let prev=null;for(let i=0;i<=10;i++){let x=-w+2*w*i/10,P=[x,roofY(x,z)+.02,z];if(prev)beam(prev,P,.035,trim);prev=P;}}
  for(const sign of [-1,0,1]){let prev=null;for(let z=-26.4;z<=23.4;z+=.6){let x=sign*openingHalf(z),P=[x,roofY(x,z)+.02,z];if(prev)beam(prev,P,sign===0?.06:.11,steelBlue);prev=P;}}
@@ -196,7 +218,7 @@ function build(){
  for(const z of [-18,0,18])lamp(0,6.5,z,0xffe5bf,5,15,2);
 }
 // Merge static procedural meshes by material and shadow policy for reasonable GPU draw counts.
-function batchArchitecture(){scene.updateMatrixWorld(true);const buckets=new Map();for(const o of architecturalMeshes){if(o.material.transparent)continue;let key=o.material.uuid+':'+o.castShadow;let list=buckets.get(key);if(!list)buckets.set(key,list=[]);list.push(o);}for(const list of buckets.values()){if(list.length<2)continue;const geos=list.map(o=>{let g=o.geometry.index?o.geometry.toNonIndexed():o.geometry.clone();g.applyMatrix4(o.matrixWorld);for(const name of Object.keys(g.attributes))if(name!=='position'&&name!=='normal')g.deleteAttribute(name);if(!g.attributes.normal)g.computeVertexNormals();return g;});const merged=mergeGeometries(geos,false);geos.forEach(g=>g.dispose());if(!merged)continue;const o=new THREE.Mesh(merged,list[0].material);o.castShadow=list[0].castShadow;o.receiveShadow=true;scene.add(o);list.forEach(x=>scene.remove(x));}}
+function batchArchitecture(){scene.updateMatrixWorld(true);const buckets=new Map();for(const o of architecturalMeshes){if(o.material.transparent)continue;let key=o.material.uuid+':'+o.castShadow;let list=buckets.get(key);if(!list)buckets.set(key,list=[]);list.push(o);}for(const list of buckets.values()){if(list.length<2){const o=list[0],kind=uvKinds.get(o.material);if(kind){const g=o.geometry.clone();g.applyMatrix4(o.matrixWorld);projectUV(g,kind);const replacement=new THREE.Mesh(g,o.material);replacement.castShadow=o.castShadow;replacement.receiveShadow=true;scene.add(replacement);scene.remove(o);}continue;}const geos=list.map(o=>{let g=o.geometry.index?o.geometry.toNonIndexed():o.geometry.clone();g.applyMatrix4(o.matrixWorld);for(const name of Object.keys(g.attributes))if(name!=='position'&&name!=='normal'&&name!=='uv')g.deleteAttribute(name);if(!g.attributes.normal)g.computeVertexNormals();const kind=uvKinds.get(o.material);if(kind){projectUV(g,kind);if(o.material===bridgeWood){const uv=g.attributes.uv;for(let i=0;i<uv.count;i++){const a=uv.getX(i);uv.setXY(i,uv.getY(i),a);}}}else g.deleteAttribute('uv');return g;});const merged=mergeGeometries(geos,false);geos.forEach(g=>g.dispose());if(!merged)continue;const o=new THREE.Mesh(merged,list[0].material);o.castShadow=list[0].castShadow;o.receiveShadow=true;scene.add(o);list.forEach(x=>scene.remove(x));}}
 
 const $=s=>document.querySelector(s), marks=$('#marks'), dialog=$('#dialog');
 let yaw=0,pitch=0,markers=[];
@@ -241,5 +263,12 @@ for(const e of ['pointerup','pointercancel','lostpointercapture']) canvas.addEve
 addEventListener('keydown',e=>{if(dialog.open)return; if(!e.key.startsWith('Arrow'))return; e.preventDefault(); if(e.key==='ArrowLeft')yaw+=.19; if(e.key==='ArrowRight')yaw-=.19; if(e.key==='ArrowUp')pitch=Math.min(1.15,pitch+.12); if(e.key==='ArrowDown')pitch=Math.max(-1.15,pitch-.12)});
 function updateMarkers(){const r=canvas.getBoundingClientRect(),f=camera.getWorldDirection(new THREE.Vector3()); for(const m of markers){const delta=m.world.clone().sub(camera.position),p=m.world.clone().project(camera); const visible=!state.trip&&!dialog.open&&delta.dot(f)>.1&&p.z>=-1&&p.z<=1&&Math.abs(p.x)<.9&&Math.abs(p.y)<.85; m.el.hidden=!visible; if(visible){m.el.style.left=`${r.left+(p.x+1)*r.width/2}px`; m.el.style.top=`${r.top+(1-p.y)*r.height/2}px`;}}}
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
-function animate(now){tick(now); camera.rotation.set(pitch,yaw,0,'YXZ'); camera.updateMatrixWorld(); updateMarkers(); renderer.render(scene,camera)}
-try{await load(); build(); flushAssets(); batchArchitecture(); $('#assets').textContent='9 custom GLBs · KayKit atlas · R008'; refresh(); renderer.setAnimationLoop(animate)}catch(e){console.error(e); $('#assets').textContent='Asset loading failed: '+e.message; $('#status').textContent='Check the asset error above. For the source project, serve the entire folder over HTTP.';}
+function animate(now){const dt=previousTime?Math.min(.05,(now-previousTime)/1000):0;previousTime=now;for(const mixer of mixers)mixer.update(dt);tick(now); camera.rotation.set(pitch,yaw,0,'YXZ'); camera.updateMatrixWorld(); updateMarkers(); renderer.render(scene,camera)}
+function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R009 · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
+try{
+ await load();build();flushAssets();batchArchitecture();
+ refresh();reportArt();renderer.setAnimationLoop(animate);
+ // Texture and character availability must never gate the playable scene.
+ applyMaterialMaps(materialGroups,renderer,(n,total,failed)=>{review.maps=n;review.failed=failed;reportArt()}).catch(console.warn);
+ addCharacters(scene,loader,mixers,(n,failed)=>{review.characters=n;review.characterFailed=failed;reportArt()}).catch(console.warn);
+}catch(e){console.error(e); $('#assets').textContent='Asset loading failed: '+e.message; $('#status').textContent='Check the asset error above. For the source project, serve the entire folder over HTTP.';}
