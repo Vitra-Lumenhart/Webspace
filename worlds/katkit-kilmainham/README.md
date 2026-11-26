@@ -17,3 +17,9 @@ References: [East Wing axial view](https://www.ireland.com/things-to-do/attracti
 
 ## Review only
 The material workbench uses real Poly Haven CC0 source scans, not generated repetitive patterns. A map is requested at 2K, then 1K or 4K if unavailable. Source grade and projection are editable in kilmainham-materials.js. The color maps can be exported from art-review.html; the linen swatch is a material experiment and is not yet applied to character clothing. No Vitra Drive upload or production catalogue integration before approval. Live visual testing remains outstanding.
+
+## R011 Choir of Consequences
+Local voices react to arrivals and recorded testimony. Original architecture, routes and choices remain. Seven persistent powers and human witness responses use an explicit causal ledger. Preferred forms are lore proposals, not visible new models yet. See LORE_R011.md and test-choir.mjs. Canon Triangle remains unknown. No live URL or GPU QA verified.
+
+## R011 embodiment and obligation increment
+Nine original CC0 KayKit GLBs are vendored with embedded textures; no source animation clips are present. Five human identities use Rogue, Rogue_Hooded and Knight; the powers use Lorekeeper, Black Knight, Tiefling, Cleric, Paladin and Avian Swordsman according to their ledger form. Rig clones keep distinct skeletons. A fulfilled or withdrawn human commitment is a new event, not a retroactive rewrite. Only powers present to receive the event gain the momentum effect. The last four witnessed human replies also inform subsequent choices. Presentation uses smoothed movement between authored node-relative positions; no full NPC pathfinding or animation clips. Browser rendering still unverified.

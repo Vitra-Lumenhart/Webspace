@@ -441,3 +441,31 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Route passed, browser install failed](https://github.com/Vitra-Lumenhart/Webspace/actions/runs/45737977286), [workflow](.github/workflows/test-kilmainham.yml), [layout test](worlds/kaykit-kilmainham/test-layout.mjs).
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0029" date="2026-11-26" -->
+### 2026-11-26 · R0029 — Kilmainham R011: The Choir of Consequences
+
+**Backwards:** R010 architecture, weathering and four-node route preserved; additive event engine, seven power profiles, five human identities, historical occasions and local causal dialogue.
+
+**Forwards:** verify actual browser and hosted play, actor embodiments and speech placement, richer event database and canon Triangle recovery.
+
+**Not yet:** browser/CI verification, live deployment, canonical Triangle and rivalry assignments, full civilization simulation, visible demigod models.
+
+**Invariant impact:** world-local state, shared renderer and other worlds unchanged. R010 preserved at a3c9a94df6210bcd05969a047f8623387a06358a.
+
+**Evidence:** [Choir engine](worlds/katkit-kilmainham/choir.mjs), [canon](worlds/katkit-kilmainham/choir-canon.json), [test](worlds/katkit-kilmainham/test-choir.mjs), [lore](worlds/katkit-kilmainham/LORE_R011.md).
+<!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0030" date="2026-11-26" -->
+### 2026-11-26 · R0030 — R011 embodiments and delayed obligations
+
+**Backwards:** Vendored nine actual GLBs, separated human cast from shape-changing powers, added delayed commitment events and witnessed feedback. R010 architecture unchanged.
+
+**Forwards:** Actual frame and route QA; exact ethical triangle and rivalry assignments, more diverse historical events, source animation clips.
+
+**Not yet:** Browser validation, publication, full NPC pathfinding and original animation clips; canon Triangle unresolved.
+
+**Invariant impact:** World-local narrative and presentation only; no shared state edits.
+
+**Evidence:** [Asset register](worlds/katkit-kilmainham/characters/PROVENANCE.json), [embodiments](worlds/katkit-kilmainham/choir-embodiments.js), [engine](worlds/katkit-kilmainham/choir.mjs), [tests](worlds/katkit-kilmainham/test-choir.mjs). Direct deterministic replay and parent receipt checks passed.
+<!-- /WEBSPACE-LEDGER -->

@@ -1,0 +1,104 @@
+{
+  "models": [
+    {
+      "name": "AvianSwordsman",
+      "gitBlob": "522e86d77d8c8a87641d755bf2bf7eabae601c23",
+      "source": "Vitra Drive / The Complete KayKit Collection v8",
+      "license": "CC0",
+      "file": "characters/AvianSwordsman.glb",
+      "axis": "Y-up",
+      "nativeUnits": "glTF meters (source scale retained in archive)",
+      "renderHeight": "normalized to 1.78 m human; 1.95 m power",
+      "animation": "no clips in source GLB"
+    },
+    {
+      "name": "BlackKnight",
+      "gitBlob": "ce20440309951a9d85d246b6ff6b0fa399f6c9d8",
+      "source": "Vitra Drive / The Complete KayKit Collection v8",
+      "license": "CC0",
+      "file": "characters/BlackKnight.glb",
+      "axis": "Y-up",
+      "nativeUnits": "glTF meters (source scale retained in archive)",
+      "renderHeight": "normalized to 1.78 m human; 1.95 m power",
+      "animation": "no clips in source GLB"
+    },
+    {
+      "name": "Cleric",
+      "gitBlob": "f32f61eac2bb6ef1e6902f51459e1e2e30926aa5",
+      "source": "Vitra Drive / The Complete KayKit Collection v8",
+      "license": "CC0",
+      "file": "characters/Cleric.glb",
+      "axis": "Y-up",
+      "nativeUnits": "glTF meters (source scale retained in archive)",
+      "renderHeight": "normalized to 1.78 m human; 1.95 m power",
+      "animation": "no clips in source GLB"
+    },
+    {
+      "name": "Knight",
+      "gitBlob": "793ac234dcc0509222b073a314d2ab5f18551797",
+      "source": "Vitra Drive / The Complete KayKit Collection v8",
+      "license": "CC0",
+      "file": "characters/Knight.glb",
+      "axis": "Y-up",
+      "nativeUnits": "glTF meters (source scale retained in archive)",
+      "renderHeight": "normalized to 1.78 m human; 1.95 m power",
+      "animation": "no clips in source GLB"
+    },
+    {
+      "name": "Lorekeeper",
+      "gitBlob": "5d4f21fe9fa621011c2061011c45ede74aa7fd6b",
+      "source": "Vitra Drive / The Complete KayKit Collection v8",
+      "license": "CC0",
+      "file": "characters/Lorekeeper.glb",
+      "axis": "Y-up",
+      "nativeUnits": "glTF meters (source scale retained in archive)",
+      "renderHeight": "normalized to 1.78 m human; 1.95 m power",
+      "animation": "no clips in source GLB"
+    },
+    {
+      "name": "Paladin",
+      "gitBlob": "9c6189759277fc999136f3759eac0d0e1b65ced1",
+      "source": "Vitra Drive / The Complete KayKit Collection v8",
+      "license": "CC0",
+      "file": "characters/Paladin.glb",
+      "axis": "Y-up",
+      "nativeUnits": "glTF meters (source scale retained in archive)",
+      "renderHeight": "normalized to 1.78 m human; 1.95 m power",
+      "animation": "no clips in source GLB"
+    },
+    {
+      "name": "Rogue",
+      "gitBlob": "6f28b937ec57b06815240fbf4106c58e76a74c0c",
+      "source": "Vitra Drive / The Complete KayKit Collection v8",
+      "license": "CC0",
+      "file": "characters/Rogue.glb",
+      "axis": "Y-up",
+      "nativeUnits": "glTF meters (source scale retained in archive)",
+      "renderHeight": "normalized to 1.78 m human; 1.95 m power",
+      "animation": "no clips in source GLB"
+    },
+    {
+      "name": "Rogue_Hooded",
+      "gitBlob": "7063f6cbca7fd2445c9b804a9f157c11c0e7b0f2",
+      "source": "Vitra Drive / The Complete KayKit Collection v8",
+      "license": "CC0",
+      "file": "characters/Rogue_Hooded.glb",
+      "axis": "Y-up",
+      "nativeUnits": "glTF meters (source scale retained in archive)",
+      "renderHeight": "normalized to 1.78 m human; 1.95 m power",
+      "animation": "no clips in source GLB"
+    },
+    {
+      "name": "Tiefling",
+      "gitBlob": "93869958034bac9ef940c59404e7d28be67a78b5",
+      "source": "Vitra Drive / The Complete KayKit Collection v8",
+      "license": "CC0",
+      "file": "characters/Tiefling.glb",
+      "axis": "Y-up",
+      "nativeUnits": "glTF meters (source scale retained in archive)",
+      "renderHeight": "normalized to 1.78 m human; 1.95 m power",
+      "animation": "no clips in source GLB"
+    }
+  ],
+  "credit": "Kay Lousberg / KayKit, CC0; original binaries unmodified."
+}
