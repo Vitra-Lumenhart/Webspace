@@ -401,3 +401,9 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [world](worlds/thousand-chances/index.html), [immersive tests](worlds/thousand-chances/evidence/immersive-results.json) 1,066 checks including actual UI handlers with mock DOM; prior 54,010 checks; five native render views zero GL errors. [Source archive](https://drive.google.com/file/d/1T9zh2JwOdsAqpA9j2hI7ImDieJJuWiB6/view).
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0026" date="2026-11-26" -->
+
+### R0026 — evidence path correction, 2026-11-26
+No gameplay change. Copy the actual five-view R0002 native report into `evidence/native-results.json`, and make the native renderer write there on subsequent runs. Previous R0025 preserved; remove redundant root report. No new dependencies or invariant changes. Native evidence now agrees with R0002 geometry (128,886 static, 7,308 wheel, 24,300 actor vertices; five zero-error views).
+<!-- /WEBSPACE-LEDGER -->

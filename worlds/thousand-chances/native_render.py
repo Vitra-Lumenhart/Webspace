@@ -22,4 +22,4 @@ for v in m['views']:
  clear(0x4000|0x100);uniformmat(getloc(prog,b'vp'),1,0,(F*16)(*v['vp']));uniform3(getloc(prog,b'eye'),1,(F*3)(*v['eye']))
  for vao,count in meshes:bindva(vao);draw(4,0,count)
  raw=c.create_string_buffer(w*h*4);read(0,0,w,h,0x1908,0x1401,raw);err=geterr();im=Image.frombytes('RGBA',(w,h),raw.raw).transpose(Image.Transpose.FLIP_TOP_BOTTOM);im.save(p/(v['id']+'.png'));result['views'].append({'id':v['id'],'glError':err});assert err==0
-(p/'native-results.json').write_text(json.dumps(result,indent=2));print(result)
+(p/'evidence'/'native-results.json').write_text(json.dumps(result,indent=2));print(result)
