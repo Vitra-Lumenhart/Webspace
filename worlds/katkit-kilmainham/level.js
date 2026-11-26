@@ -2,8 +2,9 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { material, projectUV, reskinMesh, applyMaterialMaps, addCharacters } from './kilmainham-materials.js';
+import { weatherScene } from './weathering.js';
 
-// Architectural revision R009, photo-based geometry and alternating structural bands:
+// Architectural revision R010, photo-based geometry and alternating structural bands:
 // - only two interior testimony nodes remain (hall and chapel)
 // - three door tiers separated by two full-height doorless structural bands
 // - bridge trusses, overhead roof cage, buttresses, roof arches, oval oculus, cage lights
@@ -40,24 +41,24 @@ const neighbors=id=>EDGES.filter(e=>e[0]===id||e[1]===id).map(([a,b])=>({id:a===
 const pos=(id,y=EYE)=>new THREE.Vector3(NODES[id].x,y,NODES[id].z), objpos=id=>new THREE.Vector3(NODES[id].x+NODES[id].dx,0,NODES[id].z+NODES[id].dz);
 
 const scene=new THREE.Scene();
-scene.background=new THREE.Color(0xb6cad8);
-scene.fog=new THREE.Fog(0xb6cad8,55,130);
+scene.background=new THREE.Color(0xb5bdc0);
+scene.fog=new THREE.Fog(0x9fa7a8,49,120);
 const camera=new THREE.PerspectiveCamera(65,innerWidth/innerHeight,.05,150);camera.rotation.order='YXZ';
 const renderer=new THREE.WebGLRenderer({antialias:true});
 renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.06;
+renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.98;
 renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 document.querySelector('#view').append(renderer.domElement);
-scene.add(new THREE.HemisphereLight(0xe5eeff,0xb4a28a,2.0));
-const sun=new THREE.DirectionalLight(0xfff2d9,2.6);sun.position.set(-4,ROOF_APEX_Y+9,3);sun.target.position.set(0,2,-2);sun.castShadow=true;
+scene.add(new THREE.HemisphereLight(0xd3dde3,0x82705b,1.48));
+const sun=new THREE.DirectionalLight(0xe7e5d9,1.85);sun.position.set(-4,ROOF_APEX_Y+9,3);sun.target.position.set(0,2,-2);sun.castShadow=true;
 Object.assign(sun.shadow.camera,{left:-26,right:26,top:42,bottom:-42,near:.5,far:130});sun.shadow.mapSize.set(2048,2048);sun.shadow.bias=-.00055;scene.add(sun,sun.target);
 
 const stone=material('masonry'), floorMat=material('flags');
 const iron=material('iron'),trim=material('iron'),steelBlue=material('iron'),rustSteel=material('iron');
-const gold=new THREE.MeshStandardMaterial({color:0xd6b96e,emissive:0x8d6324,emissiveIntensity:.55,metalness:.6});
+const gold=new THREE.MeshStandardMaterial({color:0x9d895c,emissive:0x715424,emissiveIntensity:.24,metalness:.48});
 const glass=new THREE.MeshStandardMaterial({color:0xa6bfd0,transparent:true,opacity:.24,roughness:.34,metalness:.1,side:THREE.DoubleSide,depthWrite:false});
-const lampGlow=new THREE.MeshStandardMaterial({color:0xf1d8a4,emissive:0xc89a4a,emissiveIntensity:1.4});
-const paperMat=new THREE.MeshStandardMaterial({color:0xddcda9,roughness:.96});
+const lampGlow=new THREE.MeshStandardMaterial({color:0xc4b28a,emissive:0xb48c4c,emissiveIntensity:.82});
+const paperMat=new THREE.MeshStandardMaterial({color:0xb5a485,roughness:1});
 
 const architecturalMeshes=[];
 function mesh(g,m,x,y,z,shadow=true){const o=new THREE.Mesh(g,m); architecturalMeshes.push(o);o.position.set(x,y,z);o.castShadow=shadow;o.receiveShadow=true;scene.add(o);return o;}
@@ -87,6 +88,8 @@ function place(key,x,y,z,s=1,yaw=0,ground=true){const o=models[key].clone(true);
 const wood=material('boarding',{side:THREE.DoubleSide});
 const roofWood=material('boarding',{side:THREE.DoubleSide});
 const bridgeWood=material('boarding',{side:THREE.DoubleSide});
+roofWood.userData.scanTint=0xe6ddce;bridgeWood.userData.scanTint=0xc1b7a2;wood.userData.scanTint=0xd6cbb7;
+for(const m of [roofWood,bridgeWood,wood])m.color.multiply(new THREE.Color(m.userData.scanTint));
 const doorMat=material('oak');
 const recess=new THREE.MeshStandardMaterial({color:0x292923,roughness:1,side:THREE.DoubleSide});
 const surround=material('masonry');
@@ -94,9 +97,10 @@ const shadeMat=material('iron');
 const library={masonry:stone,oak:doorMat,iron,boarding:wood,flags:floorMat,recess};
 const materialGroups={masonry:[stone,surround],oak:[doorMat],iron:[iron,trim,steelBlue,rustSteel,shadeMat],boarding:[wood,roofWood,bridgeWood],flags:[floorMat]};
 const uvKinds=new Map(Object.entries(materialGroups).flatMap(([key,materials])=>materials.map(m=>[m,key])));
+const weatherKinds=new Map(uvKinds);for(const [m,k] of [[paperMat,'paper'],[gold,'brass'],[lampGlow,'lamp'],[glass,'glass'],[roofGlass,'glass'],[recess,'recess']])weatherKinds.set(m,k);
 const mixers=[];let previousTime=0;
 const review={maps:0,failed:[],characters:0,characterFailed:0};
-const roofGlass=new THREE.MeshStandardMaterial({color:0xd7eaf5,transparent:true,opacity:.13,roughness:.2,side:THREE.DoubleSide,depthWrite:false});
+const roofGlass=new THREE.MeshStandardMaterial({color:0xc1c9c6,transparent:true,opacity:.21,roughness:.48,side:THREE.DoubleSide,depthWrite:false});
 const cache={};
 function poly(points){const s=new THREE.Shape(); points.forEach(([x,y],i)=>i?s.lineTo(x,y):s.moveTo(x,y));s.closePath();return s;}
 function archShape(w,h,head){const s=new THREE.Shape();s.moveTo(-w/2,0);s.lineTo(w/2,0);s.lineTo(w/2,h-head);s.absellipse(0,h-head,w/2,head,0,Math.PI,false);s.lineTo(-w/2,0);s.closePath();return s;}
@@ -215,7 +219,7 @@ function build(){
  for(const id of ['hall','chapel']){const p=objpos(id);place('table_medium',p.x,0,p.z,.92);box(p.x,.9,p.z,.56,.035,.37,paperMat);}
  const p=objpos('hearing');place('table_medium',p.x,0,p.z,.85);mesh(new THREE.CylinderGeometry(.3,.57,.65,12),gold,p.x,1.25,p.z);mesh(new THREE.SphereGeometry(.10,10,8),gold,p.x,.92,p.z);
  // Daylight dominates. A few soft fill lights near the galleries, not giant visible lamps.
- for(const z of [-18,0,18])lamp(0,6.5,z,0xffe5bf,5,15,2);
+ for(const z of [-18,0,18])lamp(0,6.5,z,0xe1c69a,2.6,15,2);
 }
 // Merge static procedural meshes by material and shadow policy for reasonable GPU draw counts.
 function batchArchitecture(){scene.updateMatrixWorld(true);const buckets=new Map();for(const o of architecturalMeshes){if(o.material.transparent)continue;let key=o.material.uuid+':'+o.castShadow;let list=buckets.get(key);if(!list)buckets.set(key,list=[]);list.push(o);}for(const list of buckets.values()){if(list.length<2){const o=list[0],kind=uvKinds.get(o.material);if(kind){const g=o.geometry.clone();g.applyMatrix4(o.matrixWorld);projectUV(g,kind);const replacement=new THREE.Mesh(g,o.material);replacement.castShadow=o.castShadow;replacement.receiveShadow=true;scene.add(replacement);scene.remove(o);}continue;}const geos=list.map(o=>{let g=o.geometry.index?o.geometry.toNonIndexed():o.geometry.clone();g.applyMatrix4(o.matrixWorld);for(const name of Object.keys(g.attributes))if(name!=='position'&&name!=='normal'&&name!=='uv')g.deleteAttribute(name);if(!g.attributes.normal)g.computeVertexNormals();const kind=uvKinds.get(o.material);if(kind){projectUV(g,kind);if(o.material===bridgeWood){const uv=g.attributes.uv;for(let i=0;i<uv.count;i++){const a=uv.getX(i);uv.setXY(i,uv.getY(i),a);}}}else g.deleteAttribute('uv');return g;});const merged=mergeGeometries(geos,false);geos.forEach(g=>g.dispose());if(!merged)continue;const o=new THREE.Mesh(merged,list[0].material);o.castShadow=list[0].castShadow;o.receiveShadow=true;scene.add(o);list.forEach(x=>scene.remove(x));}}
@@ -264,9 +268,9 @@ addEventListener('keydown',e=>{if(dialog.open)return; if(!e.key.startsWith('Arro
 function updateMarkers(){const r=canvas.getBoundingClientRect(),f=camera.getWorldDirection(new THREE.Vector3()); for(const m of markers){const delta=m.world.clone().sub(camera.position),p=m.world.clone().project(camera); const visible=!state.trip&&!dialog.open&&delta.dot(f)>.1&&p.z>=-1&&p.z<=1&&Math.abs(p.x)<.9&&Math.abs(p.y)<.85; m.el.hidden=!visible; if(visible){m.el.style.left=`${r.left+(p.x+1)*r.width/2}px`; m.el.style.top=`${r.top+(1-p.y)*r.height/2}px`;}}}
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 function animate(now){const dt=previousTime?Math.min(.05,(now-previousTime)/1000):0;previousTime=now;for(const mixer of mixers)mixer.update(dt);tick(now); camera.rotation.set(pitch,yaw,0,'YXZ'); camera.updateMatrixWorld(); updateMarkers(); renderer.render(scene,camera)}
-function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R009 · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
+function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R010 · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
 try{
- await load();build();flushAssets();batchArchitecture();
+ await load();build();flushAssets();batchArchitecture();weatherScene(scene,weatherKinds);
  refresh();reportArt();renderer.setAnimationLoop(animate);
  // Texture and character availability must never gate the playable scene.
  applyMaterialMaps(materialGroups,renderer,(n,total,failed)=>{review.maps=n;review.failed=failed;reportArt()}).catch(console.warn);
