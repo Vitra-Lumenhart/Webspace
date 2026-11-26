@@ -50,7 +50,9 @@ export function distress(m,kind){
    float traffic=exp(-abs(kp.x)*.65);
    dirt=clamp(dirt+low*.08+(.24*(1.0-traffic))*patch,0.0,1.0);
  }else if(kKind==5.0){
-   dirt=clamp(dirt+low*.13+streak*.18,0.0,1.0);
+   float sill=mod(max(kp.y,0.0),6.30);
+   float threshold=exp(-sill*1.35);
+   dirt=clamp(dirt+threshold*.23+streak*.18,0.0,1.0);
  }
  // Soot and damp are low-chroma. Keep the existing scanned surface readable.
  vec3 stain=mix(vec3(.145,.112,.077),vec3(.092,.113,.092),smoothstep(.35,.69,cloud));
@@ -59,7 +61,7 @@ export function distress(m,kind){
  diffuseColor.rgb*=mix(.91,1.06,grit);
  if(kKind==3.0){
    // Speckled exposed oxide within otherwise slate-blue painted iron.
-   float oxide=smoothstep(.59,.81,kFbm(kp*5.2+32.0))*kWeather.w;
+   float oxide=smoothstep(.54,.80,kFbm(kp*5.2+32.0))*kWeather.w;
    diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.155,.069,.031),oxide*.75);
  }
  if(kKind==4.0){
