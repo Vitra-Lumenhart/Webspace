@@ -127,5 +127,15 @@
       }
     }
   ],
-  "release_note": "Webspace v8 canonical source accepted: Elisium 4.6 retained with 12 schematic sky signs, Ahura Mazda/Tir references, 7 points, 64 readers, Kilns nested H-object pairs, and quiet-circle exit. Hosting separately verified."
+  "release_note": "Webspace v8 canonical source accepted: Elisium 4.6 retained with 12 schematic sky signs, Ahura Mazda/Tir references, 7 points, 64 readers, Kilns nested H-object pairs, and quiet-circle exit. Hosting separately verified.",
+  "candidates": [
+    {
+      "id": "katkit-kilmainham",
+      "name": "KatKit Kilmainham",
+      "entry": "worlds/katkit-kilmainham/index.html",
+      "version": "R001",
+      "status": "unaccepted candidate; no portal",
+      "engine": "Canvas geometry and Luna sky"
+    }
+  ]
 }

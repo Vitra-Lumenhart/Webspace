@@ -369,3 +369,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Model tests](tests/gringotts-r0001.mjs), [results](worlds/gringotts/evidence/r0001-tests.json); 44 assertions passed on patched source.
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0024" date="2026-11-25" -->
+### 2026-11-25 · R0024 — KatKit Kilmainham R001 candidate
+
+**Backwards:** Eight-node independent asylum, original dilemmas, actual KayKit geometry, Luna sky, legacy rose and Witch fern functions.
+
+**Forwards:** Texture atlas, current Garden source, Witch sprites, movement and portal acceptance.
+
+**Not yet:** Browser, GPU, visual, covenant and regression checks; no public deployment or accepted release.
+
+**Invariant impact:** Existing worlds untouched; base 5137a507cbb39bd29a78eb1e751c6e11ed99aec4 retained; no private data transfer or portal change.
+
+**Evidence:** [World](worlds/katkit-kilmainham/index.html), [README](worlds/katkit-kilmainham/README.md), [manual](worlds/katkit-kilmainham/TECH_MANUAL.html); 36 static graph and option assertions.
+<!-- /WEBSPACE-LEDGER -->
