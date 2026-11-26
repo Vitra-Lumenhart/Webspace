@@ -1,0 +1,21 @@
+name: Kilmainham Choir narrative
+on:
+  pull_request:
+    paths: ['worlds/katkit-kilmainham/**', '.github/workflows/test-kilmainham-choir.yml']
+  push:
+    branches: ['world/katkit-kilmainham/r011']
+permissions:
+  contents: read
+jobs:
+  choir:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node worlds/katkit-kilmainham/test-choir.mjs
+          node --input-type=module --check < worlds/katkit-kilmainham/level.js
+          node --input-type=module --check < worlds/katkit-kilmainham/choir-embodiments.js
+          node tools/check_docs_covenant.mjs

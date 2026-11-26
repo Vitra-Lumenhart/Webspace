@@ -4,6 +4,8 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { material, projectUV, reskinMesh, applyMaterialMaps, addCharacters } from './kilmainham-materials.js';
 import { weatherScene } from './weathering.js';
 import { Choir } from './choir.mjs';
+import { mountChoir } from './choir-embodiments.js';
+let choirCast=null;
 const choir = new Choir(await fetch(new URL('./choir-canon.json',import.meta.url)).then(r=>{if(!r.ok)throw Error('Choir canon unavailable');return r.json()}));
 
 // Architectural revision R010, photo-based geometry and alternating structural bands:
@@ -271,13 +273,13 @@ for(const e of ['pointerup','pointercancel','lostpointercapture']) canvas.addEve
 addEventListener('keydown',e=>{if(dialog.open)return; if(!e.key.startsWith('Arrow'))return; e.preventDefault(); if(e.key==='ArrowLeft')yaw+=.19; if(e.key==='ArrowRight')yaw-=.19; if(e.key==='ArrowUp')pitch=Math.min(1.15,pitch+.12); if(e.key==='ArrowDown')pitch=Math.max(-1.15,pitch-.12)});
 function updateMarkers(){const r=canvas.getBoundingClientRect(),f=camera.getWorldDirection(new THREE.Vector3()); for(const m of markers){const delta=m.world.clone().sub(camera.position),p=m.world.clone().project(camera); const visible=!state.trip&&!dialog.open&&delta.dot(f)>.1&&p.z>=-1&&p.z<=1&&Math.abs(p.x)<.9&&Math.abs(p.y)<.85; m.el.hidden=!visible; if(visible){m.el.style.left=`${r.left+(p.x+1)*r.width/2}px`; m.el.style.top=`${r.top+(1-p.y)*r.height/2}px`;}}}
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
-function animate(now){const dt=previousTime?Math.min(.05,(now-previousTime)/1000):0;previousTime=now;for(const mixer of mixers)mixer.update(dt);tick(now); camera.rotation.set(pitch,yaw,0,'YXZ'); camera.updateMatrixWorld(); updateMarkers(); renderer.render(scene,camera)}
+function animate(now){const dt=previousTime?Math.min(.05,(now-previousTime)/1000):0;previousTime=now;for(const mixer of mixers)mixer.update(dt);tick(now);if(choirCast)choirCast.sync(dt); camera.rotation.set(pitch,yaw,0,'YXZ'); camera.updateMatrixWorld(); updateMarkers(); renderer.render(scene,camera)}
 function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R010 · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
 try{
  await load();build();flushAssets();batchArchitecture();weatherScene(scene,weatherKinds);
  choir.advance(1,'gate','arrival of the witness');refresh();reportArt();renderer.setAnimationLoop(animate);
- window.KilmainhamChoir={get state(){return {node:state.node,steps:state.steps,events:choir.events.length}},get frames(){return renderer.info.render.frame},get local(){return choir.publicAt(state.node)}};
+ window.KilmainhamChoir={get state(){return {node:state.node,steps:state.steps,events:choir.events.length}},get frames(){return renderer.info.render.frame},get embodied(){return choirCast?.objects.size||0},get local(){return choir.publicAt(state.node)}};
  // Texture and character availability must never gate the playable scene.
  applyMaterialMaps(materialGroups,renderer,(n,total,failed)=>{review.maps=n;review.failed=failed;reportArt()}).catch(console.warn);
- addCharacters(scene,loader,mixers,(n,failed)=>{review.characters=n;review.characterFailed=failed;reportArt()}).catch(console.warn);
+ choirCast=mountChoir(scene,loader,choir,NODES,(n,failed)=>{review.characters=n;review.characterFailed=failed;reportArt()});
 }catch(e){console.error(e); $('#assets').textContent='Asset loading failed: '+e.message; $('#status').textContent='Check the asset error above. For the source project, serve the entire folder over HTTP.';}

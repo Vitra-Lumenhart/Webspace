@@ -455,3 +455,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Choir engine](worlds/katkit-kilmainham/choir.mjs), [canon](worlds/katkit-kilmainham/choir-canon.json), [test](worlds/katkit-kilmainham/test-choir.mjs), [lore](worlds/katkit-kilmainham/LORE_R011.md).
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0030" date="2026-11-26" -->
+### 2026-11-26 · R0030 — R011 embodiments and delayed obligations
+
+**Backwards:** Vendored nine actual GLBs, separated human cast from shape-changing powers, added delayed commitment events and witnessed feedback. R010 architecture unchanged.
+
+**Forwards:** Actual frame and route QA; exact ethical triangle and rivalry assignments, more diverse historical events, source animation clips.
+
+**Not yet:** Browser validation, publication, full NPC pathfinding and original animation clips; canon Triangle unresolved.
+
+**Invariant impact:** World-local narrative and presentation only; no shared state edits.
+
+**Evidence:** [Asset register](worlds/katkit-kilmainham/characters/PROVENANCE.json), [embodiments](worlds/katkit-kilmainham/choir-embodiments.js), [engine](worlds/katkit-kilmainham/choir.mjs), [tests](worlds/katkit-kilmainham/test-choir.mjs). Direct deterministic replay and parent receipt checks passed.
+<!-- /WEBSPACE-LEDGER -->
