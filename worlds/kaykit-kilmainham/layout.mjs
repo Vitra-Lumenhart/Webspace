@@ -7,7 +7,7 @@ export function floorAt(x,z,previous){
  for(const [i,s] of stairs.entries())if(Math.abs(x-s.x)<=1&&z>=s.z0&&z<=s.z1)c.push({y:s.base+(z-s.z0)*.4,level:i+1,stair:i});
  // Prefer the stair on entering its footprint at the base. Prevent stepping off elevated platforms.
  const eligible=c.filter(f=>Math.abs(f.y-previous)<=.32);
- const ramp=eligible.find(f=>f.stair!==undefined&&f.y>=previous-.01);
+ const ramp=eligible.find(f=>f.stair!==undefined);
  return ramp??eligible.sort((a,b)=>Math.abs(a.y-previous)-Math.abs(b.y-previous))[0]??null;
 }
 export function step(p,dx,dz){let q={...p};for(const [a,b] of [[dx,0],[0,dz]]){if(!a&&!b)continue;const x=q.x+a,z=q.z+b,f=floorAt(x,z,q.y);if(f)q={x,z,y:f.y,level:f.level};}return q;}
