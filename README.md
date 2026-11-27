@@ -511,3 +511,18 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Classical Cinema School, Book II](worlds/katkit-kilmainham/CLASSICAL_CINEMA_SCHOOL_II.md), [PR #24](https://github.com/Vitra-Lumenhart/Webspace/pull/24).
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="KIL-R012-FND" date="2026-11-26" -->
+### 2026-11-26 · KIL-R012-FND — The Institution of Doors (technical foundation)
+
+**Backwards:** Preserve user-confirmed R010a art and geometry, R011 Choir/embodiments, seven powers and five humans, and the 28 director notes in PR #24. Audited current Webspace main separately: Kilns, Thousand Chances TC-R0009, Belowroads DW-R0006, portal and Screen policy. R011 remains draft and needs R010a/main reconciliation.
+
+**Forwards:** Adult-scale bodies, swept 3D route and collision, taller stair canopy, full-height gallery screen, service dumbwaiter, 138 stable flat-leaf addresses, one enterable upper cell, reversible West Wing/Cloister extensions, reserved Archive/Undercroft, spatial Choir receipts, five historical clocks and object biographies, authored idiom and sound, browser release gates.
+
+**Not yet:** Candidate spatial and occurrence contracts only, not connected to the renderer or Choir. No new GLBs, traversable staircase, playable districts, actual geometry collision, live shader/browser verification or publication. Canonical Triangle and Paley assignment unresolved.
+
+**Invariant impact:** No existing runtime, root manifest, portal policy, R010a art, canonical lore, Drive or Pages mutation. Local cell crossings are not federation portals. No private state crosses public arrival tags. Preserve prior branch and source history.
+
+**Evidence:** [R012 scope](worlds/katkit-kilmainham/R012_SCOPE.md), [spatial contract](worlds/katkit-kilmainham/spatial-contract.mjs), [occurrence contract](worlds/katkit-kilmainham/occurrence-contract.mjs), paired test modules. Executed fetched JS with import/assert adapter: 593 spatial and 20 occurrence assertions, 548 proposed route samples; not Node CI or actual scene geometry tests.
+<!-- /WEBSPACE-LEDGER -->
