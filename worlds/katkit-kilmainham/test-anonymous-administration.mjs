@@ -1,0 +1,37 @@
+import fs from 'node:fs';
+import {makeAdmin,chooseResidentExchange} from './anonymous-administration.mjs';
+const catalog=JSON.parse(fs.readFileSync(new URL('./anonymous-administration.json',import.meta.url),'utf8'));
+function runContractTests(catalog,makeAdmin,chooseResidentExchange){
+ let checks=0;const assert=(c,msg)=>{if(!c)throw Error(msg);checks++};
+ const receipts=new Map(),decisions=new Map(),cares=new Map(),revoked=new Set(),consent=new Set();
+ const adapter={verifiedReceipt:id=>receipts.get(id),validEvidence:(r,c,ritual)=>r.caseId===c.id&&r.subject===c.subject&&r.ritual===ritual.id&&r.provenance&&r.custody&&r.scope&&!revoked.has(r.id),hasConsent:(subject,id)=>consent.has(id),validAssembly:()=>true,atReviewStation:()=>true,npcDecision:id=>decisions.get(id),npcAuthorized:(d,c)=>d.actor!=="visitor"&&d.scope===c.ritual&&(d.action==="review"||d.action==="defer"?d.actor==="human.beatrice_finch":d.actor==="human.service"),careEvent:id=>cares.get(id),validCare:x=>x.actor==="human.beatrice_finch"};
+ const a=makeAdmin(catalog,adapter);const add=(id,caseId,skill,subject="r1",actor="visitor",extra={})=>{receipts.set(id,{id,caseId,skill,subject,actor,objectId:"obj:"+id,sourceId:"world:"+id,ritual:"light",provenance:true,custody:true,scope:true,...extra});return a.ingest(id)};
+ assert(catalog.residents.length===16,"resident count");assert(catalog.skills.length===14,"skill count");assert(catalog.rituals.length===10,"ritual count");
+ assert(a.openCase({id:"c",ritual:"light",subject:"r1"}),"case");
+ assert(!a.materialize("c"),"empty dossier");assert(!a.ingest("fake"),"fake receipt");
+ cares.set("care",{id:"care",actor:"human.beatrice_finch",subject:"r1",service:"spare blanket"});assert(a.ordinaryCare("care"),"care without dossier");assert(!a.ordinaryCare("care"),"care idempotence");
+ const light=catalog.rituals.find(r=>r.id==="light");
+ for(const s of light.required)assert(add("a"+s,"c",s),"required evidence "+s);
+ assert(!a.materialize("c"),"missing alternatives");
+ assert(!add("wrong","c","collate","other"),"cross-subject rejected");
+ assert(!add("no-custody","c","collate","r1","visitor",{custody:false}),"custody rejected");
+ assert(!a.ingest("aobserve"),"duplicate");
+ assert(add("social1","c","listen","r1","human.resident.01"),"npc contributor");
+ assert(add("social2","c","transcribe"),"alternative");
+ assert(a.materialize("c"),"alternative opportunity");
+ assert(!a.materialize("c"),"no duplicate opportunity");
+ decisions.set("bad",{id:"bad",caseId:"c",actor:"visitor",action:"authorize",scope:"light"});assert(!a.npcDecision("bad"),"visitor cannot authorize");
+ decisions.set("early",{id:"early",caseId:"c",actor:"human.service",action:"authorize",scope:"light"});assert(!a.npcDecision("early"),"no bypass review");
+ decisions.set("review",{id:"review",caseId:"c",actor:"human.beatrice_finch",action:"review",scope:"light"});assert(a.npcDecision("review"),"independent review");
+ revoked.add("social2");assert(!a.npcDecision("early"),"stale evidence checked again");
+ revoked.delete("social2");assert(a.npcDecision("early"),"independent authorization");assert(!a.npcDecision("early"),"authorization idempotent");
+ const n=a.events().length;a.events();a.debugAssess("c");assert(a.events().length===n,"read only");
+ assert(a.openCase({id:"visit",ritual:"visit",subject:"r2"}),"consent case");
+ const v=catalog.rituals.find(r=>r.id==="visit");for(const s of [...v.required,...v.alternatives[0]])assert(add("v"+s,"visit",s,"r2","visitor",{ritual:"visit"}),"visit evidence");
+ assert(!a.materialize("visit"),"consent required");consent.add("visit");assert(a.materialize("visit"),"consent enables opportunity");
+ const socialAdapter={npcOccasion:id=>id==="actual"?{id,residentId:"human.resident.opaque",repertoire:"comedian",finchAvailable:true}:null,chooseBeats:()=>[0,1,2,3],actorElectsSpeech:(o,actor)=>actor!=="human.beatrice_finch"};
+ assert(chooseResidentExchange(catalog,"player_click",socialAdapter).length===0,"player cannot select scene");
+ const out=chooseResidentExchange(catalog,"actual",socialAdapter);assert(out.length===1&&out[0].actor==="human.resident.opaque","actor can refuse speech");
+ return {checks,events:n};
+}
+console.log(runContractTests(catalog,makeAdmin,chooseResidentExchange));
