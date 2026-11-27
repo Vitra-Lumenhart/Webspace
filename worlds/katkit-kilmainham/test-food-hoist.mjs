@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {FoodHoist,HOIST} from './food-hoist.mjs';
+let checks=0;const ok=(v,m)=>{assert.ok(v,m);checks++;};
+const finish=h=>{let n=0;while(h.phase!=='idle'&&n++<5000){h.advance();ok(h.y>=HOIST.stops[0]-1e-8&&h.y<=HOIST.stops[3]+1e-8,'travel bounded');}ok(n<5000,'round finite');};
+const a=new FoodHoist();ok(a.start(),'start');ok(!a.start()&&!a.service(),'no conflicting operation');finish(a);
+ok(a.rounds===1&&a.y===HOIST.stops[0]&&!a.cargo.length,'return empty');
+ok(a.events.filter(e=>e.kind==='cargo.delivered').map(e=>e.stop).join('|')===HOIST.names.slice(1).join('|'),'ground then both galleries');
+ok(new Set(a.events.filter(e=>e.kind==='cargo.delivered').map(e=>e.id)).size===3,'unique delivery events');
+const b=new FoodHoist();b.start();b.advance(a.tick);ok(JSON.stringify(a.snapshot())===JSON.stringify(b.snapshot()),'fixed-tick replay');
+while(!a.servicePending){ok(a.start(),'start repeat');finish(a);}ok(!a.start(),'maintenance due blocks new round');const wear=a.wear,log=a.events.length;ok(a.service(),'service begins empty at rest');ok(!a.start(),'no operation during service');finish(a);ok(a.wear<wear&&!a.servicePending&&a.events.length>log,'service preserves history');ok(a.lastService===a.tick,'service date');ok(a.start(),'return to work');console.log(JSON.stringify({checks,rounds:a.rounds,events:a.events.length,wear:a.wear}));
