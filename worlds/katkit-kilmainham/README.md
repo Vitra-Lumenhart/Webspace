@@ -39,3 +39,7 @@ Ten design notes covering the five districts and historical ages, dramatic refer
 
 ## R012 hoist increment — 26 November 2026
 The earlier speculative cage/shaft has been superseded by the documented two-pole food lift. See [FOOD_HOIST.md](FOOD_HOIST.md) for museum references, reconstruction limits and actual scene integration. The hoist is the first candidate for a reusable institutional maintenance contract: stable service asset ID, condition/wear, operation and custody events, repair requests, dated service and continuing history. Extend this to doors, stairs, iron screens, lamps and roofing as separate authored schedules, never as a generic random decay effect. Keep maintenance actors and responsibility explicit; repaired objects retain identity, and only witnessed events enter the Choir. Food delivery remains the first visible function. No new traversal or full historical reconstruction is implied. The code is committed to the review branch; browser/rendering and exported GLB remain pending.
+
+
+## R013 — photographic ironwork correction
+See [R013_IRONWORK.md](R013_IRONWORK.md). The food-hoist head now has a projecting four-spoke sheave and narrow pierced cast web instead of a generic pulley. The rendered stair/bridge cages use the shared STAIR profile (2.25m spring, .73m radius, 1.46m width, 12 facets), conservative clearance 2.59m with lateral margin. Previous behavior and architecture are preserved. 596 spatial and 4290 hoist assertions passed via JS adapter; visual rendering and actual collision sweep pending. No Pages deployment.
