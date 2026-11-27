@@ -3,7 +3,7 @@
 // This module describes intended support, not existing rendered collision meshes.
 export const HUMAN=Object.freeze({eye:1.70,height:1.82,radius:.32,stepLength:.75,stepUp:.20,margin:.12});
 export const HALL=Object.freeze({half:8.8,inner:7.25,deckWidth:1.55,apseZ:-19,endZ:24,pitch:6.30,tiers:3,doorHeight:3.05,bayCount:15,arcCount:10,endCount:6});
-export const STAIR=Object.freeze({run:9.1,rise:6.3,risers:35,width:1.35,cageWidth:1.26,spring:2.10,radius:.65,barWidth:.05,startsAt:12,landingZ:-9.925});
+export const STAIR=Object.freeze({run:9.1,rise:6.3,risers:35,width:1.35,cageWidth:1.46,spring:2.25,radius:.73,barWidth:.05,segments:12,startsAt:12,landingZ:-9.925});
 export const DISTRICTS=Object.freeze([
  {id:'east',name:'East Wing',status:'existing-r010',epoch:1879},
  {id:'west',name:'West Wing',status:'planned-playable',epoch:1715},
@@ -45,7 +45,7 @@ export function routes(){
  ];
 }
 export const PLANNED_ASSETS=Object.freeze({
- stairCanopy:{id:'KIL-IRON-001',clearWidth:STAIR.cageWidth-STAIR.barWidth,headroomAtCenter:STAIR.spring+STAIR.radius-STAIR.barWidth/2},
+ stairCanopy:{id:'KIL-IRON-001',clearWidth:STAIR.cageWidth-STAIR.barWidth,headroomAtCenter:stairHeadroom(0)},
  galleryScreen:{id:'KIL-IRON-002',tier:1,lowerY:HALL.pitch,upperY:2*HALL.pitch-.21,gateAt:'rightBridge',status:'requires bridge opening and actual support'},
  dumbwaiter:{id:'KIL-IRON-003',side:'right',center:[6.1,0,-4.8],footprint:[1.52,1.20],landings:[-3.15,0,6.3,12.6],form:'two exposed poles and overhead pulley',status:'mounted visual prototype; service only; no passenger traversal'},
  doorLeaf:{id:'KIL-DOOR-001',shape:'flat',pivot:'hinge',sharedAcrossAllBays:true},
@@ -57,7 +57,20 @@ export function sampleRoute(points,spacing=.15){let result=[points[0]];for(let i
 export function routeById(id,reverse=false){const r=routes().find(r=>r.id===id);if(!r)return null;return reverse?{...r,a:r.b,b:r.a,points:r.points.slice().reverse()}:r;}
 export function reachable(from,to){const seen=new Set([from]),q=[from];while(q.length){const p=q.shift();if(p===to)return true;for(const r of routes()){const other=r.a===p?r.b:r.b===p?r.a:null;if(other&&!seen.has(other)){seen.add(other);q.push(other);}}}return false;}
 // Clearance at the widest point of an upright capsule, not just crown height.
-export function stairHeadroom(lateral=HUMAN.radius){const w=STAIR.cageWidth/2;if(Math.abs(lateral)>=w)return 0;return STAIR.spring+STAIR.radius*Math.sqrt(1-(lateral/w)**2)-STAIR.barWidth/2;}
+// Sample the actual polygonal hoop (not an ideal semicircle). Subtract
+// one riser for the worst tread-to-slope difference and bar diagonal.
+export function stairHeadroom(lateral=HUMAN.radius){
+ const x=Math.abs(lateral),w=STAIR.cageWidth/2;if(x>=w-STAIR.barWidth/2)return 0;
+ const q=x+STAIR.barWidth/2;
+ for(let i=0;i<STAIR.segments/2;i++){
+  const a=i*Math.PI/STAIR.segments,b=(i+1)*Math.PI/STAIR.segments;
+  const xa=w*Math.cos(a),xb=w*Math.cos(b);
+  if(q<=xa+1e-9&&q>=xb-1e-9){
+   const f=(xa-q)/(xa-xb),h=STAIR.spring+STAIR.radius*((1-f)*Math.sin(a)+f*Math.sin(b));
+   return h-STAIR.rise/STAIR.risers-STAIR.barWidth/Math.sqrt(2);
+  }
+ }return STAIR.spring+STAIR.radius-STAIR.rise/STAIR.risers-STAIR.barWidth/Math.sqrt(2);
+}
 export const PUBLIC_ARRIVAL='kilmainham-intake';
 export function publicArrival(tag){return tag===PUBLIC_ARRIVAL?{version:1,entry:PUBLIC_ARRIVAL,node:'gate'}:null;}
 // No local room crossing is a federation portal, and closed addresses cannot route.
