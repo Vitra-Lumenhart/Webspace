@@ -32,3 +32,6 @@ Ten design notes covering the five districts and historical ages, dramatic refer
 
 ## Classical Cinema School — Book II
 [Six further director's studies](CLASSICAL_CINEMA_SCHOOL_II.md): choreography, music, miniature theatre, historical epic, comedy and character. Forward artistic direction.
+
+## R012 spatial and historical foundations — planning increment
+[R012 scope](R012_SCOPE.md) specifies the expanded playable release. Candidate contracts and tests are committed; no new playable feature is claimed. Adult-scale traversal, one open cell, addressable districts, spatial testimony, object history and original sound are planned. R011 Choir and R010a remain intact.
