@@ -526,3 +526,18 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [R012 scope](worlds/katkit-kilmainham/R012_SCOPE.md), [spatial contract](worlds/katkit-kilmainham/spatial-contract.mjs), [occurrence contract](worlds/katkit-kilmainham/occurrence-contract.mjs), paired test modules. Executed fetched JS with import/assert adapter: 593 spatial and 20 occurrence assertions, 548 proposed route samples; not Node CI or actual scene geometry tests.
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="KIL-R012-HOIST" date="2026-11-26" -->
+### 2026-11-26 · KIL-R012-HOIST — The ordinary work of a food lift
+
+**Backwards:** Preserve R012 foundations, R011 Choir, accepted R010a hall, flat doors and existing ground route. Replace speculative enclosed hoist with documented exposed pulley system; museum pack and NIAH identify kitchen trapdoor, two poles and three-tier meal delivery.
+
+**Forwards:** Treat the hoist as a recurring service asset, not a supernatural power. Actual meal distribution choreography, service-ledger-to-Choir adapter, component history, reusable maintenance schedules and physical upper gallery access. Export and visually review the asset before acceptance.
+
+**Not yet:** Historic carrier and exact dimensions unknown; geometry interpreted from wide photographs and museum description. No exported GLB, animated crew, integrated Choir receipts, new upper travel or live browser/Pages verification.
+
+**Invariant impact:** Existing four-node route and Choir remain; hoist is not a passenger elevator or portal. New simulation is local and separate. Restored R010a startup diagnostics, shader repair and safe mode. No main or Pages/Drive changes.
+
+**Evidence:** [Food hoist study](worlds/katkit-kilmainham/FOOD_HOIST.md), [state model](worlds/katkit-kilmainham/food-hoist.mjs), [view](worlds/katkit-kilmainham/food-hoist-view.js), [tests](worlds/katkit-kilmainham/test-food-hoist.mjs). 4,290 assertions executed in JS isolate with assert adapter, four completed rounds, 60 events; syntax and initialization order checks. Not a browser test.
+<!-- /WEBSPACE-LEDGER -->
