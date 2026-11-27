@@ -2,7 +2,7 @@
   "teeVertices": 98784,
   "texturedScreens": 4,
   "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
-  "vertices": 531657,
+  "vertices": 498816,
   "wheelVertices": 7308,
   "buildings": 72,
   "walkers": 84,

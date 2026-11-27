@@ -1,0 +1,45 @@
+{
+  "checks": 2290,
+  "cells": 2264,
+  "shops": 98,
+  "sockets": 92,
+  "receipts": 388,
+  "npcDisputes": 17,
+  "pizza": [
+    {
+      "id": "souq1",
+      "sales": 6,
+      "stock": [
+        192,
+        248,
+        192
+      ]
+    },
+    {
+      "id": "souq6",
+      "sales": 3,
+      "stock": [
+        248,
+        248,
+        192
+      ]
+    },
+    {
+      "id": "souq7",
+      "sales": 4,
+      "stock": [
+        240,
+        248,
+        192
+      ]
+    }
+  ],
+  "ticks": 2401,
+  "balances": {
+    "player": 100,
+    "circulation": 4648,
+    "shops": 5352,
+    "disputed": 0,
+    "npcDisputed": 0
+  }
+}

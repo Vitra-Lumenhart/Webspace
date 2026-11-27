@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "renderer": "CPU Canvas2D",
+  "startup": true,
+  "normalWalk": true,
+  "cameraPreserved": true,
+  "testOnlyScene": true,
+  "saleStockChanged": true,
+  "xenosUI": true,
+  "storage": "Export only",
+  "receiptCountAtExportFallback": 5,
+  "indexedDBReloadTested": false,
+  "errors": []
+}

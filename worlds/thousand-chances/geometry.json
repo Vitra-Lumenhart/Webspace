@@ -276,7 +276,7 @@
   ],
   "teeVertices": 98784,
   "staticStride": 24,
-  "vertices": 531657,
+  "vertices": 498816,
   "wheelVertices": 7308,
   "peopleVertices": 45849,
   "walkers": 84,
@@ -1170,11 +1170,11 @@
   "shaders": [
     {
       "t": 35633,
-      "src": "#version 300 es\nprecision highp float;layout(location=0)in vec3 p;layout(location=1)in vec3 n;layout(location=2)in vec4 c;uniform mat4 vp;uniform vec3 eye;out vec3 pos;out vec3 nor;out vec4 col;out float dep;void main(){pos=p;nor=n;col=c;dep=distance(p,eye);gl_Position=vp*vec4(p,1.);}"
+      "src": "#version 300 es\nprecision highp float;layout(location=0)in vec3 p;layout(location=1)in vec3 n;layout(location=2)in vec4 c;layout(location=3)in float material;flat out float matID;flat out float cellID;uniform mat4 vp;uniform vec3 eye;out vec3 pos;out vec3 nor;out vec4 col;out float dep;void main(){matID=mod(material,4.);cellID=floor(material/4.)-1.;pos=p;nor=n;col=c;dep=distance(p,eye);gl_Position=vp*vec4(p,1.);}"
     },
     {
       "t": 35632,
-      "src": "#version 300 es\nprecision highp float;in vec3 pos;in vec3 nor;in vec4 col;in float dep;out vec4 outc;uniform float time;void main(){vec3 n=normalize(nor);float diffuse=.48+.52*max(0.,dot(n,normalize(vec3(-.35,.78,.45))));float grain=.96+.04*sin(dot(pos,vec3(3.1,4.7,2.4)))*sin(dot(pos,vec3(1.6,2.9,3.2))); float bed=sin(pos.y*.91+pos.x*.055+2.2*sin(pos.z*.09)+.7*sin(pos.x*.19+pos.z*.14));float seam=pow(max(0.,sin(pos.y*.36+pos.z*.05+sin(pos.x*.12))),16.);float mortar=step(.65,n.y)*step(.40,col.r)*step(col.r,.65)*step(.34,col.g)*step(col.g,.60)*(1.-col.a);grain*=1.+mortar*(.033*sin(pos.x*1.13+sin(pos.z*.86))+.023*sin(pos.z*2.33+sin(pos.x*1.9))+.018*sin(pos.x*17.3+pos.z*11.7)*sin(pos.z*21.7-pos.x*8.1));float rock=step(.25,col.r)*step(col.r,.40)*step(.24,col.g)*step(col.g,.36)*(1.-col.a);vec3 rgb=col.rgb*diffuse*grain*(1.+rock*(.18*bed-.11*seam));rgb+=rock*seam*vec3(.065,.042,.022);float canopyGlow=exp(-length((pos-vec3(0.,68.,-10.))*vec3(.025,.035,.024)));rgb+=rock*canopyGlow*vec3(.10,.067,.045);float lamp=exp(-length((pos-vec3(0.,4.,-4.))*vec3(.7,1.,.6))*.045);rgb+=col.rgb*lamp*.19;float street=exp(-abs(pos.y)*.18)*exp(-abs(pos.x)*.018);rgb+=vec3(.23,.13,.045)*street*(.45+.55*max(0.,cos(pos.z*.21)));rgb+=vec3(.025,.055,.068)*exp(-abs(pos.x-44.)*.06)*exp(-abs(pos.z+65.)*.045);rgb=mix(rgb,col.rgb,col.a);float fog=1.-exp(-dep*.007);outc=vec4(mix(rgb,vec3(.057,.068,.077),fog*.67),1.);}"
+      "src": "#version 300 es\nprecision highp float;in vec3 pos;in vec3 nor;in vec4 col;in float dep;flat in float matID;flat in float cellID;out vec4 outc;uniform float time;uniform sampler2D roadMemory;void main(){vec3 n=normalize(nor);float diffuse=.48+.52*max(0.,dot(n,normalize(vec3(-.35,.78,.45))));float grain=.96+.04*sin(dot(pos,vec3(3.1,4.7,2.4)))*sin(dot(pos,vec3(1.6,2.9,3.2))); float bed=sin(pos.y*.91+pos.x*.055+2.2*sin(pos.z*.09)+.7*sin(pos.x*.19+pos.z*.14));float seam=pow(max(0.,sin(pos.y*.36+pos.z*.05+sin(pos.x*.12))),16.);float mortar=step(.5,matID)*step(matID,1.5); float timber=step(1.5,matID)*step(matID,2.5); float mineral=step(2.5,matID)*step(matID,3.5);grain*=1.+timber*.08*sin(pos.z*16.+sin(pos.x*2.)) + mineral*.06*sin(pos.x*2.+pos.z*.7);float wear=cellID>=0.?texelFetch(roadMemory,ivec2(int(cellID),0),0).r:0.;grain=mix(grain,1.,wear*.55);grain*=1.+mortar*(.033*sin(pos.x*1.13+sin(pos.z*.86))+.023*sin(pos.z*2.33+sin(pos.x*1.9))+.018*sin(pos.x*17.3+pos.z*11.7)*sin(pos.z*21.7-pos.x*8.1));grain*=1.+(mortar+timber+mineral)*wear*.04;float rock=step(.25,col.r)*step(col.r,.40)*step(.24,col.g)*step(col.g,.36)*(1.-col.a);vec3 rgb=col.rgb*diffuse*grain*(1.+rock*(.18*bed-.11*seam));rgb+=rock*seam*vec3(.065,.042,.022);float canopyGlow=exp(-length((pos-vec3(0.,68.,-10.))*vec3(.025,.035,.024)));rgb+=rock*canopyGlow*vec3(.10,.067,.045);float lamp=exp(-length((pos-vec3(0.,4.,-4.))*vec3(.7,1.,.6))*.045);rgb+=col.rgb*lamp*.19;float street=exp(-abs(pos.y)*.18)*exp(-abs(pos.x)*.018);rgb+=vec3(.23,.13,.045)*street*(.45+.55*max(0.,cos(pos.z*.21)));rgb+=vec3(.025,.055,.068)*exp(-abs(pos.x-44.)*.06)*exp(-abs(pos.z+65.)*.045);rgb=mix(rgb,col.rgb,col.a);float fog=1.-exp(-dep*.007);outc=vec4(mix(rgb,vec3(.057,.068,.077),fog*.67),1.);}"
     }
   ]
 }

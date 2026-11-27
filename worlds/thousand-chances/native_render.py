@@ -13,10 +13,10 @@ for s in m['shaders']:
  sh=shader(s['t']);src=c.c_char_p(s['src'].encode());source(sh,1,c.byref(src),None);compile_(sh);ok=I();getsh(sh,0x8B81,c.byref(ok));log=c.create_string_buffer(4096);slog(sh,4096,None,log);assert ok.value,log.value;attach(prog,sh)
 link(prog);ok=I();getpr(prog,0x8B82,c.byref(ok));assert ok.value;use(prog)
 genva=B('glGenVertexArrays',None,I,c.POINTER(U));bindva=B('glBindVertexArray',None,U);genbuf=B('glGenBuffers',None,I,c.POINTER(U));bindbuf=B('glBindBuffer',None,U,U);bufdata=B('glBufferData',None,U,c.c_ssize_t,P,U);enableattr=B('glEnableVertexAttribArray',None,U);attr=B('glVertexAttribPointer',None,U,I,U,U,I,P);draw=B('glDrawArrays',None,U,I,I);clear=B('glClear',None,U);clearcolor=B('glClearColor',None,F,F,F,F);viewport=B('glViewport',None,I,I,I,I);read=B('glReadPixels',None,I,I,I,I,U,U,P);geterr=B('glGetError',U);enable=B('glEnable',None,U);getstr=B('glGetString',c.c_char_p,U);enable(0xB71);clearcolor(.045,.052,.065,1);viewport(0,0,w,h);meshes=[]
-for i in range(3):
+for i in range(4):
  raw=(p/f'mesh{i}.bin').read_bytes();vao=U();buf=U();genva(1,c.byref(vao));bindva(vao);genbuf(1,c.byref(buf));bindbuf(0x8892,buf);bufdata(0x8892,len(raw),c.c_char_p(raw),0x88E4)
  stride=m.get("staticStride",40) if i==0 else 40
- for loc,nn,typ,normalized,off in ([(0,3,0x1406,0,0),(1,3,0x1402,1,12),(2,4,0x1401,1,18)] if stride==24 else [(0,3,0x1406,0,0),(1,3,0x1406,0,12),(2,4,0x1406,0,24)]):enableattr(loc);attr(loc,nn,typ,normalized,stride,P(off))
+ for loc,nn,typ,normalized,off in ([(0,3,0x1406,0,0),(1,3,0x1402,1,12),(2,4,0x1401,1,18),(3,1,0x1403,0,22)] if stride==24 else [(0,3,0x1406,0,0),(1,3,0x1406,0,12),(2,4,0x1406,0,24)]):enableattr(loc);attr(loc,nn,typ,normalized,stride,P(off))
  meshes.append((vao,len(raw)//stride))
 # Verify actual screen shader and texture atlas in native GLES, independently of browser.
 import re
@@ -39,6 +39,10 @@ tv=U();tb=U();genva(1,c.byref(tv));bindva(tv);genbuf(1,c.byref(tb));bindbuf(0x88
 for loc,nn,off in [(0,3,0),(1,2,12)]:enableattr(loc);attr(loc,nn,0x1406,0,20,P(off))
 teeTex=U();B('glGenTextures',None,I,c.POINTER(U))(1,c.byref(teeTex));B('glBindTexture',None,U,U)(0x0DE1,teeTex);im=Image.open(p/'tee-atlas.jpg').convert('RGBA');raw=im.tobytes();B('glTexImage2D',None,U,I,I,I,I,I,U,U,P)(0x0DE1,0,0x1908,*im.size,0,0x1908,0x1401,c.c_char_p(raw))
 for k,v in [(0x2801,0x2601),(0x2800,0x2601),(0x2802,0x812F),(0x2803,0x812F)]:param(0x0DE1,k,v)
+# road-memory texture is independent of screen and garment atlases
+roadTex=U();B('glGenTextures',None,I,c.POINTER(U))(1,c.byref(roadTex));B('glActiveTexture',None,U)(0x84C1);B('glBindTexture',None,U,U)(0x0DE1,roadTex);roadBytes=bytes([40,80,120,255])*2264;B('glTexImage2D',None,U,I,I,I,I,I,U,U,P)(0x0DE1,0,0x1908,2264,1,0,0x1908,0x1401,c.c_char_p(roadBytes));
+for k,v in [(0x2801,0x2600),(0x2800,0x2600),(0x2802,0x812F),(0x2803,0x812F)]:param(0x0DE1,k,v)
+B('glUniform1i',None,I,I)(getloc(prog,b'roadMemory'),1);B('glActiveTexture',None,U)(0x84C0)
 result={'teeVertices':m['teeVertices'],'texturedScreens':len(m['screens']),'renderer' :getstr(0x1F01).decode(),'vertices':m['vertices'],'wheelVertices':m['wheelVertices'],'buildings':m['buildings'],'walkers':m['walkers'],'peopleVertices':m['peopleVertices'],'views':[]}
 for v in m['views']:
  use(prog);clear(0x4000|0x100);uniformmat(getloc(prog,b'vp'),1,0,(F*16)(*v['vp']));uniform3(getloc(prog,b'eye'),1,(F*3)(*v['eye']))

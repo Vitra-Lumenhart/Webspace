@@ -1,10 +1,10 @@
 {
   "id": "thousand-chances",
   "name": "The Thousand Chances",
-  "version": "TC-R0010",
+  "version": "TC-R0011",
   "entry": "index.html",
   "arrival_tag": "thousand-last-lantern",
-  "status": "78 new market pitches; 84 actors; static and CPU browser hero inspection tested",
+  "status": "Integrated road-bound stochastic market field; local receipts, opt-in Xenos, visual assets; native and CPU browser tested",
   "gringotts": "external comparison, no ledger dependency",
   "source_lineage": "original authored open cavern, seeded fa\u00e7ades, Xenos-derived model; no source port",
   "features": [
@@ -43,6 +43,14 @@
     "six stall forms",
     "three partially served pizza buffets",
     "24 local shopkeepers",
-    "21 actual tee wearers"
+    "21 actual tee wearers",
+    "2264 road field cells",
+    "184 validated stationary activity sockets",
+    "7 field components and multiscale memory",
+    "dynamic pizza trays and temporary event theatre",
+    "local SHA-256 receipt chain and restitution",
+    "opt-in Xenos micro-movement",
+    "field-responsive Wheel and road materials",
+    "spatial frustum culling"
   ]
 }
