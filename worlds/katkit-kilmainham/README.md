@@ -35,3 +35,7 @@ Ten design notes covering the five districts and historical ages, dramatic refer
 
 ## R012 spatial and historical foundations — planning increment
 [R012 scope](R012_SCOPE.md) specifies the expanded playable release. Candidate contracts and tests are committed; no new playable feature is claimed. Adult-scale traversal, one open cell, addressable districts, spatial testimony, object history and original sound are planned. R011 Choir and R010a remain intact.
+
+
+## R012 hoist increment — 26 November 2026
+The earlier speculative cage/shaft has been superseded by the documented two-pole food lift. See [FOOD_HOIST.md](FOOD_HOIST.md) for museum references, reconstruction limits and actual scene integration. The hoist is the first candidate for a reusable institutional maintenance contract: stable service asset ID, condition/wear, operation and custody events, repair requests, dated service and continuing history. Extend this to doors, stairs, iron screens, lamps and roofing as separate authored schedules, never as a generic random decay effect. Keep maintenance actors and responsibility explicit; repaired objects retain identity, and only witnessed events enter the Choir. Food delivery remains the first visible function. No new traversal or full historical reconstruction is implied. The code is committed to the review branch; browser/rendering and exported GLB remain pending.
