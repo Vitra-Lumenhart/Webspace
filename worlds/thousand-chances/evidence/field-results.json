@@ -3,7 +3,7 @@
   "cells": 2264,
   "shops": 98,
   "sockets": 92,
-  "receipts": 388,
+  "receipts": 408,
   "npcDisputes": 17,
   "pizza": [
     {
@@ -37,8 +37,8 @@
   "ticks": 2401,
   "balances": {
     "player": 100,
-    "circulation": 4648,
-    "shops": 5352,
+    "circulation": 5000,
+    "shops": 5000,
     "disputed": 0,
     "npcDisputed": 0
   }

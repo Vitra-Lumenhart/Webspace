@@ -1,10 +1,10 @@
 {
   "id": "thousand-chances",
   "name": "The Thousand Chances",
-  "version": "TC-R0011",
+  "version": "TC-R0012",
   "entry": "index.html",
   "arrival_tag": "thousand-last-lantern",
-  "status": "Integrated road-bound stochastic market field; local receipts, opt-in Xenos, visual assets; native and CPU browser tested",
+  "status": "Corrective field revision: sustainable circulation, validated saves, seeded personal encounter opportunities; hosted storage unverified",
   "gringotts": "external comparison, no ledger dependency",
   "source_lineage": "original authored open cavern, seeded fa\u00e7ades, Xenos-derived model; no source port",
   "features": [
@@ -51,6 +51,9 @@
     "local SHA-256 receipt chain and restitution",
     "opt-in Xenos micro-movement",
     "field-responsive Wheel and road materials",
-    "spatial frustum culling"
+    "spatial frustum culling",
+    "periodic operating-cost receipts",
+    "hardened local save validation",
+    "seeded personal opportunities"
   ]
 }

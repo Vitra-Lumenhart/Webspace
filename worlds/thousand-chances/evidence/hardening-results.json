@@ -1,0 +1,13 @@
+{
+  "checks": 27,
+  "ticks": 14400,
+  "receipts": 2244,
+  "chances": 107,
+  "balances": {
+    "player": 100,
+    "circulation": 5000,
+    "shops": 5000,
+    "disputed": 0,
+    "npcDisputed": 0
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "status": "blocked",
+  "reason": "Chromium net::ERR_BLOCKED_BY_ADMINISTRATOR on localhost HTTP",
+  "indexedDBReloadTested": false
+}
