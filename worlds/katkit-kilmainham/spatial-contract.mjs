@@ -47,7 +47,7 @@ export function routes(){
 export const PLANNED_ASSETS=Object.freeze({
  stairCanopy:{id:'KIL-IRON-001',clearWidth:STAIR.cageWidth-STAIR.barWidth,headroomAtCenter:STAIR.spring+STAIR.radius-STAIR.barWidth/2},
  galleryScreen:{id:'KIL-IRON-002',tier:1,lowerY:HALL.pitch,upperY:2*HALL.pitch-.21,gateAt:'rightBridge',status:'requires bridge opening and actual support'},
- dumbwaiter:{id:'KIL-IRON-003',side:'right',center:[6.1,0,-4.8],footprint:[1.25,1.25],landings:[0,6.3,12.6],status:'service hoist; not passenger traversal'},
+ dumbwaiter:{id:'KIL-IRON-003',side:'right',center:[6.1,0,-4.8],footprint:[1.52,1.20],landings:[-3.15,0,6.3,12.6],form:'two exposed poles and overhead pulley',status:'mounted visual prototype; service only; no passenger traversal'},
  doorLeaf:{id:'KIL-DOOR-001',shape:'flat',pivot:'hinge',sharedAcrossAllBays:true},
  openBay:{id:'KIL-DOOR-002',address:OPEN_CELL,clearWidth:1.24,clearHeight:2.8},
  cell:{id:'KIL-ROOM-001',floorY:6.3,depth:3.4,clearWidth:2.55}
