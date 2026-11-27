@@ -19,17 +19,48 @@ export function mountFoodHoist(parent,materials={}){
   rod(staticGroup,[x,-3.3,0],[x,H+.1,0],HOIST.poleRadius);
   for(const y of [0,6.3,12.6,H]){add(staticGroup,new THREE.CylinderGeometry(.068,.068,.12,12),dark,x,y,0);}
  }
- // The visibly decorated horizontal head reaches toward the wall, not a lift tower.
- box(staticGroup,1.02,H+.12,0,3.18,.15,.13);
- box(staticGroup,2.6,H-.18,0,.12,.68,.24);
- rod(staticGroup,[.48,H-.05,0],[2.55,H-.65,0],.035);
- const scroll=new THREE.CatmullRomCurve3([[.55,H-.06,0],[1.05,H-.48,0],[1.70,H-.68,0],[2.18,H-.38,0],[1.99,H-.15,0],[1.70,H-.30,0]].map(p=>new THREE.Vector3(...p)));
- add(staticGroup,new THREE.TubeGeometry(scroll,36,.025,8,false),iron);
- const wheel=new THREE.Group();wheel.name='pulley pivot';wheel.position.set(-.15,H,0);root.add(wheel);
- add(wheel,new THREE.TorusGeometry(HOIST.pulleyRadius,.032,10,40),iron);
- add(wheel,new THREE.TorusGeometry(HOIST.pulleyRadius-.047,.017,8,40),dark);
- for(let i=0;i<6;i++){const a=i*Math.PI/3;rod(wheel,[0,0,0],[Math.cos(a)*.23,Math.sin(a)*.23,0],.021);}
- const hub=add(wheel,new THREE.CylinderGeometry(.065,.065,.16,12),dark);hub.rotation.x=Math.PI/2;
+ // KIL-IRON-003A. Main Hall photographic silhouette: a large, open
+ // spoked sheave at the projecting end of a narrow iron lattice head.
+ // Lamp shades in the reference are separate fittings, not a solid drum.
+ const head=new THREE.Group();head.name='KIL-IRON-003A / openwork crosshead';root.add(head);
+ const R=HOIST.pulleyRadius, wx=R, wallX=2.66;
+ const wheel=new THREE.Group();wheel.name='KIL-IRON-003A / rotating sheave';wheel.position.set(wx,H,0);root.add(wheel);
+ // Twin cheeks with an open rope groove and four cast spokes.
+ for(const z of [-.047,.047])add(wheel,new THREE.TorusGeometry(R,.029,10,48),iron,0,0,z);
+ add(wheel,new THREE.TorusGeometry(R-.038,.032,10,48),dark);
+ for(let i=0;i<4;i++){
+  const a=i*Math.PI/2;rod(wheel,[Math.cos(a)*.075,Math.sin(a)*.075,0],[Math.cos(a)*(R-.035),Math.sin(a)*(R-.035),0],.027,iron);
+ }
+ const axial=(p,x,y,z,r,len,m=iron)=>{const o=add(p,new THREE.CylinderGeometry(r,r,len,16),m,x,y,z);o.rotation.x=Math.PI/2;return o;};
+ axial(wheel,0,0,0,.085,.19,dark);
+ // The axle and collars stay fixed while the sheave rotates.
+ axial(head,wx,H,0,.045,.54,dark);
+ for(const z of [-.21,.21]){
+  axial(head,wx,H,z,.10,.075,iron);
+  // Bearing cheek extends into a slender horizontal open-web frame.
+  box(head,(wx+wallX)/2,H+.12,z,wallX-wx,.065,.065);
+  box(head,(wx+wallX)/2,H-.34,z,wallX-wx,.075,.065);
+  for(const x of [wx,1.03,1.57,2.11,wallX])box(head,x,H-.11,z,.058,.46,.065);
+  for(const [l,r] of [[1.03,1.57],[1.57,2.11],[2.11,wallX]]){
+   rod(head,[l,H-.31,z],[r,H+.09,z],.023);
+   rod(head,[l,H+.09,z],[r,H-.31,z],.023);
+  }
+  // Small curved return underneath the projecting nose, not a bulky gearbox.
+  const curve=new THREE.CatmullRomCurve3([[wx,H-.34,z],[wx+.23,H-.60,z],[1.03,H-.57,z],[1.23,H-.34,z]].map(p=>new THREE.Vector3(...p)));
+  add(head,new THREE.TubeGeometry(curve,22,.027,8,false),iron);
+  box(head,wallX,H-.12,z,.10,.76,.18);
+  for(const y of [H+.18,H-.39]){const bolt=add(head,new THREE.CylinderGeometry(.041,.041,.055,6),dark,wallX-.065,y,z);bolt.rotation.z=Math.PI/2;}
+ }
+ for(const x of [wx,1.03,1.57,2.11,wallX]){
+  rod(head,[x,H+.12,-.21],[x,H+.12,.21],.025);
+  rod(head,[x,H-.34,-.21],[x,H-.34,.21],.025);
+ }
+ // Crosshead ties the exposed guide poles to the frame.
+ box(head,0,H-.35,0,HOIST.poleSpacing+.13,.10,.13);
+ rod(head,[half,H-.36,0],[1.57,H-.36,0],.039);
+ // Rope is visibly wrapped over the sheave; both legs leave tangentially.
+ const ropeArc=new THREE.CatmullRomCurve3(Array.from({length:25},(_,i)=>{const a=Math.PI-i*Math.PI/24;return new THREE.Vector3(wx+R*Math.cos(a),H+R*Math.sin(a),0);}));
+ add(head,new THREE.TubeGeometry(ropeArc,32,.014,7,false),ropeMat);
  // Small open carrier, no passenger cage; carrier form is a reconstruction.
  const tray=new THREE.Group();tray.name='food carrier pivot';root.add(tray);
  box(tray,0,.055,0,HOIST.trayWidth,.10,HOIST.trayDepth,timber);
@@ -42,13 +73,13 @@ export function mountFoodHoist(parent,materials={}){
   add(g,new THREE.SphereGeometry(.022,8,6),iron,0,.187,0);
  }
  const cable=add(root,new THREE.CylinderGeometry(.013,.013,1,8),ropeMat);
- const tail=rod(root,[.11,H,0],[.78,.9,.50],.013,ropeMat);
+ const tail=rod(root,[2*R,H,0],[.78,.9,.50],.013,ropeMat);
  const hatch=new THREE.Group();hatch.name='kitchen trapdoor pivot';hatch.position.set(0,.012,-.56);root.add(hatch);
  box(hatch,0,0,.56,1.46,.075,1.12,lidMat);
  for(const x of [-.47,.47])box(hatch,x,.044,.56,.07,.012,1.05,iron);
  for(const x of [-.76,.76])box(staticGroup,x,.01,0,.07,.08,1.22,dark);
  for(const z of [-.60,.60])box(staticGroup,0,.01,z,1.54,.08,.07,dark);
- const end=new THREE.Vector3(),start=new THREE.Vector3(-.41,H,0),axis=new THREE.Vector3(0,1,0);
+ const end=new THREE.Vector3(),start=new THREE.Vector3(0,H,0),axis=new THREE.Vector3(0,1,0);
  function update(state,dt=0){
   tray.position.y=state.y;
   // Effective animation ratio for visual continuity, not a mechanical specification.
@@ -58,5 +89,5 @@ export function mountFoodHoist(parent,materials={}){
   const open=state.phase!=='idle'||state.y>-.2;
   hatch.rotation.x=THREE.MathUtils.lerp(hatch.rotation.x,open?-Math.PI*.54:0,dt?1-Math.exp(-5*dt):1);
  }
- return {root,staticGroup,wheel,tray,hatch,update,parts:{wheel,tray,hatch,tail}};
+ return {root,staticGroup,wheel,tray,hatch,update,parts:{head,wheel,tray,hatch,tail}};
 }
