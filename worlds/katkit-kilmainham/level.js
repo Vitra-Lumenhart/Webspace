@@ -7,6 +7,7 @@ import { Choir } from './choir.mjs';
 import { mountChoir } from './choir-embodiments.js';
 import { FoodHoist, HOIST } from './food-hoist.mjs';
 import { mountFoodHoist } from './food-hoist-view.js';
+import { STAIR as STAIR_PROFILE } from './spatial-contract.mjs';
 const hoist=new FoodHoist();let hoistView=null,hoistClock=0,hoistStarted=false;
 let choirCast=null;
 const choir = new Choir(await fetch(new URL('./choir-canon.json',import.meta.url)).then(r=>{if(!r.ok)throw Error('Choir canon unavailable');return r.json()}));
@@ -145,10 +146,10 @@ function fullWall(x,z,rotation,width,apse=false,crownOpen=true){
 function bridgeWebGeometry(span){const key='bridge:'+span;if(cache[key])return cache[key];const depth=x=>.82+.86*Math.pow(Math.abs(x)/(span/2),1.6);const pts=[[-span/2,0],[span/2,0]];for(let i=24;i>=0;i--){let x=-span/2+span*i/24;pts.push([x,-depth(x)]);}const shape=poly(pts);const n=Math.floor(span/.77);for(let i=0;i<n;i++){let x=-span/2+(i+.5)*span/n,d=depth(x);const path=new THREE.Path();path.absellipse(x,-d*.51,.28,Math.min(d*.35,.60),0,Math.PI*2,false);shape.holes.push(path);}return cache[key]=extrusion(shape,.10);}
 // B/C/D/E revised again for R007: the gallery-front enclosures become tall anti-suicide cages, while bridges and stairs keep the half-cylinder jungle-gym profile.
 function lowRail(a,b,y,h=1.02){const [x,z]=a,[X,Z]=b;beam([x,y+h,z],[X,y+h,Z],.038,iron);beam([x,y+.54,z],[X,y+.54,Z],.028,trim);const d=Math.hypot(X-x,Z-z),n=Math.max(1,Math.ceil(d/.56));for(let j=0;j<=n;j++){const f=j/n;beam([x+(X-x)*f,y,z+(Z-z)*f],[x+(X-x)*f,y+h,z+(Z-z)*f],.034,iron);}}
-function cageTunnel3D(A,B,width=1.30,sideH=1.00,radius=.66,hoopStep=.72,longBars=5){
+function cageTunnel3D(A,B,width=1.30,sideH=1.00,radius=.66,hoopStep=.72,longBars=5,arcSegments=12){
  const [x0,y0,z0]=A,[x1,y1,z1]=B; const dx=x1-x0,dz=z1-z0,len=Math.hypot(dx,dz); if(len<.001)return;
  const ux=dx/len, uz=dz/len, px=-uz, pz=ux; const hoops=Math.max(1,Math.ceil(len/hoopStep)); const profiles=[];
- function hoop(f){const cx=x0+dx*f, cy=y0+(y1-y0)*f, cz=z0+dz*f; const pts=[]; const left=[cx-px*width/2,cy,cz-pz*width/2], right=[cx+px*width/2,cy,cz+pz*width/2]; const leftTop=[left[0],cy+sideH,left[2]], rightTop=[right[0],cy+sideH,right[2]]; beam(left,leftTop,.05,steelBlue); beam(right,rightTop,.05,steelBlue); pts.push(leftTop); for(let i=1;i<7;i++){const a=Math.PI-(Math.PI*i/6); const u=(width/2)*Math.cos(a), v=sideH+radius*Math.sin(a); pts.push([cx+px*u,cy+v,cz+pz*u]);} pts.push(rightTop); for(let i=1;i<pts.length;i++)beam(pts[i-1],pts[i],.048,steelBlue); return pts; }
+ function hoop(f){const cx=x0+dx*f, cy=y0+(y1-y0)*f, cz=z0+dz*f; const pts=[]; const left=[cx-px*width/2,cy,cz-pz*width/2], right=[cx+px*width/2,cy,cz+pz*width/2]; const leftTop=[left[0],cy+sideH,left[2]], rightTop=[right[0],cy+sideH,right[2]]; beam(left,leftTop,.05,steelBlue); beam(right,rightTop,.05,steelBlue); pts.push(leftTop); for(let i=1;i<arcSegments;i++){const a=Math.PI-(Math.PI*i/arcSegments); const u=(width/2)*Math.cos(a), v=sideH+radius*Math.sin(a); pts.push([cx+px*u,cy+v,cz+pz*u]);} pts.push(rightTop); for(let i=1;i<pts.length;i++)beam(pts[i-1],pts[i],.048,steelBlue); return pts; }
  for(let i=0;i<=hoops;i++)profiles.push(hoop(i/hoops));
  const indices=[]; for(let i=0;i<longBars;i++) indices.push(Math.round((profiles[0].length-1)*i/(longBars-1)));
  for(let h=1;h<profiles.length;h++){ for(const idx of indices) beam(profiles[h-1][idx],profiles[h][idx],.026,trim); }
@@ -165,7 +166,7 @@ function bridge(y,z,hasUpperFlight){
  box(0,y-.10,z,span,.20,1.65,bridgeWood);
  for(const side of [-1,1]){mesh(bridgeWebGeometry(span),steelBlue,0,y-.18,z+side*.78);box(0,y-.19,z+side*.78,span,.075,.20,steelBlue);}
  // One cage per span, not one identical cage per girder. Preserve open stair arrival.
- for(const [a,b] of [[-half,-.83],[.83,half]])cageTunnel3D([a,y,z],[b,y,z],1.34,1.02,.70,1.05,5);
+ for(const [a,b] of [[-half,-.83],[.83,half]])cageTunnel3D([a,y,z],[b,y,z],1.46,STAIR_PROFILE.spring,STAIR_PROFILE.radius,1.05,7,STAIR_PROFILE.segments);
 }
 // F: curved wall-mounted gallery bracket (the actual small cantilever, distinct from bridge web).
 function buttress(x,z,angle,y){const d=[Math.sin(angle),Math.cos(angle)];const P=(u,v)=>[x+d[0]*u,y+v,z+d[1]*u];beam(P(0,-1.02),P(0,-.10),.095,iron);beam(P(0,-.10),P(GALLERY_WIDTH,-.10),.075,iron);const pts=[];for(let i=0;i<=9;i++){let f=i/9;pts.push(P(GALLERY_WIDTH*(1-Math.cos(f*Math.PI/2)), -1.02+.92*Math.sin(f*Math.PI/2)));}for(let i=1;i<pts.length;i++)beam(pts[i-1],pts[i],.065,iron);}
@@ -180,7 +181,7 @@ function surface(fn,z0,z1,nZ,nX,mat,shadow=true){const ps=[],idx=[];for(let j=0;
 function roofRib(z,radialAngle=null){const pts=[],lower=[];for(let i=0;i<=20;i++){const t=-Math.PI/2+i*Math.PI/20,x=HALL_HALF_WIDTH*Math.sin(t),y=ROOF_SPRING_Y+3.6*Math.cos(t);const q=radialAngle===null?[x,z]:[x*Math.cos(radialAngle),APSE_Z-x*Math.sin(radialAngle)];pts.push([q[0],y-.06,q[1]]);lower.push([q[0]*.975,y-.06-(.22+.50*Math.abs(Math.sin(t))),q[1]]);}for(let i=1;i<pts.length;i++){beam(pts[i-1],pts[i],.11,steelBlue);beam(lower[i-1],lower[i],.095,steelBlue);beam(pts[i-1],lower[i],.045,steelBlue);beam(lower[i-1],pts[i],.045,steelBlue);} }
 function deckSegment(a,b,y){const [x,z]=a,[X,Z]=b,d=Math.hypot(X-x,Z-z),theta=Math.atan2(-(Z-z),X-x);const o=box((x+X)/2,y-.11,(z+Z)/2,d+.025,.20,GALLERY_WIDTH,wood);o.rotation.y=theta;}
 // Reusable, photo-inspired open iron stair. 35 risers at ~180mm; wood treads and perforated risers.
-const STAIR_RUN=9.1, STAIR_RISERS=35, STAIR_WIDTH=1.35;
+const STAIR_RUN=STAIR_PROFILE.run, STAIR_RISERS=STAIR_PROFILE.risers, STAIR_WIDTH=STAIR_PROFILE.width;
 function stairRiserGeometry(){if(cache.riser)return cache.riser;const dy=LEVEL_PITCH/STAIR_RISERS;const sh=poly([[-STAIR_WIDTH/2,0],[STAIR_WIDTH/2,0],[STAIR_WIDTH/2,dy],[-STAIR_WIDTH/2,dy]]);for(let k=0;k<9;k++){const hole=new THREE.Path();hole.absellipse(-.60+k*.15,dy*.50,.057,.062,0,Math.PI*2,false);sh.holes.push(hole);}return cache.riser=extrusion(sh,.025);}
 function stairFlight(y,z){const dy=LEVEL_PITCH/STAIR_RISERS,dz=STAIR_RUN/STAIR_RISERS;
  for(let i=0;i<STAIR_RISERS;i++){const yy=y+i*dy,zz=z-i*dz;mesh(stairRiserGeometry(),steelBlue,0,yy,zz);box(0,yy+dy-.025,zz-dz/2,STAIR_WIDTH,.05,dz+.016,wood);}
@@ -191,8 +192,8 @@ function stairFlight(y,z){const dy=LEVEL_PITCH/STAIR_RISERS,dz=STAIR_RUN/STAIR_R
   beam([side*.72,y+1.10,z],[side*.72,y+LEVEL_PITCH+1.10,z-STAIR_RUN],.055,iron);
   for(let i=0;i<=STAIR_RISERS;i+=3){const f=Math.min(i/STAIR_RISERS,1),zz=z-f*STAIR_RUN,yy=y+f*LEVEL_PITCH;beam([side*.72,yy,zz],[side*.72,yy+1.10,zz],.038,iron);}
  }
- const cageStart=12/STAIR_RISERS;
- cageTunnel3D([0,y+LEVEL_PITCH*cageStart,z-STAIR_RUN*cageStart],[0,y+LEVEL_PITCH,z-STAIR_RUN],1.26,1.35,.64,.76,5);
+ const cageStart=STAIR_PROFILE.startsAt/STAIR_RISERS;
+ cageTunnel3D([0,y+LEVEL_PITCH*cageStart,z-STAIR_RUN*cageStart],[0,y+LEVEL_PITCH,z-STAIR_RUN],STAIR_PROFILE.cageWidth,STAIR_PROFILE.spring,STAIR_PROFILE.radius,.76,7,STAIR_PROFILE.segments);
 }
 
 function figure(x,z,c){const m=new THREE.MeshStandardMaterial({color:c,roughness:.9});mesh(new THREE.CylinderGeometry(.27,.38,.95,7),m,x,.78,z);mesh(new THREE.SphereGeometry(.22,8,6),m,x,1.49,z);}
@@ -299,7 +300,7 @@ function updateMarkers(){const r=canvas.getBoundingClientRect(),f=camera.getWorl
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 function animate(now){const dt=previousTime?Math.min(.05,(now-previousTime)/1000):0;previousTime=now;
  if(hoistView){hoistClock+=dt;while(hoistClock>=.1){hoistClock-=.1;hoist.advance();}if(!hoistStarted&&hoist.tick>=30){hoistStarted=true;hoist.start();}hoistView.update(hoist.inspect(),dt);}for(const mixer of mixers)mixer.update(dt);tick(now);if(choirCast)choirCast.sync(dt); camera.rotation.set(pitch,yaw,0,'YXZ'); camera.updateMatrixWorld(); updateMarkers(); renderer.render(scene,camera)}
-function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R012 hoist study · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
+function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R013 ironwork · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
 try{
  await load();build();flushAssets();batchArchitecture();hoistView=mountFoodHoist(scene,{iron:steelBlue,dark:iron,wood});hoistView.update(hoist.inspect());weatherScene(scene,weatherKinds);
  choir.advance(1,'gate','arrival of the witness');refresh();reportArt();renderer.setAnimationLoop(animate);
