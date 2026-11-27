@@ -541,3 +541,14 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Food hoist study](worlds/katkit-kilmainham/FOOD_HOIST.md), [state model](worlds/katkit-kilmainham/food-hoist.mjs), [view](worlds/katkit-kilmainham/food-hoist-view.js), [tests](worlds/katkit-kilmainham/test-food-hoist.mjs). 4,290 assertions executed in JS isolate with assert adapter, four completed rounds, 60 events; syntax and initialization order checks. Not a browser test.
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="KIL-R013-IRON" date="2026-11-27" -->
+### 2026-11-27 · KIL-R013-IRON — Photographic ironwork correction
+
+**Changed:** Inspected Colin Main Hall reference and revised the actual hoist head geometry. Projecting four-spoke sheave, narrow pierced lower web, open crosshead, fixed axle, visible rope wrap. Stair and bridge cage runtime uses shared adult profile. Existing Choir, hoist operation, route and art preserved.
+
+**Checked:** 596 spatial assertions, 548 planned route points, 4290 hoist assertions; conservative headroom 2.59m at body edge plus margin. JavaScript parse. Not full collision or browser verification.
+
+**Deferred:** GLB export, visual comparison at full resolution, playable stair/cell, full-height screens and live deployment. No main/Pages/Drive changes. [Technical spec](worlds/katkit-kilmainham/R013_IRONWORK.md).
+<!-- /WEBSPACE-LEDGER -->
