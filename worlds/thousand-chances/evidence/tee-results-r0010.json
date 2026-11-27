@@ -1,0 +1,96 @@
+{
+  "checks": 16564,
+  "garments": 18,
+  "wearers": 21,
+  "population": 84,
+  "uniqueWorn": 15,
+  "actualDrawVertices": 98784,
+  "staticGeometrySHA256": "7a03a981bc938912ba804f3869b49c5fdd23036d5e9259f70dcde85c2ad766eb",
+  "roster": [
+    {
+      "id": "walker1",
+      "garment": "lantern-laundry"
+    },
+    {
+      "id": "walker4",
+      "garment": "bolt-exchange"
+    },
+    {
+      "id": "walker8",
+      "garment": "house-vermillion"
+    },
+    {
+      "id": "walker9",
+      "garment": "anonymous-privacy"
+    },
+    {
+      "id": "walker12",
+      "garment": "paper-dragon"
+    },
+    {
+      "id": "walker18",
+      "garment": "mirror-thread"
+    },
+    {
+      "id": "walker20",
+      "garment": "borrowed-face"
+    },
+    {
+      "id": "walker23",
+      "garment": "local-loop"
+    },
+    {
+      "id": "walker24",
+      "garment": "pixel-foundry"
+    },
+    {
+      "id": "walker25",
+      "garment": "margins-press"
+    },
+    {
+      "id": "walker33",
+      "garment": "open-hour"
+    },
+    {
+      "id": "shopper2",
+      "garment": "anonymous-correction"
+    },
+    {
+      "id": "shopper13",
+      "garment": "caravan-listening"
+    },
+    {
+      "id": "shopper19",
+      "garment": "morning-table"
+    },
+    {
+      "id": "shopper23",
+      "garment": "common-pot"
+    },
+    {
+      "id": "vendor0",
+      "garment": "lantern-laundry"
+    },
+    {
+      "id": "vendor4",
+      "garment": "paper-dragon"
+    },
+    {
+      "id": "vendor8",
+      "garment": "bolt-exchange"
+    },
+    {
+      "id": "vendor12",
+      "garment": "margins-press"
+    },
+    {
+      "id": "vendor16",
+      "garment": "borrowed-face"
+    },
+    {
+      "id": "vendor20",
+      "garment": "open-hour"
+    }
+  ],
+  "scope": "asset buffer, allocations, draw mesh and immutable garment geometry; not rigged cloth simulation"
+}

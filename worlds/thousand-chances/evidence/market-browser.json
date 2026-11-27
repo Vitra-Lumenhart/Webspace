@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "renderer": "CPU Canvas2D",
+  "normalSpawn": true,
+  "actors": 84,
+  "tees": 21,
+  "teeVertices": 98784,
+  "centralView": "test-only cross anchor camera initialization",
+  "heroClick": true,
+  "errors": [],
+  "limits": "No full route walk, audio, hosted or hardware GPU benchmark."
+}

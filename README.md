@@ -464,3 +464,10 @@ TC-R0008 corrects R0007 provisional wardrobe: actual supplied TC_Market_Tees_R00
 TC-R0009 responds to player screenshots: named local exits, optional Paths drawer with elevation/distance, explicit Look, reversible walking and Backtrack, residential ceramic inlays, redistributed Ribbon Walk–Houses grade from 73% to 41%. 77 anchors, 92 open links, 90 addresses, 60 actors and 15 actual tees unchanged. 18,137 static route samples zero hits/unsupported centers. Actual Chromium CPU click traversal to Ribbon Walk and Houses and back, explicit Look and reversal passed. Full width deck/rail reconstruction, occlusion, GPU browser/audio/hosted preview unverified. R0032 preserved.
 [Navigation](worlds/thousand-chances/NAVIGATION.md) · [Evidence](worlds/thousand-chances/evidence/navigation-browser.json) · [Archive](https://drive.google.com/file/d/16k8lxq0A-mZNL0PiBgvDX2F2yR7pRlt-/view).
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="R0034" date="2026-11-26" -->
+### R0034 — TC-R0010: The Market of Unnecessary Things
+TC-R0010: 78 additional ground-level pitches, 98 authored offers, six booth forms, three pizza buffets, five fictional novelty boutiques, 24 merchants with six more actual Market Merch shirts; 21/84 wearers. Existing 60 actors, navigation, 77 anchors, 92 open roads, 90 addresses preserved. KayKit pizza/mugs/books reused; no new source import. Static vertices 531657, 18137 static samples zero body hits/unsupported centers, 34 native views zero errors, CPU browser startup and test-only central camera hero inspection passed. No new interiors, economy or functional weapons; GPU browser/hardware FPS, audio, actor collision and hosted preview unverified.
+[Market atlas](worlds/thousand-chances/MARKET_ATLAS.md) · [Evidence](worlds/thousand-chances/evidence/market-results.json) · [Archive](https://drive.google.com/file/d/1fvj2uJrOmJTBZFHQJVIlMu3H7zNIV945/view).
+<!-- /WEBSPACE-LEDGER -->

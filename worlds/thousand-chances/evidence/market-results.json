@@ -1,0 +1,17 @@
+{
+  "revision": "TC-R0010",
+  "newPitches": 78,
+  "offers": 98,
+  "actors": 84,
+  "teeVertices": 98784,
+  "originalActorCount": 60,
+  "wearers": 21,
+  "oldVertices": 365175,
+  "newVertices": 531657,
+  "staticBytes": 12759768,
+  "routeSamples": 18137,
+  "bodyHits": 0,
+  "unsupported": 0,
+  "nativeViews": 34,
+  "scope": "static and native render; no dynamic collision or hardware benchmark"
+}

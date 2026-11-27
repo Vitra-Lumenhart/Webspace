@@ -1,12 +1,12 @@
 {
-  "teeVertices": 70560,
+  "teeVertices": 98784,
   "texturedScreens": 4,
   "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
-  "vertices": 364581,
+  "vertices": 531657,
   "wheelVertices": 7308,
   "buildings": 72,
-  "walkers": 60,
-  "peopleVertices": 35697,
+  "walkers": 84,
+  "peopleVertices": 45849,
   "views": [
     {
       "id": "balcony",
@@ -94,6 +94,38 @@
     },
     {
       "id": "lostVein1",
+      "glError": 0
+    },
+    {
+      "id": "market-souq0",
+      "glError": 0
+    },
+    {
+      "id": "market-souq1",
+      "glError": 0
+    },
+    {
+      "id": "market-souq2",
+      "glError": 0
+    },
+    {
+      "id": "market-souq3",
+      "glError": 0
+    },
+    {
+      "id": "market-souq4",
+      "glError": 0
+    },
+    {
+      "id": "market-souq5",
+      "glError": 0
+    },
+    {
+      "id": "market-souq6",
+      "glError": 0
+    },
+    {
+      "id": "market-souq7",
       "glError": 0
     },
     {

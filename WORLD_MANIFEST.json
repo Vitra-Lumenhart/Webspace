@@ -75,10 +75,10 @@
       "id": "thousand-chances",
       "name": "The Thousand Chances · Belowroads undermarket",
       "entry": "worlds/thousand-chances/index.html?ws_v=1&ws_entry=thousand-last-lantern",
-      "version": "TC-R0009",
+      "version": "TC-R0010",
       "engine": "Independent self-contained WebGL2 urban cavern",
       "arrival_tag": "thousand-last-lantern",
-      "status": "Named routes, reversible travel; Ribbon Walk static and CPU browser tested",
+      "status": "78 new pitches, 84 actors; static and CPU browser tested",
       "features": [
         "19 local route anchors",
         "27 edges",
@@ -114,7 +114,10 @@
         "15 distinct worn shirts",
         "named local paths",
         "explicit Look and backtrack",
-        "residential ceramic wayfinding"
+        "residential ceramic wayfinding",
+        "78 additional ground-level pitches",
+        "three pizza buffets",
+        "24 shopkeepers and 21 tee wearers"
       ],
       "external_comparison": "gringotts",
       "portal_integration": "reserved, not actual Belowroads connection"
@@ -177,8 +180,8 @@
   ],
   "release_note": "Webspace v8 canonical source accepted: Elisium 4.6 retained with 12 schematic sky signs, Ahura Mazda/Tir references, 7 points, 64 readers, Kilns nested H-object pairs, and quiet-circle exit. Hosting separately verified.",
   "thousand_release": {
-    "revision": "R0033",
+    "revision": "R0034",
     "date": "2026-11-26",
-    "source_lineage": "TC-R0009 navigation refinement; R0032 preserved"
+    "source_lineage": "TC-R0010 ground-level market density; R0033 preserved"
   }
 }
