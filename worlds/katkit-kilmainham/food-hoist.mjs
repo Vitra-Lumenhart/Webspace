@@ -1,6 +1,6 @@
 // KIL-IRON-003: fictional food-hoist actor. Integer simulation ticks (0.1 s).
 // No real machinery control or engineering safety specification.
-export const HOIST=Object.freeze({id:'KIL-IRON-003',position:[6.1,0,-4.8],stops:Object.freeze([-3.15,0,6.30,12.60]),names:Object.freeze(['Kitchen','Ground floor','First gallery','Second gallery']),poleSpacing:1.12,poleRadius:.038,headY:14.25,trayWidth:.76,trayDepth:.65,pulleyRadius:.26,step:.035,serviceAt:1});
+export const HOIST=Object.freeze({id:'KIL-IRON-003',position:[6.1,0,-4.8],stops:Object.freeze([-3.15,0,6.30,12.60]),names:Object.freeze(['Kitchen','Ground floor','First gallery','Second gallery']),poleSpacing:1.12,poleRadius:.038,headY:15.70,trayWidth:.76,trayDepth:.65,pulleyRadius:.44,step:.035,serviceAt:1});
 export class FoodHoist{
  constructor(){this.tick=0;this.y=HOIST.stops[0];this.target=0;this.phase='idle';this.wait=0;this.wear=.12;this.rounds=0;this.cargo=[];this.events=[];this.seq=0;this.servicePending=false;this.lastService=null;}
  emit(kind,body={}){const e=Object.freeze({id:HOIST.id+':'+(++this.seq),tick:this.tick,kind,...body});this.events.push(e);return e;}
