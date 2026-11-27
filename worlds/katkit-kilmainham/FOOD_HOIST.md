@@ -22,3 +22,6 @@ The machine is a recurring character through the human care invested in it. Wear
 ## Validation and limitations
 
 Pure fixed-tick FoodHoist tests executed from committed code in JS isolate with assert adapter: 4290 assertions, four completed rounds, 60 events at final test snapshot, deterministic replay, bounded vertical movement, three ordered unique deliveries, maintenance blocking and restoration. JavaScript parse and startup-order checks passed. R010a roofGlass order, corrected GLSL identifier and safe-mode module restored on this branch. Actual Three.js mesh rendering, physical support, ground hatch/tile joins, actor service paths, source photograph close-up, browser test and deployment remain unverified. No new standalone GLB, no physical hoist engineering, no live Choir event bridge, no complete upper route. Existing R010a Pages remains intact.
+
+## R013 superseding head design
+See [R013_IRONWORK.md](R013_IRONWORK.md). The older head dimensions and six-spoke model are superseded by the inspected Main Hall photograph, projecting four-spoke wheel and narrow pierced frame. Meal and maintenance behavior unchanged.
