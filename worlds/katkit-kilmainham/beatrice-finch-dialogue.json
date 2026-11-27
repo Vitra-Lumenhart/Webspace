@@ -5,7 +5,7 @@
     "id": "human.beatrice_finch",
     "name": "Miss Beatrice Finch",
     "age": 58,
-    "role": "case manager",
+    "role": "case manager; quality of life under confinement",
     "formerRole": "theatrical wardrobe mistress",
     "species": "human",
     "magicKnowledge": "not established; never explicit in public speech",
@@ -18,16 +18,20 @@
     ],
     "personality": {
       "strengths": [
-        "practical affection",
+        "habitual practical care",
+        "institutional experience",
         "associative memory",
-        "social courage",
-        "resourcefulness"
+        "resourcefulness",
+        "firm boundaries",
+        "case-specific judgment"
       ],
       "faults": [
         "vanity",
         "intrusiveness",
         "impatience",
-        "mistaking her preferred future for another's"
+        "occasionally mistaking her preferred future for another's",
+        "fatigue",
+        "can be curt or mistaken"
       ],
       "boundary": "no guaranteed assistance, no coerced consent"
     },
@@ -109,7 +113,27 @@
         "affectionate": true,
         "mechanicalEffect": null
       }
-    ]
+    ],
+    "tenureYears": 20,
+    "professionalHistory": {
+      "repeatedAssaults": "Residents sometimes throw urine at her, roughly monthly in the established premise. Not a timed gameplay event or comic routine.",
+      "outlook": "Most residents currently need to be here in her considered professional judgment; confinement is not a license for neglect, and neither she nor the game is infallible about an individual case.",
+      "priority": "Everyday dignity, practical conditions, contact, clothing, meals, books, repairs, appropriate services; departures secondary."
+    },
+    "voice": {
+      "register": "plain, dry, brief; warmth in specific details and follow-through",
+      "titles": "heard for twenty years; stopped charming her in first week. Usually ignores them or responds to the underlying practical need; rare spontaneous smile, never a stock royal comeback.",
+      "avoid": [
+        "constant quips",
+        "performing eccentricity for an audience",
+        "mocking vulnerability",
+        "automatic cheerfulness after assault",
+        "departure as universal good",
+        "magical exposition"
+      ],
+      "boundary": "explicit boundaries after aggression; disengagement, ordinary safety procedures, and continuity of essential care through authorized staff; no reward or punishment minigame",
+      "wardrobe": "preserved selfhood, not a performance for residents"
+    }
   },
   "engine": {
     "authority": "NPC-owned decisions, schedules, permissions, narrative and turn allocation; visitor actions are offers or observations, never dialogue selectors",
@@ -140,7 +164,7 @@
       "repeated interaction as farming"
     ],
     "sceneBudget": {
-      "minBeats": 1,
+      "minBeats": 0,
       "maxBeats": 4,
       "reentry": "independent occasion or material change, not spam"
     },
@@ -161,7 +185,7 @@
       ],
       "noSuccessOrFailure": true
     },
-    "selection": "NPC evaluator chooses among eligible authored beats or silence, using own agenda, time, prior public receipts and independent RNG; do not expose eligibility to visitor; gates are not a checklist",
+    "selection": "NPC evaluator chooses among eligible authored beats or silence, using own agenda, time, prior public receipts and independent RNG; do not expose eligibility to visitor; gates are not a checklist Titles are social speech only, never attention boosts. Finch may ignore titles, answer practical needs, or choose silence. Workload and recovery affect ordinary availability, never residents' access to essential care or a hidden morality score.",
     "integration": "existing Choir.emit/deliver with stable actor IDs and causal parents; do not overload Choir.commit or its once-per-node used gate; adapter needed; public rendering read-only"
   },
   "scenes": [
@@ -175,7 +199,7 @@
         },
         {
           "speaker": "finch",
-          "text": "Your Majesty will be sufficient before breakfast."
+          "text": "Move your feet, please."
         }
       ],
       "branches": [
@@ -186,7 +210,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "Good heavens, those shoes. Were they issued to you in a fit of temper?"
+              "text": "Those shoes still rubbing?"
             },
             {
               "speaker": "resident.young",
@@ -202,7 +226,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "Have you eaten? There are apples somewhere. Not in that drawer. That's the important drawer."
+              "text": "Have you eaten? Ask the kitchen if there's anything left."
             }
           ],
           "exit": "diversion"
@@ -214,11 +238,11 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "That's a handsome bit of handwriting. Mine gets worse every year."
+              "text": "Is that the address your sister gave you?"
             },
             {
               "speaker": "finch",
-              "text": "Keep the envelope. They're expensive."
+              "text": "Keep the envelope. You may need the address."
             }
           ],
           "exit": "object_attention"
@@ -237,7 +261,7 @@
         },
         {
           "speaker": "finch",
-          "text": "It's five minutes slow. I prefer it that way."
+          "text": "You're in the doorway again."
         }
       ],
       "branches": [
@@ -248,7 +272,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "Someone has put a perfectly good chair in a perfectly useless place."
+              "text": "Put that chair against the wall, would you?"
             },
             {
               "speaker": "resident.elder",
@@ -268,7 +292,7 @@
             },
             {
               "speaker": "finch",
-              "text": "You can have a royal audience when I've found my pencil."
+              "text": "Have you got my pencil?"
             }
           ],
           "exit": "work_resume"
@@ -294,7 +318,7 @@
         },
         {
           "speaker": "finch",
-          "text": "Oh, you again. Whatever happened to the bakery?"
+          "text": "Hello. Have you got your things?"
         }
       ],
       "branches": [
@@ -309,7 +333,7 @@
             },
             {
               "speaker": "finch",
-              "text": "Barbaric. Even the birds negotiate."
+              "text": "Four in the morning. Right. Have you eaten today?"
             }
           ],
           "exit": "association"
@@ -321,7 +345,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "That's survived better than my handbag."
+              "text": "Oh, you've kept that."
             },
             {
               "speaker": "resident.returnee",
@@ -337,7 +361,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "That coat wants a button. Nobody wants a coat without a button."
+              "text": "Give me that coat when you've got something else to wear."
             }
           ],
           "exit": "practical_care"
@@ -352,7 +376,7 @@
       "opening": [
         {
           "speaker": "finch",
-          "text": "You've been standing there so long I shall have to dust you."
+          "text": "I know you're there. I'm doing something."
         }
       ],
       "branches": [
@@ -363,7 +387,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "Listen to that typewriter. One of the letters sounds like a mouse falling down a chimney."
+              "text": "If you're waiting for the list, it hasn't come."
             }
           ],
           "exit": "work_resume"
@@ -375,7 +399,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "Three different shades of white. Apparently paper has a social hierarchy."
+              "text": "Put your name on the top. Not your number. Your name."
             }
           ],
           "exit": "object_attention"
@@ -387,7 +411,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "I'm going to look for my cardigan. It may have gone into management."
+              "text": "I've got the laundry to see to."
             }
           ],
           "exit": "walkaway"
@@ -406,7 +430,7 @@
         },
         {
           "speaker": "finch",
-          "text": "Finally, a promotion. I wonder whether it comes with a chair that doesn't squeak."
+          "text": "Mm. Did they give you both blankets?"
         }
       ],
       "branches": [
@@ -421,7 +445,7 @@
             },
             {
               "speaker": "finch",
-              "text": "I know. Look at that sleeve. Come here a moment."
+              "text": "I know, love. Let me see that sleeve."
             }
           ],
           "exit": "practical_care"
@@ -433,7 +457,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "That clock is a public scandal."
+              "text": "It's nearly four. Have you got your library book?"
             }
           ],
           "exit": "association"
@@ -445,7 +469,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "Tea's gone cold. That seems to be its principal occupation."
+              "text": "If you're going that way, bring me a cup."
             }
           ],
           "exit": "companionable"
@@ -464,7 +488,7 @@
         },
         {
           "speaker": "finch",
-          "text": "Put it where I can see it. No, where I can actually see it."
+          "text": "Leave it here, please. Is the laundry list with it?"
         }
       ],
       "branches": [
@@ -479,7 +503,7 @@
             },
             {
               "speaker": "finch",
-              "text": "That'll do. Now where did I put my spectacles?"
+              "text": "That's fine. Thank you."
             }
           ],
           "exit": "third_party"
@@ -491,7 +515,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "That tray is about to develop its own government."
+              "text": "These are yesterday's. Where are today's?"
             }
           ],
           "exit": "work_resume"
@@ -503,7 +527,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "Make yourselves comfortable. It's the one department we haven't abolished."
+              "text": "Sit down if you're staying. Keep the doorway clear."
             }
           ],
           "exit": "companionable"
@@ -518,7 +542,7 @@
       "opening": [
         {
           "speaker": "finch",
-          "text": "The nicest thing about that window is that it doesn't ask questions."
+          "text": "They've cleaned the window, finally."
         }
       ],
       "branches": [
@@ -529,7 +553,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "I used to dress people for the theatre. Always had to leave room for a change of mind."
+              "text": "I had an actress once who wouldn't wear anything green. Didn't suit her, she said. She was right."
             }
           ],
           "exit": "reminiscence"
@@ -576,7 +600,7 @@
         },
         {
           "speaker": "finch",
-          "text": "Stand up straight. You're not apologising to the furniture."
+          "text": "Here. Turn your collar down."
         }
       ],
       "branches": [
@@ -587,7 +611,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "That tie looks as though it has made some unfortunate decisions."
+              "text": "Leave the tie alone a minute. It's all right."
             }
           ],
           "exit": "practical_care"
@@ -603,7 +627,7 @@
             },
             {
               "speaker": "finch",
-              "text": "At last, a title with some substance."
+              "text": "Yes, yes. Has he got his other shirt?"
             }
           ],
           "exit": "companionable"
@@ -634,7 +658,7 @@
         },
         {
           "speaker": "finch",
-          "text": "I shall have that embroidered on something."
+          "text": "Morning. Have you brought the laundry forms?"
         }
       ],
       "branches": [
@@ -649,7 +673,7 @@
             },
             {
               "speaker": "finch",
-              "text": "The socks are the real tragedy."
+              "text": "I need sizes, not just a number of pairs."
             }
           ],
           "exit": "association"
@@ -661,7 +685,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "Someone has filed the alphabet in the wrong order."
+              "text": "These aren't in order. Never mind."
             }
           ],
           "exit": "work_resume"
@@ -687,7 +711,7 @@
         },
         {
           "speaker": "finch",
-          "text": "Questionable? My dear, you've never seen me dance."
+          "text": "Did you get it, then? Good."
         }
       ],
       "branches": [
@@ -698,7 +722,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "Have you ever been to Brighton? No? Well, someone should."
+              "text": "Have you actually been to Brighton? It's quite nice in the winter."
             }
           ],
           "exit": "association"
@@ -714,7 +738,7 @@
             },
             {
               "speaker": "finch",
-              "text": "Almighty before lunch. How exhausting."
+              "text": "You can carry those if you've got nothing to do."
             }
           ],
           "exit": "companionable"
@@ -776,7 +800,7 @@
           "lines": [
             {
               "speaker": "finch",
-              "text": "I have a truly magnificent pile of things that need doing."
+              "text": "All right. I've got to finish this."
             }
           ],
           "exit": "work_resume"
@@ -838,6 +862,217 @@
       ],
       "defaultExit": "silence_or_resume",
       "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "ordinary_conditions",
+      "trigger": "resident independently reports or Finch observes a practical living-condition issue",
+      "opening": [
+        {
+          "speaker": "resident.private",
+          "text": "The window won't shut."
+        },
+        {
+          "speaker": "finch",
+          "text": "Which side?"
+        }
+      ],
+      "branches": [
+        {
+          "id": "inspect",
+          "guard": "authorized inspection can be arranged",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Put the cell number on this. I'll find out who's on maintenance."
+            }
+          ],
+          "exit": "object_attention"
+        },
+        {
+          "id": "immediate",
+          "guard": "cold resident and spare blanket available",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "There's a spare blanket. Ask him for it."
+            }
+          ],
+          "exit": "third_party"
+        },
+        {
+          "id": "work",
+          "guard": "other duties due",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Leave that here. I need to finish the list."
+            }
+          ],
+          "exit": "work_resume"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "not_leaving",
+      "trigger": "resident asks about leaving; actual case status or lack of authority is known",
+      "opening": [
+        {
+          "speaker": "resident.young",
+          "text": "Any word about me getting out?"
+        },
+        {
+          "speaker": "finch",
+          "text": "No word today."
+        }
+      ],
+      "branches": [
+        {
+          "id": "tomorrow",
+          "guard": "resident mentions tomorrow's conditions",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "What about your mattress? Is it any better?"
+            }
+          ],
+          "exit": "practical_care"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident presses for a promise",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "I can't give you a date."
+            }
+          ],
+          "exit": "work_resume"
+        },
+        {
+          "id": "presence",
+          "guard": "resident stays by choice",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "You can sit there if you like."
+            }
+          ],
+          "exit": "companionable"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "after_assault",
+      "trigger": "an independently established incident just occurred; Finch is establishing safety, never automatically generated from a calendar",
+      "opening": [
+        {
+          "speaker": "finch",
+          "text": "Stand back. I'm not coming in while you're doing that."
+        }
+      ],
+      "branches": [
+        {
+          "id": "handoff",
+          "guard": "another authorized staff member can attend",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "He still needs his clean things. Would you see to that, please?"
+            }
+          ],
+          "exit": "third_party"
+        },
+        {
+          "id": "leave",
+          "guard": "Finch chooses to leave for washing, reporting or recovery",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "I'm going to change."
+            }
+          ],
+          "exit": "walkaway"
+        },
+        {
+          "id": "quiet",
+          "guard": "later safe occasion with same resident; independently chosen return",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Have you got a clean shirt? Right."
+            }
+          ],
+          "exit": "work_resume"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "small_good",
+      "trigger": "a resident independently reports a modest material improvement",
+      "opening": [
+        {
+          "speaker": "resident.elder",
+          "text": "They fixed the light."
+        },
+        {
+          "speaker": "finch",
+          "text": "Oh, good."
+        }
+      ],
+      "branches": [
+        {
+          "id": "check",
+          "guard": "resident volunteers ongoing problem",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Does it stay on?"
+            }
+          ],
+          "exit": "object_attention"
+        },
+        {
+          "id": "thanks",
+          "guard": "resident offers affectionate title",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "resident.elder",
+              "text": "The Right Honourable Minister of Departures and Other Miracles."
+            },
+            {
+              "speaker": "finch",
+              "text": "It was the electrician."
+            }
+          ],
+          "exit": "companionable"
+        },
+        {
+          "id": "resume",
+          "guard": "other task due",
+          "selectedBy": "NPC scheduler",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
     }
   ],
   "administration": {
@@ -854,7 +1089,12 @@
       "discharge certificate",
       "filing cabinet",
       "appointment ledger",
-      "timetable"
+      "timetable",
+      "maintenance request",
+      "laundry ledger",
+      "library register",
+      "bedding inventory",
+      "meal allocation"
     ],
     "eventKinds": [
       "admin.object.offer",
@@ -873,7 +1113,9 @@
       "recognition changes institutional affordance, not historical fact or spiritual identity",
       "actual authorizations visible through records or actions, never Finch dialogue; do not fabricate approvals",
       "documents have stable IDs and revision/parent lineage; no retroactive rewriting",
-      "experiments remain independent; magical receipts not experimental data"
+      "experiments remain independent; magical receipts not experimental data",
+      "Quality-of-life records and permissions (repair requests, laundry, visits, library, meals, bedding, appointments) are core; discharge is uncommon and never the default resolution.",
+      "Assault history is character context, never a recurring scripted gag, exploit, or scheduled player challenge."
     ],
     "example": {
       "id": "unrealized_bakery",
