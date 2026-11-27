@@ -5,6 +5,9 @@ import { material, projectUV, reskinMesh, applyMaterialMaps, addCharacters } fro
 import { weatherScene } from './weathering.js';
 import { Choir } from './choir.mjs';
 import { mountChoir } from './choir-embodiments.js';
+import { FoodHoist, HOIST } from './food-hoist.mjs';
+import { mountFoodHoist } from './food-hoist-view.js';
+const hoist=new FoodHoist();let hoistView=null,hoistClock=0,hoistStarted=false;
 let choirCast=null;
 const choir = new Choir(await fetch(new URL('./choir-canon.json',import.meta.url)).then(r=>{if(!r.ok)throw Error('Choir canon unavailable');return r.json()}));
 
@@ -49,6 +52,14 @@ scene.background=new THREE.Color(0xb5bdc0);
 scene.fog=new THREE.Fog(0x9fa7a8,49,120);
 const camera=new THREE.PerspectiveCamera(65,innerWidth/innerHeight,.05,150);camera.rotation.order='YXZ';
 const renderer=new THREE.WebGLRenderer({antialias:true});
+let shaderFallback=false;
+renderer.debug.onShaderError=(gl,program,vertex,fragment)=>{
+ console.error('Kilmainham shader error',gl.getProgramInfoLog(program),gl.getShaderInfoLog(vertex),gl.getShaderInfoLog(fragment));
+ if(shaderFallback)return;shaderFallback=true;
+ requestAnimationFrame(()=>{scene.traverse(o=>{if(!o.isMesh)return;for(const m of Array.isArray(o.material)?o.material:[o.material]){
+ if(!m?.userData?.weathering)continue;m.onBeforeCompile=()=>{};m.customProgramCacheKey=()=> 'kilmainham-safe';m.needsUpdate=true;
+ }});});
+};
 renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
 renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.98;
 renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
@@ -101,10 +112,11 @@ const shadeMat=material('iron');
 const library={masonry:stone,oak:doorMat,iron,boarding:wood,flags:floorMat,recess};
 const materialGroups={masonry:[stone,surround],oak:[doorMat],iron:[iron,trim,steelBlue,rustSteel,shadeMat],boarding:[wood,roofWood,bridgeWood],flags:[floorMat]};
 const uvKinds=new Map(Object.entries(materialGroups).flatMap(([key,materials])=>materials.map(m=>[m,key])));
-const weatherKinds=new Map(uvKinds);for(const [m,k] of [[paperMat,'paper'],[gold,'brass'],[lampGlow,'lamp'],[glass,'glass'],[roofGlass,'glass'],[recess,'recess']])weatherKinds.set(m,k);
+
 const mixers=[];let previousTime=0;
 const review={maps:0,failed:[],characters:0,characterFailed:0};
 const roofGlass=new THREE.MeshStandardMaterial({color:0xc1c9c6,transparent:true,opacity:.21,roughness:.48,side:THREE.DoubleSide,depthWrite:false});
+const weatherKinds=new Map(uvKinds);for(const [m,k] of [[paperMat,'paper'],[gold,'brass'],[lampGlow,'lamp'],[glass,'glass'],[roofGlass,'glass'],[recess,'recess']])weatherKinds.set(m,k);
 const cache={};
 function poly(points){const s=new THREE.Shape(); points.forEach(([x,y],i)=>i?s.lineTo(x,y):s.moveTo(x,y));s.closePath();return s;}
 function archShape(w,h,head){const s=new THREE.Shape();s.moveTo(-w/2,0);s.lineTo(w/2,0);s.lineTo(w/2,h-head);s.absellipse(0,h-head,w/2,head,0,Math.PI,false);s.lineTo(-w/2,0);s.closePath();return s;}
@@ -186,9 +198,19 @@ function stairFlight(y,z){const dy=LEVEL_PITCH/STAIR_RISERS,dz=STAIR_RUN/STAIR_R
 function figure(x,z,c){const m=new THREE.MeshStandardMaterial({color:c,roughness:.9});mesh(new THREE.CylinderGeometry(.27,.38,.95,7),m,x,.78,z);mesh(new THREE.SphereGeometry(.22,8,6),m,x,1.49,z);}
 function build(){
  // D-shaped hall: straight nave plus semicircular eastern apse. Floor tiles restricted to footprint.
- box(0,-.20,(APSE_Z+Z_MAX)/2,2*HALL_HALF_WIDTH,.35,Z_MAX-APSE_Z,floorMat);
+ // Actual opening in the ground slab for the exposed food hoist. The kitchen
+ // below is a visual recess, not a navigable room in this increment.
+ const [hx,,hz]=HOIST.position,hw=.76,hd=.60;
+ function floorRect(x0,x1,z0,z1){box((x0+x1)/2,-.20,(z0+z1)/2,x1-x0,.35,z1-z0,floorMat);}
+ floorRect(-HALL_HALF_WIDTH,hx-hw,APSE_Z,Z_MAX);
+ floorRect(hx+hw,HALL_HALF_WIDTH,APSE_Z,Z_MAX);
+ floorRect(hx-hw,hx+hw,APSE_Z,hz-hd);floorRect(hx-hw,hx+hw,hz+hd,Z_MAX);
+ box(hx,-3.38,hz,1.52,.35,1.20,floorMat);
+ for(const side of [-1,1]){box(hx+side*.81,-1.7,hz,.10,3.4,1.32,stone);box(hx,-1.7,hz+side*.65,1.62,3.4,.10,stone);}
+ // Small service ledges toward existing galleries; no passenger route or screen opening yet.
+ for(const y of [LEVEL_PITCH,2*LEVEL_PITCH])box((hx+.46+INNER)/2,y-.11,hz,INNER-hx-.46,.20,1.06,wood);
  const apseFloor=mesh(new THREE.CylinderGeometry(HALL_HALF_WIDTH,HALL_HALF_WIDTH,.35,48,1,false,Math.PI/2,Math.PI),floorMat,0,-.20,APSE_Z);apseFloor.rotation.y=0;
- for(let z=Z_MIN+2;z<Z_MAX;z+=4)for(let x=-6;x<=6;x+=4){if(Math.abs(x)+2<wallHalf(z-2))place('floor_tile_large',x,-.06,z,1,0,false);}
+ for(let z=Z_MIN+2;z<Z_MAX;z+=4)for(let x=-6;x<=6;x+=4){if(Math.abs(x)+2<wallHalf(z-2)&&!(Math.abs(x-hx)<2+hw&&Math.abs(z-hz)<2+hd))place('floor_tile_large',x,-.06,z,1,0,false);}
  // side elevations: three door courses separated by two full-height blank bands, plus shallow arched roof crown.
  const n=15,step=(Z_MAX-APSE_Z)/n;
  for(const side of [-1,1])for(let i=0;i<n;i++){const z=APSE_Z+(i+.5)*step,angle=-side*Math.PI/2,x=side*HALL_HALF_WIDTH;
@@ -246,7 +268,9 @@ function refresh(){
     const b=document.createElement('button'); b.className='marker travel'; b.innerHTML=compass; const t=document.createElement('span'); t.textContent=`${NODES[n.id].name} · ${n.steps} steps`; b.append(t); b.onclick=()=>travel(n.id); marks.append(b); markers.push({el:b,world:pos(n.id,1.28)});
   }
   const b=document.createElement('button'); b.className='marker local'+(state.answers[id]?' done':''); b.textContent=state.answers[id]?'Review testimony':CASES[id].title; b.onclick=()=>interact(id); marks.append(b); const p=objpos(id); p.y=1.7; markers.push({el:b,world:p});
+ if(id==='chapel'||id==='hall'){const h=document.createElement('button');h.className='marker local';h.textContent='Inspect food hoist';h.onclick=inspectHoist;marks.append(h);markers.push({el:h,world:new THREE.Vector3(HOIST.position[0],1.6,HOIST.position[2])});}
 }
+function inspectHoist(){if(state.trip||dialog.open)return;const h=hoist.inspect();$('#eyebrow').textContent='East Wing · institutional service';$('#question').textContent='The food hoist';$('#story').textContent='Two slender iron poles, an overhead pulley and a hatch to the kitchen. Meals pass through the court before going up to the galleries. This mechanism has a history of work and care.';$('#choices').replaceChildren();$('#outcome').hidden=false;$('#outcome').textContent='Rounds completed: '+h.rounds+' · '+(h.servicePending?'Maintenance due':h.phase)+'\nLast service: '+(h.lastService===null?'not yet recorded':'tick '+h.lastService);$('#endnote').textContent='Fictional mechanism; no passenger travel.';for(const [label,act] of [['Request another meal round',()=>hoist.start()],['Arrange maintenance',()=>hoist.service()]]){const b=document.createElement('button');b.textContent=label;b.disabled=h.phase!=='idle'||(label.startsWith('Request')&&h.servicePending);b.onclick=()=>{if(act()){hoistStarted=true;dialog.close();}else $('#outcome').textContent='The hoist is not ready for that operation.';};$('#choices').append(b);}dialog.showModal();}
 function travel(id){const edge=neighbors(state.node).find(n=>n.id===id);if(!edge||state.trip||dialog.open)return;const points=pathFor(state.node,id).map(([x,z])=>new THREE.Vector3(x,EYE,z));const length=routeLength(pathFor(state.node,id));state.trip={id,points,length,steps:edge.steps,duration:edge.steps/DEBUG_STEPS_PER_SECOND,start:performance.now()};pitch=0;$('#status').textContent=`Travelling to ${NODES[id].name}…`;markers.forEach(m=>m.el.hidden=true);}
 function tick(now){if(!state.trip)return;const t=state.trip,frac=Math.min(1,(now-t.start)/(t.duration*1000));let remaining=t.length*frac;for(let i=1;i<t.points.length;i++){let a=t.points[i-1],b=t.points[i],d=a.distanceTo(b);if(remaining<=d||i===t.points.length-1){camera.position.lerpVectors(a,b,Math.min(1,remaining/d));yaw=Math.atan2(a.x-b.x,a.z-b.z);break;}remaining-=d;}camera.position.y+=Math.sin(frac*Math.PI*2*t.steps)*.026*Math.sin(Math.PI*frac);$('#clock').textContent=`${progress()} / ${REQUIRED.length} interior testimonies · ${state.steps+Math.floor(frac*t.steps)} steps travelled`;if(frac===1){state.steps+=t.steps;state.node=t.id;state.trip=null;choir.travelPowers(EDGES);choir.advance(t.steps,state.node);refresh();}}
 function dilemma(id,key){
@@ -273,12 +297,13 @@ for(const e of ['pointerup','pointercancel','lostpointercapture']) canvas.addEve
 addEventListener('keydown',e=>{if(dialog.open)return; if(!e.key.startsWith('Arrow'))return; e.preventDefault(); if(e.key==='ArrowLeft')yaw+=.19; if(e.key==='ArrowRight')yaw-=.19; if(e.key==='ArrowUp')pitch=Math.min(1.15,pitch+.12); if(e.key==='ArrowDown')pitch=Math.max(-1.15,pitch-.12)});
 function updateMarkers(){const r=canvas.getBoundingClientRect(),f=camera.getWorldDirection(new THREE.Vector3()); for(const m of markers){const delta=m.world.clone().sub(camera.position),p=m.world.clone().project(camera); const visible=!state.trip&&!dialog.open&&delta.dot(f)>.1&&p.z>=-1&&p.z<=1&&Math.abs(p.x)<.9&&Math.abs(p.y)<.85; m.el.hidden=!visible; if(visible){m.el.style.left=`${r.left+(p.x+1)*r.width/2}px`; m.el.style.top=`${r.top+(1-p.y)*r.height/2}px`;}}}
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
-function animate(now){const dt=previousTime?Math.min(.05,(now-previousTime)/1000):0;previousTime=now;for(const mixer of mixers)mixer.update(dt);tick(now);if(choirCast)choirCast.sync(dt); camera.rotation.set(pitch,yaw,0,'YXZ'); camera.updateMatrixWorld(); updateMarkers(); renderer.render(scene,camera)}
-function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R010 · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
+function animate(now){const dt=previousTime?Math.min(.05,(now-previousTime)/1000):0;previousTime=now;
+ if(hoistView){hoistClock+=dt;while(hoistClock>=.1){hoistClock-=.1;hoist.advance();}if(!hoistStarted&&hoist.tick>=30){hoistStarted=true;hoist.start();}hoistView.update(hoist.inspect(),dt);}for(const mixer of mixers)mixer.update(dt);tick(now);if(choirCast)choirCast.sync(dt); camera.rotation.set(pitch,yaw,0,'YXZ'); camera.updateMatrixWorld(); updateMarkers(); renderer.render(scene,camera)}
+function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R012 hoist study · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
 try{
- await load();build();flushAssets();batchArchitecture();weatherScene(scene,weatherKinds);
+ await load();build();flushAssets();batchArchitecture();hoistView=mountFoodHoist(scene,{iron:steelBlue,dark:iron,wood});hoistView.update(hoist.inspect());weatherScene(scene,weatherKinds);
  choir.advance(1,'gate','arrival of the witness');refresh();reportArt();renderer.setAnimationLoop(animate);
- window.KilmainhamChoir={get state(){return {node:state.node,steps:state.steps,events:choir.events.length}},get frames(){return renderer.info.render.frame},get embodied(){return choirCast?.objects.size||0},get local(){return choir.publicAt(state.node)}};
+ window.KilmainhamChoir={get state(){return {node:state.node,steps:state.steps,events:choir.events.length}},get frames(){return renderer.info.render.frame},get embodied(){return choirCast?.objects.size||0},get hoist(){return hoist.snapshot()},get local(){return choir.publicAt(state.node)}};
  // Texture and character availability must never gate the playable scene.
  applyMaterialMaps(materialGroups,renderer,(n,total,failed)=>{review.maps=n;review.failed=failed;reportArt()}).catch(console.warn);
  choirCast=mountChoir(scene,loader,choir,NODES,(n,failed)=>{review.characters=n;review.characterFailed=failed;reportArt()});
