@@ -1,0 +1,891 @@
+{
+  "schema": "kilmainham.finch.dialogue.v1",
+  "status": "canon supplement; integration pending",
+  "actor": {
+    "id": "human.beatrice_finch",
+    "name": "Miss Beatrice Finch",
+    "age": 58,
+    "role": "case manager",
+    "formerRole": "theatrical wardrobe mistress",
+    "species": "human",
+    "magicKnowledge": "not established; never explicit in public speech",
+    "wardrobe": [
+      "plum jacket",
+      "silk scarf",
+      "tortoiseshell spectacles",
+      "man's wristwatch",
+      "immaculate shoes"
+    ],
+    "personality": {
+      "strengths": [
+        "practical affection",
+        "associative memory",
+        "social courage",
+        "resourcefulness"
+      ],
+      "faults": [
+        "vanity",
+        "intrusiveness",
+        "impatience",
+        "mistaking her preferred future for another's"
+      ],
+      "boundary": "no guaranteed assistance, no coerced consent"
+    },
+    "titles": [
+      {
+        "id": "royal",
+        "title": "Her Royal Highness of Premature Departures",
+        "occasion": "unexpected encouraging news",
+        "affectionate": true,
+        "mechanicalEffect": null
+      },
+      {
+        "id": "duchess",
+        "title": "The Duchess of Departures and Unfortunate Returns",
+        "occasion": "returning resident",
+        "affectionate": true,
+        "mechanicalEffect": null
+      },
+      {
+        "id": "poobah",
+        "title": "The Grand Poobah of Departures",
+        "occasion": "communal arrival",
+        "affectionate": true,
+        "mechanicalEffect": null
+      },
+      {
+        "id": "minister",
+        "title": "The Right Honourable Minister of Departures and Other Miracles",
+        "occasion": "improbable practical help",
+        "affectionate": true,
+        "mechanicalEffect": null
+      },
+      {
+        "id": "goblin",
+        "title": "The Supreme Goblin of Departures",
+        "occasion": "emerges from paperwork",
+        "affectionate": true,
+        "mechanicalEffect": null
+      },
+      {
+        "id": "empress",
+        "title": "The Dowager Empress of Departures, Delays and Dirty Laundry",
+        "occasion": "domestic arrangements",
+        "affectionate": true,
+        "mechanicalEffect": null
+      },
+      {
+        "id": "fairy",
+        "title": "The Fairy Godmother of Questionable Departures",
+        "occasion": "younger resident receives help",
+        "affectionate": true,
+        "mechanicalEffect": null
+      },
+      {
+        "id": "priestess",
+        "title": "The High Priestess of Departures and Inappropriate Footwear",
+        "occasion": "shoe inspection",
+        "affectionate": true,
+        "mechanicalEffect": null
+      },
+      {
+        "id": "dingbat",
+        "title": "The Almighty Dingbat of Departures",
+        "occasion": "affectionate eccentricity",
+        "affectionate": true,
+        "mechanicalEffect": null
+      },
+      {
+        "id": "dungarees",
+        "title": "The Grand Duchess of Departures, Detours and Double Dungarees",
+        "occasion": "clothes or itinerary",
+        "affectionate": true,
+        "mechanicalEffect": null
+      },
+      {
+        "id": "saint",
+        "title": "The Patron Saint of Departures and People Who Can't Dress Themselves",
+        "occasion": "interview preparation",
+        "affectionate": true,
+        "mechanicalEffect": null
+      }
+    ]
+  },
+  "engine": {
+    "authority": "NPC-owned decisions, schedules, permissions, narrative and turn allocation; visitor actions are offers or observations, never dialogue selectors",
+    "visitorAffordances": [
+      "approach",
+      "wait",
+      "sit if available",
+      "offer object",
+      "place object if authorized",
+      "inspect public object",
+      "move away"
+    ],
+    "publicStates": [
+      "speech",
+      "silence",
+      "ordinary work",
+      "movement",
+      "physical object custody",
+      "visible opportunity"
+    ],
+    "forbidden": [
+      "player-selected NPC branch",
+      "persuasion meter",
+      "failure result",
+      "dialogue-triggered magic",
+      "guaranteed approval",
+      "hidden thought narration",
+      "repeated interaction as farming"
+    ],
+    "sceneBudget": {
+      "minBeats": 1,
+      "maxBeats": 4,
+      "reentry": "independent occasion or material change, not spam"
+    },
+    "exit": {
+      "alwaysAvailable": "visitor can depart freely",
+      "npc": "NPC can finish, pause or depart at any beat",
+      "outcomes": [
+        "work_resume",
+        "companionable",
+        "association",
+        "practical_care",
+        "third_party",
+        "object_attention",
+        "walkaway",
+        "silence",
+        "reminiscence",
+        "diversion"
+      ],
+      "noSuccessOrFailure": true
+    },
+    "selection": "NPC evaluator chooses among eligible authored beats or silence, using own agenda, time, prior public receipts and independent RNG; do not expose eligibility to visitor; gates are not a checklist",
+    "integration": "existing Choir.emit/deliver with stable actor IDs and causal parents; do not overload Choir.commit or its once-per-node used gate; adapter needed; public rendering read-only"
+  },
+  "scenes": [
+    {
+      "id": "arrival",
+      "trigger": "Finch notices an arrival; NPC veteran is present",
+      "opening": [
+        {
+          "speaker": "resident.veteran",
+          "text": "Make way for the Grand Poobah of Departures."
+        },
+        {
+          "speaker": "finch",
+          "text": "Your Majesty will be sufficient before breakfast."
+        }
+      ],
+      "branches": [
+        {
+          "id": "chair",
+          "guard": "free chair; Finch elects hospitality",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Good heavens, those shoes. Were they issued to you in a fit of temper?"
+            },
+            {
+              "speaker": "resident.young",
+              "text": "High Priestess of Departures and Inappropriate Footwear."
+            }
+          ],
+          "exit": "companionable"
+        },
+        {
+          "id": "work",
+          "guard": "task due",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Have you eaten? There are apples somewhere. Not in that drawer. That's the important drawer."
+            }
+          ],
+          "exit": "diversion"
+        },
+        {
+          "id": "letter",
+          "guard": "letter visibly offered; Finch elects to look",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "That's a handsome bit of handwriting. Mine gets worse every year."
+            },
+            {
+              "speaker": "finch",
+              "text": "Keep the envelope. They're expensive."
+            }
+          ],
+          "exit": "object_attention"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "waiting",
+      "trigger": "resident independently waits by office",
+      "opening": [
+        {
+          "speaker": "resident.young",
+          "text": "I'm not waiting. I'm looking at the clock."
+        },
+        {
+          "speaker": "finch",
+          "text": "It's five minutes slow. I prefer it that way."
+        }
+      ],
+      "branches": [
+        {
+          "id": "chair",
+          "guard": "elder present and chooses to help",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Someone has put a perfectly good chair in a perfectly useless place."
+            },
+            {
+              "speaker": "resident.elder",
+              "text": "I'll move it."
+            }
+          ],
+          "exit": "third_party"
+        },
+        {
+          "id": "pencil",
+          "guard": "Finch has lost pencil",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "resident.veteran",
+              "text": "Her Royal Highness of Premature Departures."
+            },
+            {
+              "speaker": "finch",
+              "text": "You can have a royal audience when I've found my pencil."
+            }
+          ],
+          "exit": "work_resume"
+        },
+        {
+          "id": "silence",
+          "guard": "no actor wants to speak",
+          "selectedBy": "NPC scheduler",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "returned",
+      "trigger": "resident returns after recorded departure",
+      "opening": [
+        {
+          "speaker": "resident.returnee",
+          "text": "The Duchess of Departures and Unfortunate Returns!"
+        },
+        {
+          "speaker": "finch",
+          "text": "Oh, you again. Whatever happened to the bakery?"
+        }
+      ],
+      "branches": [
+        {
+          "id": "bakery",
+          "guard": "returnee chooses to elaborate",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "resident.returnee",
+              "text": "They wanted someone who could get up at four."
+            },
+            {
+              "speaker": "finch",
+              "text": "Barbaric. Even the birds negotiate."
+            }
+          ],
+          "exit": "association"
+        },
+        {
+          "id": "envelope",
+          "guard": "returnee voluntarily presents envelope",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "That's survived better than my handbag."
+            },
+            {
+              "speaker": "resident.returnee",
+              "text": "Kept it dry."
+            }
+          ],
+          "exit": "object_attention"
+        },
+        {
+          "id": "coat",
+          "guard": "Finch notices torn coat",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "That coat wants a button. Nobody wants a coat without a button."
+            }
+          ],
+          "exit": "practical_care"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "pressure",
+      "trigger": "repeated approach or prolonged stationary attention",
+      "opening": [
+        {
+          "speaker": "finch",
+          "text": "You've been standing there so long I shall have to dust you."
+        }
+      ],
+      "branches": [
+        {
+          "id": "typewriter",
+          "guard": "work due",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Listen to that typewriter. One of the letters sounds like a mouse falling down a chimney."
+            }
+          ],
+          "exit": "work_resume"
+        },
+        {
+          "id": "form",
+          "guard": "offered form visible",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Three different shades of white. Apparently paper has a social hierarchy."
+            }
+          ],
+          "exit": "object_attention"
+        },
+        {
+          "id": "walk",
+          "guard": "scheduled errand",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "I'm going to look for my cardigan. It may have gone into management."
+            }
+          ],
+          "exit": "walkaway"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "gratitude",
+      "trigger": "resident independently receives assistance and approaches",
+      "opening": [
+        {
+          "speaker": "resident.elder",
+          "text": "The Right Honourable Minister of Departures and Other Miracles."
+        },
+        {
+          "speaker": "finch",
+          "text": "Finally, a promotion. I wonder whether it comes with a chair that doesn't squeak."
+        }
+      ],
+      "branches": [
+        {
+          "id": "sleeve",
+          "guard": "resident volunteers more gratitude",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "resident.elder",
+              "text": "I mean it."
+            },
+            {
+              "speaker": "finch",
+              "text": "I know. Look at that sleeve. Come here a moment."
+            }
+          ],
+          "exit": "practical_care"
+        },
+        {
+          "id": "clock",
+          "guard": "Finch notices clock",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "That clock is a public scandal."
+            }
+          ],
+          "exit": "association"
+        },
+        {
+          "id": "tea",
+          "guard": "tea available",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Tea's gone cold. That seems to be its principal occupation."
+            }
+          ],
+          "exit": "companionable"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "interruption",
+      "trigger": "clerk independently arrives with assigned work",
+      "opening": [
+        {
+          "speaker": "staff.clerk",
+          "text": "Miss Finch, the afternoon list."
+        },
+        {
+          "speaker": "finch",
+          "text": "Put it where I can see it. No, where I can actually see it."
+        }
+      ],
+      "branches": [
+        {
+          "id": "tray",
+          "guard": "clerk chooses placement",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "staff.clerk",
+              "text": "Here?"
+            },
+            {
+              "speaker": "finch",
+              "text": "That'll do. Now where did I put my spectacles?"
+            }
+          ],
+          "exit": "third_party"
+        },
+        {
+          "id": "paper",
+          "guard": "Finch examines tray",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "That tray is about to develop its own government."
+            }
+          ],
+          "exit": "work_resume"
+        },
+        {
+          "id": "chair",
+          "guard": "chair available",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Make yourselves comfortable. It's the one department we haven't abolished."
+            }
+          ],
+          "exit": "companionable"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "quiet",
+      "trigger": "ordinary quiet office interval",
+      "opening": [
+        {
+          "speaker": "finch",
+          "text": "The nicest thing about that window is that it doesn't ask questions."
+        }
+      ],
+      "branches": [
+        {
+          "id": "theatre",
+          "guard": "Finch chooses recollection",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "I used to dress people for the theatre. Always had to leave room for a change of mind."
+            }
+          ],
+          "exit": "reminiscence"
+        },
+        {
+          "id": "cuff",
+          "guard": "passing resident greets her",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "resident.private",
+              "text": "Morning, Miss Finch."
+            },
+            {
+              "speaker": "finch",
+              "text": "Morning, love. Your cuff's turned under."
+            }
+          ],
+          "exit": "third_party"
+        },
+        {
+          "id": "drawer",
+          "guard": "Finch sees loose handle",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "The handle's loose again."
+            }
+          ],
+          "exit": "object_attention"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "interview",
+      "trigger": "resident preparing for real appointment",
+      "opening": [
+        {
+          "speaker": "resident.veteran",
+          "text": "The Patron Saint of Departures and People Who Can't Dress Themselves."
+        },
+        {
+          "speaker": "finch",
+          "text": "Stand up straight. You're not apologising to the furniture."
+        }
+      ],
+      "branches": [
+        {
+          "id": "tie",
+          "guard": "resident consents to clothing assistance",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "That tie looks as though it has made some unfortunate decisions."
+            }
+          ],
+          "exit": "practical_care"
+        },
+        {
+          "id": "joke",
+          "guard": "young resident chooses to tease affectionately",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "resident.young",
+              "text": "The Grand Duchess of Departures, Detours and Double Dungarees."
+            },
+            {
+              "speaker": "finch",
+              "text": "At last, a title with some substance."
+            }
+          ],
+          "exit": "companionable"
+        },
+        {
+          "id": "exit",
+          "guard": "resident's appointment time arrives",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Off you go. Mind the step."
+            }
+          ],
+          "exit": "walkaway"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "paperwork",
+      "trigger": "Finch emerges from filing backlog",
+      "opening": [
+        {
+          "speaker": "resident.veteran",
+          "text": "The Supreme Goblin of Departures!"
+        },
+        {
+          "speaker": "finch",
+          "text": "I shall have that embroidered on something."
+        }
+      ],
+      "branches": [
+        {
+          "id": "laundry",
+          "guard": "domestic case is independently scheduled",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "resident.elder",
+              "text": "The Dowager Empress of Departures, Delays and Dirty Laundry."
+            },
+            {
+              "speaker": "finch",
+              "text": "The socks are the real tragedy."
+            }
+          ],
+          "exit": "association"
+        },
+        {
+          "id": "queue",
+          "guard": "Finch resumes task",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Someone has filed the alphabet in the wrong order."
+            }
+          ],
+          "exit": "work_resume"
+        },
+        {
+          "id": "silent",
+          "guard": "Finch elects silence",
+          "selectedBy": "NPC scheduler",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "encouragement",
+      "trigger": "younger resident has documented good news",
+      "opening": [
+        {
+          "speaker": "resident.young",
+          "text": "The Fairy Godmother of Questionable Departures."
+        },
+        {
+          "speaker": "finch",
+          "text": "Questionable? My dear, you've never seen me dance."
+        }
+      ],
+      "branches": [
+        {
+          "id": "train",
+          "guard": "Finch notices timetable",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Have you ever been to Brighton? No? Well, someone should."
+            }
+          ],
+          "exit": "association"
+        },
+        {
+          "id": "dingbat",
+          "guard": "resident responds warmly to eccentricity",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "resident.veteran",
+              "text": "The Almighty Dingbat of Departures."
+            },
+            {
+              "speaker": "finch",
+              "text": "Almighty before lunch. How exhausting."
+            }
+          ],
+          "exit": "companionable"
+        },
+        {
+          "id": "schedule",
+          "guard": "Finch's actual task becomes due",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Mind how you go, pet."
+            }
+          ],
+          "exit": "walkaway"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "disagreement",
+      "trigger": "resident challenges an ordinary practical suggestion",
+      "opening": [
+        {
+          "speaker": "finch",
+          "text": "Well, they are your trousers."
+        }
+      ],
+      "branches": [
+        {
+          "id": "repair",
+          "guard": "Finch chooses to acknowledge mistake",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "I had the wrong end of that. Here, let me put these back."
+            }
+          ],
+          "exit": "practical_care"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident wishes no further advice",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "Quite all right. The tea's on the table if you want it."
+            }
+          ],
+          "exit": "companionable"
+        },
+        {
+          "id": "work",
+          "guard": "Finch resumes work",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "I have a truly magnificent pile of things that need doing."
+            }
+          ],
+          "exit": "work_resume"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    },
+    {
+      "id": "urgent",
+      "trigger": "resident visibly requests urgent practical help",
+      "opening": [
+        {
+          "speaker": "finch",
+          "text": "Sit down a moment. I'll see who's actually on duty."
+        }
+      ],
+      "branches": [
+        {
+          "id": "contact",
+          "guard": "authorized staff available and elects to respond",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "staff.clerk",
+              "text": "I'm here. What do you need?"
+            },
+            {
+              "speaker": "finch",
+              "text": "There's a chair here."
+            }
+          ],
+          "exit": "third_party"
+        },
+        {
+          "id": "unavailable",
+          "guard": "staff unavailable; Finch chooses to stay",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "I'm here for the moment."
+            }
+          ],
+          "exit": "companionable"
+        },
+        {
+          "id": "handoff",
+          "guard": "authorized staff takes over with resident consent",
+          "selectedBy": "NPC scheduler",
+          "lines": [
+            {
+              "speaker": "finch",
+              "text": "I'll leave you two to it."
+            }
+          ],
+          "exit": "walkaway"
+        }
+      ],
+      "defaultExit": "silence_or_resume",
+      "visitorCanLeaveAtEveryBeat": true
+    }
+  ],
+  "administration": {
+    "speechIsNeverAuthority": true,
+    "objectTypes": [
+      "intake register",
+      "typewriter",
+      "rubber stamp",
+      "carbon copy",
+      "request slip",
+      "visitor register",
+      "returned envelope",
+      "numbered key",
+      "discharge certificate",
+      "filing cabinet",
+      "appointment ledger",
+      "timetable"
+    ],
+    "eventKinds": [
+      "admin.object.offer",
+      "admin.object.custody",
+      "admin.record.inscribe",
+      "admin.record.file",
+      "admin.record.review",
+      "admin.permission.authorize",
+      "admin.permission.withdraw",
+      "admin.opportunity.materialize",
+      "admin.opportunity.expire"
+    ],
+    "rules": [
+      "NPC alone may authorize or withdraw institutional permissions; player may manipulate accessible objects and submit claims but never force recognition",
+      "a valid object event requires custody, provenance, actor permissions and local world conditions; no speech or title input",
+      "recognition changes institutional affordance, not historical fact or spiritual identity",
+      "actual authorizations visible through records or actions, never Finch dialogue; do not fabricate approvals",
+      "documents have stable IDs and revision/parent lineage; no retroactive rewriting",
+      "experiments remain independent; magical receipts not experimental data"
+    ],
+    "example": {
+      "id": "unrealized_bakery",
+      "sequence": [
+        "returnee independently retains envelope",
+        "visitor offers envelope without surrender of ownership",
+        "owner authorizes filing or authorized clerk accepts it",
+        "appointment ledger and envelope independently create candidate opportunity if provenance and scope match",
+        "authorized NPC chooses to schedule interview or leave pending",
+        "interview room becomes available only through committed institutional action; employer remains independent"
+      ],
+      "noGuaranteedOutcome": true
+    }
+  }
+}
