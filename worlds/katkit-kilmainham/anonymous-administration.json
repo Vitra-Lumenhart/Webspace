@@ -1,0 +1,1332 @@
+{
+  "schema": "kilmainham.anonymous-administration.v1",
+  "status": "candidate data + executable reference contract; no live integration",
+  "identity": {
+    "id": "human.resident.<stable opaque id>",
+    "publicName": "optional, withheld until independently disclosed",
+    "tendencies": "situational weighted repertoire, not class, diagnosis or moral rating",
+    "memory": "public witnessed receipts only; private facts never inferred or disclosed by renderer"
+  },
+  "kindness": {
+    "principle": "Finch's ordinary care is independent of competence, charm, titles and ritual participation; not guaranteed personal availability, successful outcome, agreement or intimacy",
+    "offRamps": [
+      "silence",
+      "work resumes",
+      "third party",
+      "practical care",
+      "ordinary movement",
+      "independent appointment"
+    ],
+    "essentialCare": "not gated by magic, skills, apology, or player participation"
+  },
+  "residents": [
+    {
+      "id": "comedian",
+      "tendency": "ceremony",
+      "occasion": "A clean shirt",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "Her Royal Highness of Premature Departures!"
+        },
+        {
+          "speaker": "finch",
+          "text": "What size?"
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "Same as last time."
+            },
+            {
+              "speaker": "finch",
+              "text": "Last time it didn't fit."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "The shirt, not the title."
+            },
+            {
+              "speaker": "finch",
+              "text": "Leave it there."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "old_hand",
+      "tendency": "continuity",
+      "occasion": "A draught",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "Same thing as last winter."
+        },
+        {
+          "speaker": "finch",
+          "text": "The window again?"
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "Bottom corner."
+            },
+            {
+              "speaker": "finch",
+              "text": "Which cell are you in now?"
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "They moved me up."
+            },
+            {
+              "speaker": "finch",
+              "text": "Put the number here."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "solitary",
+      "tendency": "privacy",
+      "occasion": "A letter",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "Could I come back when he's gone?"
+        },
+        {
+          "speaker": "finch",
+          "text": "I'll be here a little while."
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "It's about my sister."
+            },
+            {
+              "speaker": "finch",
+              "text": "Not out here, then."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "I'll wait."
+            },
+            {
+              "speaker": "finch",
+              "text": "All right."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "intellectual",
+      "tendency": "inconsistency",
+      "occasion": "Library access",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "The two notices contradict one another."
+        },
+        {
+          "speaker": "finch",
+          "text": "Let me see them."
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "This one's dated Thursday."
+            },
+            {
+              "speaker": "finch",
+              "text": "Keep both."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "Which one counts?"
+            },
+            {
+              "speaker": "finch",
+              "text": "I don't know yet."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "meticulous",
+      "tendency": "documentation",
+      "occasion": "A copy of a request",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "I've made a copy for you."
+        },
+        {
+          "speaker": "finch",
+          "text": "Keep yours."
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "I've put the date on it."
+            },
+            {
+              "speaker": "finch",
+              "text": "Good."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "Should I wait?"
+            },
+            {
+              "speaker": "finch",
+              "text": "Not if you've something else to do."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "disorganized",
+      "tendency": "fragmentary",
+      "occasion": "A lost form",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "I've got the other half somewhere."
+        },
+        {
+          "speaker": "finch",
+          "text": "Don't throw that half away."
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "It was in my pocket."
+            },
+            {
+              "speaker": "finch",
+              "text": "Have a look later."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "Do I need another one?"
+            },
+            {
+              "speaker": "finch",
+              "text": "Leave this one with me if you want."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "proud",
+      "tendency": "indirect",
+      "occasion": "A blanket",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "It's for the fellow upstairs, not me."
+        },
+        {
+          "speaker": "finch",
+          "text": "Right. Does he know you're here?"
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "He gets cold."
+            },
+            {
+              "speaker": "finch",
+              "text": "There's a spare in the laundry."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "I'm all right myself."
+            },
+            {
+              "speaker": "finch",
+              "text": "I didn't ask."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "suspicious",
+      "tendency": "disclosure",
+      "occasion": "A private request",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "Who's going to read this?"
+        },
+        {
+          "speaker": "finch",
+          "text": "It depends where it goes."
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "Can I keep it?"
+            },
+            {
+              "speaker": "finch",
+              "text": "Of course."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "I'll think about it."
+            },
+            {
+              "speaker": "finch",
+              "text": "Do."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "restless",
+      "tendency": "activity",
+      "occasion": "Meaningful work",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "Is there anything I can do?"
+        },
+        {
+          "speaker": "finch",
+          "text": "Ask the librarian. He's got a great pile of books."
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "I've done the books."
+            },
+            {
+              "speaker": "finch",
+              "text": "Then ask him what's next."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "I'll go in a minute."
+            },
+            {
+              "speaker": "finch",
+              "text": "Keep the doorway clear."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "conciliator",
+      "tendency": "companionship",
+      "occasion": "Help asking",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "He doesn't know how to ask you."
+        },
+        {
+          "speaker": "finch",
+          "text": "He can come with you."
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "Can I tell you for him?"
+            },
+            {
+              "speaker": "finch",
+              "text": "If he wants you to."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "I'll ask him."
+            },
+            {
+              "speaker": "finch",
+              "text": "Right."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "belligerent",
+      "tendency": "challenge",
+      "occasion": "A neglected request",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "You people never do anything."
+        },
+        {
+          "speaker": "finch",
+          "text": "Which thing hasn't been done?"
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "The light. Three weeks."
+            },
+            {
+              "speaker": "finch",
+              "text": "Which light?"
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "Forget it."
+            },
+            {
+              "speaker": "finch",
+              "text": "All right."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "exhausted",
+      "tendency": "low speech",
+      "occasion": "Rest",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "I didn't sleep."
+        },
+        {
+          "speaker": "finch",
+          "text": "Was it the noise?"
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "Don't know."
+            },
+            {
+              "speaker": "finch",
+              "text": "Sit down a minute."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "I'm going back."
+            },
+            {
+              "speaker": "finch",
+              "text": "Mind the step."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "withdrawn",
+      "tendency": "silence",
+      "occasion": "A damaged shoe",
+      "opening": [
+        {
+          "speaker": "finch",
+          "text": "Those shoes still rubbing?"
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "A bit."
+            },
+            {
+              "speaker": "finch",
+              "text": "Let me see, if you want."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "Not now."
+            },
+            {
+              "speaker": "finch",
+              "text": "All right."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "returnee",
+      "tendency": "familiarity",
+      "occasion": "Belongings",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "The Duchess of Departures and Unfortunate Returns."
+        },
+        {
+          "speaker": "finch",
+          "text": "Hello. Have you got your things?"
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "They kept my bag."
+            },
+            {
+              "speaker": "finch",
+              "text": "Where did you leave it?"
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "I'll find out."
+            },
+            {
+              "speaker": "finch",
+              "text": "Good."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "craftsperson",
+      "tendency": "material detail",
+      "occasion": "A loose fitting",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "The handle's going to come off."
+        },
+        {
+          "speaker": "finch",
+          "text": "Which handle?"
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "The one on the cupboard."
+            },
+            {
+              "speaker": "finch",
+              "text": "Show maintenance when they come round."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "I can fix it."
+            },
+            {
+              "speaker": "finch",
+              "text": "Ask first."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    },
+    {
+      "id": "grateful",
+      "tendency": "affection",
+      "occasion": "A repair completed",
+      "opening": [
+        {
+          "speaker": "resident",
+          "text": "The Minister of Departures and Other Miracles!"
+        },
+        {
+          "speaker": "finch",
+          "text": "Did they fix the light?"
+        }
+      ],
+      "branches": [
+        {
+          "id": "detail",
+          "guard": "resident elects to continue; Finch available",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "Yes. Stays on now."
+            },
+            {
+              "speaker": "finch",
+              "text": "Good."
+            }
+          ],
+          "exit": "ordinary_work"
+        },
+        {
+          "id": "boundary",
+          "guard": "resident chooses to leave, withhold or change focus",
+          "lines": [
+            {
+              "speaker": "resident",
+              "text": "I mean it, Miss Finch."
+            },
+            {
+              "speaker": "finch",
+              "text": "It was the electrician."
+            }
+          ],
+          "exit": "independent_activity"
+        },
+        {
+          "id": "silence",
+          "guard": "either actor elects not to speak",
+          "lines": [],
+          "exit": "silence"
+        }
+      ],
+      "selectedBy": "NPC scheduler",
+      "playerCanLeave": true
+    }
+  ],
+  "skills": [
+    {
+      "id": "observe",
+      "name": "Situated observation",
+      "description": "Record a visible condition with its location, time and limits; distinguish direct sight from report.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "listen",
+      "name": "Witness listening",
+      "description": "Preserve an independently volunteered account without replacing the speaker's words.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "collate",
+      "name": "Document collation",
+      "description": "Compare source and duplicate, match reference fields and retain discrepancies.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "chronology",
+      "name": "Chronological reasoning",
+      "description": "Reconstruct order from dated entries; do not treat filing date as occurrence date.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "index",
+      "name": "Indexing and filing",
+      "description": "Locate the correct register, section and stable object address.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "transcribe",
+      "name": "Faithful transcription",
+      "description": "Carry names, addresses and quantities exactly, mark uncertainty rather than guess.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "measure",
+      "name": "Material measurement",
+      "description": "Check actual size, quantity or fit using an appropriate object/tool.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "inspect",
+      "name": "Condition inspection",
+      "description": "Locate a physical defect and distinguish observed symptoms from presumed causes.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "scope",
+      "name": "Jurisdiction reading",
+      "description": "Determine what an office or role is authorized to recognize; not permission to act.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "route",
+      "name": "Routing and logistics",
+      "description": "Match a permitted delivery route, custody transition and receiving office.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "reconcile",
+      "name": "Reconciliation",
+      "description": "Preserve conflicting records and establish which claim needs review, without rewriting history.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "timing",
+      "name": "Temporal coordination",
+      "description": "Identify a real service window with available resources and independent actors.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "privacy",
+      "name": "Selective disclosure",
+      "description": "Separate information necessary to an authorized service from private information; obtain actual consent when needed.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    },
+    {
+      "id": "material",
+      "name": "Material assembly",
+      "description": "Bring the right original, copy, envelope, form or physical item into a permitted working arrangement.",
+      "progression": "demonstrated by object operation, not XP or dialogue score"
+    }
+  ],
+  "rituals": [
+    {
+      "id": "light",
+      "name": "The Uncounted Lamp",
+      "occasion": "Broken light or neglected fixture",
+      "object": "maintenance request",
+      "required": [
+        "observe",
+        "inspect",
+        "index",
+        "scope"
+      ],
+      "alternatives": [
+        [
+          "collate",
+          "chronology"
+        ],
+        [
+          "listen",
+          "transcribe"
+        ]
+      ],
+      "station": "maintenance review tray",
+      "finch": "Finch reviews and routes a request if she chooses; maintenance controls inspection and repair.",
+      "effect": "A formerly unregistered fixture becomes a recognized service object; actual illumination requires an independently authorized repair.",
+      "consent": false,
+      "stage": "review opportunity only",
+      "ordinaryCareIndependent": true
+    },
+    {
+      "id": "linen",
+      "name": "The Missing Pair",
+      "occasion": "Clean clothes or bedding not reaching an individual",
+      "object": "laundry ledger",
+      "required": [
+        "measure",
+        "index",
+        "reconcile"
+      ],
+      "alternatives": [
+        [
+          "collate",
+          "transcribe"
+        ],
+        [
+          "observe",
+          "route"
+        ]
+      ],
+      "station": "laundry allocation tray",
+      "finch": "Finch may check allocation and request replacement; steward retains custody.",
+      "effect": "The person's belongings become individually addressable in a previously aggregate inventory.",
+      "consent": false,
+      "stage": "review opportunity only",
+      "ordinaryCareIndependent": true
+    },
+    {
+      "id": "letter",
+      "name": "The Undelivered Letter",
+      "occasion": "A resident wishes to restore correspondence",
+      "object": "returned envelope",
+      "required": [
+        "privacy",
+        "transcribe",
+        "scope",
+        "route"
+      ],
+      "alternatives": [
+        [
+          "collate",
+          "chronology"
+        ],
+        [
+          "listen",
+          "index"
+        ]
+      ],
+      "station": "outgoing correspondence tray",
+      "finch": "Finch may arrange ordinary review; resident and recipient retain control.",
+      "effect": "An interrupted correspondence route becomes available for an independently chosen delivery.",
+      "consent": true,
+      "stage": "review opportunity only",
+      "ordinaryCareIndependent": true
+    },
+    {
+      "id": "book",
+      "name": "The Unreturned Book",
+      "occasion": "A book or intellectual interest lost in an inconsistent register",
+      "object": "library register",
+      "required": [
+        "index",
+        "collate",
+        "reconcile"
+      ],
+      "alternatives": [
+        [
+          "listen",
+          "transcribe"
+        ],
+        [
+          "observe",
+          "chronology"
+        ]
+      ],
+      "station": "library returns tray",
+      "finch": "Finch may route discrepancy to librarian; librarian decides loan or correction.",
+      "effect": "A title previously absent from the active catalogue can be requested again.",
+      "consent": false,
+      "stage": "review opportunity only",
+      "ordinaryCareIndependent": true
+    },
+    {
+      "id": "window",
+      "name": "The Cold Cell",
+      "occasion": "Broken window or inadequate bedding",
+      "object": "maintenance request",
+      "required": [
+        "observe",
+        "inspect",
+        "measure",
+        "scope"
+      ],
+      "alternatives": [
+        [
+          "index",
+          "collate"
+        ],
+        [
+          "listen",
+          "transcribe"
+        ]
+      ],
+      "station": "maintenance review tray",
+      "finch": "Finch may request inspection or additional bedding; ordinary immediate assistance remains independent.",
+      "effect": "A forgotten room enters the service map with addressable repair history.",
+      "consent": false,
+      "stage": "review opportunity only",
+      "ordinaryCareIndependent": true
+    },
+    {
+      "id": "visit",
+      "name": "The Unoccupied Chair",
+      "occasion": "A desired visitor relationship is missing from current records",
+      "object": "visitor register",
+      "required": [
+        "privacy",
+        "scope",
+        "reconcile",
+        "timing"
+      ],
+      "alternatives": [
+        [
+          "collate",
+          "chronology"
+        ],
+        [
+          "listen",
+          "transcribe",
+          "index"
+        ]
+      ],
+      "station": "visitation review tray",
+      "finch": "Finch may route a request; both parties and authorized visitation staff must independently agree.",
+      "effect": "A previously closed scheduling possibility becomes legible without guaranteeing a visit.",
+      "consent": true,
+      "stage": "review opportunity only",
+      "ordinaryCareIndependent": true
+    },
+    {
+      "id": "meal",
+      "name": "The Missing Place",
+      "occasion": "A resident's documented meal allocation does not match their needs",
+      "object": "meal allocation",
+      "required": [
+        "observe",
+        "measure",
+        "reconcile",
+        "privacy"
+      ],
+      "alternatives": [
+        [
+          "collate",
+          "index"
+        ],
+        [
+          "listen",
+          "transcribe"
+        ]
+      ],
+      "station": "kitchen review tray",
+      "finch": "Finch may route an allocation discrepancy; kitchen or relevant professional retains decision authority.",
+      "effect": "An overlooked individual becomes addressable in the meal ledger, without inferring medical need.",
+      "consent": true,
+      "stage": "review opportunity only",
+      "ordinaryCareIndependent": true
+    },
+    {
+      "id": "appointment",
+      "name": "The Appointment That Never Was",
+      "occasion": "A resident wants to revisit a canceled appointment",
+      "object": "appointment ledger",
+      "required": [
+        "chronology",
+        "scope",
+        "timing",
+        "material"
+      ],
+      "alternatives": [
+        [
+          "collate",
+          "reconcile"
+        ],
+        [
+          "listen",
+          "transcribe",
+          "index"
+        ]
+      ],
+      "station": "appointments review tray",
+      "finch": "Finch may arrange a new review; provider and resident decide independently.",
+      "effect": "A canceled possibility can reenter the scheduling horizon; history remains unchanged.",
+      "consent": true,
+      "stage": "review opportunity only",
+      "ordinaryCareIndependent": true
+    },
+    {
+      "id": "belongings",
+      "name": "The Owner of the Empty Shelf",
+      "occasion": "An item is separated from its recognized owner",
+      "object": "property register",
+      "required": [
+        "privacy",
+        "index",
+        "reconcile",
+        "material"
+      ],
+      "alternatives": [
+        [
+          "observe",
+          "collate"
+        ],
+        [
+          "listen",
+          "transcribe",
+          "chronology"
+        ]
+      ],
+      "station": "property review tray",
+      "finch": "Finch may forward an ownership inquiry; authorized custodian must decide.",
+      "effect": "An item acquires a reviewable association with its claimant, not automatic ownership.",
+      "consent": true,
+      "stage": "review opportunity only",
+      "ordinaryCareIndependent": true
+    },
+    {
+      "id": "release",
+      "name": "The Unsigned Departure",
+      "occasion": "A legitimate discharge document contains a discrepancy",
+      "object": "discharge certificate",
+      "required": [
+        "scope",
+        "privacy",
+        "chronology",
+        "reconcile",
+        "route"
+      ],
+      "alternatives": [
+        [
+          "collate",
+          "index"
+        ],
+        [
+          "listen",
+          "transcribe",
+          "material"
+        ]
+      ],
+      "station": "discharge review tray",
+      "finch": "Finch can route a discrepancy but cannot grant discharge outside her authority.",
+      "effect": "A valid review opportunity opens; confinement and release require independent lawful decision. No shortcut.",
+      "consent": true,
+      "stage": "review opportunity only",
+      "ordinaryCareIndependent": true
+    }
+  ],
+  "playStyles": [
+    {
+      "id": "observer",
+      "skills": [
+        "observe",
+        "inspect",
+        "measure"
+      ],
+      "route": "physical conditions and material facts"
+    },
+    {
+      "id": "archivist",
+      "skills": [
+        "index",
+        "collate",
+        "chronology",
+        "reconcile"
+      ],
+      "route": "records and institutional continuity"
+    },
+    {
+      "id": "social",
+      "skills": [
+        "listen",
+        "privacy",
+        "transcribe"
+      ],
+      "route": "voluntary testimony and accurate requests"
+    },
+    {
+      "id": "logistician",
+      "skills": [
+        "route",
+        "timing",
+        "material",
+        "scope"
+      ],
+      "route": "permitted movement, objects and service windows"
+    },
+    {
+      "id": "quiet",
+      "skills": [
+        "observe",
+        "index",
+        "collate"
+      ],
+      "route": "minimal speech, public material and record work"
+    },
+    {
+      "id": "collective",
+      "skills": [],
+      "route": "independent residents may supply evidence or decline; no commanded party"
+    }
+  ],
+  "authority": {
+    "evidence": "trusted world adapter produces verified skill receipts only after actual object operations; player cannot author receipts or authorize",
+    "ritual": "required AND one alternative set; same case, same subject, valid provenance, custody, scope and consent. Not a UI checklist.",
+    "npc": "Finch and other NPCs choose independent actions; compiled dossier gives review opportunity not guaranteed recognition or service",
+    "experimentalIsolation": true,
+    "sevenPowersUnchanged": true
+  }
+}
