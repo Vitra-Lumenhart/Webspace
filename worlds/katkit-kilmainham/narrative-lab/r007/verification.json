@@ -1,0 +1,6 @@
+{
+  "checks": 78,
+  "spirits": 7,
+  "fixtureEvents": 6,
+  "mode": "isolated reference; no R006 mutation"
+}
