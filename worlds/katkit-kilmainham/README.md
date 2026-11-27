@@ -29,3 +29,6 @@ Ten design notes covering the five districts and historical ages, dramatic refer
 
 ## Classical Cinema School
 [Read the twelve additional director notes and twenty-scene rehearsal](CLASSICAL_CINEMA_SCHOOL.md). Original forward creative objectives, not shipped features.
+
+## Classical Cinema School — Book II
+[Six further director's studies](CLASSICAL_CINEMA_SCHOOL_II.md): choreography, music, miniature theatre, historical epic, comedy and character. Forward artistic direction.

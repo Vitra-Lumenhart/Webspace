@@ -497,3 +497,17 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Evidence:** [Classical Cinema School](worlds/katkit-kilmainham/CLASSICAL_CINEMA_SCHOOL.md), [PR #24 discussion](https://github.com/Vitra-Lumenhart/Webspace/pull/24); twelve comments read back.
 <!-- /WEBSPACE-LEDGER -->
+
+<!-- WEBSPACE-LEDGER id="R0033" date="2026-11-26" -->
+### 2026-11-26 · R0033 — Kilmainham Classical Cinema School, Book II
+
+**Backwards:** Preserve the earlier twenty-two notes and archive six further verified discussion comments.
+
+**Forwards:** Choreography, original musical motifs, miniature theatre, historical epics, humane comedy and individual character studies.
+
+**Not yet:** All proposed scenes and artistic objectives remain future work.
+
+**Invariant impact:** Documentation only. Prior head eec0cafbece54e796429113201dd5dd04217a414 preserved.
+
+**Evidence:** [Classical Cinema School, Book II](worlds/katkit-kilmainham/CLASSICAL_CINEMA_SCHOOL_II.md), [PR #24](https://github.com/Vitra-Lumenhart/Webspace/pull/24).
+<!-- /WEBSPACE-LEDGER -->
