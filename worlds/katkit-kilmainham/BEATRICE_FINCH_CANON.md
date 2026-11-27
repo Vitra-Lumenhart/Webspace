@@ -327,3 +327,7 @@ The existing R011 event ledger is authoritative; use new namespaced event kinds 
 10. No magical effects from titles, flattery or dialogue.
  
 Machine-readable companion: `beatrice-finch-dialogue.json`. Authored design and candidate data only; not yet wired into live scene or tested in browser.
+
+
+## Anonymous population and granular Administrative Magic
+See [ANONYMOUS_ADMINISTRATION.md](ANONYMOUS_ADMINISTRATION.md) and its candidate data, reference contract and tests. Kindness is a narrative constant independent of ritual skill; skills enact validated object operations, not social approval. NPCs keep all decision authority. Anonymous residents have stable identities and changing tendencies. This is an additive design/reference implementation, not a live level change.
