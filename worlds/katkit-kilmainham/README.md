@@ -43,3 +43,7 @@ The earlier speculative cage/shaft has been superseded by the documented two-pol
 
 ## R013 — photographic ironwork correction
 See [R013_IRONWORK.md](R013_IRONWORK.md). The food-hoist head now has a projecting four-spoke sheave and narrow pierced cast web instead of a generic pulley. The rendered stair/bridge cages use the shared STAIR profile (2.25m spring, .73m radius, 1.46m width, 12 facets), conservative clearance 2.59m with lateral margin. Previous behavior and architecture are preserved. 596 spatial and 4290 hoist assertions passed via JS adapter; visual rendering and actual collision sweep pending. No Pages deployment.
+
+
+## R014 — Weather, iron and light
+See [R014_LIGHT_FIELDS.md](R014_LIGHT_FIELDS.md). Implemented deeper roof lattice haunches, continuous elevation bands, named twin hoist arms, cached direct shadows, wrapped Gaussian cloud transmission, approximate precomputed lamp irradiance and optional oblique lightning / thunder / dust shafts. 65,550 numerical field assertions passed, 352,896 bytes CPU field arrays, 148,096 bytes GPU texels excluding existing shadow target, audio and renderer overhead. Live shader/visual verification outstanding. Original R010a release preserved.
