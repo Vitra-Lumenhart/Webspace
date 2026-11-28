@@ -38,13 +38,13 @@ export function mountFoodHoist(parent,materials={}){
  for(const z of [-.21,.21]){
   axial(head,wx,H,z,.10,.075,iron);
   // In Colin's Main Hall image the sheave projects left of the two poles.
-  // The lower member is a narrow pierced cast web with a rounded nose,
+  // TWO independent pierced side arms (near and far), each with a rounded nose,
   // rather than an X-braced truss or enclosed gearbox.
   const web=new THREE.Shape();
   web.moveTo(wx-.13,H-.28);web.quadraticCurveTo(wx-.20,H-.48,wx+.18,H-.48);
   web.lineTo(wallX,H-.48);web.lineTo(wallX,H-.24);web.lineTo(wx+.16,H-.24);web.closePath();
   for(let x=wx+.28;x<wallX-.15;x+=.23){const hole=new THREE.Path();hole.absellipse(x,H-.36,.071,.066,0,2*Math.PI,true);web.holes.push(hole);}
-  add(head,new THREE.ExtrudeGeometry(web,{depth:.045,bevelEnabled:false,curveSegments:10}),iron,0,0,z-.0225);
+  const arm=add(head,new THREE.ExtrudeGeometry(web,{depth:.045,bevelEnabled:false,curveSegments:10}),iron,0,0,z-.0225);arm.name=z<0?'KIL-IRON-003A / far pierced side arm':'KIL-IRON-003A / near pierced side arm';
   box(head,(wx+wallX)/2,H+.16,z,wallX-wx,.065,.065);
   for(const x of [wx,1.03,2.11,wallX])box(head,x,H-.035,z,.054,.38,.06);
   const curve=new THREE.CatmullRomCurve3([[wx+.10,H+.13,z],[wx+.33,H+.31,z],[wx+.64,H+.21,z],[wx+.84,H+.15,z]].map(p=>new THREE.Vector3(...p)));
