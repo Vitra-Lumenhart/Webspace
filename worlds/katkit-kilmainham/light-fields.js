@@ -34,6 +34,13 @@ export function mountLightFields({scene,renderer,sun,ambient,fixtures,lamps,lamp
  function setDirection(storm){if(storm===stormDirection)return;stormDirection=storm;if(storm)sun.position.set(-23,37,-13);else sun.position.copy(ordinarySun);
  uniforms.fSunDir.value.copy(sun.position).sub(sun.target.position).normalize();renderer.shadowMap.needsUpdate=true;rebuildRays();}
  rebuildRays();
+ // A distant branching discharge above the glass; never a fullscreen flash.
+ const boltPoints=[];let x=-3,z=-19,y=25;
+ for(let i=0;i<18;i++){const X=x+.32*Math.sin(i*2.3),Z=z+1.7,Y=y+.32*Math.sin(i*3.1);boltPoints.push(x,y,z,X,Y,Z);if(i===5||i===11)boltPoints.push(X,Y,Z,X+2.1,Y-.7,Z+2.8);x=X;y=Y;z=Z;}
+ const boltGeo=new THREE.BufferGeometry();boltGeo.setAttribute('position',new THREE.Float32BufferAttribute(boltPoints,3));
+ const boltMat=new THREE.LineBasicMaterial({color:0xc8dcff,transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending});
+ const bolt=new THREE.LineSegments(boltGeo,boltMat);bolt.name='Distant storm discharge';bolt.visible=false;scene.add(bolt);
+ const baseSky=scene.background.clone();const duskSky=new THREE.Color(0x414b59),flashSky=new THREE.Color(0x9caccc);let disabled=false;
  const done=new WeakSet();let mode=params.get('sky')||'cycle',start=null,nowState=null,lastThunder=-1,audio=null,noise=null;
  if(!['day','cycle','twilight','storm'].includes(mode))mode='cycle';
  function attach(m){if(!m?.isMeshStandardMaterial||done.has(m)||m.transparent)return;done.add(m);m.userData.lightFields=true;
@@ -87,12 +94,13 @@ export function mountLightFields({scene,renderer,sun,ambient,fixtures,lamps,lamp
  const status=document.createElement('div');panel.append(status);document.querySelector('#hud').append(panel);
  function thunder(){if(!audio||!noise)return;const src=audio.createBufferSource(),filter=audio.createBiquadFilter(),gain=audio.createGain(),t=audio.currentTime;src.buffer=noise;filter.type='lowpass';filter.frequency.value=180;gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(.36,t+.55);gain.gain.exponentialRampToValueAtTime(.001,t+4.9);src.connect(filter).connect(gain).connect(audio.destination);src.start();}
  let lastScan=-10;
- function update(now){if(start===null)start=now;const t=(now-start)/1000;nowState=skyState(t,mode,check.checked);
- const s=nowState;setDirection(s.storm);rays.visible=rayCheck.checked;rayUniforms.fRayGain.value=.008*s.sun+.025*s.flash;uniforms.fDepth.value=s.depth;uniforms.fDrift.value.set(...s.drift);uniforms.fOn.value=s.electric;uniforms.fFlash.value=s.flash;
+ function update(now){if(disabled)return;if(start===null)start=now;const t=(now-start)/1000;nowState=skyState(t,mode,check.checked);
+ const s=nowState;setDirection(s.storm);scene.background.copy(baseSky).lerp(duskSky,s.phase).lerp(flashSky,s.flash*.55);bolt.visible=s.storm&&s.flash>.1;boltMat.opacity=s.flash*.8;rays.visible=rayCheck.checked;rayUniforms.fRayGain.value=.008*s.sun+.025*s.flash;uniforms.fDepth.value=s.depth;uniforms.fDrift.value.set(...s.drift);uniforms.fOn.value=s.electric;uniforms.fFlash.value=s.flash;
  sun.intensity=s.sun+3.6*s.flash;ambient.intensity=s.ambient+.22*s.flash;lampGlow.emissiveIntensity=s.electric?1.35:.08;
- for(const l of lamps)l.intensity=0; // baked electric field replaces point-light loops.
+ // The baked electric field replaces all legacy point-light loops.
  if(s.storm&&s.thunder&&lastThunder!==s.strike){lastThunder=s.strike;thunder();}
  if(t-lastScan>1){scan();lastScan=t;status.textContent=(s.electric?'Lamps on':'Lamps off')+' · '+Math.round(s.phase*100)+'% dusk · '+Math.round((c.volume.byteLength+c.atlas.byteLength+atlas.byteLength+e.byteLength)/1024)+' KiB field arrays';}
  }
- return {update,attach,disable(){rays.visible=false;},get mode(){return mode},get state(){return nowState},bytes:c.volume.byteLength+c.atlas.byteLength+atlas.byteLength+e.byteLength};
+ for(const l of lamps)scene.remove(l);
+ return {update,attach,disable(){if(disabled)return;disabled=true;rays.visible=false;bolt.visible=false;setDirection(false);scene.background.copy(baseSky);for(const l of lamps)scene.add(l);renderer.shadowMap.autoUpdate=true;},get mode(){return mode},get state(){return nowState},bytes:c.volume.byteLength+c.atlas.byteLength+atlas.byteLength+e.byteLength};
 }
