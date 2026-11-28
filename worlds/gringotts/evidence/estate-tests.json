@@ -1,0 +1,27 @@
+{
+  "revision": "R0037",
+  "tests": [
+    "visitor cannot buy",
+    "market cannot issue bank credit",
+    "funded grant",
+    "duplicate grant",
+    "fractional withdrawal",
+    "no bank loss",
+    "loss needs consent",
+    "wrong location",
+    "banked vault and compass survive",
+    "duplicate claim",
+    "restitution at court only",
+    "cross preserves companion and clears consent",
+    "vault object",
+    "banked witness redacted",
+    "replay exact",
+    "guest field multiplier",
+    "guest compass disputed",
+    "rival once per crossing",
+    "guest upgrade keeps compass",
+    "conserved supply",
+    "guest replay"
+  ],
+  "scope": "pure JS model and UI syntax; not browser execution"
+}
