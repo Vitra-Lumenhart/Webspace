@@ -39,7 +39,7 @@ export function electricBake(fixtures){
 // never a repeated strobe or full-screen white overlay.
 export function skyState(seconds,mode='day',gentle=false){
  const t=Math.max(0,seconds),cycle=wrap(t,150),phase=mode==='cycle'?smooth(35,105,cycle)*(1-smooth(130,150,cycle)):mode==='twilight'?.84:mode==='storm'?.88:.12;
- const storm=mode==='storm',s=wrap(t,32),flash=storm?smooth(15,15.22,s)*(1-smooth(15.42,16.65,s)):0;
- return {phase,sun:1.85*(1-.91*phase),ambient:1.48*(1-.72*phase),electric:phase>.64?1:0,depth:storm?13.2:2.6+8*phase+1.2*Math.sin(t*.016),drift:[wrap(t*.21,64),wrap(t*.31,96)],flash:flash*(gentle?.18:1),thunder:storm&&s>=17.7&&s<17.9,storm};
+ const storm=mode==='storm',strike=Math.floor(t/32),s=wrap(t,32),onset=strike===0?15:9+((Math.imul(strike,2654435761)>>>0)%800)/100,flash=storm?smooth(onset,onset+.22,s)*(1-smooth(onset+.42,onset+1.65,s)):0;
+ return {phase,sun:1.85*(1-.91*phase),ambient:1.48*(1-.72*phase),electric:phase>.64?1:0,depth:storm?13.2:2.6+8*phase+1.2*Math.sin(t*.016),drift:[wrap(t*.21,64),wrap(t*.31,96)],flash:flash*(gentle?.18:1),thunder:storm&&s>=onset+2.7&&s<onset+3.2,strike,storm};
 }
 export function budget(){return CLOUD.x*CLOUD.z*CLOUD.y+(CLOUD.x+2)*(CLOUD.z+2)*CLOUD.layers+ELECTRIC.x*ELECTRIC.z*ELECTRIC.y}
