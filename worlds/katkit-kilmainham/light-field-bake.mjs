@@ -27,10 +27,10 @@ export function electricBake(fixtures){
  for(let y=0;y<e.y;y++)for(let z=0;z<e.z;z++)for(let x=0;x<e.x;x++){
  const p=[x/(e.x-1),y/(e.y-1),z/(e.z-1)].map((t,i)=>e.min[i]+t*(e.max[i]-e.min[i]));let light=0;
  for(const f of fixtures){const dx=f[0]-p[0],dy=f[1]-p[1],dz=f[2]-p[2],d2=dx*dx+dy*dy+dz*dz;
- if(d2>100)continue;
+ if(d2>64)continue;
  // Approximate deck occlusion, not a ray-traced lightmap.
  let oc=1;for(const deck of [6.3,12.6])if((f[1]-deck)*(p[1]-deck)<0){const t=(deck-p[1])/dy;if(Math.abs(p[0]+dx*t)>7.25)oc*=.12;}
- light+=oc*clamp(1-d2/100)**2*(dy>=0?1:.24)/(1+d2*.34)*.95;
+ light+=oc*clamp(1-d2/64)**2*(dy>=0?1:.14)/(1+d2*.48)*1.35;
  }
  a[(y*e.z+z)*e.x+x]=Math.round(255*clamp(light));
  }return a;
@@ -38,8 +38,8 @@ export function electricBake(fixtures){
 // Elapsed seconds, not frames. Storm is opt-in. One broad pulse per >=22 s,
 // never a repeated strobe or full-screen white overlay.
 export function skyState(seconds,mode='day',gentle=false){
- const t=Math.max(0,seconds),cycle=wrap(t,150),phase=mode==='cycle'?smooth(35,105,cycle)*(1-smooth(130,150,cycle)):mode==='twilight'?.84:mode==='storm'?.88:.12;
+ const t=Math.max(0,seconds),cycle=wrap(t,150),phase=mode==='cycle'?smooth(35,105,cycle)*(1-smooth(130,150,cycle)):mode==='twilight'?.84:mode==='storm'?.92:.12;
  const storm=mode==='storm',strike=Math.floor(t/32),s=wrap(t,32),onset=strike===0?15:9+((Math.imul(strike,2654435761)>>>0)%800)/100,flash=storm?smooth(onset,onset+.22,s)*(1-smooth(onset+.42,onset+1.65,s)):0;
- return {phase,sun:1.85*(1-.91*phase),ambient:1.48*(1-.72*phase),electric:phase>.64?1:0,depth:storm?13.2:2.6+8*phase+1.2*Math.sin(t*.016),drift:[wrap(t*.21,64),wrap(t*.31,96)],flash:flash*(gentle?.18:1),thunder:storm&&s>=onset+2.7&&s<onset+3.2,strike,storm};
+ return {phase,sun:2.05*(1-.94*phase),ambient:1.62*(1-.69*phase),electric:phase>.64?1:0,depth:storm?13.2:5.8+6*phase+2.2*Math.sin(t*.025),drift:[wrap(t*.21,64),wrap(t*.31,96)],flash:flash*(gentle?.18:1),thunder:storm&&s>=onset+2.7&&s<onset+3.2,strike,storm};
 }
 export function budget(){return CLOUD.x*CLOUD.z*CLOUD.y+(CLOUD.x+2)*(CLOUD.z+2)*CLOUD.layers+ELECTRIC.x*ELECTRIC.z*ELECTRIC.y}
