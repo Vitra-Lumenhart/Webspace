@@ -4,7 +4,7 @@ import {clone as cloneRig} from 'three/addons/utils/SkeletonUtils.js';
 export function mountChoir(scene,loader,choir,nodes,report=()=>{}){
  const models=new Map(),objects=new Map(),desired=new Map(),pending=new Set();
  const actors=[...choir.c.humans.map(a=>({...a,kind:'human'})),...choir.c.powers.map(a=>({...a,kind:'power'}))];
- const load=form=>{if(!models.has(form))models.set(form,loader.loadAsync(new URL('./characters/'+form+'.glb',import.meta.url).href).then(g=>g.scene));return models.get(form);};
+ const load=form=>{if(!models.has(form))models.set(form,loader.loadAsync(new URL('./characters/'+form+'.glb',import.meta.url).href).catch(()=>loader.loadAsync('https://raw.githubusercontent.com/Vitra-Lumenhart/Webspace/91d374c6a14d0265e6ef2448b6cbfc6deb6849c4/worlds/katkit-kilmainham/characters/'+encodeURIComponent(form)+'.glb')).then(g=>g.scene));return models.get(form);};
  function request(a,form){if(pending.has(a.id))return;pending.add(a.id);
   load(form).then(template=>{if(desired.get(a.id)!==form)return;const rig=cloneRig(template);
    const box=new THREE.Box3().setFromObject(rig),height=box.max.y-box.min.y;if(!(height>.01))throw Error('Invalid '+form+' bounds');
