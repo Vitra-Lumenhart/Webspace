@@ -79,7 +79,7 @@ export function mountLightFields({scene,renderer,sun,ambient,fixtures,lamps,lamp
  float warmth=fLayers(fElectric,ep.xz,ep.y*15.,vec2(48.,96.))*fOn;
  // Favor illuminated surfaces facing the interior; prevent uniform luminous walls.
  vec3 wn=normalize(inverseTransformDirection(normal,viewMatrix));
- vec3 inward=normalize(vec3(-fWorld.x*.16,-.55,0.01));
+ vec3 inward=normalize(vec3(-fWorld.x*.16,.55,0.01));
  float facing=.25+.75*max(0.,dot(wn,inward));
  reflectedLight.indirectDiffuse+=diffuseColor.rgb*vec3(1.,.67,.39)*warmth*facing*1.55;
  `);
@@ -113,7 +113,7 @@ export function mountLightFields({scene,renderer,sun,ambient,fixtures,lamps,lamp
  const status=document.createElement('div');panel.append(status);const disclosure=document.createElement('details');disclosure.className='field-controls';const summary=document.createElement('summary');summary.textContent='Sky & sound';disclosure.append(summary,panel);document.querySelector('#hud').append(disclosure);
  function thunder(){if(!audio||!noise)return;const src=audio.createBufferSource(),filter=audio.createBiquadFilter(),gain=audio.createGain(),t=audio.currentTime;src.buffer=noise;filter.type='lowpass';filter.frequency.value=180;gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(.36,t+.55);gain.gain.exponentialRampToValueAtTime(.001,t+4.9);src.connect(filter).connect(gain).connect(audio.destination);src.start();}
  let lastScan=-10;
- function setActorShadows(enabled){if(enabled===shadowActors)return;shadowActors=enabled;for(const root of getActors())root.traverse(o=>{if(o.isMesh)o.castShadow=enabled;});renderer.shadowMap.needsUpdate=true;}
+ function setActorShadows(enabled){if(enabled===shadowActors)return;shadowActors=enabled;for(const root of getActors())root.traverse(o=>{if(o.isMesh&&!o.userData.noStrikeShadow)o.castShadow=enabled;});renderer.shadowMap.needsUpdate=true;}
  function update(now){if(disabled)return;if(start===null)start=now;const t=(now-start)/1000;nowState=skyState(t,mode,check.checked);
  const s=nowState;setDirection(s.storm);scene.background.copy(baseSky).lerp(duskSky,s.phase).lerp(flashSky,s.flash*.55);bolt.visible=s.storm&&s.flash>.1;boltMat.opacity=s.flash*.8;rays.visible=rayCheck.checked;rayUniforms.fRayGain.value=.008*s.sun+.025*s.flash;uniforms.fDepth.value=s.depth;uniforms.fDrift.value.set(...s.drift);uniforms.fOn.value=s.electric;uniforms.fFlash.value=s.flash;
  // Cold reflected light preserves the iron silhouette during darkness.
