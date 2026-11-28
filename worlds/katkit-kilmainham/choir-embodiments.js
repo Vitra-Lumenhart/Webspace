@@ -4,11 +4,12 @@ import {clone as cloneRig} from 'three/addons/utils/SkeletonUtils.js';
 export function mountChoir(scene,loader,choir,nodes,report=()=>{}){
  const models=new Map(),objects=new Map(),desired=new Map(),pending=new Set();
  // Presentation only; preserve Choir forms, identities, ledger and heights.
- const original=new URLSearchParams(location.search).has('originalcast'),graded=new WeakMap();
- function grade(tex){if(!tex?.image||original)return tex;if(graded.has(tex))return graded.get(tex);
- try{const im=tex.image,c=document.createElement('canvas');c.width=im.width;c.height=im.height;const ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(im,0,0);const d=ctx.getImageData(0,0,c.width,c.height),p=d.data;
- for(let i=0;i<p.length;i+=4){const l=.2126*p[i]+.7152*p[i+1]+.0722*p[i+2];for(let j=0;j<3;j++)p[i+j]=Math.max(0,Math.min(255,l+(p[i+j]-l)*.47));}
- ctx.putImageData(d,0,0);const t=new THREE.CanvasTexture(c);t.colorSpace=tex.colorSpace;t.flipY=tex.flipY;t.wrapS=tex.wrapS;t.wrapT=tex.wrapT;t.magFilter=tex.magFilter;t.minFilter=tex.minFilter;t.needsUpdate=true;graded.set(tex,t);return t;}catch{return tex;}}
+ const original=new URLSearchParams(location.search).has('originalcast');
+ // Shader grade keeps the original shared atlas: no duplicate GPU texture.
+ function gradeMaterial(m){const c=m.clone(),before=c.onBeforeCompile;c.onBeforeCompile=function(shader,renderer){before.call(this,shader,renderer);shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
+ float castLuma=dot(diffuseColor.rgb,vec3(.2126,.7152,.0722));
+ diffuseColor.rgb=mix(vec3(castLuma),diffuseColor.rgb,.47);
+ `);};c.customProgramCacheKey=()=> 'kilmainham-cast-grade-015';c.roughness=.93;return c;}
  function lowerArms(rig){if(original)return;rig.updateMatrixWorld(true);
  for(const side of ['l','r']){const a=rig.getObjectByName('upperarm.'+side),b=rig.getObjectByName('lowerarm.'+side);if(!a?.isBone||!b?.isBone||!a.parent)continue;
  const A=a.getWorldPosition(new THREE.Vector3()),B=b.getWorldPosition(new THREE.Vector3()),v=B.sub(A).normalize();if(Math.abs(v.y)>.65)continue;
@@ -24,7 +25,7 @@ export function mountChoir(scene,loader,choir,nodes,report=()=>{}){
   load(form).then(template=>{if(desired.get(a.id)!==form)return;const rig=cloneRig(template);lowerArms(rig);
    const box=new THREE.Box3().setFromObject(rig),height=box.max.y-box.min.y;if(!(height>.01))throw Error('Invalid '+form+' bounds');
    const scale=(a.kind==='human'?1.78:1.95)/height;rig.scale.setScalar(scale);rig.position.y=-box.min.y*scale;
-   rig.traverse(o=>{if(o.isMesh){o.castShadow=false;o.receiveShadow=true;if(!original){const edit=m=>{const c=m.clone();c.map=grade(m.map);if(c.color){const h={};c.color.getHSL(h);c.color.setHSL(h.h,h.s*.64,h.l*.94);}c.roughness=.93;return c;};o.material=Array.isArray(o.material)?o.material.map(edit):edit(o.material);}}});
+   rig.traverse(o=>{if(o.isMesh){o.castShadow=false;o.receiveShadow=true;if(!original){o.material=Array.isArray(o.material)?o.material.map(gradeMaterial):gradeMaterial(o.material);}}});
    const root=new THREE.Group();root.add(rig);const contact=new THREE.Mesh(shadowGeometry,shadowMat);contact.name='contact shade';contact.userData.noStrikeShadow=true;contact.rotation.x=-Math.PI/2;contact.position.y=.018;root.add(contact);root.name=a.name;root.userData={actorId:a.id,kind:a.kind,form};const prior=objects.get(a.id);if(prior){root.position.copy(prior.position);scene.remove(prior);}scene.add(root);objects.set(a.id,root);report(objects.size,0);
   }).catch(e=>{console.warn('Choir character unavailable',a.id,e);report(objects.size,1)}).finally(()=>pending.delete(a.id));}
  function sync(dt){const counts={};for(const a of actors){const s=a.kind==='human'?a:choir.actors[a.id],node=s.node,form=s.form;const index=counts[node]||0;counts[node]=index+1;
