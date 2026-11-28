@@ -21,3 +21,7 @@ Destructive readback testing of R0001 reproduced a late escrow refund crediting 
 ## GRG-R0003 — The Anatomy of a Secret (28 November 2026; draft)
 
 Backwards: preserves eight rooms, GRG-R0002 ledger and separate R0037 checkpoint. Forwards: [security contract](ANATOMY_CONTRACT.md) and [eight-room offline laboratory](anatomy-of-a-secret.html), followed by durable ledger, real signatures, account auth, vault encryption, Vitra gateway, adapters and spatial integration. Not yet: no backend, real crypto, browser test, published release or cross-world integration. Invariant impact: no cookies, no real secrets, no private portal data, no changes outside Gringotts. Evidence: 32 model checks executed, [tests](anatomy-tests.mjs) and [results](evidence/anatomy-tests.json). Predecessor entire tree in Git at 744fde1e1a5408ff0d86400de3b410757d9db2f7. Draft branch; not a new global revision.
+
+## GRG-R0004 — The Honest Word (draft)
+
+Backwards: preserves R0003 instruments and paused R0037. Forwards: [scripted trust experience](honest-word.html), [language contract](HONEST_WORD.md), 16 encounters / 48 choices. Not yet: spatial character integration, actual accounts, production language generation or live settlement. Invariant impact: only Gringotts files; no real data or cross-world authority. Evidence: 196 deterministic assertions [source](honest-word-tests.mjs), [results](evidence/honest-word-tests.json). Full predecessor: 0a5602bbd1bad4fa7a679f0fb53899ed7c190dac. Not a global release.
