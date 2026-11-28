@@ -322,11 +322,11 @@ addEventListener('keydown',e=>{if(dialog.open)return; if(!e.key.startsWith('Arro
 function updateMarkers(){const r=canvas.getBoundingClientRect(),f=camera.getWorldDirection(new THREE.Vector3()); for(const m of markers){const delta=m.world.clone().sub(camera.position),p=m.world.clone().project(camera); const visible=!state.trip&&!dialog.open&&delta.dot(f)>.1&&p.z>=-1&&p.z<=1&&Math.abs(p.x)<.9&&Math.abs(p.y)<.85; m.el.hidden=!visible; if(visible){m.el.style.left=`${r.left+(p.x+1)*r.width/2}px`; m.el.style.top=`${r.top+(1-p.y)*r.height/2}px`;}}}
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 function animate(now){const dt=previousTime?Math.min(.05,(now-previousTime)/1000):0;previousTime=now;
- if(fieldLight&&!shaderFallback)fieldLight.update(now);else if(shaderFallback){sun.intensity=1.85;ambient.intensity=1.48;for(const l of fallbackLamps)l.intensity=2.6;}
+ if(fieldLight&&!shaderFallback)fieldLight.update(now);else if(shaderFallback){fieldLight?.disable?.();sun.intensity=1.85;ambient.intensity=1.48;for(const l of fallbackLamps)l.intensity=2.6;}
  if(hoistView){hoistClock+=dt;while(hoistClock>=.1){hoistClock-=.1;hoist.advance();}if(!hoistStarted&&hoist.tick>=30){hoistStarted=true;hoist.start();}hoistView.update(hoist.inspect(),dt);}for(const mixer of mixers)mixer.update(dt);tick(now);if(choirCast)choirCast.sync(dt); camera.rotation.set(pitch,yaw,0,'YXZ'); camera.updateMatrixWorld(); updateMarkers(); renderer.render(scene,camera)}
 function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R014 light fields · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
 try{
- await load();build();flushAssets();batchArchitecture();hoistView=mountFoodHoist(scene,{iron:steelBlue,dark:iron,wood});hoistView.update(hoist.inspect());weatherScene(scene,weatherKinds);
+ await load();build();flushAssets();batchArchitecture();hoistView=mountFoodHoist(scene,{iron:steelBlue,dark:iron,wood});hoistView.update(hoist.inspect());for(const moving of [hoistView.tray,hoistView.hatch,hoistView.wheel])moving.traverse(o=>{if(o.isMesh)o.castShadow=false;});weatherScene(scene,weatherKinds);
  // Keep optional lighting independent of the base scene. A failure restores original lights.
  try{fieldLight=mountLightFields({scene,renderer,sun,ambient,fixtures:fieldFixtures,lamps:fallbackLamps,lampGlow});}catch(e){console.warn('Light field fallback',e);}
  choir.advance(1,'gate','arrival of the witness');refresh();reportArt();renderer.setAnimationLoop(animate);
