@@ -41,7 +41,7 @@ const STORY_COUNT=5, CELL_TIERS=3, BAND=3.15, DOOR_HEIGHT=3.05, LEVEL_PITCH=2*BA
 const HALL_HALF_WIDTH=8.8, GALLERY_WIDTH=1.55, INNER=HALL_HALF_WIDTH-GALLERY_WIDTH;
 const APSE_Z=-19, Z_MAX=24, Z_MIN=APSE_Z-HALL_HALF_WIDTH;
 const CLERESTORY_Y=STORY_COUNT*BAND, CROWN_HEIGHT=1.85, ROOF_SPRING_Y=CLERESTORY_Y+CROWN_HEIGHT, ROOF_APEX_Y=ROOF_SPRING_Y+3.6;
-const EYE=1.65;
+const EYE=1.70;
 
 // Ground-level detour avoids the central staircase; distances count actual path segments.
 function pathFor(a,b){const start=[NODES[a].x,NODES[a].z],end=[NODES[b].x,NODES[b].z];if(a==='chapel'&&b==='hearing')return [start,[-2.5,1],[-2.5,-22.8],end];if(a==='hearing'&&b==='chapel')return pathFor(b,a).reverse();return [start,end];}
@@ -187,7 +187,7 @@ function roofHalfRib(point){
  const y=roofY(x,z)-.055,depth=.28+1.56*Math.pow(Math.cos(t),3);
  const [lx,lz]=point(r*.977);top.push([x,y,z]);lower.push([lx,y-depth,lz]);}
  for(let i=1;i<=n;i++){beam(top[i-1],top[i],.075,steelBlue);beam(lower[i-1],lower[i],.075,steelBlue);beam(top[i-1],lower[i],.033,steelBlue);beam(lower[i-1],top[i],.033,steelBlue);}
- beam(top[0],lower[0],.085,steelBlue);const p=lower[0];box(p[0],p[1]-.10,p[2],.25,.25,.25,steelBlue);
+ beam(top[0],lower[0],.085,steelBlue);const p=lower[0];box(p[0],p[1]-.10,p[2],.25,.25,.25,steelBlue);const [wx,wz]=point(HALL_HALF_WIDTH);beam([p[0],p[1],p[2]],[wx,p[1]-.28,wz],.10,steelBlue);box(wx*.995,p[1]-.23,wz,.24,.44,.24,iron);
 }
 function roofRib(z){for(const side of [-1,1])roofHalfRib(r=>[side*r,z]);}
 function horizontalCourse(y,radius,width,height,mat){
@@ -318,17 +318,17 @@ const canvas=renderer.domElement; let drag=false,lastX=0,lastY=0;
 canvas.addEventListener('pointerdown',e=>{if(dialog.open)return;drag=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId)});
 canvas.addEventListener('pointermove',e=>{if(!drag)return; yaw-=(e.clientX-lastX)*.005; pitch=THREE.MathUtils.clamp(pitch-(e.clientY-lastY)*.005,-1.15,1.15); lastX=e.clientX; lastY=e.clientY});
 for(const e of ['pointerup','pointercancel','lostpointercapture']) canvas.addEventListener(e,()=>drag=false);
-addEventListener('keydown',e=>{if(dialog.open)return; if(!e.key.startsWith('Arrow'))return; e.preventDefault(); if(e.key==='ArrowLeft')yaw+=.19; if(e.key==='ArrowRight')yaw-=.19; if(e.key==='ArrowUp')pitch=Math.min(1.15,pitch+.12); if(e.key==='ArrowDown')pitch=Math.max(-1.15,pitch-.12)});
+addEventListener('keydown',e=>{if(dialog.open||/^(INPUT|SELECT|BUTTON|SUMMARY)$/.test(e.target?.tagName||''))return; if(!e.key.startsWith('Arrow'))return; e.preventDefault(); if(e.key==='ArrowLeft')yaw+=.19; if(e.key==='ArrowRight')yaw-=.19; if(e.key==='ArrowUp')pitch=Math.min(1.15,pitch+.12); if(e.key==='ArrowDown')pitch=Math.max(-1.15,pitch-.12)});
 function updateMarkers(){const r=canvas.getBoundingClientRect(),f=camera.getWorldDirection(new THREE.Vector3()); for(const m of markers){const delta=m.world.clone().sub(camera.position),p=m.world.clone().project(camera); const visible=!state.trip&&!dialog.open&&delta.dot(f)>.1&&p.z>=-1&&p.z<=1&&Math.abs(p.x)<.9&&Math.abs(p.y)<.85; m.el.hidden=!visible; if(visible){m.el.style.left=`${r.left+(p.x+1)*r.width/2}px`; m.el.style.top=`${r.top+(1-p.y)*r.height/2}px`;}}}
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 function animate(now){const dt=previousTime?Math.min(.05,(now-previousTime)/1000):0;previousTime=now;
  if(fieldLight&&!shaderFallback)fieldLight.update(now);else if(shaderFallback){fieldLight?.disable?.();sun.intensity=1.85;ambient.intensity=1.48;for(const l of fallbackLamps)l.intensity=2.6;}
  if(hoistView){hoistClock+=dt;while(hoistClock>=.1){hoistClock-=.1;hoist.advance();}if(!hoistStarted&&hoist.tick>=30){hoistStarted=true;hoist.start();}hoistView.update(hoist.inspect(),dt);}for(const mixer of mixers)mixer.update(dt);tick(now);if(choirCast)choirCast.sync(dt); camera.rotation.set(pitch,yaw,0,'YXZ'); camera.updateMatrixWorld(); updateMarkers(); renderer.render(scene,camera)}
-function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R014 light fields · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
+function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R015 chiaroscuro · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
 try{
  await load();build();flushAssets();batchArchitecture();hoistView=mountFoodHoist(scene,{iron:steelBlue,dark:iron,wood});hoistView.update(hoist.inspect());for(const moving of [hoistView.tray,hoistView.hatch,hoistView.wheel])moving.traverse(o=>{if(o.isMesh)o.castShadow=false;});weatherScene(scene,weatherKinds);
  // Keep optional lighting independent of the base scene. A failure restores original lights.
- try{fieldLight=mountLightFields({scene,renderer,sun,ambient,fixtures:fieldFixtures,lamps:fallbackLamps,lampGlow});}catch(e){console.warn('Light field fallback',e);}
+ try{fieldLight=mountLightFields({scene,renderer,sun,ambient,fixtures:fieldFixtures,lamps:fallbackLamps,lampGlow,roofGlass,getActors:()=>choirCast?[...choirCast.objects.values()]:[]});}catch(e){console.warn('Light field fallback',e);}
  choir.advance(1,'gate','arrival of the witness');refresh();reportArt();renderer.setAnimationLoop(animate);
  window.KilmainhamChoir={get state(){return {node:state.node,steps:state.steps,events:choir.events.length}},get frames(){return renderer.info.render.frame},get embodied(){return choirCast?.objects.size||0},get hoist(){return hoist.snapshot()},get light(){return fieldLight?.state||null},get local(){return choir.publicAt(state.node)}};
  // Texture and character availability must never gate the playable scene.
