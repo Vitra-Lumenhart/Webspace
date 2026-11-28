@@ -47,3 +47,7 @@ See [R013_IRONWORK.md](R013_IRONWORK.md). The food-hoist head now has a projecti
 
 ## R014 — Weather, iron and light
 See [R014_LIGHT_FIELDS.md](R014_LIGHT_FIELDS.md). Implemented deeper roof lattice haunches, continuous elevation bands, named twin hoist arms, cached direct shadows, wrapped Gaussian cloud transmission, approximate precomputed lamp irradiance and optional oblique lightning / thunder / dust shafts. 65,550 numerical field assertions passed, 352,896 bytes CPU field arrays, 148,096 bytes GPU texels excluding existing shadow target, audio and renderer overhead. Live shader/visual verification outstanding. Original R010a release preserved.
+
+
+## R015 — Chiaroscuro
+[R015 screenshot critique and technical changes](R015_CHIAROSCURO.md). More localized electric pools, cloud-driven glass, cold storm shadows, strike-cached actor silhouettes, restrained cast palette/pose, contact shades, roof spring shoes and compact HUD. 65,550 field assertions passed via JS adapter, five modules parsed; live WebGL and performance unverified. No lore or traversal changes.
