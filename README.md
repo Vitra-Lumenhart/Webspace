@@ -552,3 +552,14 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Deferred:** GLB export, visual comparison at full resolution, playable stair/cell, full-height screens and live deployment. No main/Pages/Drive changes. [Technical spec](worlds/katkit-kilmainham/R013_IRONWORK.md).
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="KIL-R014-LIGHT" date="2026-11-27" -->
+### 2026-11-27 · KIL-R014-LIGHT — Weather, iron and light
+
+**Changed:** Deep roof lattice haunches and elevation bands, separate pierced hoist arms, cached shadow map with periodic cloud transmission, precomputed lamp volume, selectable oblique storm shadows, optional thunder/dust shaft effect. No narrative authority or traversal changes.
+
+**Checked:** 65,550 numerical assertions via JS adapter; 11 modules parse. 352,896 bytes CPU field arrays, 148,096 bytes GPU texel payload, existing shadow target separate. Live WebGL, visual comparison, actual performance and audio unverified.
+
+**Deferred:** Actual browser acceptance, exported GLBs, upper gallery traversal, exact measured historical dimensions, full volumetric scattering and dynamic actor shadows. [Technical specification](worlds/katkit-kilmainham/R014_LIGHT_FIELDS.md).
+<!-- /WEBSPACE-LEDGER -->
