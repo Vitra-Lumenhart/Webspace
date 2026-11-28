@@ -8,6 +8,8 @@ import { mountChoir } from './choir-embodiments.js';
 import { FoodHoist, HOIST } from './food-hoist.mjs';
 import { mountFoodHoist } from './food-hoist-view.js';
 import { STAIR as STAIR_PROFILE } from './spatial-contract.mjs';
+import { mountLightFields } from './light-fields.js';
+let fieldLight=null;const fieldFixtures=[],fallbackLamps=[];
 const hoist=new FoodHoist();let hoistView=null,hoistClock=0,hoistStarted=false;
 let choirCast=null;
 const choir = new Choir(await fetch(new URL('./choir-canon.json',import.meta.url)).then(r=>{if(!r.ok)throw Error('Choir canon unavailable');return r.json()}));
@@ -58,14 +60,14 @@ renderer.debug.onShaderError=(gl,program,vertex,fragment)=>{
  console.error('Kilmainham shader error',gl.getProgramInfoLog(program),gl.getShaderInfoLog(vertex),gl.getShaderInfoLog(fragment));
  if(shaderFallback)return;shaderFallback=true;
  requestAnimationFrame(()=>{scene.traverse(o=>{if(!o.isMesh)return;for(const m of Array.isArray(o.material)?o.material:[o.material]){
- if(!m?.userData?.weathering)continue;m.onBeforeCompile=()=>{};m.customProgramCacheKey=()=> 'kilmainham-safe';m.needsUpdate=true;
+ if(!m?.userData?.weathering&&!m?.userData?.lightFields)continue;m.onBeforeCompile=()=>{};m.customProgramCacheKey=()=> 'kilmainham-safe';m.needsUpdate=true;
  }});});
 };
 renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
 renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.98;
 renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 document.querySelector('#view').append(renderer.domElement);
-scene.add(new THREE.HemisphereLight(0xd3dde3,0x82705b,1.48));
+const ambient=new THREE.HemisphereLight(0xd3dde3,0x82705b,1.48);scene.add(ambient);
 const sun=new THREE.DirectionalLight(0xe7e5d9,1.85);sun.position.set(-4,ROOF_APEX_Y+9,3);sun.target.position.set(0,2,-2);sun.castShadow=true;
 Object.assign(sun.shadow.camera,{left:-26,right:26,top:42,bottom:-42,near:.5,far:130});sun.shadow.mapSize.set(2048,2048);sun.shadow.bias=-.00055;scene.add(sun,sun.target);
 
@@ -81,7 +83,7 @@ function mesh(g,m,x,y,z,shadow=true){const o=new THREE.Mesh(g,m); architecturalM
 function box(x,y,z,w,h,d,m=stone,shadow=true){return mesh(new THREE.BoxGeometry(w,h,d),m,x,y,z,shadow);}
 function cyl(x,y,z,r,h,m=iron,radial=12,shadow=true){return mesh(new THREE.CylinderGeometry(r,r,h,radial),m,x,y,z,shadow);}
 function beam(a,b,width,mat=iron){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=B.clone().sub(A),mid=A.clone().add(B).multiplyScalar(.5);const o=box(mid.x,mid.y,mid.z,width,d.length(),width,mat);o.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());return o;}
-function lamp(x,y,z,color,intensity=7,range=16,decay=1.7){const l=new THREE.PointLight(color,intensity,range,decay);l.position.set(x,y,z);scene.add(l);return l;}
+function lamp(x,y,z,color,intensity=7,range=16,decay=1.7){const l=new THREE.PointLight(color,intensity,range,decay);l.position.set(x,y,z);scene.add(l);fallbackLamps.push(l);return l;}
 
 const loader=new GLTFLoader(), models={};
 let embedded={};
@@ -171,14 +173,28 @@ function bridge(y,z,hasUpperFlight){
 // F: curved wall-mounted gallery bracket (the actual small cantilever, distinct from bridge web).
 function buttress(x,z,angle,y){const d=[Math.sin(angle),Math.cos(angle)];const P=(u,v)=>[x+d[0]*u,y+v,z+d[1]*u];beam(P(0,-1.02),P(0,-.10),.095,iron);beam(P(0,-.10),P(GALLERY_WIDTH,-.10),.075,iron);const pts=[];for(let i=0;i<=9;i++){let f=i/9;pts.push(P(GALLERY_WIDTH*(1-Math.cos(f*Math.PI/2)), -1.02+.92*Math.sin(f*Math.PI/2)));}for(let i=1;i<pts.length;i++)beam(pts[i-1],pts[i],.065,iron);}
 // G: photograph-derived shallow metal shade on a discreet side bracket, no chandelier.
-function cageLight(x,y,z,angle){const dx=Math.sin(angle),dz=Math.cos(angle),X=x+dx*.28,Z=z+dz*.28;beam([x,y+.28,z],[X,y+.28,Z],.026,iron);beam([X,y+.28,Z],[X,y,Z],.025,iron);mesh(new THREE.CylinderGeometry(.045,.19,.09,16,1,false),shadeMat,X,y-.045,Z,false);mesh(new THREE.CircleGeometry(.16,16),lampGlow,X,y-.095,Z,false).rotation.x=Math.PI/2;}
+function cageLight(x,y,z,angle){const dx=Math.sin(angle),dz=Math.cos(angle),X=x+dx*.28,Z=z+dz*.28;fieldFixtures.push([X,y-.10,Z]);beam([x,y+.28,z],[X,y+.28,Z],.026,iron);beam([X,y+.28,Z],[X,y,Z],.025,iron);mesh(new THREE.CylinderGeometry(.045,.19,.09,16,1,false),shadeMat,X,y-.045,Z,false);mesh(new THREE.CircleGeometry(.16,16),lampGlow,X,y-.095,Z,false).rotation.x=Math.PI/2;}
 function roofY(x,z){let q=z<APSE_Z?z-APSE_Z:0;return ROOF_SPRING_Y+(ROOF_APEX_Y-ROOF_SPRING_Y)*Math.sqrt(Math.max(0,1-(x*x+q*q)/(HALL_HALF_WIDTH*HALL_HALF_WIDTH)));}
 function wallHalf(z){return Math.sqrt(Math.max(0,HALL_HALF_WIDTH**2-Math.min(0,z-APSE_Z)**2));}
 // Long oval rooflight in plan, integrated into a curved timber roof rather than a floating ring.
 function openingHalf(z){const v=(z+1.5)/25;return Math.min(wallHalf(z),2.65*Math.sqrt(Math.max(0,1-v*v)));}
 function surface(fn,z0,z1,nZ,nX,mat,shadow=true){const ps=[],idx=[];for(let j=0;j<=nZ;j++){let z=z0+(z1-z0)*j/nZ;for(let i=0;i<=nX;i++){let x=fn(z,i/nX);ps.push(x,roofY(x,z),z);}}for(let j=0;j<nZ;j++)for(let i=0;i<nX;i++){let a=j*(nX+1)+i,b=a+nX+1;idx.push(a,b,a+1,a+1,b,b+1);}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(ps,3));g.setIndex(idx);g.computeVertexNormals();return mesh(g,mat,0,0,0,shadow);}
 // H: curved open-lattice arch. Twin curved chords with alternating diagonal bars.
-function roofRib(z,radialAngle=null){const pts=[],lower=[];for(let i=0;i<=20;i++){const t=-Math.PI/2+i*Math.PI/20,x=HALL_HALF_WIDTH*Math.sin(t),y=ROOF_SPRING_Y+3.6*Math.cos(t);const q=radialAngle===null?[x,z]:[x*Math.cos(radialAngle),APSE_Z-x*Math.sin(radialAngle)];pts.push([q[0],y-.06,q[1]]);lower.push([q[0]*.975,y-.06-(.22+.50*Math.abs(Math.sin(t))),q[1]]);}for(let i=1;i<pts.length;i++){beam(pts[i-1],pts[i],.11,steelBlue);beam(lower[i-1],lower[i],.095,steelBlue);beam(pts[i-1],lower[i],.045,steelBlue);beam(lower[i-1],pts[i],.045,steelBlue);} }
+// Deep haunches reach the clerestory sill; lattice depth tapers towards the glass spine.
+function roofHalfRib(point){
+ const top=[],lower=[],n=16;
+ for(let i=0;i<=n;i++){const t=i/n*Math.PI/2,r=HALL_HALF_WIDTH*Math.cos(t),[x,z]=point(r);
+ const y=roofY(x,z)-.055,depth=.28+1.56*Math.pow(Math.cos(t),3);
+ const [lx,lz]=point(r*.977);top.push([x,y,z]);lower.push([lx,y-depth,lz]);}
+ for(let i=1;i<=n;i++){beam(top[i-1],top[i],.075,steelBlue);beam(lower[i-1],lower[i],.075,steelBlue);beam(top[i-1],lower[i],.033,steelBlue);beam(lower[i-1],top[i],.033,steelBlue);}
+ beam(top[0],lower[0],.085,steelBlue);const p=lower[0];box(p[0],p[1]-.10,p[2],.25,.25,.25,steelBlue);
+}
+function roofRib(z){for(const side of [-1,1])roofHalfRib(r=>[side*r,z]);}
+function horizontalCourse(y,radius,width,height,mat){
+ for(const side of [-1,1])box(side*radius,y,(APSE_Z+Z_MAX)/2,width,height,Z_MAX-APSE_Z,mat);
+ for(let i=0;i<30;i++){const a=wallPoint(i*Math.PI/30,APSE_Z,radius),b=wallPoint((i+1)*Math.PI/30,APSE_Z,radius);beam([a[0],y,a[1]],[b[0],y,b[1]],height,mat);}
+ box(0,y,Z_MAX-.15,2*radius,height,width,mat);
+}
 function deckSegment(a,b,y){const [x,z]=a,[X,Z]=b,d=Math.hypot(X-x,Z-z),theta=Math.atan2(-(Z-z),X-x);const o=box((x+X)/2,y-.11,(z+Z)/2,d+.025,.20,GALLERY_WIDTH,wood);o.rotation.y=theta;}
 // Reusable, photo-inspired open iron stair. 35 risers at ~180mm; wood treads and perforated risers.
 const STAIR_RUN=STAIR_PROFILE.run, STAIR_RISERS=STAIR_PROFILE.risers, STAIR_WIDTH=STAIR_PROFILE.width;
@@ -226,7 +242,14 @@ function build(){
  // Close the west gable above the masonry; the only overhead opening is the rooflight.
  const gablePoints=[[-HALL_HALF_WIDTH,0]];for(let i=0;i<=32;i++){const t=-Math.PI/2+i*Math.PI/32;gablePoints.push([HALL_HALF_WIDTH*Math.sin(t),3.6*Math.cos(t)]);}gablePoints.push([HALL_HALF_WIDTH,0]);mesh(extrusion(poly(gablePoints),.3),stone,0,ROOF_SPRING_Y,Z_MAX);
  // continuous cornices across the masonry at gallery and clerestory lines.
- for(const y of [LEVEL_PITCH,2*LEVEL_PITCH,CLERESTORY_Y,ROOF_SPRING_Y])for(const side of [-1,1])box(side*8.63,y-.055,(APSE_Z+Z_MAX)/2,.32,.13,Z_MAX-APSE_Z,surround);
+ for(const y of [LEVEL_PITCH,2*LEVEL_PITCH,CLERESTORY_Y,ROOF_SPRING_Y])horizontalCourse(y-.055,8.63,.32,.13,surround);
+ horizontalCourse(.09,8.65,.16,.16,iron);
+ for(const y of [LEVEL_PITCH,2*LEVEL_PITCH])horizontalCourse(y-.12,INNER,.16,.16,steelBlue);
+ // Longitudinal purlins divide the timber soffit into broad bands.
+ for(const side of [-1,1])for(const r of [4.65,7.05]){
+  const y=roofY(r,0)-.06;beam([side*r,y,APSE_Z],[side*r,y,Z_MAX],.085,steelBlue);
+ }
+ for(const r of [4.65,7.05])for(let i=0;i<24;i++){const a=wallPoint(i*Math.PI/24,APSE_Z,r),b=wallPoint((i+1)*Math.PI/24,APSE_Z,r);beam([a[0],roofY(...a)-.06,a[1]],[b[0],roofY(...b)-.06,b[1]],.075,steelBlue);}
  // Central two-flight stair and transverse bridges: each flight ends at the next gallery landing.
  stairFlight(0,0);bridge(LEVEL_PITCH,-9.925,true);stairFlight(LEVEL_PITCH,-10.75);bridge(2*LEVEL_PITCH,-20.675,false);
  // Curved timber soffits and genuine oval aperture. Glazing spans the opening, with metal mullions.
@@ -236,7 +259,7 @@ function build(){
  for(const sign of [-1,0,1]){let prev=null;for(let z=-26.4;z<=23.4;z+=.6){let x=sign*openingHalf(z),P=[x,roofY(x,z)+.02,z];if(prev)beam(prev,P,sign===0?.06:.11,steelBlue);prev=P;}}
  for(let z=APSE_Z;z<Z_MAX;z+=6.2)roofRib(z);
  // apse fan ribs, each radial half-arch terminates at crown.
- for(let i=0;i<=6;i++){const a=i*Math.PI/6;let prev=null,low=null;for(let j=0;j<=12;j++){let t=j*Math.PI/24,r=HALL_HALF_WIDTH*Math.cos(t),[x,z]=wallPoint(a,APSE_Z,r),y=roofY(x,z);const p=[x,y-.06,z],q=[x*.98,y-.43,z];if(prev){beam(prev,p,.105,steelBlue);beam(low,q,.08,steelBlue);beam(prev,q,.04,steelBlue);beam(low,p,.04,steelBlue);}prev=p;low=q;}}
+ for(let i=1;i<6;i++){const a=i*Math.PI/6;roofHalfRib(r=>wallPoint(a,APSE_Z,r));}
  // Roof boarding joints along nave, subtle rather than dark floating shafts.
  for(let z=APSE_Z+1;z<Z_MAX;z+=1.2)for(const side of [-1,1]){let prev=null;for(let i=0;i<=8;i++){let x=side*(openingHalf(z)+(HALL_HALF_WIDTH-openingHalf(z))*i/8),P=[x,roofY(x,z)-.02,z];if(prev)beam(prev,P,.018,rustSteel);prev=P;}}
  // Four nodes, two central; keep center route clear and detour around iron stair.
@@ -299,12 +322,15 @@ addEventListener('keydown',e=>{if(dialog.open)return; if(!e.key.startsWith('Arro
 function updateMarkers(){const r=canvas.getBoundingClientRect(),f=camera.getWorldDirection(new THREE.Vector3()); for(const m of markers){const delta=m.world.clone().sub(camera.position),p=m.world.clone().project(camera); const visible=!state.trip&&!dialog.open&&delta.dot(f)>.1&&p.z>=-1&&p.z<=1&&Math.abs(p.x)<.9&&Math.abs(p.y)<.85; m.el.hidden=!visible; if(visible){m.el.style.left=`${r.left+(p.x+1)*r.width/2}px`; m.el.style.top=`${r.top+(1-p.y)*r.height/2}px`;}}}
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 function animate(now){const dt=previousTime?Math.min(.05,(now-previousTime)/1000):0;previousTime=now;
+ if(fieldLight&&!shaderFallback)fieldLight.update(now);else if(shaderFallback){sun.intensity=1.85;ambient.intensity=1.48;for(const l of fallbackLamps)l.intensity=2.6;}
  if(hoistView){hoistClock+=dt;while(hoistClock>=.1){hoistClock-=.1;hoist.advance();}if(!hoistStarted&&hoist.tick>=30){hoistStarted=true;hoist.start();}hoistView.update(hoist.inspect(),dt);}for(const mixer of mixers)mixer.update(dt);tick(now);if(choirCast)choirCast.sync(dt); camera.rotation.set(pitch,yaw,0,'YXZ'); camera.updateMatrixWorld(); updateMarkers(); renderer.render(scene,camera)}
-function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R013 ironwork · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
+function reportArt(){const failed=review.failed.length?' · '+review.failed.length+' map fallbacks':'';$('#assets').textContent='R014 light fields · '+review.maps+'/5 material maps'+failed+' · '+review.characters+' characters'+(review.characterFailed?' ('+review.characterFailed+' unavailable)':'');}
 try{
  await load();build();flushAssets();batchArchitecture();hoistView=mountFoodHoist(scene,{iron:steelBlue,dark:iron,wood});hoistView.update(hoist.inspect());weatherScene(scene,weatherKinds);
+ // Keep optional lighting independent of the base scene. A failure restores original lights.
+ try{fieldLight=mountLightFields({scene,renderer,sun,ambient,fixtures:fieldFixtures,lamps:fallbackLamps,lampGlow});}catch(e){console.warn('Light field fallback',e);}
  choir.advance(1,'gate','arrival of the witness');refresh();reportArt();renderer.setAnimationLoop(animate);
- window.KilmainhamChoir={get state(){return {node:state.node,steps:state.steps,events:choir.events.length}},get frames(){return renderer.info.render.frame},get embodied(){return choirCast?.objects.size||0},get hoist(){return hoist.snapshot()},get local(){return choir.publicAt(state.node)}};
+ window.KilmainhamChoir={get state(){return {node:state.node,steps:state.steps,events:choir.events.length}},get frames(){return renderer.info.render.frame},get embodied(){return choirCast?.objects.size||0},get hoist(){return hoist.snapshot()},get light(){return fieldLight?.state||null},get local(){return choir.publicAt(state.node)}};
  // Texture and character availability must never gate the playable scene.
  applyMaterialMaps(materialGroups,renderer,(n,total,failed)=>{review.maps=n;review.failed=failed;reportArt()}).catch(console.warn);
  choirCast=mountChoir(scene,loader,choir,NODES,(n,failed)=>{review.characters=n;review.characterFailed=failed;reportArt()});
