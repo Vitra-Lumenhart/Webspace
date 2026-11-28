@@ -563,3 +563,14 @@ A roadmap entry is **not permission** to change the scope of another world. Each
 
 **Deferred:** Actual browser acceptance, exported GLBs, upper gallery traversal, exact measured historical dimensions, full volumetric scattering and dynamic actor shadows. [Technical specification](worlds/katkit-kilmainham/R014_LIGHT_FIELDS.md).
 <!-- /WEBSPACE-LEDGER -->
+
+
+<!-- WEBSPACE-LEDGER id="KIL-R015-CHIA" date="2026-11-28" -->
+### 2026-11-28 · KIL-R015-CHIA — Chiaroscuro
+
+**Changed:** R014 screenshot-based corrections: localized lamp field, cloud glass, cool lightning with actor shadow snapshot, subdued pose/palette and contact shade, roof spring shoes, compact HUD and sky status reset. No lore, door graph or prior branch changes.
+
+**Checked:** 65,550 field assertions via JS adapter, five modules parsed. Same lighting textures, one 2048² shadow allocation; shared contact decal. Actual shader, performance and rendering unverified.
+
+**Deferred:** physical stairs and cells, GLB export, motion/collision, visual approval. [Specification](worlds/katkit-kilmainham/R015_CHIAROSCURO.md).
+<!-- /WEBSPACE-LEDGER -->
