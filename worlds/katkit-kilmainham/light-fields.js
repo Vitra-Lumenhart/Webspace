@@ -13,6 +13,27 @@ export function mountLightFields({scene,renderer,sun,ambient,fixtures,lamps,lamp
  function tex(data,w,h){const t=new THREE.DataTexture(data,w,h,THREE.RedFormat,THREE.UnsignedByteType);t.minFilter=t.magFilter=THREE.LinearFilter;t.generateMipmaps=false;t.needsUpdate=true;return t;}
  const cloud=tex(c.atlas,c.width,c.height),electric=tex(atlas,ew*4,eh*4);
  const uniforms={fCloud:{value:cloud},fElectric:{value:electric},fDrift:{value:new THREE.Vector2()},fDepth:{value:2},fOn:{value:0},fFlash:{value:0},fSunDir:{value:sun.position.clone().sub(sun.target.position).normalize()}};
+ // Optional low-cost shaft slices: one batched transparent mesh; no raymarch,
+ // extra shadow map or render target. Opaque geometry supplies depth testing.
+ const rayUniforms={...uniforms,fRayGain:{value:0}};
+ const rayMaterial=new THREE.ShaderMaterial({uniforms:rayUniforms,transparent:true,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,
+ vertexShader:`varying vec3 rWorld;varying vec2 rUV;void main(){rUV=uv;rWorld=(modelMatrix*vec4(position,1.)).xyz;gl_Position=projectionMatrix*viewMatrix*vec4(rWorld,1.);}`,
+ fragmentShader:`varying vec3 rWorld;varying vec2 rUV;uniform sampler2D fCloud;uniform vec2 fDrift;uniform float fDepth,fFlash,fRayGain;uniform vec3 fSunDir;
+ float layerAt(vec2 p,float k){vec2 tile=vec2(mod(k,4.),floor(k/4.))*66.;return texture2D(fCloud,(tile+1.5+p*64.-.5)/264.).r;}
+ void main(){vec2 q=fract((rWorld.xz+fSunDir.xz/max(.1,fSunDir.y)*(21.-rWorld.y)+fDrift)/vec2(64.,96.));float k=clamp(fDepth,0.,15.),a=floor(k);float tr=mix(layerAt(q,a),layerAt(q,min(a+1.,15.)),fract(k));tr=mix(tr,1.,fFlash);
+ float edge=pow(max(0.,sin(3.14159*rUV.x)),.7)*sin(3.14159*rUV.y);
+ gl_FragColor=vec4(mix(vec3(.65,.62,.50),vec3(.55,.70,1.),fFlash),max(0.,edge)*tr*fRayGain);
+ }`});
+ const rays=new THREE.Mesh(new THREE.BufferGeometry(),rayMaterial);rays.name='KIL optional dust-light sheets';rays.frustumCulled=false;scene.add(rays);
+ function rebuildRays(){const d=uniforms.fSunDir.value,p=[],u=[],idx=[];const n=40;
+ for(const slice of [-.8,-.4,0,.4,.8]){const base=p.length/3;for(let i=0;i<=n;i++){let t=i/n,z=-26.3+t*49.6,w=2.65*Math.sqrt(Math.max(0,1-((z+1.5)/25)**2)),x=slice*w;
+ for(const y of [.08,21]){p.push(x-d.x/d.y*(21-y),y,z-d.z/d.y*(21-y));u.push(t,y/21);}
+ if(i<n){const j=base+i*2;idx.push(j,j+2,j+1,j+1,j+2,j+3);}}}
+ const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(p,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(u,2));geo.setIndex(idx);rays.geometry.dispose();rays.geometry=geo;}
+ const ordinarySun=sun.position.clone();let stormDirection=false;
+ function setDirection(storm){if(storm===stormDirection)return;stormDirection=storm;if(storm)sun.position.set(-23,37,-13);else sun.position.copy(ordinarySun);
+ uniforms.fSunDir.value.copy(sun.position).sub(sun.target.position).normalize();renderer.shadowMap.needsUpdate=true;rebuildRays();}
+ rebuildRays();
  const done=new WeakSet();let mode=params.get('sky')||'cycle',start=null,nowState=null,lastThunder=-1,audio=null,noise=null;
  if(!['day','cycle','twilight','storm'].includes(mode))mode='cycle';
  function attach(m){if(!m?.isMeshStandardMaterial||done.has(m)||m.transparent)return;done.add(m);m.userData.lightFields=true;
@@ -61,17 +82,17 @@ export function mountLightFields({scene,renderer,sun,ambient,fixtures,lamps,lamp
  const label=document.createElement('label');label.textContent='Sky ';const sel=document.createElement('select');
  for(const [v,n] of [['cycle','Drifting day → dusk'],['day','Daylight'],['twilight','Twilight'],['storm','Storm · lightning']]){const op=document.createElement('option');op.value=v;op.textContent=n;sel.append(op);}
  sel.value=mode;sel.onchange=()=>{mode=sel.value;start=null;lastThunder=-1;};label.append(sel);panel.append(label);
- const soft=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.checked=gentle;soft.append(check,' Gentle lightning');panel.append(document.createElement('br'),soft);
+ const soft=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.checked=gentle;soft.append(check,' Gentle lightning');panel.append(document.createElement('br'),soft);const rayLabel=document.createElement('label'),rayCheck=document.createElement('input');rayCheck.type='checkbox';rayCheck.checked=params.has('rays');rayLabel.append(rayCheck,' Dust shafts (experimental)');panel.append(document.createElement('br'),rayLabel);
  const button=document.createElement('button');button.textContent='Enable thunder';button.onclick=async()=>{try{audio ||= new (window.AudioContext||window.webkitAudioContext)();await audio.resume();noise=audio.createBuffer(1,audio.sampleRate*5,audio.sampleRate);const d=noise.getChannelData(0);let prev=0;for(let i=0;i<d.length;i++){prev=.96*prev+.04*(Math.random()*2-1);d[i]=prev*3;}button.textContent='Thunder enabled';button.disabled=true;}catch(e){button.textContent='Audio unavailable';}};panel.append(button);
  const status=document.createElement('div');panel.append(status);document.querySelector('#hud').append(panel);
  function thunder(){if(!audio||!noise)return;const src=audio.createBufferSource(),filter=audio.createBiquadFilter(),gain=audio.createGain(),t=audio.currentTime;src.buffer=noise;filter.type='lowpass';filter.frequency.value=180;gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(.36,t+.55);gain.gain.exponentialRampToValueAtTime(.001,t+4.9);src.connect(filter).connect(gain).connect(audio.destination);src.start();}
  let lastScan=-10;
  function update(now){if(start===null)start=now;const t=(now-start)/1000;nowState=skyState(t,mode,check.checked);
- const s=nowState;uniforms.fDepth.value=s.depth;uniforms.fDrift.value.set(...s.drift);uniforms.fOn.value=s.electric;uniforms.fFlash.value=s.flash;
+ const s=nowState;setDirection(s.storm);rays.visible=rayCheck.checked;rayUniforms.fRayGain.value=.008*s.sun+.025*s.flash;uniforms.fDepth.value=s.depth;uniforms.fDrift.value.set(...s.drift);uniforms.fOn.value=s.electric;uniforms.fFlash.value=s.flash;
  sun.intensity=s.sun+3.6*s.flash;ambient.intensity=s.ambient+.22*s.flash;lampGlow.emissiveIntensity=s.electric?1.35:.08;
  for(const l of lamps)l.intensity=0; // baked electric field replaces point-light loops.
- const n=Math.floor(t/32);if(s.storm&&t%32>=17.7&&lastThunder!==n){lastThunder=n;if(t%32<19)thunder();}
+ if(s.storm&&s.thunder&&lastThunder!==s.strike){lastThunder=s.strike;thunder();}
  if(t-lastScan>1){scan();lastScan=t;status.textContent=(s.electric?'Lamps on':'Lamps off')+' · '+Math.round(s.phase*100)+'% dusk · '+Math.round((c.volume.byteLength+c.atlas.byteLength+atlas.byteLength+e.byteLength)/1024)+' KiB field arrays';}
  }
- return {update,attach,get mode(){return mode},get state(){return nowState},bytes:c.volume.byteLength+c.atlas.byteLength+atlas.byteLength+e.byteLength};
+ return {update,attach,disable(){rays.visible=false;},get mode(){return mode},get state(){return nowState},bytes:c.volume.byteLength+c.atlas.byteLength+atlas.byteLength+e.byteLength};
 }
